@@ -1,1 +1,15 @@
-/* TODO Add site wide styles */
+html {
+    margin-left: 300px;
+    margin-right: 300px;
+}
+
+body {
+    background-image: url('./Rainbow-Vector.jpg');
+
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+
+    overflow: hidden;
+}

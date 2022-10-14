@@ -1,0 +1,49 @@
+/* #main-content {
+    display: flex;
+    justify-content: center;
+} */
+
+#header {
+    display: flex;
+    justify-content: center;
+
+    font-family: 'Bungee Spice', cursive;
+
+    position: relative;
+    bottom: 5vh;
+
+    font-size: 60px;
+}
+
+#game-box {
+    display: flex;
+    justify-content: center;
+
+    background-color: rgb(0, 0, 0);
+    min-height: 610px;
+    max-height: 610px;
+    min-width: 650px;
+    max-width: 650px;
+    
+    box-shadow: 0px 10px 20px rgb(255, 0, 215);
+
+    position: relative;
+    bottom: 10vh;
+    margin: auto;
+
+    border-radius: 25px;
+    opacity: 93%;
+    border: 2px solid rgb(255, 250, 95);
+}
+
+#word-bar {
+    position: relative;
+    top: 550px;
+    color: white;
+
+    background-color: rgb(30, 30, 30);
+    border: 2px solid rgb(110, 110, 255);
+    border-radius: 8px;
+    width: 75vh;
+    height: 5vh;
+}
