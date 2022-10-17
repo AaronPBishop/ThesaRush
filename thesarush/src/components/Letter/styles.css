@@ -24,9 +24,9 @@
     animation-iteration-count: one;
 }
 
-#null {
+.hidden {
     visibility: hidden;
-}
+  }
 
   
 @keyframes drop{

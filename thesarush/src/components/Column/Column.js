@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react';
 
 import Letter from '../Letter/Letter.js';
-import { useBoardContext } from '../../context/BoardContext.js';
+import { useColumnContext } from '../../context/ColumnContext';
 import './styles.css';
 
 const Column = () => {
     const [randomCol, setRandomCol] = useState([]);
-    const { setColumnVals } = useBoardContext();
 
     const vowels = ['A', 'E', 'I', 'O', 'U', 'Y'];
     const consonants = ['B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'R', 'S', 'T', 'V', 'W']
@@ -23,11 +22,11 @@ const Column = () => {
     };
 
     useEffect(() => {
-        const col = []
+        const col = [];
 
         for (let j = 0; j < 9; j++) {
             if (j >= 6) col.push(<Letter letter={letterGenerator()} key={j} />)
-            if (j < 6) col.push(<Letter style={{ visibility: 'hidden' }} id='null' key={j}  />)
+            if (j < 6) col.push(<Letter style={{ visibility: 'hidden' }} key={j}  />)
         };
 
         setRandomCol(col);

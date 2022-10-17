@@ -6,10 +6,11 @@ const Letter = ({ letter }) => {
     const [clicked, setClicked] = useState(false);
     const [currLetter, setCurrLetter] = useState('');
 
-    const { inputVal, setInputVal, setSubmitted } = useInputContext();
+    const { inputVal, setInputVal } = useInputContext();
     
     useEffect(() => {
         const currValues = [];
+
         if (clicked) currValues.push(`${currLetter}`)
         setInputVal(inputVal.concat(currValues))
     }, [clicked])
