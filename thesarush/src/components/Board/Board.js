@@ -1,9 +1,10 @@
 import Column from '../Column/Column.js';
+import './styles.css';
 
 const Board = () => {
     const board = []
-    for (let i = 0; i < 9; i++) {
-        board.push(<Column />)
+    for (let i = 0; i < 8; i++) {
+        board.push(<Column key={i} />)
     };
 
     return (

@@ -1,11 +1,16 @@
 .letters {
-    font-family: 'Orbitron', sans-serif;
+    display: flex;
+    justify-content: center;
+
+    font-family: 'Quantico', sans-serif;
     font-size: 25px;
 
     border: 2px solid rgb(205, 255, 0);
     border-radius: 25px;
-    width: 60px;
-    height: 60px;
+    min-width: 55px;
+    max-width: 55px;
+    min-height: 55px;
+    max-height: 55px;
 
     background-color: rgb(30, 55, 155);
     color: white;
@@ -13,7 +18,17 @@
     margin: 2px;
 
     position: relative;
+    left: 25px;
     top:-965px;
     animation: drop 0.8s forwards;
     animation-iteration-count: one;
+}
+
+#null {
+    visibility: hidden;
+}
+
+  
+@keyframes drop{
+    100%{transform: translateY(480px)}
 }

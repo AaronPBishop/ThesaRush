@@ -1,0 +1,13 @@
+.columns {
+    display: inline-flex;
+    flex-direction: column;
+
+    justify-content: center;
+
+    position: relative;
+    top: 500px;
+}
+
+#null {
+    visibility: hidden;
+}
