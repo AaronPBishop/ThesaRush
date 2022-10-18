@@ -7,6 +7,12 @@ export const addColumn = (column) => {
     };
 };
 
+export const resetBoard = () => {
+    return {
+        type: 'RESET_BOARD'
+    };
+};
+
 const boardReducer = (state = initialState, action) => {
     const currentState = { ...state };
 
@@ -15,6 +21,10 @@ const boardReducer = (state = initialState, action) => {
             currentState[action.payload] = action.payload;
 
             return currentState;
+        };
+
+        case 'RESET_BOARD': {
+            return initialState;
         };
 
         default: return currentState;

@@ -12,4 +12,6 @@ body {
     background-repeat: no-repeat;
 
     overflow: hidden;
+
+    z-index: 20;
 }

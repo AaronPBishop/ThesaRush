@@ -5,5 +5,7 @@
     justify-content: center;
 
     position: relative;
-    top: 500px;
+    top: 35px;
+
+    z-index: 5;
 }

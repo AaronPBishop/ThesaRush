@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import './styles.css';
 import { useInputContext } from '../../context/InputContext.js';
 
-const Letter = ({ letter }) => {
+const Letter = ({ hidden, letter }) => {
     const [clicked, setClicked] = useState(false);
     const [currLetter, setCurrLetter] = useState('');
 
@@ -15,11 +15,23 @@ const Letter = ({ letter }) => {
         setInputVal(inputVal.concat(currValues))
     }, [clicked]);
 
-    return <div className='letters' disabled={clicked} onClick={() => {
-        setClicked((clicked) => !clicked);
-        
-        setCurrLetter(`${letter}`)
-    }}>{letter}</div>
+    return <div
+    className={
+      [
+        'letters',
+        hidden ? "hidden" : null // conditionally apply class
+      ]
+        .filter(Boolean)
+        .join(" ")
+    }
+    disabled={clicked}
+    onClick={() => {
+      setClicked((clicked) => !clicked);
+      setCurrLetter(letter);
+    }}
+  >
+    {letter}
+  </div>
 };
 
 export default Letter;

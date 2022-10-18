@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
 import './styles.css';
-import { addColumn } from '../../store/boardReducer.js';
+import { addColumn, resetBoard } from '../../store/boardReducer.js';
 import Column from '../Column/Column.js';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 const Board = () => {
     const dispatch = useDispatch();
@@ -12,9 +12,8 @@ const Board = () => {
     const consonants = ['B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'R', 'S', 'T', 'V', 'W']
     const goldConsonants = ['X', 'Z', 'Q'];
 
-    const randomGen = Math.floor(Math.random() * 100);
-
     const letterGenerator = () => {
+        const randomGen = Math.floor(Math.random() * 100);
         const randomNum = randomGen;
 
         if (randomNum >= 40) return consonants[Math.floor((Math.random()*consonants.length))];
@@ -22,9 +21,20 @@ const Board = () => {
 
         return goldConsonants[Math.floor((Math.random()*goldConsonants.length))];
     };
-    
-    const randomColumn = () => Array.from({ length: 9 }, letterGenerator);
+
+    const randomColumn = () => {
+        const column = [];
+        console.log(column)
+        for (let i = 0; i < 9; i++) {
+            if (i > 5) column.push(letterGenerator());
+            else column.push(null)
+        };
+        return column;
+    };
+
     useEffect(() => {
+        dispatch(resetBoard());
+
         for (let i = 0; i < 8; i++) {
             dispatch(addColumn(randomColumn()))
         };
@@ -32,7 +42,8 @@ const Board = () => {
 
     return (
         <div className='main-board'>
-            {board.map((letters, i) => <Column letters={letters} key={i} />)}
+            {board.map((col, i) => {
+                return <Column letters={col} key={i} />})}
         </div>
     );
 };

@@ -19,14 +19,14 @@
 
     position: relative;
     left: 25px;
-    top:-965px;
+    top:-500px;
     animation: drop 0.8s forwards;
     animation-iteration-count: one;
 }
 
 .hidden {
     visibility: hidden;
-  }
+}
 
   
 @keyframes drop{
