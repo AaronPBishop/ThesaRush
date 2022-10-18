@@ -13,10 +13,11 @@ const Letter = ({ letter }) => {
 
         if (clicked) currValues.push(`${currLetter}`)
         setInputVal(inputVal.concat(currValues))
-    }, [clicked])
+    }, [clicked]);
 
     return <div className='letters' disabled={clicked} onClick={() => {
         setClicked((clicked) => !clicked);
+        
         setCurrLetter(`${letter}`)
     }}>{letter}</div>
 };

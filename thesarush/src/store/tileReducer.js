@@ -8,7 +8,7 @@ export const clearTile = (tileId) => {
 };
 
 const tileReducer = (state = initialState, action) => {
-    const currentState = state.slice('');
+    const currentState = state;
     
     switch (action.type) {
         case 'CLEAR_TILE': {
