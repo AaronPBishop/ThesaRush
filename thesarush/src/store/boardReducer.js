@@ -1,3 +1,5 @@
+import performSplice from "../functions/performSplice.js";
+
 const initialState = [];
 
 export const addColumn = (column) => {
@@ -11,6 +13,13 @@ export const clearTiles = (tilePositions) => {
     return {
         type: 'CLEAR_TILES',
         payload: tilePositions
+    };
+};
+
+export const rearrangeTiles = (board) => {
+    return {
+        type: 'REARRANGE_TILES',
+        payload: board
     };
 };
 
@@ -37,6 +46,12 @@ const boardReducer = (state = initialState, action) => {
                 const [col, row] = values[i];
                 Object.values(currentState)[col][row] = null;
             };
+
+            return currentState;
+        };
+
+        case 'REARRANGE_TILES': {
+            currentState = performSplice(action.payload);
 
             return currentState;
         };

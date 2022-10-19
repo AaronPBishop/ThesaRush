@@ -1,13 +1,12 @@
 import { useDispatch, useSelector } from 'react-redux';
 import './styles.css';
-import { addColumn, resetBoard, clearTiles } from '../../store/boardReducer.js';
+import { addColumn, resetBoard } from '../../store/boardReducer.js';
 import Column from '../Column/Column.js';
 import { useEffect } from 'react';
 
 const Board = () => {
     const dispatch = useDispatch();
     const board = useSelector(state => Object.values(state.board));
-    const currTiles = useSelector(state => state.tiles);
 
     const vowels = ['A', 'E', 'I', 'O', 'U', 'Y'];
     const consonants = ['B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'R', 'S', 'T', 'V', 'W']
