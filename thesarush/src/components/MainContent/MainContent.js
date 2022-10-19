@@ -49,10 +49,15 @@ const MainContent = () => {
                     <form onSubmit={handleSubmit}>
                         <button id='clear' onClick={() => {
                             setInputVal([]);
-                            dispatch(clearTiles(currTiles));
-                            }}></button>
+                            }}>
+                            </button>
+
                             <input id='word-bar' type='text' disabled={true} value={inputVal.join('')}></input>
-                        <button id='send' type='submit'></button>
+
+                        <button id='send' type='submit'
+                        onClick={() => {
+                            dispatch(clearTiles(currTiles))
+                            }}></button>
                     </form>
 
                 </div>

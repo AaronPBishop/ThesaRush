@@ -1,5 +1,3 @@
-import { useSelector } from "react-redux";
-
 const initialState = [];
 
 export const addColumn = (column) => {
@@ -23,7 +21,7 @@ export const resetBoard = () => {
 };
 
 const boardReducer = (state = initialState, action) => {
-    const currentState = { ...state };
+    let currentState = { ...state };
 
     switch (action.type) {
         case 'ADD_COLUMN': {
@@ -33,14 +31,19 @@ const boardReducer = (state = initialState, action) => {
         };
 
         case 'CLEAR_TILES': {
-            for (let i = 0; i < action.payload.length; i++) {
-                currentState[action.payload[i]] = null;
+            const values = Object.values(action.payload);
+ 
+            for (let i = 0; i < values.length; i++) {
+                const [col, row] = values[i];
+                Object.values(currentState)[col][row] = null;
             };
 
             return currentState;
         };
 
         case 'RESET_BOARD': {
+            console.log('I was here')
+
             return initialState;
         };
 
