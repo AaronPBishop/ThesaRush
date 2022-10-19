@@ -1,6 +1,6 @@
 import { createStore, compose, applyMiddleware, combineReducers } from 'redux';
 import boardReducer from './boardReducer.js';
-import tileReducer from './tileReducer.js';
+import tilesReducer from './tilesReducer.js';
 
 const logger = require("redux-logger").default;
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -9,7 +9,7 @@ const enhancer = composeEnhancers(applyMiddleware(logger));
 
 const rootReducer = combineReducers({
     board: boardReducer,
-    tile: tileReducer
+    tiles: tilesReducer
 });
 
 const configureStore = (preLoadedState) => {

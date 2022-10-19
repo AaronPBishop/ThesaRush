@@ -2,7 +2,12 @@ import { useState, useEffect } from 'react';
 import './styles.css';
 import { useInputContext } from '../../context/InputContext.js';
 
-const Letter = ({ hidden, letter }) => {
+import { useDispatch } from 'react-redux';
+import { setTiles } from '../../store/tilesReducer';
+
+const Letter = ({ hidden, letter, colPos, rowPos }) => {
+    const dispatch = useDispatch();
+
     const [clicked, setClicked] = useState(false);
     const [currLetter, setCurrLetter] = useState('');
 
@@ -10,16 +15,25 @@ const Letter = ({ hidden, letter }) => {
     
     useEffect(() => {
         const currValues = [];
+        const positions = [];
 
-        if (clicked) currValues.push(`${currLetter}`)
-        setInputVal(inputVal.concat(currValues))
+        if (clicked) {
+          currValues.push(`${currLetter}`);
+          positions.push([colPos, rowPos]);
+        };
+
+        for (let i = 0; i < positions.length; i++) {
+          dispatch(setTiles(positions[i]))
+        };
+
+        setInputVal(inputVal.concat(currValues));
     }, [clicked]);
 
     return <div
     className={
       [
         'letters',
-        hidden ? "hidden" : null // conditionally apply class
+        hidden ? "hidden" : null
       ]
         .filter(Boolean)
         .join(" ")
@@ -28,8 +42,7 @@ const Letter = ({ hidden, letter }) => {
     onClick={() => {
       setClicked((clicked) => !clicked);
       setCurrLetter(letter);
-    }}
-  >
+    }}>
     {letter}
   </div>
 };

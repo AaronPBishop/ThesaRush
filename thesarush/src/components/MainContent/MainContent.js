@@ -1,10 +1,15 @@
 import { useEffect } from 'react';
 import Board from '../Board/Board';
 import { useInputContext } from '../../context/InputContext.js';
+import { useDispatch, useSelector } from 'react-redux';
+import { resetTiles } from '../../store/tilesReducer';
+import { clearTiles } from '../../store/boardReducer';
 import './styles.css';
 
 const MainContent = () => {
     const { inputVal, setInputVal, submitted, setSubmitted } = useInputContext();
+    const dispatch = useDispatch();
+    const currTiles = useSelector(state => state.tiles);
 
     useEffect(() => {
         const makeSearch = async () => {
@@ -28,6 +33,7 @@ const MainContent = () => {
         e.preventDefault();
 
         setSubmitted((submitted) => !submitted);
+        dispatch(resetTiles());
     };
 
     return (
@@ -41,7 +47,10 @@ const MainContent = () => {
                     <Board />
                     
                     <form onSubmit={handleSubmit}>
-                        <button id='clear' onClick={() => setInputVal([])}></button>
+                        <button id='clear' onClick={() => {
+                            setInputVal([]);
+                            dispatch(clearTiles(currTiles));
+                            }}></button>
                             <input id='word-bar' type='text' disabled={true} value={inputVal.join('')}></input>
                         <button id='send' type='submit'></button>
                     </form>
