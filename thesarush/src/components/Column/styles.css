@@ -7,5 +7,7 @@
     position: relative;
     top: 35px;
 
+    max-height: 100vh;
+
     z-index: 5;
 }

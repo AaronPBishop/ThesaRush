@@ -1,0 +1,29 @@
+#game-over-header {
+    display: flex;
+    justify-content: center;
+
+    font-family: 'Bungee Spice', cursive;
+
+    position: relative;
+    bottom: 5vh;
+
+    font-size: 80px;
+}
+
+#link {
+    display: flex;
+    justify-content: center;
+
+    font-family: 'Bungee Spice', cursive;
+
+    position: relative;
+    bottom: 5vh;
+
+    font-size: 40px;
+
+    text-decoration: none;
+}
+
+link:hover {
+    box-shadow: 0px 5px 0px white;
+}

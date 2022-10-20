@@ -1,33 +1,49 @@
-import { useEffect } from 'react';
 import Board from '../Board/Board';
+import Points from '../Points/Points';
+import './styles.css';
+
+import { useEffect, useState } from 'react';
 import { useInputContext } from '../../context/InputContext.js';
 import { useDispatch, useSelector } from 'react-redux';
 import { resetTiles } from '../../store/tilesReducer';
 import { clearTiles, rearrangeTiles } from '../../store/boardReducer';
-import './styles.css';
 
 const MainContent = () => {
+    const [isValid, setIsValid] = useState(false);
+    const [score, setScore] = useState(0);
+
     const { inputVal, setInputVal, submitted, setSubmitted } = useInputContext();
     const dispatch = useDispatch();
+    
     const board = useSelector(state => Object.values(state.board));
     const currTiles = useSelector(state => state.tiles);
 
     useEffect(() => {
         const makeSearch = async () => {
+            if (inputVal.length === 1) return;
+            
             const makeFetch = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${inputVal.join('')}`);
             const fetchJSON = await makeFetch.json();
 
             if (!fetchJSON.title) {
-                console.log(`+${inputVal.length} points!`)
+                setIsValid(true);
                 setInputVal([]);
+                setScore(inputVal.length);
             } else {
-                console.log(`Invalid word, you lose ${inputVal.length} points!`);
+                setIsValid(false)
                 setInputVal([]);
             };
         };
 
         makeSearch();
         setInputVal([]);
+
+        const interval = setTimeout(() => {
+            setIsValid(false)
+          }, 900);
+        
+        return () => clearTimeout(interval)
+
     }, [submitted]);
 
     const handleSubmit = e => {
@@ -43,6 +59,8 @@ const MainContent = () => {
             
             <div id='game-box'>
 
+                <Points hidden={isValid === false} numPoints={score} />
+
                 <div id='board'>
                     
                     <Board />
@@ -55,11 +73,10 @@ const MainContent = () => {
 
                             <input id='word-bar' type='text' disabled={true} value={inputVal.join('')}></input>
 
-                        <button id='send' type='submit'
-                        onClick={() => {
-                            dispatch(clearTiles(currTiles))
+                        <button id='send' type='submit' onClick={() => {
+                            dispatch(clearTiles(currTiles));
                             dispatch(rearrangeTiles(board));
-                            }}></button>
+                        }}></button>
                     </form>
 
                 </div>
