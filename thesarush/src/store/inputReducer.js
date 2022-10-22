@@ -22,7 +22,7 @@ export const resetInput = () => {
 };
 
 const inputReducer = (state = initialState, action) => {
-    const currentState = { ...state };
+    let currentState = { ...state };
 
     switch (action.type) {
         case 'SET_INPUT': {

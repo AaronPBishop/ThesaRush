@@ -1,18 +1,17 @@
 import { useState, useEffect } from 'react';
-import './styles.css';
-import { useInputContext } from '../../context/InputContext.js';
-import { setInput, removeInputVal } from '../../store/inputReducer';
 import { useDispatch, useSelector } from 'react-redux';
-import { setTiles } from '../../store/tilesReducer';
+
+import { setInput, removeInputVal } from '../../store/inputReducer.js';
+import { setTiles } from '../../store/tilesReducer.js';
+
+import { incrementOrder } from '../../store/orderReducer.js';
+import './styles.css';
 
 const Letter = ({ hidden, letter, colPos, rowPos }) => {
     const dispatch = useDispatch();
-    const currInput = useSelector(state => state.input);
+    const order = useSelector(state => Number(Object.values(state.order)));
 
     const [clicked, setClicked] = useState(false);
-    const [order, setOrder] = useState(0);
-    
-    const { inputVal, setInputVal } = useInputContext();
 
     useEffect(() => {
         const positions = [];
@@ -25,16 +24,12 @@ const Letter = ({ hidden, letter, colPos, rowPos }) => {
           const currPosition = [colPos, rowPos].join('');
 
           dispatch(setInput(currPosition, [letter, order]));
+          dispatch(incrementOrder());
         };
 
         if (clicked === false) dispatch (removeInputVal([colPos, rowPos].join('')));
 
         for (let i = 0; i < positions.length; i++) dispatch(setTiles(positions[i]));
-        
-        setOrder(order + 1)
-        console.log(currInput)
-
-        setInputVal(inputVal.concat(Object.values(currValues)));
     }, [clicked]);
 
     return <div

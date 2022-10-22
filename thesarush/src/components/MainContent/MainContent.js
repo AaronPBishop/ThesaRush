@@ -1,16 +1,18 @@
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
 import Board from '../Board/Board';
 import Points from '../Points/Points';
+import GameOver from '../GameOver/GameOver.js';
+import orderInput from '../../functions/orderInput.js';
 import './styles.css';
 
-import { useEffect, useState } from 'react';
-import { useInputContext } from '../../context/InputContext.js';
-import { useDispatch, useSelector } from 'react-redux';
 import { resetTiles } from '../../store/tilesReducer';
 import { resetInput } from '../../store/inputReducer';
-import { clearTiles, rearrangeTiles } from '../../store/boardReducer';
+import { clearTiles, rearrangeTiles, dropLetters } from '../../store/boardReducer';
+import { resetOrder } from '../../store/orderReducer.js';
 
 import { useStatusContext } from '../../context/StatusContext.js';
-import GameOver from '../GameOver/GameOver.js';
 
 const MainContent = () => {
     const { isGameOver } = useStatusContext();
@@ -19,33 +21,39 @@ const MainContent = () => {
     const [score, setScore] = useState(0);
     const [totalPoints, setTotalPoints] = useState(score);
 
-    const { inputVal, setInputVal, submitted, setSubmitted } = useInputContext();
+    const { submitted, setSubmitted } = useStatusContext();
     const dispatch = useDispatch();
     
     const board = useSelector(state => Object.values(state.board));
     const currTiles = useSelector(state => state.tiles);
 
+    const input = useSelector(state => state.input);
+    const orderedInput = orderInput(Object.values(input));
+
     useEffect(() => {
         const makeSearch = async () => {
-            if (inputVal.length === 1) return;
+            if (orderedInput.length === 1) return;
             
-            const makeFetch = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${inputVal.join('')}`);
+            const makeFetch = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${orderedInput}`);
             const fetchJSON = await makeFetch.json();
 
             if (!fetchJSON.title) {
                 setIsValid(true);
-                setInputVal([]);
-                setScore(inputVal.length);
+                dispatch(clearTiles(currTiles));
+                dispatch(rearrangeTiles(board));
+
+                setScore(orderedInput.length);
                 setTotalPoints(totalPoints + score);
             } else {
-                setIsValid(false)
-                setInputVal([]);
+                dispatch(dropLetters(board));
             };
         };
-
+ 
         makeSearch();
-        setInputVal([]);
-
+        dispatch(resetInput());
+        dispatch(resetOrder());
+        dispatch(resetTiles());
+    
         const interval = setTimeout(() => {
             setIsValid(false)
           }, 900);
@@ -58,7 +66,6 @@ const MainContent = () => {
         e.preventDefault();
 
         setSubmitted((submitted) => !submitted);
-        dispatch(resetTiles());
     };
     
     if (isGameOver) return <GameOver points={totalPoints} />;
@@ -76,18 +83,15 @@ const MainContent = () => {
                     
                     <form onSubmit={handleSubmit}>
                         <button id='clear' onClick={() => {
-                            setInputVal([]);
+                        
                             dispatch(resetInput());
+                            dispatch(resetOrder());
                             }}>
                             </button>
 
-                            <input id='word-bar' type='text' disabled={true} value={inputVal.join('')}></input>
+                            <input id='word-bar' type='text' disabled={true} value={orderedInput}></input>
 
-                        <button id='send' type='submit' onClick={() => {
-                            dispatch(clearTiles(currTiles));
-                            dispatch(rearrangeTiles(board));
-                            dispatch(resetInput());
-                        }}></button>
+                        <button id='send' type='submit'></button>
                     </form>
 
                 </div>

@@ -52,8 +52,9 @@ const Board = () => {
 
     return (
         <div className='main-board'>
-            {board.map((col, i) => {
-                return <Column letters={col} colPos={i} key={i} />})}
+            <center>
+                {board.map((col, i) => <Column letters={col} colPos={i} key={i} />)}
+            </center>
         </div>
     );
 };
