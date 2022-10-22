@@ -1,15 +1,18 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
 import { addColumn, dropLetters, resetBoard } from '../../store/boardReducer.js';
 import Column from '../Column/Column.js';
 import letterGenerator from '../../functions/letterGenerator.js';
+
 import checkGameOver from '../../functions/checkGameOver.js';
-import GameOver from '../GameOver/GameOver.js';
+import { useStatusContext } from '../../context/StatusContext.js';
+
 import './styles.css';
 
 const Board = () => {
     const [switched, setSwitched] = useState(false);
-    const [isGameOver, setIsGameOver] = useState(false);
+    const { setGameOver } = useStatusContext();
     const dispatch = useDispatch();
     const board = useSelector(state => Object.values(state.board));
 
@@ -33,25 +36,21 @@ const Board = () => {
     }, []);
 
     useEffect(() => {
-        const interval = setTimeout(() => {
+        const interval = setInterval(() => {
           setSwitched((switched) => !switched);
         }, 3000);
-    
-        return () => clearTimeout(interval)
-    
-    }, [switched]);
 
-    useEffect(() => {
         if (board.length) dispatch(dropLetters(board));
 
         if (checkGameOver(board)) {
-            setIsGameOver(true);
-            return;
+            setGameOver(true);
+            clearInterval(interval);
         };
+
+        return () => clearInterval(interval);
     }, [switched]);
 
-    if (isGameOver) return <GameOver />
-    else return (
+    return (
         <div className='main-board'>
             {board.map((col, i) => {
                 return <Column letters={col} colPos={i} key={i} />})}

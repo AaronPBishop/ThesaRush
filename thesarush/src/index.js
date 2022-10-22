@@ -5,7 +5,8 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
 import configureStore from './store';
-import InputContextProvider from './context/InputContext';
+import InputContextProvider from './context/InputContext.js';
+import ProvideStatusContext from './context/StatusContext.js';
 
 import './index.css';
 import App from './App';
@@ -16,9 +17,11 @@ const Root = () => {
   return (
     <Provider store={store}>
       <InputContextProvider>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
+        <ProvideStatusContext>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </ProvideStatusContext>
       </InputContextProvider>
     </Provider>
   );

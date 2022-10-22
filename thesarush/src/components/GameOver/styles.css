@@ -1,4 +1,21 @@
-#game-over-header {
+#game-over {
+    background-color: rgb(0, 0, 0);
+    min-height: 650px;
+    max-height: 650px;
+    min-width: 670px;
+    max-width: 670px;
+    
+    box-shadow: 0px 10px 20px rgb(0, 110, 0);
+
+    position: relative;
+    top: 3vh;
+    margin: auto;
+
+    border-radius: 25px;
+    border: 2px solid rgb(255, 255, 60);
+}
+
+#gameover-header {
     display: flex;
     justify-content: center;
 
@@ -10,20 +27,45 @@
     font-size: 80px;
 }
 
-#link {
+#stats {
+    background-color: rgb(10, 10, 10);
+    min-height: 200px;
+    max-height: 200px;
+    min-width: 300px;
+    max-width: 300px;
+    
+    box-shadow: 0px 10px 20px rgb(0, 110, 0);
+
+    position: relative;
+    bottom: 5vh;
+    margin: auto;
+
+    border-radius: 25px;
+    border: 2px solid rgb(255, 255, 60);
+}
+
+#play-again {
     display: flex;
     justify-content: center;
 
     font-family: 'Bungee Spice', cursive;
 
     position: relative;
-    bottom: 5vh;
+    top: 5vh;
+
+    margin-left: 170px;
+    margin-right: 170px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    border: 2px solid rgb(255, 255, 60);
+    border-radius: 10px;
 
     font-size: 40px;
 
     text-decoration: none;
 }
 
-link:hover {
-    box-shadow: 0px 5px 0px white;
+#play-again:hover {
+    box-shadow: 0px 5px 15px rgb(0, 110, 0);
 }

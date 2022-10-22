@@ -1,32 +1,40 @@
 import { useState, useEffect } from 'react';
 import './styles.css';
 import { useInputContext } from '../../context/InputContext.js';
-
-import { useDispatch } from 'react-redux';
+import { setInput, removeInputVal } from '../../store/inputReducer';
+import { useDispatch, useSelector } from 'react-redux';
 import { setTiles } from '../../store/tilesReducer';
 
 const Letter = ({ hidden, letter, colPos, rowPos }) => {
     const dispatch = useDispatch();
+    const currInput = useSelector(state => state.input);
 
     const [clicked, setClicked] = useState(false);
-    const [currLetter, setCurrLetter] = useState('');
-
-    const { inputVal, setInputVal } = useInputContext();
+    const [order, setOrder] = useState(0);
     
+    const { inputVal, setInputVal } = useInputContext();
+
     useEffect(() => {
-        const currValues = [];
         const positions = [];
+        const currValues = [];
 
         if (clicked) {
-          currValues.push(`${currLetter}`);
           positions.push([colPos, rowPos]);
+          currValues.push(`${letter}`);
+
+          const currPosition = [colPos, rowPos].join('');
+
+          dispatch(setInput(currPosition, [letter, order]));
         };
 
-        for (let i = 0; i < positions.length; i++) {
-          dispatch(setTiles(positions[i]))
-        };
+        if (clicked === false) dispatch (removeInputVal([colPos, rowPos].join('')));
 
-        setInputVal(inputVal.concat(currValues));
+        for (let i = 0; i < positions.length; i++) dispatch(setTiles(positions[i]));
+        
+        setOrder(order + 1)
+        console.log(currInput)
+
+        setInputVal(inputVal.concat(Object.values(currValues)));
     }, [clicked]);
 
     return <div
@@ -41,7 +49,6 @@ const Letter = ({ hidden, letter, colPos, rowPos }) => {
     disabled={clicked}
     onClick={() => {
       setClicked((clicked) => !clicked);
-      setCurrLetter(letter);
     }}>
     {letter}
   </div>
