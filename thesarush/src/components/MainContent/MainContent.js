@@ -11,7 +11,7 @@ import { resetTiles } from '../../store/tilesReducer';
 import { resetInput } from '../../store/inputReducer';
 import { clearTiles, rearrangeTiles, dropLetters } from '../../store/boardReducer';
 import { resetOrder } from '../../store/orderReducer.js';
-import { incrementPoints, resetPoints, incrementWords, setLongestWord } from '../../store/statsReducer.js';
+import { determinePoints, resetPoints, incrementWords, setLongestWord } from '../../store/statsReducer.js';
 
 import { useStatusContext } from '../../context/StatusContext.js';
 
@@ -46,7 +46,7 @@ const MainContent = () => {
                 dispatch(clearTiles(currTiles));
                 dispatch(rearrangeTiles(board));
 
-                dispatch(incrementPoints(orderedInput.length));
+                dispatch(determinePoints(orderedInput.length));
                 dispatch(incrementWords());
                 dispatch(setLongestWord(orderedInput));
             } else {
@@ -62,7 +62,7 @@ const MainContent = () => {
         const interval = setTimeout(() => {
             setIsValid(false);
             dispatch(resetPoints());
-          }, 900);
+          }, 1000);
         
         return () => clearTimeout(interval)
 
@@ -87,7 +87,7 @@ const MainContent = () => {
                     
                     <Board />
                     
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={handleSubmit} className='input-actions'>
                         <button id='clear' onClick={() => {
                         
                             dispatch(resetInput());

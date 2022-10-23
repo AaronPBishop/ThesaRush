@@ -6,9 +6,9 @@ const initialState = {
     tilesCleared: 0
 };
 
-export const incrementPoints = (points) => {
+export const determinePoints = (points) => {
     return {
-        type: 'INCREMENT_POINTS',
+        type: 'DETERMINE_POINTS',
         payload: points
     };
 };
@@ -36,7 +36,7 @@ const statsReducer = (state = initialState, action) => {
     const currentState = { ...state };
 
     switch (action.type) {
-        case 'INCREMENT_POINTS': {
+        case 'DETERMINE_POINTS': {
             const pointsMap = {5: 7, 6: 9, 7: 11, 8: 16, 9: 20}
 
             if (action.payload < 5) {

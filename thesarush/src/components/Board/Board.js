@@ -19,8 +19,8 @@ const Board = () => {
     const randomColumn = () => {
         const column = [];
 
-        for (let i = 0; i < 9; i++) {
-            if (i > 5) column.push(letterGenerator());
+        for (let i = 0; i < 10; i++) {
+            if (i > 6) column.push(letterGenerator());
             else column.push(null)
         };
         
