@@ -1,15 +1,30 @@
 import { Link } from 'react-router-dom';
 import './styles.css';
 
-const GameOver = ({ points }) => {
+const GameOver = ({ points, numWords, longestWord, tilesCleared }) => {
     return (
         <div id='game-over'>
             <p id='gameover-header'>Game Over!</p>
-            <div id='stats'>
-                <p id='points'>
-                    Total Points: {points}
+            <div id='stats-box'>
+
+                <p>
+                    Total Points: <b>{points}</b>
                 </p>
+
+                <p>
+                    Total Words: <b>{numWords}</b>
+                </p>
+
+                <p>
+                    Longest Word: <b>{longestWord}</b>
+                </p>
+
+                <p>
+                    Tiles Cleared: <b>{tilesCleared}</b>
+                </p>
+
             </div>
+
             <Link id='play-again' to='/' onClick={() => window.location.reload()}>Play again?</Link>
         </div>
     );

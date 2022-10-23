@@ -3,6 +3,7 @@ import boardReducer from './boardReducer.js';
 import tilesReducer from './tilesReducer.js';
 import inputReducer from './inputReducer.js';
 import orderReducer from './orderReducer.js';
+import statsReducer from './statsReducer';
 
 const logger = require("redux-logger").default;
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
     board: boardReducer,
     tiles: tilesReducer,
     input: inputReducer,
-    order: orderReducer
+    order: orderReducer,
+    stats: statsReducer
 });
 
 const configureStore = (preLoadedState) => {

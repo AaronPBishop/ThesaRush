@@ -27,10 +27,16 @@
     font-size: 80px;
 }
 
-#stats {
+#stats-box {
+    text-align: center;
+    font-size: 18px;
+
+    font-family: 'Roboto', sans-serif;
+    color: white;
     background-color: rgb(10, 10, 10);
-    min-height: 200px;
-    max-height: 200px;
+
+    min-height: 180px;
+    max-height: 180px;
     min-width: 300px;
     max-width: 300px;
     
@@ -44,6 +50,10 @@
     border: 2px solid rgb(255, 255, 60);
 }
 
+b {
+    color: rgb(255, 255, 60);
+}
+
 #play-again {
     display: flex;
     justify-content: center;
@@ -51,7 +61,7 @@
     font-family: 'Bungee Spice', cursive;
 
     position: relative;
-    top: 5vh;
+    top: 8vh;
 
     margin-left: 170px;
     margin-right: 170px;

@@ -11,18 +11,16 @@ import { resetTiles } from '../../store/tilesReducer';
 import { resetInput } from '../../store/inputReducer';
 import { clearTiles, rearrangeTiles, dropLetters } from '../../store/boardReducer';
 import { resetOrder } from '../../store/orderReducer.js';
+import { incrementPoints, resetPoints, incrementWords, setLongestWord } from '../../store/statsReducer.js';
 
 import { useStatusContext } from '../../context/StatusContext.js';
 
 const MainContent = () => {
-    const { isGameOver } = useStatusContext();
+    const dispatch = useDispatch();
 
     const [isValid, setIsValid] = useState(false);
-    const [score, setScore] = useState(0);
-    const [totalPoints, setTotalPoints] = useState(score);
 
-    const { submitted, setSubmitted } = useStatusContext();
-    const dispatch = useDispatch();
+    const { submitted, setSubmitted, isGameOver } = useStatusContext();
     
     const board = useSelector(state => Object.values(state.board));
     const currTiles = useSelector(state => state.tiles);
@@ -30,6 +28,12 @@ const MainContent = () => {
     const input = useSelector(state => state.input);
     const orderedInput = orderInput(Object.values(input));
 
+    const points = useSelector(state => state.stats.points);
+    const totalScore = useSelector(state => state.stats.score);
+    const totalWords = useSelector(state => state.stats.words);
+    const longestWord = useSelector(state => state.stats.longestWord);
+    const tilesCleared = useSelector(state => state.stats.tilesCleared);
+ 
     useEffect(() => {
         const makeSearch = async () => {
             if (orderedInput.length === 1) return;
@@ -42,8 +46,9 @@ const MainContent = () => {
                 dispatch(clearTiles(currTiles));
                 dispatch(rearrangeTiles(board));
 
-                setScore(orderedInput.length);
-                setTotalPoints(totalPoints + score);
+                dispatch(incrementPoints(orderedInput.length));
+                dispatch(incrementWords());
+                dispatch(setLongestWord(orderedInput));
             } else {
                 dispatch(dropLetters(board));
             };
@@ -55,7 +60,8 @@ const MainContent = () => {
         dispatch(resetTiles());
     
         const interval = setTimeout(() => {
-            setIsValid(false)
+            setIsValid(false);
+            dispatch(resetPoints());
           }, 900);
         
         return () => clearTimeout(interval)
@@ -68,14 +74,14 @@ const MainContent = () => {
         setSubmitted((submitted) => !submitted);
     };
     
-    if (isGameOver) return <GameOver points={totalPoints} />;
+    if (isGameOver) return <GameOver points={totalScore} numWords={totalWords} longestWord={longestWord} tilesCleared={tilesCleared} />;
     return (
         <div id='main-content'>
             <h1 id='header'>ThesaRush</h1>
             
             <div id='game-box'>
 
-                <Points hidden={isValid === false} numPoints={score} />
+                <Points hidden={isValid === false} numPoints={points} />
 
                 <div id='board'>
                     
