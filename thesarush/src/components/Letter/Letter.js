@@ -3,13 +3,15 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { setInput, removeInputVal } from '../../store/inputReducer.js';
 import { setTiles } from '../../store/tilesReducer.js';
-
 import { incrementOrder } from '../../store/orderReducer.js';
+
+import { useStatusContext } from '../../context/StatusContext.js';
 import './styles.css';
 
 const Letter = ({ hidden, letter, colPos, rowPos }) => {
     const dispatch = useDispatch();
     const order = useSelector(state => Number(Object.values(state.order)));
+    const { submitted } = useStatusContext();
 
     const [clicked, setClicked] = useState(false);
 
@@ -32,12 +34,15 @@ const Letter = ({ hidden, letter, colPos, rowPos }) => {
         for (let i = 0; i < positions.length; i++) dispatch(setTiles(positions[i]));
     }, [clicked]);
 
+    useEffect(() => {
+      setClicked(false);
+    }, [submitted])
+
     return <div
     className={
       [
         'letters',
-        hidden ? "hidden" : null 
-        || clicked ? 'selected' : 'letters'
+        hidden && 'hidden' || clicked && 'selected'
       ]
         .filter(Boolean)
         .join(" ")

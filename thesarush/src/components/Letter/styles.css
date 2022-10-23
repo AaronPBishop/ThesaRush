@@ -25,7 +25,7 @@
 }
 
 .selected {
-    box-shadow: 0px 2px 2px 1px #FF4742;
+    background-color: rgb(30, 30, 30);
 }
 
 .hidden {
