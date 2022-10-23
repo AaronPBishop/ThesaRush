@@ -36,7 +36,8 @@ const Letter = ({ hidden, letter, colPos, rowPos }) => {
     className={
       [
         'letters',
-        hidden ? "hidden" : null
+        hidden ? "hidden" : null 
+        || clicked ? 'selected' : 'letters'
       ]
         .filter(Boolean)
         .join(" ")
