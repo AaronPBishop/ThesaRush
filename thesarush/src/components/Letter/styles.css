@@ -22,6 +22,7 @@
 
     cursor: default;
     user-select: none;
+    z-index: 300;
 }
 
 .selected {
@@ -30,6 +31,17 @@
 
 .hidden {
     visibility: hidden;
+}
+
+.new-letter {
+    animation: drop 0.4s forwards;
+    position: relative;
+    bottom: 400px;
+    z-index: 300;
+}
+
+@keyframes drop {
+    100%{transform: translateY()}
 }
 
 /* create key-frames drop to translate y number of pixels related to length of array - shorter array will translate less */

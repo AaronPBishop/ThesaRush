@@ -14,6 +14,11 @@ const Letter = ({ hidden, letter, colPos, rowPos }) => {
     const { submitted } = useStatusContext();
 
     const [clicked, setClicked] = useState(false);
+    const [newLetter, setNewLetter] = useState(false);
+
+    useEffect(() => {
+      if (hidden) setNewLetter(true)
+    }, [])
 
     useEffect(() => {
         const positions = [];
@@ -42,7 +47,9 @@ const Letter = ({ hidden, letter, colPos, rowPos }) => {
     className={
       [
         'letters',
-        hidden && 'hidden' || clicked && 'selected'
+        hidden && 'hidden' 
+        || clicked && 'selected'
+        || newLetter && 'new-letter'
       ]
         .filter(Boolean)
         .join(" ")

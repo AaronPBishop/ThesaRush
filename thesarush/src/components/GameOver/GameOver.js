@@ -8,7 +8,7 @@ const GameOver = ({ points, numWords, longestWord, tilesCleared }) => {
             <div id='stats-box'>
 
                 <p>
-                    Total Points: <b>{points}</b>
+                    Final Points: <b>{points}</b>
                 </p>
 
                 <p>

@@ -38,7 +38,7 @@ const Board = () => {
     useEffect(() => {
         const interval = setInterval(() => {
           setSwitched((switched) => !switched);
-        }, 3000);
+        }, 4000);
 
         if (board.length) dispatch(dropLetters(board));
 

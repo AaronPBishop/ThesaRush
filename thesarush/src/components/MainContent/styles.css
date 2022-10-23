@@ -42,8 +42,8 @@
     background-image: url('../../arrow_back_ios_FILL0_wght400_GRAD0_opsz48.png');
     background-position: center;
     background-repeat: no-repeat;
-    background-size: 30px;
-    background-position-x: 8px;
+    background-size: 20px;
+    background-position-x: 11px;
 
     background-color: #FF4742;
     border: 1px solid #FF4742;
@@ -73,7 +73,7 @@
     background-image: url('../../arrow_forward_ios_FILL0_wght400_GRAD0_opsz48.png');
     background-position: center;
     background-repeat: no-repeat;
-    background-size: 30px;
+    background-size: 20px;
 
     min-width: 35px;
     max-width: 35px;
