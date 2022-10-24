@@ -98,6 +98,7 @@ const MainContent = () => {
                         
                             dispatch(resetInput());
                             dispatch(resetOrder());
+                            dispatch(resetTiles());
                             }}>
                             </button>
 
