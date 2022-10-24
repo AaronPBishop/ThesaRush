@@ -19,8 +19,8 @@ const Board = () => {
     const randomColumn = () => {
         const column = [];
 
-        for (let i = 0; i < 10; i++) {
-            if (i > 6) column.push(letterGenerator());
+        for (let i = 0; i < 11; i++) {
+            if (i > 7) column.push(letterGenerator());
             else column.push(null)
         };
         
@@ -39,7 +39,7 @@ const Board = () => {
         const interval = setInterval(() => {
           setSwitched((switched) => !switched);
           setTileDropped(true);
-        }, 4000);
+        }, 3000);
 
         const resetDrop = setInterval(() => {
             setTileDropped(false);
@@ -48,8 +48,10 @@ const Board = () => {
         if (board.length) dispatch(dropLetters(board));
 
         if (checkGameOver(board)) {
-            setGameOver(true);
-            clearInterval(interval);
+            setInterval(() => {
+                setGameOver(true);
+                clearInterval(interval);
+            }, 1000);
         };
 
         return () => {

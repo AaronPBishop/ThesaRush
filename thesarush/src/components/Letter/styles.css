@@ -8,14 +8,14 @@
 
     text-align: center;
 
-    border: 2px solid rgb(205, 255, 0);
+    border: 2px solid rgb(255, 255, 60);
     border-radius: 30px;
     min-width: 55px;
     max-width: 55px;
     min-height: 55px;
     max-height: 55px;
 
-    background-color: rgb(30, 55, 155);
+    background-color: rgb(20, 40, 120);
     color: white;
 
     margin: 2px;
