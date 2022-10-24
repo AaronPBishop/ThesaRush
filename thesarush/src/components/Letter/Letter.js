@@ -17,7 +17,7 @@ const Letter = ({ hidden, letter, colPos, rowPos }) => {
     const [newLetter, setNewLetter] = useState(false);
 
     useEffect(() => {
-      if (hidden) setNewLetter(true)
+      setNewLetter(true)
     }, [])
 
     useEffect(() => {
@@ -48,8 +48,8 @@ const Letter = ({ hidden, letter, colPos, rowPos }) => {
       [
         'letters',
         hidden && 'hidden' 
-        || clicked && 'selected'
-        || newLetter && 'new-letter'
+        || (clicked && 'selected')
+        || (newLetter && 'new-letter')
       ]
         .filter(Boolean)
         .join(" ")
