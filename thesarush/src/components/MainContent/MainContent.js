@@ -75,9 +75,9 @@ const MainContent = () => {
             setInterval(() => {
                 setSubmitted((submitted) => !submitted);
             }, 400)
-        } else {
-            setSubmitted((submitted) => !submitted);
         };
+
+        if (tileDropped === false) setSubmitted((submitted) => !submitted);
     };
     
     if (isGameOver) return <GameOver points={totalScore} numWords={totalWords} longestWord={longestWord} tilesCleared={tilesCleared} />;
@@ -94,8 +94,9 @@ const MainContent = () => {
                     <Board />
                     
                     <form onSubmit={handleSubmit} className='input-actions'>
-                        <button id='clear' onClick={() => {
-                        
+                        <button type='reset' id='clear' onClick={() => {
+                            setSubmitted((submitted) => !submitted);
+
                             dispatch(resetInput());
                             dispatch(resetOrder());
                             dispatch(resetTiles());

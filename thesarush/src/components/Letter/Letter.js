@@ -41,7 +41,7 @@ const Letter = ({ hidden, letter, colPos, rowPos }) => {
 
     useEffect(() => {
       setClicked(false);
-    }, [submitted])
+    }, [submitted]);
 
     return <div
     className={

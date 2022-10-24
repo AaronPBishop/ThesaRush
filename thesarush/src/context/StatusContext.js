@@ -10,7 +10,10 @@ const ProvideStatusContext = ({ children }) => {
     const [tileDropped, setTileDropped] = useState(false);
 
     return (
-        <CreateStatusContext.Provider value={{ isGameOver, setGameOver, submitted, setSubmitted, tileDropped, setTileDropped }}>
+        <CreateStatusContext.Provider value={{ 
+            isGameOver, setGameOver,
+            submitted, setSubmitted, 
+            tileDropped, setTileDropped }}>
             {children}
         </CreateStatusContext.Provider>
     );
