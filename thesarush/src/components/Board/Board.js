@@ -12,7 +12,7 @@ import './styles.css';
 
 const Board = () => {
     const [switched, setSwitched] = useState(false);
-    const { setGameOver } = useStatusContext();
+    const { setGameOver, setTileDropped } = useStatusContext();
     const dispatch = useDispatch();
     const board = useSelector(state => Object.values(state.board));
 
@@ -38,7 +38,12 @@ const Board = () => {
     useEffect(() => {
         const interval = setInterval(() => {
           setSwitched((switched) => !switched);
+          setTileDropped(true);
         }, 4000);
+
+        const resetDrop = setInterval(() => {
+            setTileDropped(false);
+        }, 400)
 
         if (board.length) dispatch(dropLetters(board));
 
@@ -47,7 +52,10 @@ const Board = () => {
             clearInterval(interval);
         };
 
-        return () => clearInterval(interval);
+        return () => {
+            clearInterval(interval);
+            clearInterval(resetDrop);
+        };
     }, [switched]);
 
     return (

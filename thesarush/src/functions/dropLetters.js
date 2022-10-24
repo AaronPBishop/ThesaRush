@@ -1,13 +1,31 @@
 import letterGenerator from './letterGenerator.js';
 
+const checkEmpty = (board, randCol) => {
+    let check = 0;
+    for (let i = board[randCol].length - 1; i >= 0; i--) {
+        if (board[randCol][i] === null) check++
+    };
+
+    if (check === 10) return true;
+    return false;
+};
+
 const findInsertPoint = (board, randCol) => {
     let point;
 
-    for (let i = board[randCol].length - 1; i >= 0; i--) {
-        if (board[randCol][i] !== null) point = (i - 1);
+    if (checkEmpty(board, randCol)) {
+        point = board[randCol].length - 1;
+
+        return point;
     };
 
-    return point;
+    if (!checkEmpty(board, randCol)) {
+        for (let i = board[randCol].length - 1; i >= 0; i--) {
+            if (board[randCol][i] !== null) point = (i - 1);
+        };
+
+        return point;
+    };
 };
 
 

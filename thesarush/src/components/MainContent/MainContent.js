@@ -20,7 +20,7 @@ const MainContent = () => {
 
     const [isValid, setIsValid] = useState(false);
 
-    const { submitted, setSubmitted, isGameOver } = useStatusContext();
+    const { submitted, setSubmitted, isGameOver, tileDropped } = useStatusContext();
     
     const board = useSelector(state => Object.values(state.board));
     const currTiles = useSelector(state => state.tiles);
@@ -71,7 +71,13 @@ const MainContent = () => {
     const handleSubmit = e => {
         e.preventDefault();
 
-        setSubmitted((submitted) => !submitted);
+        if (tileDropped === true) {
+            setInterval(() => {
+                setSubmitted((submitted) => !submitted);
+            }, 400)
+        } else {
+            setSubmitted((submitted) => !submitted);
+        };
     };
     
     if (isGameOver) return <GameOver points={totalScore} numWords={totalWords} longestWord={longestWord} tilesCleared={tilesCleared} />;
