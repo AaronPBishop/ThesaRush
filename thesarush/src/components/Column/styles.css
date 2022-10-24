@@ -8,10 +8,10 @@
 
     max-height: 100vh;
 
-    top: -925px;
+    top: -465px;
     animation: drop 0.6s forwards;
 }
 
 @keyframes drop {
-    100%{transform: translateY(600px)}
+    100%{transform: translateY(400px)}
 }
