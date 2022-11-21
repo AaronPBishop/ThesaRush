@@ -1,12 +1,3 @@
-// const mockData = [
-//     ['e', 3],
-//     ['s', 5],
-//     ['c', 1],
-//     ['a', 0],
-//     ['c', 2],
-//     ['s', 4]
-// ];
-
 const orderInput = (inputValues) => {
     const orderObj = {};
     for (let i = 0; i < inputValues.length; i++) {

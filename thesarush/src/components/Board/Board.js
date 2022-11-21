@@ -39,7 +39,7 @@ const Board = () => {
         const interval = setInterval(() => {
           setSwitched((switched) => !switched);
           setTileDropped(true);
-        }, 3000);
+        }, 2000);
 
         const resetDrop = setInterval(() => {
             setTileDropped(false);

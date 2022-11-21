@@ -36,7 +36,7 @@ const MainContent = () => {
  
     useEffect(() => {
         const makeSearch = async () => {
-            if (orderedInput.length === 1) return;
+            if (orderedInput.length <= 1) return;
             
             const makeFetch = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${orderedInput}`);
             const fetchJSON = await makeFetch.json();
