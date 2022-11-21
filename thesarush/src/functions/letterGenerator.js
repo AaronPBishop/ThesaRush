@@ -2,6 +2,12 @@ const vowels = ['A', 'E', 'I', 'O', 'U', 'Y'];
 const consonants = ['B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'R', 'S', 'T', 'V', 'W']
 const rareConsonants = ['X', 'Z', 'Q'];
 
+export const letterType = (letter) => {
+    if (vowels.includes(letter)) return 'vowel';
+    if (consonants.includes(letter)) return 'consonant';
+    if (rareConsonants.includes(letter)) return 'rare';
+};
+
 const letterGenerator = () => {
     const randomLetter = Math.floor(Math.random() * 100);
 

@@ -1,21 +1,13 @@
 .letters {
-    display: flex;
-    justify-content: center;
-
-    position: relative;
     font-family: 'Roboto', sans-serif;
     font-size: 25px;
 
-    border: 2px solid rgb(255, 255, 0);
     border-radius: 30px;
 
     min-width: 55px;
     max-width: 55px;
     min-height: 55px;
     max-height: 55px;
-
-    background-color: rgb(20, 40, 120);
-    color: white;
 
     margin: 2px;
 
@@ -25,7 +17,6 @@
 }
 
 .selected {
-    background-color: rgb(30, 30, 30);
     position: relative;
     bottom: 60px;
 }

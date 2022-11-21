@@ -6,6 +6,8 @@ import { setTiles } from '../../store/tilesReducer.js';
 import { incrementOrder } from '../../store/orderReducer.js';
 
 import { useStatusContext } from '../../context/StatusContext.js';
+import { letterType } from '../../functions/letterGenerator.js';
+
 import './styles.css';
 
 const Letter = ({ hidden, letter, colPos, rowPos }) => {
@@ -15,10 +17,15 @@ const Letter = ({ hidden, letter, colPos, rowPos }) => {
 
     const [clicked, setClicked] = useState(false);
     const [newLetter, setNewLetter] = useState(false);
+    const [type, setType] = useState('');
+
+    const board = useSelector(state => Object.values(state.board));
 
     useEffect(() => {
       setNewLetter(true);
-    }, [])
+
+      setType(letterType(letter));
+    }, [board]);
 
     useEffect(() => {
         const positions = [];
@@ -55,7 +62,25 @@ const Letter = ({ hidden, letter, colPos, rowPos }) => {
           .filter(Boolean)
           .join(" ")
         }
-        style={{cursor: 'pointer'}}
+        style={{
+          color:
+          type === 'rare' ?
+          'white' : 'white',
+
+          textShadow: type === 'rare' && '2px 2px black',
+
+          backgroundColor: 
+          type === 'vowel' && clicked === false ?
+          'rgb(194, 30, 86)' : type === 'consonant' && clicked === false ?
+          'rgb(20, 40, 120)' : type === 'rare' && clicked === false ?
+          '#FFD700' : clicked === true &&
+          'rgb(30, 30, 30)',
+
+          border: clicked === false && type === 'vowel' || type === 'rare' ? 
+          '2px solid #39254D' : '2px solid rgb(255, 255, 0)',
+
+          cursor: 'pointer'
+        }}
         disabled={clicked}
         onClick={() => {
         setClicked((clicked) => !clicked);
