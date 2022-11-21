@@ -6,10 +6,9 @@
     font-family: 'Roboto', sans-serif;
     font-size: 25px;
 
-    text-align: center;
-
     border: 2px solid rgb(255, 255, 0);
     border-radius: 30px;
+
     min-width: 55px;
     max-width: 55px;
     min-height: 55px;

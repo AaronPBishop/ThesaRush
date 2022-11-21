@@ -17,7 +17,7 @@ const Letter = ({ hidden, letter, colPos, rowPos }) => {
     const [newLetter, setNewLetter] = useState(false);
 
     useEffect(() => {
-      setNewLetter(true)
+      setNewLetter(true);
     }, [])
 
     useEffect(() => {
@@ -43,23 +43,26 @@ const Letter = ({ hidden, letter, colPos, rowPos }) => {
       setClicked(false);
     }, [submitted]);
 
-    return <div
-    className={
-      [
-        'letters',
-        hidden && 'hidden' 
-        || (clicked && 'selected')
-        || (newLetter && 'new-letter')
-      ]
-        .filter(Boolean)
-        .join(" ")
-    }
-    disabled={clicked}
-    onClick={() => {
-      setClicked((clicked) => !clicked);
-    }}>
-    {letter}
-  </div>
+    return (
+      <div
+        className={
+          [
+            'letters',
+            hidden && 'hidden' 
+            || (clicked && 'selected')
+            || (newLetter && 'new-letter')
+          ]
+          .filter(Boolean)
+          .join(" ")
+        }
+        style={{cursor: 'pointer'}}
+        disabled={clicked}
+        onClick={() => {
+        setClicked((clicked) => !clicked);
+        }}>
+        {letter}
+      </div>
+  )
 };
 
 export default Letter;
