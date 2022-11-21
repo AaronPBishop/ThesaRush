@@ -46,7 +46,7 @@ const MainContent = () => {
                 dispatch(clearTiles(currTiles));
                 dispatch(rearrangeTiles(board));
 
-                dispatch(determinePoints(orderedInput.length));
+                dispatch(determinePoints(orderedInput.length, orderedInput));
                 dispatch(incrementWords());
                 dispatch(setLongestWord(orderedInput));
             } else {

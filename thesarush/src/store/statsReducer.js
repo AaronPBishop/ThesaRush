@@ -6,10 +6,11 @@ const initialState = {
     tilesCleared: 0
 };
 
-export const determinePoints = (points) => {
+export const determinePoints = (points, letters) => {
     return {
         type: 'DETERMINE_POINTS',
-        payload: points
+        payload: points,
+        payload2: letters
     };
 };
 
@@ -37,10 +38,15 @@ const statsReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case 'DETERMINE_POINTS': {
-            const pointsMap = {5: 7, 6: 9, 7: 11, 8: 16, 9: 20}
+            const scoreMultipliers = ['X', 'Z', 'Q'];
+            let multiplier = 0;
+
+            const pointsMap = {5: 7, 6: 9, 7: 11, 8: 16, 9: 20};
+
+            action.payload2.split('').forEach(letter => {if (scoreMultipliers.includes(letter)) multiplier += 1});
 
             if (action.payload < 5) {
-                currentState.points += action.payload
+                currentState.points += action.payload;
                 currentState.score += action.payload;
             };
 
@@ -52,6 +58,11 @@ const statsReducer = (state = initialState, action) => {
             if (action.payload > 9) {
                 currentState.points += (action.payload * 3);
                 currentState.score += (action.payload * 3);
+            };
+
+            if (multiplier > 0) {
+                currentState.points += action.payload *= multiplier;
+                currentState.score += action.payload *= multiplier;
             };
 
             currentState.tilesCleared += action.payload;
