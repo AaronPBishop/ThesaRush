@@ -43,7 +43,7 @@ const Board = () => {
 
         const resetDrop = setInterval(() => {
             setTileDropped(false);
-        }, 400)
+        }, 400);
 
         if (board.length) dispatch(dropLetters(board));
 
