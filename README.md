@@ -11,8 +11,6 @@ Redux actions are utilized in order to perform various board operations, such as
 * New tile mechanics, such as:
 1. Rock Tiles (must be used twice in order to clear)
 2. Bomb Tiles (clears all tiles in 1 tile radius when used, dropped when player submits 2 - 6+ letter words in a row)
-3. Gold Tiles (XZQ letters that will multiply word score x2)
-4. 8+ letter words will clear entire bottom row
 
 ## Technologies used:
 * ![React Badge](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=000&style=flat)
@@ -25,7 +23,10 @@ Redux actions are utilized in order to perform various board operations, such as
 ## _Preview Images_
 
 ### _Main gameplay_
-![image](https://user-images.githubusercontent.com/95946808/202935568-4bf5cb0a-f433-4609-9c8f-dae9fa4a5aa2.png)
+![image](https://user-images.githubusercontent.com/95946808/203442402-f0dfb890-c4fe-4265-b107-6849e6162d65.png)
 
 ### _Game over/score overview_
 ![image](https://user-images.githubusercontent.com/95946808/202935616-d84a2105-219f-4eb5-97be-e4fc3f64218b.png)
+
+### _Scoring points_
+![image](https://user-images.githubusercontent.com/95946808/203443450-408a3de6-ab4f-458e-96d4-e287b98116c1.png)
