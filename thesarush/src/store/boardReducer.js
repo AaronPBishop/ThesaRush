@@ -60,8 +60,17 @@ const boardReducer = (state = initialState, action) => {
                 for (let j = currentState[col].length; j > 0; j--) {
                     if (j < row) {
                         if (currentState[col][j] !== null && currentState[col][j] !== undefined) {
-                            if (currentState[col][j].type !== 'rearranged') currentState[col][j].type = 'rearranged';
-                            if (currentState[col][j].type === 'rearranged') currentState[col][j].type = 'unarranged';
+                            if (currentState[col][j].type !== 'rearranged') {
+                                currentState[col][j].type = 'rearranged';
+
+                                continue;
+                            };
+                            
+                            if (currentState[col][j].type === 'rearranged') {
+                                currentState[col][j].type = 'unarranged';
+
+                                continue;
+                            };
                         };
                     };
                 };

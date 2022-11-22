@@ -52,7 +52,8 @@ const Letter = ({ hidden, letter, colPos, rowPos, type }) => {
           [
             'letters',
             type === 'new' ? 'new-letters'
-            : (type === 'rearranged') || (type === 'unarranged') && 'rearranged-letters'
+            : type === 'rearranged' ? 'rearranged-letters'
+            : type === 'unarranged' && 'unarranged-letters'
           ]
           .filter(Boolean)
           .join(" ")

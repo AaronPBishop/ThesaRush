@@ -34,12 +34,23 @@
     bottom: 40px;
 }
 
+.unarranged-letters {
+    animation: undrop 0.4s forwards;
+
+    position: relative;
+    bottom: 60px;
+}
+
 @keyframes drop {
     100%{transform: translateY(10px)}
 }
 
 @keyframes redrop {
     100%{transform: translateY(40px)}
+}
+
+@keyframes undrop {
+    100%{transform: translateY(60px)}
 }
 
 @keyframes spin {
