@@ -1,4 +1,4 @@
-const initialState = [];
+const initialState = {};
 
 export const setTiles = (tilePos) => {
     return {

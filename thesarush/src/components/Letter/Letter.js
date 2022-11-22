@@ -18,15 +18,10 @@ const Letter = ({ hidden, letter, colPos, rowPos }) => {
     const [hasClicked, setHasClicked] = useState(false);
     const [clicked, setClicked] = useState(false);
     const [newLetter, setNewLetter] = useState(false);
-    const [type, setType] = useState('');
-
-    const board = useSelector(state => Object.values(state.board));
-
+    
     useEffect(() => {
       setNewLetter(true);
-
-      setType(letterType(letter));
-    }, [board]);
+    }, []);
 
     useEffect(() => {
       setHasClicked(true);
@@ -70,18 +65,18 @@ const Letter = ({ hidden, letter, colPos, rowPos }) => {
         style={{
           color: 'white',
 
-          textShadow: type === 'rare' && '2px 2px black',
+          textShadow: letterType(letter) === 'rare' && '2px 2px black',
 
           backgroundColor: 
-          type === 'vowel' && clicked === false ?
-          'rgb(215, 0, 64)' : type === 'consonant' && clicked === false ?
-          'rgb(20, 40, 120)' : type === 'rare' && clicked === false ?
+          letterType(letter) === 'vowel' && clicked === false ?
+          'rgb(215, 0, 64)' : letterType(letter) === 'consonant' && clicked === false ?
+          'rgb(20, 40, 120)' : letterType(letter) === 'rare' && clicked === false ?
           '#FFD700' : clicked === true &&
           'rgb(30, 30, 30)',
 
-          border: clicked === false && (type === 'consonant') ? 
+          border: clicked === false && (letterType(letter) === 'consonant') ? 
           '2px solid rgb(255, 255, 0)' : 
-          clicked === false && (type === 'vowel') ?
+          clicked === false && (letterType(letter) === 'vowel') ?
           '2px solid rgb(125, 249, 255)' : 
           '2px solid rgb(250, 250, 51)',
 
@@ -91,7 +86,7 @@ const Letter = ({ hidden, letter, colPos, rowPos }) => {
         onClick={() => {
         setClicked((clicked) => !clicked);
         }}>
-          {letter}
+        {letter}
       </div>
   )
 };

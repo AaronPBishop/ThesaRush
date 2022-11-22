@@ -17,17 +17,15 @@ export const clearTiles = (tilePositions) => {
     };
 };
 
-export const rearrangeTiles = (board) => {
+export const rearrangeTiles = () => {
     return {
-        type: 'REARRANGE_TILES',
-        payload: board
+        type: 'REARRANGE_TILES'
     };
 };
 
-export const dropLetters = (board) => {
+export const dropLetters = () => {
     return {
-        type: 'DROP_LETTERS',
-        payload: board
+        type: 'DROP_LETTERS'
     };
 };
 
@@ -38,11 +36,15 @@ export const resetBoard = () => {
 };
 
 const boardReducer = (state = initialState, action) => {
-    let currentState = { ...state };
+    let currentState = [];
+    for (let i = 0; i < state.length; i++) {
+        let currCol = [ ...state[i] ];
+        currentState.push(currCol);
+    };
 
     switch (action.type) {
         case 'ADD_COLUMN': {
-            currentState[action.payload] = action.payload;
+            currentState.push(action.payload)
 
             return currentState;
         };
@@ -58,21 +60,11 @@ const boardReducer = (state = initialState, action) => {
             return currentState;
         };
 
-        case 'REARRANGE_TILES': {
-            currentState = performSplice(action.payload);
+        case 'REARRANGE_TILES': return performSplice(currentState);
 
-            return currentState;
-        };
+        case 'DROP_LETTERS': return insertColumnVal(currentState);
 
-        case 'DROP_LETTERS': {
-            currentState = insertColumnVal(action.payload);
-            
-            return currentState;
-        };
-
-        case 'RESET_BOARD': {
-            return initialState;
-        };
+        case 'RESET_BOARD': return initialState;
 
         default: return currentState;
     };

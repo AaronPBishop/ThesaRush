@@ -35,6 +35,7 @@ const MainContent = () => {
     const tilesCleared = useSelector(state => state.stats.tilesCleared);
  
     useEffect(() => {
+        console.log('I was on line 38 of MainContent.js')
         const makeSearch = async () => {
             if (orderedInput.length <= 1) return;
             
@@ -44,13 +45,13 @@ const MainContent = () => {
             if (!fetchJSON.title) {
                 setIsValid(true);
                 dispatch(clearTiles(currTiles));
-                dispatch(rearrangeTiles(board));
+                dispatch(rearrangeTiles());
 
                 dispatch(determinePoints(orderedInput.length, orderedInput));
                 dispatch(incrementWords());
                 dispatch(setLongestWord(orderedInput));
             } else {
-                dispatch(dropLetters(board));
+                dispatch(dropLetters());
             };
         };
  

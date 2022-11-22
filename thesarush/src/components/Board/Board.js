@@ -14,6 +14,7 @@ const Board = () => {
     const [switched, setSwitched] = useState(false);
     const { setGameOver, setTileDropped } = useStatusContext();
     const dispatch = useDispatch();
+
     const board = useSelector(state => Object.values(state.board));
 
     const randomColumn = () => {
@@ -31,21 +32,22 @@ const Board = () => {
         dispatch(resetBoard());
 
         for (let i = 0; i < 8; i++) {
-            dispatch(addColumn(randomColumn()))
+            dispatch(addColumn(randomColumn()));
         };
     }, []);
 
     useEffect(() => {
         const interval = setInterval(() => {
           setSwitched((switched) => !switched);
+
           setTileDropped(true);
-        }, 2000);
+        }, 3000);
 
         const resetDrop = setInterval(() => {
             setTileDropped(false);
         }, 400);
 
-        if (board.length) dispatch(dropLetters(board));
+        if (board.length) dispatch(dropLetters());
 
         if (checkGameOver(board)) {
             setInterval(() => {

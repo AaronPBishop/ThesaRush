@@ -28,6 +28,7 @@ const performSplice = (board) => {
             };
         };
     };
+    
     return board;
 };
 
