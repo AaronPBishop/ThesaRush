@@ -10,19 +10,15 @@ import { letterType } from '../../functions/letterGenerator.js';
 
 import './styles.css';
 
-const Letter = ({ hidden, letter, colPos, rowPos }) => {
+const Letter = ({ hidden, letter, colPos, rowPos, type }) => {
     const dispatch = useDispatch();
     const order = useSelector(state => Number(Object.values(state.order)));
+    
     const { submitted } = useStatusContext();
 
     const [hasClicked, setHasClicked] = useState(false);
     const [clicked, setClicked] = useState(false);
-    const [newLetter, setNewLetter] = useState(false);
     
-    useEffect(() => {
-      setNewLetter(true);
-    }, []);
-
     useEffect(() => {
       setHasClicked(true);
     }, [clicked]);
@@ -56,8 +52,7 @@ const Letter = ({ hidden, letter, colPos, rowPos }) => {
           [
             'letters',
             hidden && 'hidden' 
-            || (clicked && 'selected')
-            || (newLetter && 'new-letter')
+            || (type === 'new') && 'new-letter'
           ]
           .filter(Boolean)
           .join(" ")

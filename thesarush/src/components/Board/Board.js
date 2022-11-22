@@ -13,6 +13,7 @@ import './styles.css';
 const Board = () => {
     const [switched, setSwitched] = useState(false);
     const { setGameOver, setTileDropped } = useStatusContext();
+
     const dispatch = useDispatch();
 
     const board = useSelector(state => Object.values(state.board));
@@ -21,7 +22,7 @@ const Board = () => {
         const column = [];
 
         for (let i = 0; i < 11; i++) {
-            if (i > 7) column.push(letterGenerator());
+            if (i > 7) column.push(letterGenerator('initial'));
             else column.push(null)
         };
         
@@ -53,7 +54,7 @@ const Board = () => {
             setInterval(() => {
                 setGameOver(true);
                 clearInterval(interval);
-            }, 1000);
+            }, 500);
         };
 
         return () => {
@@ -65,7 +66,7 @@ const Board = () => {
     return (
         <div className='main-board'>
             <center>
-                {board.map((col, i) => <Column letters={col} colPos={i} key={i} />)}
+                {board.map((col, i) => <Column letters={col} colPos={i} />)}
             </center>
         </div>
     );

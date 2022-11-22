@@ -13,5 +13,5 @@
 }
 
 @keyframes drop {
-    100%{transform: translateY(400px)}
+    100%{transform: translateY(340px)}
 }

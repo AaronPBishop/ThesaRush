@@ -19,11 +19,6 @@
     z-index: 300;
 }
 
-.selected {
-    position: relative;
-    bottom: 60px;
-}
-
 .hidden {
     visibility: hidden;
 }
@@ -31,7 +26,7 @@
 .new-letter {
     animation: drop 0.4s forwards;
     position: relative;
-    bottom: 460px;
+    bottom: 340px;
     z-index: 300;
 }
 

@@ -8,13 +8,13 @@ export const letterType = (letter) => {
     if (rareConsonants.includes(letter)) return 'rare';
 };
 
-const letterGenerator = () => {
+const letterGenerator = (type) => {
     const randomLetter = Math.floor(Math.random() * 100);
 
-    if (randomLetter >= 40) return consonants[Math.floor((Math.random()*consonants.length))];
-    if (randomLetter > 2 && randomLetter < 40) return vowels[Math.floor((Math.random()*vowels.length))];
+    if (randomLetter >= 40) return {letter: consonants[Math.floor((Math.random()*consonants.length))], type: type};
+    if (randomLetter > 2 && randomLetter < 40) return {letter: vowels[Math.floor((Math.random()*vowels.length))], type: type}
 
-    return rareConsonants[Math.floor((Math.random()*rareConsonants.length))];
+    return {letter: rareConsonants[Math.floor((Math.random()*rareConsonants.length))], type: type};
 };
 
 export default letterGenerator;

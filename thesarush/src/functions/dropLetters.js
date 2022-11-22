@@ -30,7 +30,7 @@ const findInsertPoint = (board, randCol) => {
 
 
 const insertColumnVal = (board) => {
-    const newLetter = letterGenerator();
+    const newLetter = letterGenerator('new');
     const randomColumn = Math.floor((Math.random() * board.length));
 
     const insertPoint = findInsertPoint(board, randomColumn);

@@ -54,6 +54,8 @@ const boardReducer = (state = initialState, action) => {
  
             for (let i = 0; i < values.length; i++) {
                 const [col, row] = values[i];
+
+                // Object.values(currentState)[col][row - 1].type = 'moved'
                 Object.values(currentState)[col][row] = null;
             };
 
