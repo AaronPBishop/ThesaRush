@@ -35,7 +35,6 @@ const MainContent = () => {
     const tilesCleared = useSelector(state => state.stats.tilesCleared);
  
     useEffect(() => {
-        console.log('I was on line 38 of MainContent.js')
         const makeSearch = async () => {
             if (orderedInput.length <= 1) return;
             
@@ -91,6 +90,7 @@ const MainContent = () => {
             
             <div id='game-box'>
 
+                
                 <Points hidden={isValid === false} numPoints={points} />
 
                 <div id='board'>

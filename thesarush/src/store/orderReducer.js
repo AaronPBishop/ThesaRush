@@ -23,7 +23,9 @@ const orderReducer = (state = initialState, action) => {
         };
 
         case 'RESET_ORDER': {
-            return initialState;
+            currentState.order = 0;
+            
+            return currentState;
         };
 
         default: return currentState;

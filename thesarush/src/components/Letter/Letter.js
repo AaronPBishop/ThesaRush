@@ -51,13 +51,15 @@ const Letter = ({ hidden, letter, colPos, rowPos, type }) => {
         className={
           [
             'letters',
-            hidden && 'hidden' 
-            || (type === 'new') && 'new-letter'
+            type === 'new' ? 'new-letters'
+            : (type === 'rearranged') || (type === 'unarranged') && 'rearranged-letters'
           ]
           .filter(Boolean)
           .join(" ")
         }
         style={{
+          visibility: hidden ? 'hidden' : 'visible',
+
           color: 'white',
 
           textShadow: letterType(letter) === 'rare' && '2px 2px black',

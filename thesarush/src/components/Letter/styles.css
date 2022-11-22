@@ -19,19 +19,36 @@
     z-index: 300;
 }
 
-.hidden {
-    visibility: hidden;
-}
-
-.new-letter {
+.new-letters {
     animation: drop 0.4s forwards;
+
     position: relative;
     bottom: 340px;
     z-index: 300;
 }
 
+.rearranged-letters {
+    animation: redrop 0.4s forwards;
+
+    position: relative;
+    bottom: 40px;
+}
+
 @keyframes drop {
     100%{transform: translateY(10px)}
+}
+
+@keyframes redrop {
+    100%{transform: translateY(40px)}
+}
+
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
 }
 
 /* create key-frames drop to translate y number of pixels related to length of array - shorter array will translate less */

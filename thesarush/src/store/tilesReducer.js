@@ -37,7 +37,11 @@ const tilesReducer = (state = initialState, action) => {
         };
 
         case 'RESET_TILES': {
-            return initialState;
+            for (let key in currentState) {
+                delete currentState[key]
+            };
+            
+            return currentState;
         };
 
         default: return currentState;

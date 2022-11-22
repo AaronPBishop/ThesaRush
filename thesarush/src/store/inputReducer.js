@@ -38,7 +38,11 @@ const inputReducer = (state = initialState, action) => {
         };
 
         case 'RESET_INPUT': {
-            return initialState;
+            for (let key in currentState) {
+                delete currentState[key];
+            };
+
+            return currentState;
         };
 
         default: {

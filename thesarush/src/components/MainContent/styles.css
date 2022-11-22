@@ -13,8 +13,10 @@
 .input-actions {
     display: flex;
     justify-content: inline-flex;
-    position: relative;
-    bottom: 16.3vh;
+    
+    position: absolute;
+    bottom: 1.5vh;
+    right: 1.5vw;
 }
 
 #word-bar {
