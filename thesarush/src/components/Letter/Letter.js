@@ -69,7 +69,7 @@ const Letter = ({ hidden, letter, colPos, rowPos, type }) => {
           letterType(letter) === 'vowel' && clicked === false ?
           'rgb(215, 0, 64)' : letterType(letter) === 'consonant' && clicked === false ?
           'rgb(20, 40, 120)' : letterType(letter) === 'rare' && clicked === false ?
-          '#FFD700' : clicked === true &&
+          'rgb(255,215,0)' : clicked === true &&
           'rgb(30, 30, 30)',
 
           border: clicked === false && (letterType(letter) === 'consonant') ? 
