@@ -71,9 +71,7 @@ const MainContent = () => {
 
     }, [submitted]);
 
-    const handleSubmit = e => {
-        e.preventDefault();
-
+    const handleSubmit = () => {
         if (tileDropped === true) {
             setInterval(() => {
                 setSubmitted((submitted) => !submitted);
@@ -82,6 +80,18 @@ const MainContent = () => {
 
         if (tileDropped === false) setSubmitted((submitted) => !submitted);
     };
+
+    useEffect(() => {
+        const keyDownHandler = e => {
+          e.preventDefault();
+    
+          if (e.code === 'Space') handleSubmit();
+        };
+    
+        document.addEventListener('keydown', keyDownHandler);
+    
+        return () => document.removeEventListener('keydown', keyDownHandler);
+    }, []);
     
     if (isGameOver) return <GameOver points={totalScore} numWords={totalWords} longestWord={longestWord} tilesCleared={tilesCleared} />;
     return (
@@ -98,7 +108,12 @@ const MainContent = () => {
                     
                     <Board />
                     
-                    <form onSubmit={handleSubmit} className='input-actions'>
+                    <form
+                    onSubmit={e => {
+                        e.preventDefault();
+                        handleSubmit();
+                    }}
+                    className='input-actions'>
                         <button type='reset' id='clear' onClick={() => {
                             setSubmitted((submitted) => !submitted);
 
@@ -108,7 +123,12 @@ const MainContent = () => {
                             }}>
                             </button>
 
-                            <input id='word-bar' type='text' disabled={true} value={orderedInput}></input>
+                            <input 
+                            id='word-bar' 
+                            type='text' 
+                            disabled={true} 
+                            value={orderedInput}>
+                            </input>
 
                         <button id='send' type='submit'></button>
                     </form>
