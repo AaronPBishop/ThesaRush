@@ -53,19 +53,22 @@ const MainContent = () => {
             } else {
                 dispatch(dropLetters());
             };
+
+            dispatch(resetInput());
+            dispatch(resetOrder());
+            dispatch(resetTiles());
+
+            return;
         };
- 
+
         makeSearch();
-        dispatch(resetInput());
-        dispatch(resetOrder());
-        dispatch(resetTiles());
-    
+ 
         const interval = setTimeout(() => {
             setIsValid(false);
             dispatch(resetPoints());
-          }, 1000);
+        }, 1000);
         
-        return () => clearTimeout(interval)
+        return () => clearTimeout(interval);
 
     }, [submitted]);
 

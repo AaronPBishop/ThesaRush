@@ -13,7 +13,7 @@ export const resetOrder = () => {
 };
 
 const orderReducer = (state = initialState, action) => {
-    const currentState = { ...state };
+    let currentState = { ...state };
 
     switch (action.type) {
         case 'INCREMENT_ORDER': {
