@@ -90,8 +90,9 @@ const MainContent = () => {
             
             <div id='game-box'>
 
-                
-                <Points hidden={isValid === false} numPoints={points} />
+                <div style={{position: 'absolute'}}>
+                    <Points hidden={isValid === false} numPoints={points} />
+                </div>
 
                 <div id='board'>
                     

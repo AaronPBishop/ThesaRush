@@ -2,11 +2,11 @@
     display: flex;
     justify-content: center;
 
-    position: relative;
-    top: 7px;
-
     font-family: 'Roboto', sans-serif;
     color: white;
+
+    position: relative;
+    bottom: 42vh;
 
     animation-name: slide;
     animation-duration: 0.2s;
@@ -16,7 +16,7 @@
     visibility: hidden;
 }
 
-@keyframes slide{
-    from {top: 20px;}
-    to {top: 7px;}
+@keyframes slide {
+    from {bottom: 32vh}
+    to {bottom: 42vh}
 }
