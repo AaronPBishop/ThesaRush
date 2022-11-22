@@ -9,9 +9,9 @@ import './styles.css';
 
 import { resetTiles } from '../../store/tilesReducer';
 import { resetInput } from '../../store/inputReducer';
-import { clearTiles, rearrangeTiles, dropLetters } from '../../store/boardReducer';
+import { clearTiles, rearrangeTiles, dropLetters, dropRow } from '../../store/boardReducer';
 import { resetOrder } from '../../store/orderReducer.js';
-import { determinePoints, resetPoints, incrementWords, setLongestWord } from '../../store/statsReducer.js';
+import { incrementInvalidWords, determinePoints, resetPoints, incrementWords, setLongestWord } from '../../store/statsReducer.js';
 
 import { useStatusContext } from '../../context/StatusContext.js';
 
@@ -22,12 +22,12 @@ const MainContent = () => {
 
     const { submitted, setSubmitted, isGameOver, tileDropped } = useStatusContext();
     
-    const board = useSelector(state => Object.values(state.board));
     const currTiles = useSelector(state => state.tiles);
 
     const input = useSelector(state => state.input);
     const orderedInput = orderInput(Object.values(input));
 
+    const invalidWords = useSelector(state => state.stats.invalidWords)
     const points = useSelector(state => state.stats.points);
     const totalScore = useSelector(state => state.stats.score);
     const totalWords = useSelector(state => state.stats.words);
@@ -50,7 +50,13 @@ const MainContent = () => {
                 dispatch(incrementWords());
                 dispatch(setLongestWord(orderedInput));
             } else {
-                dispatch(dropLetters());
+                dispatch(incrementInvalidWords());
+
+                if (invalidWords <= 1) {
+                    for (let i = 0; i <= invalidWords; i++) dispatch(dropLetters());
+                };
+
+                if (invalidWords > 1) dispatch(dropRow());
             };
 
             dispatch(resetInput());

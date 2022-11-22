@@ -28,6 +28,18 @@ const findInsertPoint = (board, randCol) => {
     };
 };
 
+export const insertRow = (board) => {
+    for (let i = 0; i < board.length; i++) {
+        const newLetter = letterGenerator('new');
+
+        const insertPoint = findInsertPoint(board, i);
+
+        board[i].splice(insertPoint, 1, newLetter);
+    };
+
+    return board;
+};
+
 
 const insertColumnVal = (board) => {
     const newLetter = letterGenerator('new');

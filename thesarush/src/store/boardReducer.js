@@ -1,5 +1,6 @@
 import performSplice from "../functions/performSplice.js";
 import insertColumnVal from "../functions/dropLetters.js";
+import { insertRow } from "../functions/dropLetters.js";
 
 const initialState = [];
 
@@ -26,6 +27,12 @@ export const rearrangeTiles = () => {
 export const dropLetters = () => {
     return {
         type: 'DROP_LETTERS'
+    };
+};
+
+export const dropRow = () => {
+    return {
+        type: 'DROP_ROW'
     };
 };
 
@@ -82,6 +89,8 @@ const boardReducer = (state = initialState, action) => {
         case 'REARRANGE_TILES': return performSplice(currentState);
 
         case 'DROP_LETTERS': return insertColumnVal(currentState);
+
+        case 'DROP_ROW': return insertRow(currentState);
 
         case 'RESET_BOARD': return initialState;
 

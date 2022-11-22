@@ -1,9 +1,16 @@
 const initialState = { 
+    invalidWords: 0,
     points: 0, 
     score: 0, 
     words: 0,
     longestWord: '',
     tilesCleared: 0
+};
+
+export const incrementInvalidWords = () => {
+    return {
+        type: 'INCREMENT_INVALID_WORDS'
+    };
 };
 
 export const determinePoints = (points, letters) => {
@@ -37,6 +44,18 @@ const statsReducer = (state = initialState, action) => {
     const currentState = { ...state };
 
     switch (action.type) {
+        case 'INCREMENT_INVALID_WORDS': {
+            if (currentState.invalidWords > 1) {
+                currentState.invalidWords = 0;
+
+                return currentState;
+            };
+
+            currentState.invalidWords += 1;
+
+            return currentState;
+        };
+
         case 'DETERMINE_POINTS': {
             const scoreMultipliers = ['X', 'Z', 'Q'];
             let multiplier = 0;

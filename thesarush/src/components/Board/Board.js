@@ -54,7 +54,7 @@ const Board = () => {
             setInterval(() => {
                 setGameOver(true);
                 clearInterval(interval);
-            }, 500);
+            }, 200);
         };
 
         return () => {

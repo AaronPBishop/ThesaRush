@@ -75,8 +75,8 @@ const Letter = ({ hidden, letter, colPos, rowPos, type }) => {
           border: clicked === false && (letterType(letter) === 'consonant') ? 
           '2px solid rgb(255, 255, 0)' : 
           clicked === false && (letterType(letter) === 'vowel') ?
-          '2px solid rgb(125, 249, 255)' : 
-          '2px solid rgb(250, 250, 51)',
+          '2px solid rgb(139, 0, 0)' : 
+          '2px solid yellow',
 
           cursor: 'pointer'
         }}

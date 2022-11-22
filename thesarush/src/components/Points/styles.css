@@ -3,17 +3,12 @@
     justify-content: center;
 
     font-family: 'Roboto', sans-serif;
-    color: white;
 
     position: relative;
     bottom: 42vh;
 
-    animation-name: slide;
+    animation: slide;
     animation-duration: 0.2s;
-}
-
-#hidden {
-    visibility: hidden;
 }
 
 @keyframes slide {
