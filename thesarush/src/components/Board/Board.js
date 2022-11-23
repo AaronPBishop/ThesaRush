@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { addColumn, dropLetters, resetBoard } from '../../store/boardReducer.js';
@@ -6,13 +7,17 @@ import Column from '../Column/Column.js';
 import letterGenerator from '../../functions/letterGenerator.js';
 
 import checkGameOver from '../../functions/checkGameOver.js';
+
 import { useStatusContext } from '../../context/StatusContext.js';
 
 import './styles.css';
 
 const Board = ({ difficulty }) => {
+    const history = useHistory();
+
     const [switched, setSwitched] = useState(false);
-    const { setGameOver, setTileDropped } = useStatusContext();
+
+    const { setTileDropped } = useStatusContext();
 
     const dispatch = useDispatch();
 
@@ -59,8 +64,12 @@ const Board = ({ difficulty }) => {
 
         if (checkGameOver(board)) {
             setInterval(() => {
-                setGameOver(true);
                 clearInterval(interval);
+                clearInterval(resetDrop);
+
+                history.push('/gameover');
+
+                return;
             }, 200);
         };
 

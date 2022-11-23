@@ -14,7 +14,7 @@ const Letter = ({ hidden, letter, colPos, rowPos, type }) => {
     const dispatch = useDispatch();
     const order = useSelector(state => Number(Object.values(state.order)));
     
-    const { submitted } = useStatusContext();
+    const { cleared, submitted } = useStatusContext();
 
     const [hasClicked, setHasClicked] = useState(false);
     const [clicked, setClicked] = useState(false);
@@ -44,7 +44,7 @@ const Letter = ({ hidden, letter, colPos, rowPos, type }) => {
 
     useEffect(() => {
       setClicked(false);
-    }, [submitted]);
+    }, [submitted, cleared]);
 
     return (
       <div

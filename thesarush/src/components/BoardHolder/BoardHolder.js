@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Board from '../Board/Board';
 import Points from '../Points/Points';
-import GameOver from '../GameOver/GameOver.js';
 import orderInput from '../../functions/orderInput.js';
 import './styles.css';
 
@@ -22,7 +21,7 @@ const BoardHolder = () => {
 
     const [isValid, setIsValid] = useState(false);
 
-    const { submitted, setSubmitted, isGameOver, tileDropped } = useStatusContext();
+    const { setCleared, submitted, setSubmitted, tileDropped } = useStatusContext();
     
     const currTiles = useSelector(state => state.tiles);
 
@@ -31,10 +30,6 @@ const BoardHolder = () => {
 
     const invalidWords = useSelector(state => state.stats.invalidWords)
     const points = useSelector(state => state.stats.points);
-    const totalScore = useSelector(state => state.stats.score);
-    const totalWords = useSelector(state => state.stats.words);
-    const longestWord = useSelector(state => state.stats.longestWord);
-    const tilesCleared = useSelector(state => state.stats.tilesCleared);
  
     useEffect(() => {
         const makeSearch = async () => {
@@ -94,6 +89,14 @@ const BoardHolder = () => {
           e.preventDefault();
     
           if (e.code === 'Space') handleSubmit();
+
+          if (e.code === 'Tab') {
+            setCleared((cleared) => !cleared);
+                            
+            dispatch(resetInput());
+            dispatch(resetOrder());
+            dispatch(resetTiles());
+          };
         };
     
         document.addEventListener('keydown', keyDownHandler);
@@ -101,7 +104,6 @@ const BoardHolder = () => {
         return () => document.removeEventListener('keydown', keyDownHandler);
     }, []);
     
-    if (isGameOver) return <GameOver points={totalScore} numWords={totalWords} longestWord={longestWord} tilesCleared={tilesCleared} />;
     return (
         <div id='main-content'>
             <h1 id='header'>ThesaRush</h1>
@@ -122,12 +124,12 @@ const BoardHolder = () => {
                         handleSubmit();
                     }}
                     className='input-actions'>
-                        <button type='reset' id='clear' onClick={() => {
-                            setSubmitted((submitted) => !submitted);
+                            <button type='reset' id='clear' onClick={() => {
+                                setCleared((cleared) => !cleared);
 
-                            dispatch(resetInput());
-                            dispatch(resetOrder());
-                            dispatch(resetTiles());
+                                dispatch(resetInput());
+                                dispatch(resetOrder());
+                                dispatch(resetTiles());
                             }}>
                             </button>
 

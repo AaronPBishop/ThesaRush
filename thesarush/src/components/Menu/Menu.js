@@ -1,10 +1,15 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+
+import { setDifficulty } from '../../store/statsReducer';
 
 import './styles.css';
 
 const Menu = () => {
+    const dispatch = useDispatch();
     const history = useHistory();
+
     const [clickedPlay, setClickedPlay] = useState(false);
     const [clickedInstructions, setClickedInstructions] = useState(false);
 
@@ -71,7 +76,10 @@ const Menu = () => {
                 </button>
 
                 <button
-                onClick={() => history.push('/game/easy')}
+                onClick={() => {
+                    dispatch(setDifficulty('easy'));
+                    history.push('/game/easy');
+                }}
                 style={{
                     fontFamily: 'Roboto',
                     fontWeight: 'bold',
@@ -86,7 +94,10 @@ const Menu = () => {
                 </button>
 
                 <button
-                onClick={() => history.push('/game/medium')}
+                onClick={() => {
+                    dispatch(setDifficulty('medium'));
+                    history.push('/game/medium');
+                }}
                 style={{
                     fontFamily: 'Roboto',
                     fontWeight: 'bold',
@@ -101,7 +112,10 @@ const Menu = () => {
                 </button>
 
                 <button
-                onClick={() => history.push('/game/hard')}
+                onClick={() => {
+                    dispatch(setDifficulty('hard'));
+                    history.push('/game/hard');
+                }}
                 style={{
                     fontFamily: 'Roboto',
                     fontWeight: 'bold',
@@ -117,7 +131,10 @@ const Menu = () => {
                 </button>
 
                 <button
-                onClick={() => history.push('/game/rush')}
+                onClick={() => {
+                    dispatch(setDifficulty('rush'));
+                    history.push('/game/rush');
+                }}
                 style={{
                     fontFamily: 'Bungee Spice',
                     fontWeight: 'bold',
@@ -183,7 +200,7 @@ const Menu = () => {
                     </li>
 
                     <li style={{marginTop: '3vh'}}>
-                        Clear the input bar by pressing 'shift' or clicking the red button to the left of the input area
+                        Clear the input bar by pressing 'tab' or clicking the red button to the left of the input area
                     </li>
 
                     <li style={{marginTop: '3vh'}}>

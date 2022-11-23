@@ -61,7 +61,9 @@ b {
     font-family: 'Bungee Spice', cursive;
 
     position: relative;
-    top: 8vh;
+    top: 4vh;
+
+    background-color: transparent;
 
     margin-left: 170px;
     margin-right: 170px;
@@ -72,7 +74,7 @@ b {
 
     font-size: 40px;
 
-    text-decoration: none;
+    cursor: pointer;
 }
 
 #play-again:hover {

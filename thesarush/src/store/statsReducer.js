@@ -4,7 +4,8 @@ const initialState = {
     score: 0, 
     words: 0,
     longestWord: '',
-    tilesCleared: 0
+    tilesCleared: 0,
+    difficulty: undefined
 };
 
 export const incrementInvalidWords = () => {
@@ -37,6 +38,13 @@ export const setLongestWord = (word) => {
     return {
         type: 'SET_LONGEST_WORD',
         payload: word
+    };
+};
+
+export const setDifficulty = (difficulty) => {
+    return {
+        type: 'SET_DIFFICULTY',
+        payload: difficulty
     };
 };
 
@@ -103,6 +111,12 @@ const statsReducer = (state = initialState, action) => {
 
         case 'SET_LONGEST_WORD': {
             if (action.payload.length > currentState.longestWord.length) currentState.longestWord = action.payload;
+
+            return currentState;
+        };
+
+        case 'SET_DIFFICULTY': {
+            currentState.difficulty = action.payload;
 
             return currentState;
         };
