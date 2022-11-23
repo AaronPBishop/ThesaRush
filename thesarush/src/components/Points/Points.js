@@ -8,8 +8,8 @@ const Points = ({ hidden, numPoints }) => {
             visibility: hidden ? 'hidden' : 'visible',
 
             color: numPoints < 8 ? 'white' 
-            : numPoints >= 8 && numPoints <= 12 ? 'rgb(0, 255, 0)'
-            : numPoints > 12 && 'RGB(255, 252, 0)',
+            : numPoints >= 8 && numPoints <= 12 ? 'rgb(0, 255, 0    )'
+            : numPoints > 12 && 'rgb(255, 252, 0)',
 
             fontWeight: numPoints > 12 && 'bold',
 

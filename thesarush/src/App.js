@@ -1,11 +1,23 @@
 import { Switch, Route } from 'react-router-dom';
-import MainContent from './components/MainContent/MainContent.js';
+
+import BoardHolder from './components/BoardHolder/BoardHolder.js';
+import Menu from './components/Menu/Menu.js';
 
 function App() {
   return (
-    <Switch>
-      <MainContent />
-    </Switch>
+    <div>
+      <Switch>
+
+        <Route exact path='/'>
+          <Menu />
+        </Route>
+
+        <Route path='/game/:difficulty'>
+          <BoardHolder />
+        </Route>
+
+      </Switch>
+    </div>
   );
 };
 

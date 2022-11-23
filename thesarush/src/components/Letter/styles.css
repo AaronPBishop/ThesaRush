@@ -38,7 +38,7 @@
     animation: undrop 0.4s forwards;
 
     position: relative;
-    bottom: 60px;
+    bottom: 50px;
 }
 
 @keyframes drop {
@@ -50,16 +50,7 @@
 }
 
 @keyframes undrop {
-    100%{transform: translateY(60px)}
-}
-
-@keyframes spin {
-    from {
-        transform:rotate(0deg);
-    }
-    to {
-        transform:rotate(360deg);
-    }
+    100%{transform: translateY(50px)}
 }
 
 /* create key-frames drop to translate y number of pixels related to length of array - shorter array will translate less */

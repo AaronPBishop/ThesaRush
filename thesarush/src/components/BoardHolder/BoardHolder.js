@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Board from '../Board/Board';
@@ -15,7 +16,8 @@ import { incrementInvalidWords, determinePoints, resetPoints, incrementWords, se
 
 import { useStatusContext } from '../../context/StatusContext.js';
 
-const MainContent = () => {
+const BoardHolder = () => {
+    const params = useParams();
     const dispatch = useDispatch();
 
     const [isValid, setIsValid] = useState(false);
@@ -112,7 +114,7 @@ const MainContent = () => {
 
                 <div id='board'>
                     
-                    <Board />
+                    <Board difficulty={params.difficulty} />
                     
                     <form
                     onSubmit={e => {
@@ -145,4 +147,4 @@ const MainContent = () => {
     );
 };
 
-export default MainContent;
+export default BoardHolder;

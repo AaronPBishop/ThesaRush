@@ -10,13 +10,20 @@ import { useStatusContext } from '../../context/StatusContext.js';
 
 import './styles.css';
 
-const Board = () => {
+const Board = ({ difficulty }) => {
     const [switched, setSwitched] = useState(false);
     const { setGameOver, setTileDropped } = useStatusContext();
 
     const dispatch = useDispatch();
 
     const board = useSelector(state => Object.values(state.board));
+
+    const difficultyLevels = {
+        easy: 3500,
+        medium: 3000,
+        hard: 2000,
+        rush: 1500
+    };
 
     const randomColumn = () => {
         const column = [];
@@ -42,7 +49,7 @@ const Board = () => {
           setSwitched((switched) => !switched);
 
           setTileDropped(true);
-        }, 2000);
+        }, difficultyLevels[difficulty]);
 
         const resetDrop = setInterval(() => {
             setTileDropped(false);
