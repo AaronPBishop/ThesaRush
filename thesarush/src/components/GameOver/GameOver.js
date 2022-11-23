@@ -5,8 +5,8 @@ const GameOver = ({ points, numWords, longestWord, tilesCleared }) => {
     return (
         <div id='game-over'>
             <p id='gameover-header'>Game Over!</p>
-            <div id='stats-box'>
 
+            <div id='stats-box'>
                 <p>
                     Final Points: <b>{points}</b>
                 </p>
@@ -22,10 +22,14 @@ const GameOver = ({ points, numWords, longestWord, tilesCleared }) => {
                 <p>
                     Tiles Cleared: <b>{tilesCleared}</b>
                 </p>
-
             </div>
 
-            <Link id='play-again' to='/' onClick={() => window.location.reload()}>Play again?</Link>
+            <Link 
+            id='play-again' 
+            to='/' 
+            onClick={() => window.location.reload()}>
+                Play again?
+            </Link>
         </div>
     );
 };

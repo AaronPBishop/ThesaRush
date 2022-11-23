@@ -6,7 +6,7 @@ import { setTiles } from '../../store/tilesReducer.js';
 import { incrementOrder } from '../../store/orderReducer.js';
 
 import { useStatusContext } from '../../context/StatusContext.js';
-import { letterType } from '../../functions/letterGenerator.js';
+import { letterClass } from '../../functions/letterGenerator.js';
 
 import './styles.css';
 
@@ -63,18 +63,18 @@ const Letter = ({ hidden, letter, colPos, rowPos, type }) => {
 
           color: 'white',
 
-          textShadow: letterType(letter) === 'rare' && '2px 2px black',
+          textShadow: letterClass(letter) === 'rare' && '2px 2px black',
 
           backgroundColor: 
-          letterType(letter) === 'vowel' && clicked === false ?
-          'rgb(215, 0, 64)' : letterType(letter) === 'consonant' && clicked === false ?
-          'rgb(20, 40, 120)' : letterType(letter) === 'rare' && clicked === false ?
-          'rgb(255,215,0)' : clicked === true &&
+          letterClass(letter) === 'vowel' && clicked === false ?
+          'rgb(215, 0, 64)' : letterClass(letter) === 'consonant' && clicked === false ?
+          'rgb(20, 40, 120)' : letterClass(letter) === 'rare' && clicked === false ?
+          'rgb(255, 215, 0)' : clicked === true &&
           'rgb(30, 30, 30)',
 
-          border: clicked === false && (letterType(letter) === 'consonant') ? 
+          border: clicked === false && (letterClass(letter) === 'consonant') ? 
           '2px solid rgb(255, 255, 0)' : 
-          clicked === false && (letterType(letter) === 'vowel') ?
+          clicked === false && (letterClass(letter) === 'vowel') ?
           '2px solid rgb(139, 0, 0)' : 
           '2px solid yellow',
 

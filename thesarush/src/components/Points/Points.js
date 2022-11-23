@@ -6,9 +6,15 @@ const Points = ({ hidden, numPoints }) => {
         id={hidden ? 'hidden' : 'points'}
         style={{
             visibility: hidden ? 'hidden' : 'visible',
-            color: numPoints < 8 ? 'white' : 'rgb(255, 255, 0)',
-            fontWeight: numPoints >= 8 && 'bold',
-            fontSize: numPoints >= 8 && '22px'
+
+            color: numPoints < 8 ? 'white' 
+            : numPoints >= 8 && numPoints <= 12 ? 'rgb(0, 255, 0)'
+            : numPoints > 12 && 'RGB(255, 252, 0)',
+
+            fontWeight: numPoints > 12 && 'bold',
+
+            fontSize: numPoints >= 8 && numPoints <= 12 ? 
+            '22px' : numPoints > 12 && '24px'
         }}
         >
             {`+${numPoints} points!`}
