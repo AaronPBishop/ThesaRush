@@ -11,6 +11,7 @@ import checkGameOver from '../../functions/checkGameOver.js';
 import { useStatusContext } from '../../context/StatusContext.js';
 
 import './styles.css';
+import { setDifficulty } from '../../store/statsReducer.js';
 
 const Board = ({ difficulty }) => {
     const history = useHistory();
@@ -24,10 +25,10 @@ const Board = ({ difficulty }) => {
     const board = useSelector(state => Object.values(state.board));
 
     const difficultyLevels = {
-        easy: 3500,
-        medium: 3000,
-        hard: 2000,
-        rush: 1500
+        easy: 3000,
+        medium: 2500,
+        hard: 1500,
+        rush: 1000
     };
 
     const randomColumn = () => {
@@ -44,9 +45,9 @@ const Board = ({ difficulty }) => {
     useEffect(() => {
         dispatch(resetBoard());
 
-        for (let i = 0; i < 8; i++) {
-            dispatch(addColumn(randomColumn()));
-        };
+        for (let i = 0; i < 8; i++) dispatch(addColumn(randomColumn()));
+
+        dispatch(setDifficulty(difficulty));
     }, []);
 
     useEffect(() => {
@@ -63,14 +64,14 @@ const Board = ({ difficulty }) => {
         if (board.length) dispatch(dropLetters());
 
         if (checkGameOver(board)) {
-            setInterval(() => {
+            const setGameOver = setTimeout(() => {
                 clearInterval(interval);
                 clearInterval(resetDrop);
 
                 history.push('/gameover');
-
-                return;
             }, 200);
+
+            return () => clearTimeout(setGameOver);
         };
 
         return () => {

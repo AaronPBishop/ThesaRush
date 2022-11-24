@@ -40,6 +40,8 @@ const GameOver = ({ points, numWords, longestWord, tilesCleared }) => {
                 id='play-again' 
                 onClick={e => {
                     history.push(`/game/${difficulty}`);
+                    window.location.reload(false);
+                    
 
                     e.preventDefault();
                 }}>
@@ -49,6 +51,7 @@ const GameOver = ({ points, numWords, longestWord, tilesCleared }) => {
                 <button
                     onClick={e => {
                         history.push('/');
+                        window.location.reload(false);
 
                         e.preventDefault();
                     }}

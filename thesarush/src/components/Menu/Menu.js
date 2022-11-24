@@ -17,14 +17,14 @@ const Menu = () => {
         <div id='menu-box'>
             <div style={{position: 'relative', top: '30vh', visibility: (clickedPlay === false) && (clickedInstructions === false) ? 'visible' : 'hidden'}}>
                 <button
+                className='menu-buttons'
                 onClick={() => setClickedPlay(true)}
                 style={{
                     fontFamily: 'Roboto',
                     fontWeight: 'bold',
                     fontSize: '24px',
-                    color: 'white',
+                    color: 'rgb(255, 255, 0)',
                     backgroundColor: 'black',
-                    border: 'none',
                     cursor: 'pointer'
                 }}>
                     Play
@@ -33,14 +33,14 @@ const Menu = () => {
 
             <div style={{position: 'relative', top: '40vh', visibility: (clickedPlay === false) && (clickedInstructions) === false ? 'visible' : 'hidden'}}>
                 <button
+                className='menu-buttons'
                 onClick={() => setClickedInstructions(true)}
                 style={{
                     fontFamily: 'Roboto',
                     fontWeight: 'bold',
                     fontSize: '24px',
-                    color: 'white',
+                    color: 'rgb(255, 255, 0)',
                     backgroundColor: 'black',
-                    border: 'none',
                     cursor: 'pointer'
                 }}>
                     Instructions
@@ -152,11 +152,13 @@ const Menu = () => {
 
             <div 
             style={{
+                display: 'flex',
+                justifyContent: 'center',
                 textAlign: 'left',
                 margin: 'auto',
                 flexWrap: 'wrap',
                 position: 'relative', 
-                bottom: '51.5vh', 
+                bottom: '52vh', 
                 visibility: clickedInstructions === true ? 'visible' : 'hidden', 
                 maxWidth: '25vw'
             }}>
@@ -166,8 +168,6 @@ const Menu = () => {
                     fontFamily: 'Roboto',
                     fontWeight: 'bold',
                     fontSize: '24px',
-                    position: 'relative',
-                    left: '0.8vw',
                     color: 'rgb(255, 255, 0)',
                     backgroundColor: 'black',
                     border: 'none',

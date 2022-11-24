@@ -8,6 +8,8 @@
     bottom: 6.5vh;
 
     font-size: 60px;
+
+    cursor: pointer;
 }
 
 .input-actions {

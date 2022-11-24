@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Board from '../Board/Board';
@@ -16,6 +16,7 @@ import { incrementInvalidWords, determinePoints, resetPoints, incrementWords, se
 import { useStatusContext } from '../../context/StatusContext.js';
 
 const BoardHolder = () => {
+    const history = useHistory();
     const params = useParams();
     const dispatch = useDispatch();
 
@@ -106,7 +107,14 @@ const BoardHolder = () => {
     
     return (
         <div id='main-content'>
-            <h1 id='header'>ThesaRush</h1>
+            <h1 
+            onClick={() => { 
+                history.push('/');
+                window.location.reload(false);
+            }}
+            id='header'>
+                ThesaRush
+            </h1>
             
             <div id='game-box'>
 
