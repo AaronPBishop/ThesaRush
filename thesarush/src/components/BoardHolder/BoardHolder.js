@@ -70,17 +70,11 @@ const BoardHolder = () => {
  
         const timer = setTimeout(() => {
             setIsValid(false);
+            setInvalid(false);
             dispatch(resetPoints());
         }, 1000);
-
-        const invalidTimer = setTimeout(() => {
-            setInvalid(false);
-        }, 1500);
         
-        return () => {
-            clearTimeout(timer);
-            clearTimeout(invalidTimer);
-        };
+        return () => clearTimeout(timer);
 
     }, [submitted]);
 
