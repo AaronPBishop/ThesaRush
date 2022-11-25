@@ -67,14 +67,12 @@ const Board = ({ difficulty }) => {
         if (board.length) dispatch(dropLetters());
 
         if (checkGameOver(board)) {
-            const setGameOver = setTimeout(() => {
+            setTimeout(() => {
                 clearInterval(interval);
                 clearInterval(resetDrop);
 
                 history.push('/gameover');
-            }, 200);
-
-            return () => clearTimeout(setGameOver);
+            }, 1000);
         };
 
         return () => {

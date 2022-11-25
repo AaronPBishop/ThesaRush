@@ -7,6 +7,7 @@ const initialState = {
     input: {},
     order: 0,
     tiles: {},
+    finalTiles: {},
     cleared: false,
     submitted: false,
     tileDropped: false
@@ -150,7 +151,7 @@ const gameReducer = (state = initialState, action) => {
         };
 
         case 'CLEAR_TILES': {
-            const values = Object.values(currentState.tiles);
+            const values = Object.values(currentState.finalTiles);
  
             for (let i = 0; i < values.length; i++) {
                 const [col, row] = values[i];
@@ -176,6 +177,7 @@ const gameReducer = (state = initialState, action) => {
                 };
             };
 
+            currentState.finalTiles = {};
             return currentState;
         };
 
@@ -267,6 +269,7 @@ const gameReducer = (state = initialState, action) => {
 
         case 'SET_SUBMITTED': {
             currentState.submitted = action.payload;
+            currentState.finalTiles = { ...currentState.tiles };
 
             return currentState;
         };

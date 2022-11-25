@@ -35,10 +35,8 @@ const Letter = ({ hidden, letter, colPos, rowPos, type, color }) => {
         };
 
         if (hasClicked === true && clicked === false) {
-          setTimeout(() => {
-            dispatch(removeInputVal([colPos, rowPos].join('')));
-            dispatch(removeTile([colPos, rowPos])); 
-          }, 150);
+          dispatch(removeInputVal([colPos, rowPos].join('')));
+          dispatch(removeTile([colPos, rowPos])); 
         };
 
         for (let i = 0; i < positions.length; i++) dispatch(setTiles(positions[i]));
