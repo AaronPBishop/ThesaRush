@@ -2,13 +2,11 @@ import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { addColumn, dropLetters, resetBoard } from '../../store/boardReducer.js';
+import { addColumn, dropLetters, resetBoard, setTileDropped } from '../../store/gameReducer.js';
 import Column from '../Column/Column.js';
 import letterGenerator from '../../functions/letterGenerator.js';
 
 import checkGameOver from '../../functions/checkGameOver.js';
-
-import { useStatusContext } from '../../context/StatusContext.js';
 
 import './styles.css';
 import { setDifficulty } from '../../store/statsReducer.js';
@@ -17,12 +15,15 @@ const Board = ({ difficulty }) => {
     const history = useHistory();
 
     const [switched, setSwitched] = useState(false);
-
-    const { setTileDropped } = useStatusContext();
+    const [stateBoard, setStateBoard] = useState([]);
 
     const dispatch = useDispatch();
 
-    const board = useSelector(state => Object.values(state.board));
+    const board = useSelector(state => state.game.board);
+
+    useEffect(() => {
+        setStateBoard(board);
+    }, [board]);
 
     const difficultyLevels = {
         easy: 3000,
@@ -54,11 +55,13 @@ const Board = ({ difficulty }) => {
         const interval = setInterval(() => {
           setSwitched((switched) => !switched);
 
-          setTileDropped(true);
+          dispatch(setTileDropped(true));
         }, difficultyLevels[difficulty]);
 
-        const resetDrop = setInterval(() => {
-            setTileDropped(false);
+        const resetDrop = setTimeout(() => {
+            dispatch(setTileDropped(false));
+
+            return;
         }, 400);
 
         if (board.length) dispatch(dropLetters());
@@ -83,7 +86,7 @@ const Board = ({ difficulty }) => {
     return (
         <div className='main-board'>
             <center>
-                {board.map((col, i) => <Column letters={col} colPos={i} />)}
+                {stateBoard.map((col, i) => <Column letters={col} colPos={i} key={i} />)}
             </center>
         </div>
     );

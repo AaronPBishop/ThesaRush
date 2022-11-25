@@ -7,13 +7,25 @@ import Points from '../Points/Points';
 import orderInput from '../../functions/orderInput.js';
 import './styles.css';
 
-import { resetTiles } from '../../store/tilesReducer';
-import { resetInput } from '../../store/inputReducer';
-import { clearTiles, rearrangeTiles, dropLetters, dropRow } from '../../store/boardReducer';
-import { resetOrder } from '../../store/orderReducer.js';
-import { incrementInvalidWords, determinePoints, resetPoints, incrementWords, setLongestWord } from '../../store/statsReducer.js';
+import { 
+    clearTiles, 
+    rearrangeTiles, 
+    dropLetters, 
+    dropRow, 
+    resetOrder, 
+    resetTiles, 
+    resetInput,
+    setCleared,
+    setSubmitted
+} from '../../store/gameReducer';
 
-import { useStatusContext } from '../../context/StatusContext.js';
+import { 
+    incrementInvalidWords, 
+    determinePoints, 
+    resetPoints, 
+    incrementWords, 
+    setLongestWord 
+} from '../../store/statsReducer.js';
 
 const BoardHolder = () => {
     const history = useHistory();
@@ -22,16 +34,21 @@ const BoardHolder = () => {
 
     const [isValid, setIsValid] = useState(false);
     const [invalid, setInvalid] = useState(false);
+    const [formInput, setFormInput] = useState('');
 
-    const { setCleared, submitted, setSubmitted, tileDropped } = useStatusContext();
-    
-    const currTiles = useSelector(state => state.tiles);
+    const state = useSelector(state => state.game);
+    const submitted = useSelector(state => state.game.submitted);
+    const tileDropped = useSelector(state => state.game.tileDropped);
 
-    const input = useSelector(state => state.input);
+    const input = useSelector(state => state.game.input);
     const orderedInput = orderInput(Object.values(input));
 
     const invalidWords = useSelector(state => state.stats.invalidWords)
     const points = useSelector(state => state.stats.points);
+
+    useEffect(() => {
+        setFormInput(orderedInput);
+    }, [state]);
  
     useEffect(() => {
         const makeSearch = async () => {
@@ -42,7 +59,7 @@ const BoardHolder = () => {
 
             if (!fetchJSON.title) {
                 setIsValid(true);
-                dispatch(clearTiles(currTiles));
+                dispatch(clearTiles());
                 dispatch(rearrangeTiles());
 
                 dispatch(determinePoints(orderedInput.length, orderedInput));
@@ -81,11 +98,11 @@ const BoardHolder = () => {
     const handleSubmit = () => {
         if (tileDropped === true) {
             setInterval(() => {
-                setSubmitted((submitted) => !submitted);
+                dispatch(setSubmitted((submitted) => !submitted));
             }, 400)
         };
 
-        if (tileDropped === false) setSubmitted((submitted) => !submitted);
+        if (tileDropped === false) dispatch(setSubmitted((submitted) => !submitted));
     };
 
     useEffect(() => {
@@ -95,7 +112,7 @@ const BoardHolder = () => {
             if (e.code === 'Space') handleSubmit();
 
             if (e.code === 'Tab') {
-                setCleared((cleared) => !cleared);
+                dispatch(setCleared((cleared) => !cleared));
 
                 dispatch(resetInput());
                 dispatch(resetOrder());
@@ -138,7 +155,7 @@ const BoardHolder = () => {
                     }}
                     className='input-actions'>
                             <button type='reset' id='clear' onClick={() => {
-                                setCleared((cleared) => !cleared);
+                                dispatch(setCleared((cleared) => !cleared));
 
                                 dispatch(resetInput());
                                 dispatch(resetOrder());
@@ -150,7 +167,7 @@ const BoardHolder = () => {
                             id='word-bar' 
                             type='text' 
                             disabled={true} 
-                            value={orderedInput}>
+                            value={formInput}>
                             </input>
 
                         <button id='send' type='submit'></button>

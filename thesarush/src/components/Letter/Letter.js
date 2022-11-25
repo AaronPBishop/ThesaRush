@@ -1,11 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { setInput, removeInputVal } from '../../store/inputReducer.js';
-import { setTiles, removeTile } from '../../store/tilesReducer.js';
-import { incrementOrder } from '../../store/orderReducer.js';
+import { setInput, removeInputVal, incrementOrder, setTiles, removeTile, setWait } from '../../store/gameReducer';
 
-import { useStatusContext } from '../../context/StatusContext.js';
 import { letterClass } from '../../functions/letterGenerator.js';
 
 import './styles.css';
@@ -13,18 +10,17 @@ import './styles.css';
 const Letter = ({ hidden, letter, colPos, rowPos, type, color }) => {
     const dispatch = useDispatch();
     
-    const order = useSelector(state => Number(Object.values(state.order)));
+    const order = useSelector(state => Number(state.game.order));
     
-    const { cleared, submitted } = useStatusContext();
+    const cleared = useSelector(state => state.game.cleared);
+    const submitted = useSelector(state => state.game.submitted);
 
     const [hasClicked, setHasClicked] = useState(false);
     const [clicked, setClicked] = useState(false);
-    
-    useEffect(() => {
-      setHasClicked(true);
-    }, [clicked]);
 
     useEffect(() => {
+        setHasClicked(true);
+
         const positions = [];
         const currValues = [];
 
@@ -39,8 +35,10 @@ const Letter = ({ hidden, letter, colPos, rowPos, type, color }) => {
         };
 
         if (hasClicked === true && clicked === false) {
-          dispatch(removeInputVal([colPos, rowPos].join('')));
-          dispatch(removeTile([colPos, rowPos])); 
+          setTimeout(() => {
+            dispatch(removeInputVal([colPos, rowPos].join('')));
+            dispatch(removeTile([colPos, rowPos])); 
+          }, 150);
         };
 
         for (let i = 0; i < positions.length; i++) dispatch(setTiles(positions[i]));

@@ -12,6 +12,7 @@ const Column = ({ letters, colPos }) => {
             rowPos={i} 
             type={typeof letter === 'object' && letter !== null && letter.type}
             color={typeof letter === 'object' && letter !== null && letter.color} 
+            key={i}
             />
           ))}
         </div>
