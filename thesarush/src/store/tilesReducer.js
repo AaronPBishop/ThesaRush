@@ -7,9 +7,9 @@ export const setTiles = (tilePos) => {
     };
 };
 
-export const clearTile = (tilePos) => {
+export const removeTile = (tilePos) => {
     return {
-        type: 'CLEAR_TILE',
+        type: 'REMOVE_TILE',
         payload: tilePos
     };
 };
@@ -30,8 +30,10 @@ const tilesReducer = (state = initialState, action) => {
             return currentState;
         };
 
-        case 'CLEAR_TILE': {
-            delete currentState[action.payload];
+        case 'REMOVE_TILE': {
+            for (let key in currentState) {
+                if (currentState[key][0] === action.payload[0] && currentState[key][1] === action.payload[1]) delete currentState[key];
+            };
 
             return currentState;
         };

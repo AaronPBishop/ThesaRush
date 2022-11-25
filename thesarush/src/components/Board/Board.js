@@ -13,7 +13,7 @@ import { useStatusContext } from '../../context/StatusContext.js';
 import './styles.css';
 import { setDifficulty } from '../../store/statsReducer.js';
 
-const Board = ({ difficulty }) => {
+const Board = ({ difficulty, invalidSubmit }) => {
     const history = useHistory();
 
     const [switched, setSwitched] = useState(false);

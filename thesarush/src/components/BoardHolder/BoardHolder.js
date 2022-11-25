@@ -21,6 +21,7 @@ const BoardHolder = () => {
     const dispatch = useDispatch();
 
     const [isValid, setIsValid] = useState(false);
+    const [invalid, setInvalid] = useState(false);
 
     const { setCleared, submitted, setSubmitted, tileDropped } = useStatusContext();
     
@@ -49,6 +50,7 @@ const BoardHolder = () => {
                 dispatch(setLongestWord(orderedInput));
             } else {
                 dispatch(incrementInvalidWords());
+                setInvalid(true);
 
                 if (invalidWords <= 1) {
                     for (let i = 0; i <= invalidWords; i++) dispatch(dropLetters());
@@ -66,12 +68,19 @@ const BoardHolder = () => {
 
         makeSearch();
  
-        const interval = setTimeout(() => {
+        const timer = setTimeout(() => {
             setIsValid(false);
             dispatch(resetPoints());
         }, 1000);
+
+        const invalidTimer = setTimeout(() => {
+            setInvalid(false);
+        }, 1500);
         
-        return () => clearTimeout(interval);
+        return () => {
+            clearTimeout(timer);
+            clearTimeout(invalidTimer);
+        };
 
     }, [submitted]);
 
@@ -87,17 +96,17 @@ const BoardHolder = () => {
 
     useEffect(() => {
         const keyDownHandler = e => {
-          e.preventDefault();
+            e.preventDefault();
     
-          if (e.code === 'Space') handleSubmit();
+            if (e.code === 'Space') handleSubmit();
 
-          if (e.code === 'Tab') {
-            setCleared((cleared) => !cleared);
-                            
-            dispatch(resetInput());
-            dispatch(resetOrder());
-            dispatch(resetTiles());
-          };
+            if (e.code === 'Tab') {
+                setCleared((cleared) => !cleared);
+
+                dispatch(resetInput());
+                dispatch(resetOrder());
+                dispatch(resetTiles());
+            };
         };
     
         document.addEventListener('keydown', keyDownHandler);
@@ -116,7 +125,9 @@ const BoardHolder = () => {
                 ThesaRush
             </h1>
             
-            <div id='game-box'>
+            <div 
+            id='game-box'
+            style={{boxShadow: invalid === false ? '0px 10px 20px rgb(0, 110, 0)' : '0px 20px 40px 20px rgb(210, 4, 45)'}}>
 
                 <div style={{position: 'absolute'}}>
                     <Points hidden={isValid === false} numPoints={points} />
@@ -124,7 +135,7 @@ const BoardHolder = () => {
 
                 <div id='board'>
                     
-                    <Board difficulty={params.difficulty} />
+                    <Board difficulty={params.difficulty} invalidSubmit={''} />
                     
                     <form
                     onSubmit={e => {

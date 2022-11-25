@@ -2,6 +2,24 @@ const vowels = ['A', 'E', 'I', 'O', 'U', 'Y'];
 const consonants = ['B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'R', 'S', 'T', 'V', 'W']
 const rareConsonants = ['X', 'Z', 'Q'];
 
+const vowelColors = () => {
+    const colors = ['rgb(215, 0, 64)', 'rgb(227, 11, 92)'];
+
+    return colors[Math.floor(Math.random() * colors.length)];
+};
+
+const consonantColors = () => {
+    const colors = ['rgb(20, 40, 130)', 'rgb(25, 25, 100)'];
+
+    return colors[Math.floor(Math.random() * colors.length)];
+};
+
+const determineColor = (letterClass) => {
+    if (letterClass === 'vowel') return vowelColors()
+    if (letterClass === 'consonant') return consonantColors();
+    if (letterClass === 'rare') return 'rgb(255, 215, 0)';
+};
+
 export const letterClass = (letter) => {
     if (vowels.includes(letter)) return 'vowel';
     if (consonants.includes(letter)) return 'consonant';
@@ -11,10 +29,10 @@ export const letterClass = (letter) => {
 const letterGenerator = (type) => {
     const randomLetter = Math.floor(Math.random() * 100);
 
-    if (randomLetter >= 40) return {letter: consonants[Math.floor((Math.random()*consonants.length))], type: type};
-    if (randomLetter > 1.5 && randomLetter < 40) return {letter: vowels[Math.floor((Math.random()*vowels.length))], type: type}
+    if (randomLetter >= 40) return {letter: consonants[Math.floor((Math.random()*consonants.length))], type: type, color: determineColor('consonant')};
+    if (randomLetter > 1.5 && randomLetter < 40) return {letter: vowels[Math.floor((Math.random()*vowels.length))], type: type, color: determineColor('vowel')}
 
-    return {letter: rareConsonants[Math.floor((Math.random()*rareConsonants.length))], type: type};
+    return {letter: rareConsonants[Math.floor((Math.random()*rareConsonants.length))], type: type, color: determineColor('rare')};
 };
 
 export default letterGenerator;

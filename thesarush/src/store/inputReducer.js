@@ -21,6 +21,12 @@ export const resetInput = () => {
     };
 };
 
+export const removeLastChar = () => {
+    return {
+        type: 'REMOVE_LAST_CHAR'
+    };
+};
+
 const inputReducer = (state = initialState, action) => {
     let currentState = { ...state };
 
@@ -45,9 +51,7 @@ const inputReducer = (state = initialState, action) => {
             return currentState;
         };
 
-        default: {
-            return currentState;
-        };
+        default: return currentState;
     };
 };
 

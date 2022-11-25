@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { setInput, removeInputVal } from '../../store/inputReducer.js';
-import { setTiles } from '../../store/tilesReducer.js';
+import { setTiles, removeTile } from '../../store/tilesReducer.js';
 import { incrementOrder } from '../../store/orderReducer.js';
 
 import { useStatusContext } from '../../context/StatusContext.js';
@@ -10,8 +10,9 @@ import { letterClass } from '../../functions/letterGenerator.js';
 
 import './styles.css';
 
-const Letter = ({ hidden, letter, colPos, rowPos, type }) => {
+const Letter = ({ hidden, letter, colPos, rowPos, type, color }) => {
     const dispatch = useDispatch();
+    
     const order = useSelector(state => Number(Object.values(state.order)));
     
     const { cleared, submitted } = useStatusContext();
@@ -37,7 +38,10 @@ const Letter = ({ hidden, letter, colPos, rowPos, type }) => {
           dispatch(incrementOrder());
         };
 
-        if (hasClicked === true && clicked === false) dispatch (removeInputVal([colPos, rowPos].join('')));
+        if (hasClicked === true && clicked === false) {
+          dispatch(removeInputVal([colPos, rowPos].join('')));
+          dispatch(removeTile([colPos, rowPos])); 
+        };
 
         for (let i = 0; i < positions.length; i++) dispatch(setTiles(positions[i]));
     }, [clicked]);
@@ -65,18 +69,15 @@ const Letter = ({ hidden, letter, colPos, rowPos, type }) => {
 
           textShadow: letterClass(letter) === 'rare' && '2px 2px black',
 
-          backgroundColor: 
-          letterClass(letter) === 'vowel' && clicked === false ?
-          'rgb(215, 0, 64)' : letterClass(letter) === 'consonant' && clicked === false ?
-          'rgb(20, 40, 120)' : letterClass(letter) === 'rare' && clicked === false ?
-          'rgb(255, 215, 0)' : clicked === true &&
-          'rgb(30, 30, 30)',
+          backgroundColor: clicked === true ? 'rgb(30, 30, 30)' : color,
 
           border: clicked === false && (letterClass(letter) === 'consonant') ? 
           '2px solid rgb(255, 255, 0)' : 
           clicked === false && (letterClass(letter) === 'vowel') ?
           '2px solid rgb(139, 0, 0)' : 
           '2px solid yellow',
+
+          borderRadius: letterClass(letter) === 'vowel' ? '16px' : '40px',
 
           cursor: 'pointer'
         }}
