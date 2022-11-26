@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 import { setDifficulty } from '../../store/statsReducer';
-import themeReducer, { setBackgroundColor } from '../../store/themeReducer';
+import { setBackgroundColor } from '../../store/themeReducer';
 
 import './styles.css';
 
