@@ -35,10 +35,8 @@ const BoardHolder = () => {
     const [isValid, setIsValid] = useState(false);
     const [invalid, setInvalid] = useState(false);
     const [formInput, setFormInput] = useState('');
-    const [tilePositions, setTilePositions] = useState({})
 
     const state = useSelector(state => state.game);
-    const tiles = useSelector(state => state.game.tiles);
     const submitted = useSelector(state => state.game.submitted);
     const tileDropped = useSelector(state => state.game.tileDropped);
 
@@ -86,7 +84,6 @@ const BoardHolder = () => {
         };
 
         makeSearch();
-        setTilePositions({});
  
         const timer = setTimeout(() => {
             setIsValid(false);

@@ -15,14 +15,14 @@ const Board = ({ difficulty }) => {
     const history = useHistory();
 
     const [switched, setSwitched] = useState(false);
-    const [stateBoard, setStateBoard] = useState([]);
+    const [boardState, setBoardState] = useState([]);
 
     const dispatch = useDispatch();
 
     const board = useSelector(state => state.game.board);
 
     useEffect(() => {
-        setStateBoard(board);
+        setBoardState(board);
     }, [board]);
 
     const difficultyLevels = {
@@ -84,7 +84,7 @@ const Board = ({ difficulty }) => {
     return (
         <div className='main-board'>
             <center>
-                {stateBoard.map((col, i) => <Column letters={col} colPos={i} key={i} />)}
+                {boardState.map((col, i) => <Column letters={col} colPos={i} key={i} />)}
             </center>
         </div>
     );
