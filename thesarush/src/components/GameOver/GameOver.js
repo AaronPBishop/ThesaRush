@@ -1,5 +1,5 @@
 import { useHistory } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import './styles.css';
 
@@ -46,8 +46,8 @@ const GameOver = ({ points, numWords, longestWord, tilesCleared }) => {
                 onClick={e => {
                     history.push(`/game/${difficulty}`);
                     window.location.reload(false);
-                    
 
+                    
                     e.preventDefault();
                 }}>
                     Play again?

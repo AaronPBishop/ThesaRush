@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import BoardHolder from './components/BoardHolder/BoardHolder.js';
 import Menu from './components/Menu/Menu.js';
 import GameOver from './components/GameOver/GameOver.js';
+import Audio from './components/Audio/Audio.js';
 
 const App = () => {
   const totalScore = useSelector(state => state.stats.score);
@@ -13,6 +14,10 @@ const App = () => {
 
   return (
     <div>
+      <div style={{display: 'flex', justifyContent: 'flex-end', position: 'relative', top: '2vh', right: '1vw'}}>
+        <Audio />
+      </div>
+      
       <Switch>
 
         <Route exact path='/'>
