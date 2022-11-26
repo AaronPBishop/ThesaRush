@@ -48,6 +48,12 @@ export const setDifficulty = (difficulty) => {
     };
 };
 
+export const resetStats = () => {
+    return {
+        type: 'RESET_STATS'
+    };
+};
+
 const statsReducer = (state = initialState, action) => {
     const currentState = { ...state };
 
@@ -117,6 +123,14 @@ const statsReducer = (state = initialState, action) => {
 
         case 'SET_DIFFICULTY': {
             currentState.difficulty = action.payload;
+
+            return currentState;
+        };
+
+        case 'RESET_STATS': {
+            for (let key in currentState) {
+                if (key !== 'difficulty') currentState[key] = initialState[key];
+            };
 
             return currentState;
         };

@@ -1,14 +1,24 @@
+import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
+import { resetGame } from '../../store/gameReducer';
+import { resetStats } from '../../store/statsReducer';
+
 import './styles.css';
 
-
 const GameOver = ({ points, numWords, longestWord, tilesCleared }) => {
+    const dispatch = useDispatch();
     const history = useHistory();
     
     const difficulty = useSelector(state => state.stats.difficulty);
     const theme = useSelector(state => state.theme);
+
+    const [playAgain, setPlayAgain] = useState(false);
+
+    useEffect(() => {
+        if (playAgain === true) history.push(`/game/${difficulty}`);
+    }, [playAgain])
     
     return (
         <div 
@@ -43,10 +53,11 @@ const GameOver = ({ points, numWords, longestWord, tilesCleared }) => {
             }}>
                 <button 
                 id='play-again' 
-                onClick={e => {
-                    history.push(`/game/${difficulty}`);
-                    window.location.reload(false);
+                onClick={async e => {
+                    dispatch(resetGame());
+                    dispatch(resetStats());
 
+                    setPlayAgain(true);
                     
                     e.preventDefault();
                 }}>
@@ -55,8 +66,10 @@ const GameOver = ({ points, numWords, longestWord, tilesCleared }) => {
 
                 <button
                     onClick={e => {
+                        dispatch(resetGame());
+                        dispatch(resetStats());
+
                         history.push('/');
-                        window.location.reload(false);
 
                         e.preventDefault();
                     }}

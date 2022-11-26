@@ -45,9 +45,9 @@ export const dropRow = () => {
     };
 };
 
-export const resetBoard = () => {
+export const resetGame = () => {
     return {
-        type: 'RESET_BOARD'
+        type: 'RESET_GAME'
     };
 };
 
@@ -280,7 +280,15 @@ const gameReducer = (state = initialState, action) => {
             return currentState;
         };
 
-        case 'RESET_BOARD': return initialState;
+        case 'RESET_GAME': {
+            for (let key in currentState) {
+                if (currentState[key] !== 'board') currentState[key] = initialState[key];
+            };
+
+            currentState.board = [];
+            
+            return currentState;
+        };
 
         default: return currentState;
     };

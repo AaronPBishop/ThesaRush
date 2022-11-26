@@ -24,7 +24,7 @@ const Audio = () => {
             onClick={() => {
                 document.getElementById('music-player').play()
             }}>
-                <i class="fa-sharp fa-solid fa-volume-high"></i>
+                <i className="fa-sharp fa-solid fa-volume-high"></i>
             </button>
 
             <button 
@@ -37,10 +37,10 @@ const Audio = () => {
             onClick={() => {
                 document.getElementById('music-player').pause()
             }}>
-                <i class="fa-sharp fa-solid fa-volume-xmark"></i>
+                <i className="fa-sharp fa-solid fa-volume-xmark"></i>
             </button>
 
-            <audio id='music-player' autoplay loop> 
+            <audio id='music-player' autoPlay loop> 
                 <source src={audio} type="audio/mpeg" /> 
             </audio>
         </div>

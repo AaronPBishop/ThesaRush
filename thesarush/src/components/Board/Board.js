@@ -9,7 +9,6 @@ import letterGenerator from '../../functions/letterGenerator.js';
 import checkGameOver from '../../functions/checkGameOver.js';
 
 import './styles.css';
-import { setDifficulty } from '../../store/statsReducer.js';
 
 const Board = ({ difficulty }) => {
     const history = useHistory();
@@ -44,11 +43,7 @@ const Board = ({ difficulty }) => {
     };
 
     useEffect(() => {
-        dispatch(resetBoard());
-
         for (let i = 0; i < 8; i++) dispatch(addColumn(randomColumn()));
-
-        dispatch(setDifficulty(difficulty));
     }, []);
 
     useEffect(() => {

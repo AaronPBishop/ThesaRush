@@ -16,7 +16,8 @@ import {
     resetTiles, 
     resetInput,
     setCleared,
-    setSubmitted
+    setSubmitted,
+    resetGame
 } from '../../store/gameReducer';
 
 import { 
@@ -24,7 +25,8 @@ import {
     determinePoints, 
     resetPoints, 
     incrementWords, 
-    setLongestWord 
+    setLongestWord,
+    resetStats
 } from '../../store/statsReducer.js';
 
 const BoardHolder = () => {
@@ -130,9 +132,13 @@ const BoardHolder = () => {
     return (
         <div id='main-content'>
             <h1 
-            onClick={() => { 
+            onClick={e => { 
+                dispatch(resetGame());
+                dispatch(resetStats());
+
                 history.push('/');
-                window.location.reload(false);
+
+                e.preventDefault();
             }}
             id='header'>
                 ThesaRush
