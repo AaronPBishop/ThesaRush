@@ -3,12 +3,17 @@ import { useSelector } from 'react-redux';
 
 import './styles.css';
 
+
 const GameOver = ({ points, numWords, longestWord, tilesCleared }) => {
     const history = useHistory();
+    
     const difficulty = useSelector(state => state.stats.difficulty);
+    const theme = useSelector(state => state.theme);
     
     return (
-        <div id='game-over'>
+        <div 
+        style={{backgroundColor: theme.backgroundColor}}
+        id='game-over'>
             <p id='gameover-header'>Game Over!</p>
 
             <div id='stats-box'>

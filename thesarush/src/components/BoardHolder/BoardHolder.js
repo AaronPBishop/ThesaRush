@@ -46,6 +46,8 @@ const BoardHolder = () => {
     const invalidWords = useSelector(state => state.stats.invalidWords)
     const points = useSelector(state => state.stats.points);
 
+    const theme = useSelector(state => state.theme);
+
     useEffect(() => {
         setFormInput(orderedInput);
     }, [state]);
@@ -138,7 +140,12 @@ const BoardHolder = () => {
             
             <div 
             id='game-box'
-            style={{boxShadow: invalid === false ? '0px 10px 20px rgb(0, 110, 0)' : '0px 20px 40px 20px rgb(210, 4, 45)'}}>
+            style={{
+                boxShadow: invalid === false ? 
+                '0px 10px 20px rgb(0, 110, 0)' : 
+                '0px 20px 40px 20px rgb(210, 4, 45)',
+                backgroundColor: theme.backgroundColor
+                }}>
 
                 <div style={{position: 'absolute'}}>
                     <Points hidden={isValid === false} numPoints={points} />

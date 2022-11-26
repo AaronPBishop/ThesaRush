@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 import { setDifficulty } from '../../store/statsReducer';
+import themeReducer, { setBackgroundColor } from '../../store/themeReducer';
 
 import './styles.css';
 
@@ -12,10 +13,15 @@ const Menu = () => {
 
     const [clickedPlay, setClickedPlay] = useState(false);
     const [clickedInstructions, setClickedInstructions] = useState(false);
+    const [clickedTheme, setClickedTheme] = useState(false);
+
+    const theme = useSelector(state => state.theme);
 
     return (
-        <div id='menu-box'>
-            <div style={{position: 'relative', top: '30vh', visibility: (clickedPlay === false) && (clickedInstructions === false) ? 'visible' : 'hidden'}}>
+        <div
+        style={{backgroundColor: theme.backgroundColor}} 
+        id='menu-box'>
+            <div style={{position: 'relative', top: '25vh', visibility: (clickedPlay === false) && (clickedInstructions === false) && (clickedTheme === false) ? 'visible' : 'hidden'}}>
                 <button
                 className='menu-buttons'
                 onClick={() => setClickedPlay(true)}
@@ -24,14 +30,14 @@ const Menu = () => {
                     fontWeight: 'bold',
                     fontSize: '24px',
                     color: 'rgb(255, 255, 0)',
-                    backgroundColor: 'black',
+                    backgroundColor: 'transparent',
                     cursor: 'pointer'
                 }}>
                     Play
                 </button>
             </div>
 
-            <div style={{position: 'relative', top: '40vh', visibility: (clickedPlay === false) && (clickedInstructions) === false ? 'visible' : 'hidden'}}>
+            <div style={{position: 'relative', top: '35vh', visibility: (clickedPlay === false) && (clickedInstructions === false) && (clickedTheme === false) ? 'visible' : 'hidden'}}>
                 <button
                 className='menu-buttons'
                 onClick={() => setClickedInstructions(true)}
@@ -40,10 +46,26 @@ const Menu = () => {
                     fontWeight: 'bold',
                     fontSize: '24px',
                     color: 'rgb(255, 255, 0)',
-                    backgroundColor: 'black',
+                    backgroundColor: 'transparent',
                     cursor: 'pointer'
                 }}>
                     Instructions
+                </button>
+            </div>
+
+            <div style={{position: 'relative', top: '45vh', visibility: (clickedPlay === false) && (clickedInstructions === false) && (clickedTheme === false) ? 'visible' : 'hidden'}}>
+                <button
+                className='menu-buttons'
+                onClick={() => setClickedTheme(true)}
+                style={{
+                    fontFamily: 'Roboto',
+                    fontWeight: 'bold',
+                    fontSize: '24px',
+                    color: 'rgb(255, 255, 0)',
+                    backgroundColor: 'transparent',
+                    cursor: 'pointer'
+                }}>
+                    Theme
                 </button>
             </div>
 
@@ -54,7 +76,7 @@ const Menu = () => {
                 margin: 'auto',
                 flexWrap: 'wrap',
                 position: 'relative', 
-                top: '8vh', 
+                top: '4vh', 
                 visibility: clickedPlay === true ? 'visible' : 'hidden', 
                 maxWidth: '5vw',
             }}>
@@ -68,7 +90,7 @@ const Menu = () => {
                     position: 'relative',
                     bottom: '6vh',
                     color: 'rgb(255, 255, 0)',
-                    backgroundColor: 'black',
+                    backgroundColor: 'transparent',
                     border: 'none',
                     cursor: 'pointer'
                 }}>
@@ -85,7 +107,7 @@ const Menu = () => {
                     fontWeight: 'bold',
                     fontSize: '24px',
                     color: 'white',
-                    backgroundColor: 'black',
+                    backgroundColor: 'transparent',
                     border: 'none',
                     cursor: 'pointer',
                     marginTop: '5vh'
@@ -103,7 +125,7 @@ const Menu = () => {
                     fontWeight: 'bold',
                     fontSize: '24px',
                     color: 'white',
-                    backgroundColor: 'black',
+                    backgroundColor: 'transparent',
                     border: 'none',
                     cursor: 'pointer',
                     marginTop: '5vh'
@@ -121,7 +143,7 @@ const Menu = () => {
                     fontWeight: 'bold',
                     fontSize: '24px',
                     color: 'white',
-                    backgroundColor: 'black',
+                    backgroundColor: 'transparent',
                     border: 'none',
                     cursor: 'pointer',
                     marginTop: '5vh',
@@ -140,7 +162,7 @@ const Menu = () => {
                     fontWeight: 'bold',
                     fontSize: '42px',
                     color: 'white',
-                    backgroundColor: 'black',
+                    backgroundColor: 'transparent',
                     border: 'none',
                     cursor: 'pointer',
                     marginTop: '5vh'
@@ -158,9 +180,10 @@ const Menu = () => {
                 margin: 'auto',
                 flexWrap: 'wrap',
                 position: 'relative', 
-                bottom: '52vh', 
+                bottom: '58vh', 
                 visibility: clickedInstructions === true ? 'visible' : 'hidden', 
-                maxWidth: '25vw'
+                minWidth: '25vw',
+                maxWidth: '25vw',
             }}>
                 <button
                 onClick={() => setClickedInstructions(false)}
@@ -169,7 +192,7 @@ const Menu = () => {
                     fontWeight: 'bold',
                     fontSize: '24px',
                     color: 'rgb(255, 255, 0)',
-                    backgroundColor: 'black',
+                    backgroundColor: 'transparent',
                     border: 'none',
                     cursor: 'pointer'
                 }}>
@@ -213,6 +236,87 @@ const Menu = () => {
                 </ol>
 
             </div>
+
+            <div 
+            style={{
+                display: 'flex',
+                justifyContent: 'center',
+                margin: 'auto',
+                flexWrap: 'wrap',
+                position: 'relative', 
+                bottom: '130vh', 
+                visibility: clickedTheme === true ? 'visible' : 'hidden', 
+                maxWidth: '5vw',
+            }}>
+
+                <button
+                onClick={() => setClickedTheme(false)}
+                style={{
+                    fontFamily: 'Roboto',
+                    fontWeight: 'bold',
+                    fontSize: '24px',
+                    position: 'relative',
+                    bottom: '6vh',
+                    color: 'rgb(255, 255, 0)',
+                    backgroundColor: 'transparent',
+                    border: 'none',
+                    cursor: 'pointer'
+                }}>
+                    Back
+                </button>
+
+                <button
+                onClick={() => {
+                    dispatch(setBackgroundColor('rgb(0, 0, 0)'));
+                }}
+                style={{
+                    fontFamily: 'Roboto',
+                    fontWeight: 'bold',
+                    fontSize: '24px',
+                    color: 'white',
+                    backgroundColor: 'transparent',
+                    border: 'none',
+                    cursor: 'pointer',
+                    marginTop: '6vh'
+                }}>
+                    Classic
+                </button>
+
+                <button
+                onClick={() => {
+                    dispatch(setBackgroundColor('rgb(10, 10, 30)'))
+                }}
+                style={{
+                    fontFamily: 'Roboto',
+                    fontWeight: 'bold',
+                    fontSize: '24px',
+                    color: 'white',
+                    backgroundColor: 'transparent',
+                    border: 'none',
+                    cursor: 'pointer',
+                    marginTop: '6vh'
+                }}>
+                    Midnight
+                </button>
+
+                <button
+                onClick={() => {
+                    dispatch(setBackgroundColor('rgb(45, 0, 25)'))
+                }}
+                style={{
+                    fontFamily: 'Roboto',
+                    fontWeight: 'bold',
+                    fontSize: '24px',
+                    color: 'white',
+                    backgroundColor: 'transparent',
+                    border: 'none',
+                    cursor: 'pointer',
+                    marginTop: '6vh'
+                }}>
+                    Dawn
+                </button>
+            </div>
+
         </div>
     );
 };

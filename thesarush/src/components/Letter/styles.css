@@ -36,7 +36,7 @@
     animation: undrop 0.4s forwards;
 
     position: relative;
-    bottom: 50px;
+    bottom: 45px;
 }
 
 @keyframes drop {
@@ -48,7 +48,7 @@
 }
 
 @keyframes undrop {
-    100%{transform: translateY(50px)}
+    100%{transform: translateY(45px)}
 }
 
 /* create key-frames drop to translate y number of pixels related to length of array - shorter array will translate less */
