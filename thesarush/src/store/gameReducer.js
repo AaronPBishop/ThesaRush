@@ -10,7 +10,16 @@ const initialState = {
     finalTiles: {},
     cleared: false,
     submitted: false,
-    tileDropped: false
+    tileDropped: false,
+    stats: {
+        invalidWords: 0,
+        points: 0, 
+        score: 0, 
+        words: 0,
+        longestWord: '',
+        tilesCleared: 0,
+        difficulty: undefined
+    }
 };
 
 // BOARD ACTIONS
@@ -139,6 +148,56 @@ export const setTileDropped = (boolean) => {
     };
 };
 
+
+// STATS ACTIONS
+export const incrementInvalidWords = () => {
+    return {
+        type: 'INCREMENT_INVALID_WORDS'
+    };
+};
+
+export const determinePoints = (points, letters) => {
+    return {
+        type: 'DETERMINE_POINTS',
+        payload: points,
+        payload2: letters
+    };
+};
+
+export const resetPoints = () => {
+    return {
+        type: 'RESET_POINTS'
+    };
+};
+
+export const incrementWords = () => {
+    return {
+        type: 'INCREMENT_WORDS'
+    };
+};
+
+export const setLongestWord = (word) => {
+    return {
+        type: 'SET_LONGEST_WORD',
+        payload: word
+    };
+};
+
+export const setDifficulty = (difficulty) => {
+    return {
+        type: 'SET_DIFFICULTY',
+        payload: difficulty
+    };
+};
+
+export const resetStats = () => {
+    return {
+        type: 'RESET_STATS'
+    };
+};
+
+
+// MAIN REDUCER
 const gameReducer = (state = initialState, action) => {
     const currentState = { ...state };
 
@@ -159,6 +218,7 @@ const gameReducer = (state = initialState, action) => {
 
                     if (currColumn[currColumn.length - 1] !== null) {
                         currColumn[currColumn.length - 1] = null;
+                        currentState.stats.tilesCleared += 1;
 
                         for (let j = currColumn.length - 1; j > 0; j--) {
                             if (currColumn[j] !== null && currColumn[j] !== undefined) {
@@ -182,21 +242,24 @@ const gameReducer = (state = initialState, action) => {
             for (let i = 0; i < values.length; i++) {
                 const [col, row] = values[i];
 
-                currentState.board[col][row] = null;
+                if (currentState.board[col][row] !== null) {
+                    currentState.board[col][row] = null;
+                    currentState.stats.tilesCleared += 1;
 
-                for (let j = currentState.board[col].length; j > 0; j--) {
-                    if (j < row) {
-                        if (currentState.board[col][j] !== null && currentState.board[col][j] !== undefined) {
-                            if (currentState.board[col][j].type !== 'rearranged') {
-                                currentState.board[col][j].type = 'rearranged';
+                    for (let j = currentState.board[col].length; j > 0; j--) {
+                        if (j < row) {
+                            if (currentState.board[col][j] !== null && currentState.board[col][j] !== undefined) {
+                                if (currentState.board[col][j].type !== 'rearranged') {
+                                    currentState.board[col][j].type = 'rearranged';
 
-                                continue;
-                            };
-                            
-                            if (currentState.board[col][j].type === 'rearranged') {
-                                currentState.board[col][j].type = 'unarranged';
+                                    continue;
+                                };
 
-                                continue;
+                                if (currentState.board[col][j].type === 'rearranged') {
+                                    currentState.board[col][j].type = 'unarranged';
+
+                                    continue;
+                                };
                             };
                         };
                     };
@@ -308,11 +371,91 @@ const gameReducer = (state = initialState, action) => {
 
         case 'RESET_GAME': {
             for (let key in currentState) {
-                if (currentState[key] !== 'board') currentState[key] = initialState[key];
+                if (currentState[key] !== 'board' && currentState[key] !== 'stats') currentState[key] = initialState[key];
             };
 
             currentState.board = [];
             
+            return currentState;
+        };
+
+
+        // STATS REDUCERS
+        case 'INCREMENT_INVALID_WORDS': {
+            if (currentState.stats.invalidWords > 1) {
+                currentState.stats.invalidWords = 0;
+
+                return currentState;
+            };
+
+            currentState.stats.invalidWords += 1;
+
+            return currentState;
+        };
+
+        case 'DETERMINE_POINTS': {
+            const scoreMultipliers = ['X', 'Z', 'Q'];
+            let multiplier = 0;
+
+            const pointsMap = {5: 7, 6: 9, 7: 11, 8: 16, 9: 20};
+
+            action.payload2.split('').forEach(letter => {if (scoreMultipliers.includes(letter)) multiplier += 1});
+
+            if (action.payload < 5) {
+                currentState.stats.points += action.payload;
+                currentState.stats.score += action.payload;
+            };
+
+            if (action.payload > 4) {
+                currentState.stats.points += pointsMap[action.payload];
+                currentState.stats.score += pointsMap[action.payload];
+            };
+
+            if (action.payload > 9) {
+                currentState.stats.points += (action.payload * 3);
+                currentState.stats.score += (action.payload * 3);
+            };
+
+            if (multiplier > 0) {
+                currentState.stats.points += action.payload *= multiplier;
+                currentState.stats.score += action.payload *= multiplier;
+            };
+
+            return currentState;
+        };
+
+        case 'RESET_POINTS': {
+            currentState.stats.points = 0;
+
+            return currentState;
+        };
+
+        case 'INCREMENT_WORDS': {
+            currentState.stats.words += 1;
+
+            return currentState;
+        };
+
+        case 'SET_LONGEST_WORD': {
+            if (action.payload.length > currentState.stats.longestWord.length) currentState.stats.longestWord = action.payload;
+
+            return currentState;
+        };
+
+        case 'SET_DIFFICULTY': {
+            currentState.stats.difficulty = action.payload;
+
+            return currentState;
+        };
+
+        case 'RESET_STATS': {
+            for (let key in currentState.stats) {
+                if (key !== 'difficulty') {
+                    if (key !== 'longestWord') currentState.stats[key] = 0;
+                    else currentState.stats[key] = '';
+                };
+            };
+
             return currentState;
         };
 

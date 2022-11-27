@@ -2,8 +2,7 @@ import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { resetGame } from '../../store/gameReducer';
-import { resetStats } from '../../store/statsReducer';
+import { resetGame, resetStats } from '../../store/gameReducer';
 
 import './styles.css';
 
@@ -11,7 +10,7 @@ const GameOver = ({ points, numWords, longestWord, tilesCleared }) => {
     const dispatch = useDispatch();
     const history = useHistory();
     
-    const difficulty = useSelector(state => state.stats.difficulty);
+    const difficulty = useSelector(state => state.game.stats.difficulty);
     const theme = useSelector(state => state.theme);
 
     const [playAgain, setPlayAgain] = useState(false);

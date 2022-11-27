@@ -17,17 +17,14 @@ import {
     resetInput,
     setCleared,
     setSubmitted,
-    resetGame
-} from '../../store/gameReducer';
-
-import { 
+    resetGame,
     incrementInvalidWords, 
     determinePoints, 
     resetPoints, 
     incrementWords, 
     setLongestWord,
     resetStats
-} from '../../store/statsReducer.js';
+} from '../../store/gameReducer';
 
 const BoardHolder = () => {
     const history = useHistory();
@@ -45,8 +42,8 @@ const BoardHolder = () => {
     const input = useSelector(state => state.game.input);
     const orderedInput = orderInput(Object.values(input));
 
-    const invalidWords = useSelector(state => state.stats.invalidWords)
-    const points = useSelector(state => state.stats.points);
+    const invalidWords = useSelector(state => state.game.stats.invalidWords)
+    const points = useSelector(state => state.game.stats.points);
 
     const theme = useSelector(state => state.theme);
 

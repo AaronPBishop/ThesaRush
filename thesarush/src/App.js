@@ -7,10 +7,10 @@ import GameOver from './components/GameOver/GameOver.js';
 import Audio from './components/Audio/Audio.js';
 
 const App = () => {
-  const totalScore = useSelector(state => state.stats.score);
-  const totalWords = useSelector(state => state.stats.words);
-  const longestWord = useSelector(state => state.stats.longestWord);
-  const tilesCleared = useSelector(state => state.stats.tilesCleared);
+  const totalScore = useSelector(state => state.game.stats.score);
+  const totalWords = useSelector(state => state.game.stats.words);
+  const longestWord = useSelector(state => state.game.stats.longestWord);
+  const tilesCleared = useSelector(state => state.game.stats.tilesCleared);
 
   return (
     <div>
