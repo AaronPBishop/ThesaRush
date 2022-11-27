@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { addColumn, dropLetters, resetBoard, setTileDropped } from '../../store/gameReducer.js';
+import { addColumn, dropLetters, setTileDropped } from '../../store/gameReducer.js';
 import Column from '../Column/Column.js';
 import letterGenerator from '../../functions/letterGenerator.js';
 

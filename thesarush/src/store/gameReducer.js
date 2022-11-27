@@ -8,9 +8,11 @@ const initialState = {
     order: 0,
     tiles: {},
     finalTiles: {},
-    cleared: false,
-    submitted: false,
-    tileDropped: false,
+    statuses: {
+        cleared: false,
+        submitted: false,
+        tileDropped: false
+    },
     stats: {
         invalidWords: 0,
         points: 0, 
@@ -288,6 +290,18 @@ const gameReducer = (state = initialState, action) => {
             return currentState;
         };
 
+        case 'RESET_GAME': {
+            for (let key in currentState) {
+                if (currentState[key] !== 'board' && currentState[key] !== 'statuses' && currentState[key] !== 'stats') currentState[key] = initialState[key];
+            };
+
+            for (let key in currentState.statuses) currentState.statuses[key] = false;
+
+            currentState.board = [];
+            
+            return currentState;
+        };
+
 
         // INPUT REDUCERS
         case 'SET_INPUT': {
@@ -351,31 +365,21 @@ const gameReducer = (state = initialState, action) => {
 
         // STATUS REDUCERS
         case 'SET_CLEARED': {
-            currentState.cleared = action.payload;
+            currentState.statuses.cleared = action.payload;
 
             return currentState;
         };
 
         case 'SET_SUBMITTED': {
-            currentState.submitted = action.payload;
+            currentState.statuses.submitted = action.payload;
             currentState.finalTiles = { ...currentState.tiles };
 
             return currentState;
         };
 
         case 'SET_TILE_DROPPED': {
-            currentState.tileDropped = action.payload;
+            currentState.statuses.tileDropped = action.payload;
 
-            return currentState;
-        };
-
-        case 'RESET_GAME': {
-            for (let key in currentState) {
-                if (currentState[key] !== 'board' && currentState[key] !== 'stats') currentState[key] = initialState[key];
-            };
-
-            currentState.board = [];
-            
             return currentState;
         };
 

@@ -36,8 +36,8 @@ const BoardHolder = () => {
     const [formInput, setFormInput] = useState('');
 
     const state = useSelector(state => state.game);
-    const submitted = useSelector(state => state.game.submitted);
-    const tileDropped = useSelector(state => state.game.tileDropped);
+    const submitted = useSelector(state => state.game.statuses.submitted);
+    const tileDropped = useSelector(state => state.game.statuses.tileDropped);
 
     const input = useSelector(state => state.game.input);
     const orderedInput = orderInput(Object.values(input));
@@ -98,7 +98,7 @@ const BoardHolder = () => {
 
     const handleSubmit = () => {
         if (tileDropped === true) {
-            setInterval(() => {
+            setTimeout(() => {
                 dispatch(setSubmitted((submitted) => !submitted));
             }, 400)
         };
@@ -109,6 +109,7 @@ const BoardHolder = () => {
     useEffect(() => {
         const keyDownHandler = e => {
             e.preventDefault();
+
     
             if (e.code === 'Space') handleSubmit();
 
