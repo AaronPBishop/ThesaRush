@@ -25,8 +25,12 @@ const Audio = () => {
                 backgroundColor: theme.backgroundColor,
                 color: 'white'
             }}
-            onClick={() => {
+            onClick={e => {
+                e.preventDefault();
+
                 document.getElementById('music-player').play()
+
+                return false;
             }}>
                 <i className="fa-sharp fa-solid fa-volume-high"></i>
             </button>
@@ -38,8 +42,12 @@ const Audio = () => {
                 backgroundColor: theme.backgroundColor,
                 color: 'white'
             }}
-            onClick={() => {
+            onClick={e => {
+                e.preventDefault();
+
                 document.getElementById('music-player').pause()
+
+                return false;
             }}>
                 <i className="fa-sharp fa-solid fa-volume-xmark"></i>
             </button>

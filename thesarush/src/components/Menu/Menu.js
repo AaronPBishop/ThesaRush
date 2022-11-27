@@ -29,7 +29,7 @@ const Menu = () => {
                     fontFamily: 'Roboto',
                     fontWeight: 'bold',
                     fontSize: '24px',
-                    color: 'rgb(255, 255, 0)',
+                    color: 'white',
                     backgroundColor: 'transparent',
                     cursor: 'pointer'
                 }}>
@@ -45,7 +45,7 @@ const Menu = () => {
                     fontFamily: 'Roboto',
                     fontWeight: 'bold',
                     fontSize: '24px',
-                    color: 'rgb(255, 255, 0)',
+                    color: 'white',
                     backgroundColor: 'transparent',
                     cursor: 'pointer'
                 }}>
@@ -61,7 +61,7 @@ const Menu = () => {
                     fontFamily: 'Roboto',
                     fontWeight: 'bold',
                     fontSize: '24px',
-                    color: 'rgb(255, 255, 0)',
+                    color: 'white',
                     backgroundColor: 'transparent',
                     cursor: 'pointer'
                 }}>
@@ -314,6 +314,23 @@ const Menu = () => {
                     marginTop: '6vh'
                 }}>
                     Dawn
+                </button>
+
+                <button
+                onClick={() => {
+                    dispatch(setBackgroundColor('rgb(0, 15, 25)'))
+                }}
+                style={{
+                    fontFamily: 'Roboto',
+                    fontWeight: 'bold',
+                    fontSize: '24px',
+                    color: 'white',
+                    backgroundColor: 'transparent',
+                    border: 'none',
+                    cursor: 'pointer',
+                    marginTop: '6vh'
+                }}>
+                    Meadow
                 </button>
             </div>
 
