@@ -2,6 +2,8 @@ import { useSelector } from 'react-redux';
 
 import audio from "../../Station-X.webm";
 
+import './styles.css';
+
 const Audio = () => {
     const theme = useSelector(state => state.theme);
 

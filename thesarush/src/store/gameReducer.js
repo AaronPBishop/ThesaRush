@@ -152,6 +152,32 @@ const gameReducer = (state = initialState, action) => {
 
         case 'CLEAR_TILES': {
             const values = Object.values(currentState.finalTiles);
+
+            if (values.length >= 8) {
+                for (let i = 0; i < currentState.board.length; i++) {
+                    const currColumn = currentState.board[i];
+
+                    if (currColumn[currColumn.length - 1] !== null) {
+                        currColumn[currColumn.length - 1] = null;
+
+                        for (let j = currColumn.length - 1; j > 0; j--) {
+                            if (currColumn[j] !== null && currColumn[j] !== undefined) {
+                                if (currColumn[j].type !== 'rearranged') {
+                                    currColumn[j].type = 'rearranged';
+    
+                                    continue;
+                                };
+                                
+                                if (currColumn[j].type === 'rearranged') {
+                                    currColumn[j].type = 'unarranged';
+    
+                                    continue;
+                                };
+                            };
+                        };
+                    }
+                };
+            };
  
             for (let i = 0; i < values.length; i++) {
                 const [col, row] = values[i];

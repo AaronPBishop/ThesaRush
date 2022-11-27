@@ -14,7 +14,7 @@ const App = () => {
 
   return (
     <div>
-      <div style={{display: 'flex', justifyContent: 'flex-end', position: 'relative', top: '2vh', right: '1vw'}}>
+      <div style={{display: 'flex', justifyContent: 'flex-end', position: 'relative', top: '1vh', right: '0.5vw'}}>
         <Audio />
       </div>
       

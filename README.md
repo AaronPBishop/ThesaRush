@@ -5,7 +5,6 @@ New random letter components (weighted in favor of consonants, then vowels, and 
 Redux actions are utilized in order to perform various board operations, such as splicing off submitted letters and moving remaining letters into their respective places as needed, or reordering letters in the input bar upon selection/deselection of tiles.
 
 **Features to come:**
-* Varying levels of difficulty
 * User accounts/Multiplayer challenges
 * Unlockable animations awarded by point accrual (animations will be style-varying particle-effects that occur upon letter clears)
 * New tile mechanics, such as:
