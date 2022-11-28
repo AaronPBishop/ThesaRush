@@ -6,7 +6,7 @@ import Board from '../Board/Board';
 import Points from '../Points/Points';
 import orderInput from '../../functions/orderInput.js';
 
-import * as data from '../../dictionary/words_dictionary.json';
+import * as data from '../../dictionary/words_dictionary';
 
 import './styles.css';
 
@@ -57,8 +57,8 @@ const BoardHolder = () => {
     useEffect(() => {
         const makeSearch = async () => {
             if (orderedInput.length <= 1) return;
-
-            if (Object.keys(data).includes(orderedInput.toLowerCase())) {
+  
+            if (data[orderedInput.toLowerCase()]) {
                 setIsValid(true);
                 dispatch(clearTiles());
                 dispatch(rearrangeTiles());
