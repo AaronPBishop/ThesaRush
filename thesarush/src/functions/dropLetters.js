@@ -41,8 +41,8 @@ export const insertRow = (board) => {
 };
 
 
-const insertColumnVal = (board) => {
-    const newLetter = letterGenerator('new');
+const insertColumnVal = (board, properties='normal') => {
+    const newLetter = letterGenerator('new', properties);
     const randomColumn = Math.floor((Math.random() * board.length));
 
     const insertPoint = findInsertPoint(board, randomColumn);

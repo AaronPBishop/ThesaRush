@@ -1,6 +1,7 @@
 import performSplice from "../functions/performSplice.js";
 import insertColumnVal from "../functions/dropLetters.js";
 import { insertRow } from "../functions/dropLetters.js";
+import getNeighbors from "../functions/getNeighbors.js";
 
 const initialState = {
     board: [],
@@ -11,7 +12,8 @@ const initialState = {
     statuses: {
         cleared: false,
         submitted: false,
-        tileDropped: false
+        tileDropped: false,
+        submittedLongWord: false
     },
     stats: {
         invalidWords: 0,
@@ -214,6 +216,8 @@ const gameReducer = (state = initialState, action) => {
         case 'CLEAR_TILES': {
             const values = Object.values(currentState.finalTiles);
 
+            if (values.length >= 6) currentState.statuses.submittedLongWord = true;
+
             if (values.length >= 8) {
                 for (let i = 0; i < currentState.board.length; i++) {
                     const currColumn = currentState.board[i];
@@ -237,7 +241,7 @@ const gameReducer = (state = initialState, action) => {
                                 };
                             };
                         };
-                    }
+                    };
                 };
             };
  
@@ -245,6 +249,31 @@ const gameReducer = (state = initialState, action) => {
                 const [col, row] = values[i];
 
                 if (currentState.board[col][row] !== null) {
+                    if (currentState.board[col][row].properties === 'bomb') {
+                        const neighbors = getNeighbors(currentState.board, values[i]);
+
+                        for (let i = 0; i < neighbors.length; i++) {
+                            const [neighborCol, neighborRow] = neighbors[i];
+
+                            currentState.board[neighborCol][neighborRow] = null;
+                            currentState.stats.tilesCleared += 1;
+
+                            for (let j = currentState.board[neighborCol].length - 1; j > 0; j--) {
+                                if (currentState.board[neighborCol][neighborRow] !== null && currentState.board[neighborCol][neighborRow].type !== 'rearranged') {
+                                    currentState.board[neighborCol][neighborRow].type = 'rearranged';
+    
+                                    continue;
+                                };
+                                
+                                if (currentState.board[neighborCol][neighborRow] !== null && currentState.board[neighborCol][neighborRow].type === 'rearranged') {
+                                    currentState.board[neighborCol][neighborRow].type = 'unarranged';
+    
+                                    continue;
+                                };
+                            };
+                        };
+                    };
+
                     currentState.board[col][row] = null;
                     currentState.stats.tilesCleared += 1;
 
@@ -279,6 +308,13 @@ const gameReducer = (state = initialState, action) => {
         };
 
         case 'DROP_LETTERS': {
+            if (currentState.statuses.submittedLongWord === true) {
+                currentState.board = insertColumnVal(currentState.board, 'bomb');
+                currentState.statuses.submittedLongWord = false;
+
+                return currentState;
+            };
+
             currentState.board = insertColumnVal(currentState.board);
 
             return currentState;

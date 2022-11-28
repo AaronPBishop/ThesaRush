@@ -26,13 +26,13 @@ export const letterClass = (letter) => {
     if (rareConsonants.includes(letter)) return 'rare';
 };
 
-const letterGenerator = (type) => {
+const letterGenerator = (type, properties='normal') => {
     const randomLetter = Math.floor(Math.random() * 100);
 
-    if (randomLetter >= 40) return {letter: consonants[Math.floor((Math.random()*consonants.length))], type: type, color: determineColor('consonant')};
-    if (randomLetter > 1.5 && randomLetter < 40) return {letter: vowels[Math.floor((Math.random()*vowels.length))], type: type, color: determineColor('vowel')}
+    if (randomLetter >= 40) return {letter: consonants[Math.floor((Math.random()*consonants.length))], type: type, color: determineColor('consonant'), properties: properties};
+    if (randomLetter > 1.5 && randomLetter < 40) return {letter: vowels[Math.floor((Math.random()*vowels.length))], type: type, color: determineColor('vowel'), properties: properties}
 
-    return {letter: rareConsonants[Math.floor((Math.random()*rareConsonants.length))], type: type, color: determineColor('rare')};
+    return {letter: rareConsonants[Math.floor((Math.random()*rareConsonants.length))], type: type, color: determineColor('rare'), properties: properties};
 };
 
 export default letterGenerator;

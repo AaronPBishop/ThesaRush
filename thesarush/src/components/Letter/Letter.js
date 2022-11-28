@@ -7,7 +7,7 @@ import { letterClass } from '../../functions/letterGenerator.js';
 
 import './styles.css';
 
-const Letter = ({ hidden, letter, colPos, rowPos, type, color }) => {
+const Letter = ({ hidden, letter, colPos, rowPos, type, color, properties }) => {
     const dispatch = useDispatch();
     
     const order = useSelector(state => Number(state.game.order));
@@ -61,17 +61,21 @@ const Letter = ({ hidden, letter, colPos, rowPos, type, color }) => {
         style={{
           visibility: hidden ? 'hidden' : 'visible',
 
-          color: 'white',
+          color: properties === 'bomb' ? 'yellow' : 'white',
 
           textShadow: letterClass(letter) === 'rare' && '2px 2px black',
 
-          backgroundColor: clicked === true ? 'rgb(30, 30, 30)' : color,
+          backgroundColor: clicked === true ? 'rgb(30, 30, 30)' 
+          : properties === 'normal' ? color : properties === 'bomb' && 'rgb(255,69,0)',
 
-          border: clicked === false && (letterClass(letter) === 'consonant') ? 
+          boxShadow: properties === 'bomb' && '0px 0px 15px 5px rgb(255, 49, 49)',
+
+          border: clicked === true ?
+          '2px solid yellow' : properties === 'bomb' ? 
+          '2px solid rgb(180, 65, 0)' : (letterClass(letter) === 'consonant') ? 
           '2px solid rgb(255, 255, 0)' : 
-          clicked === false && (letterClass(letter) === 'vowel') ?
-          '2px solid rgb(139, 0, 0)' : 
-          '2px solid yellow',
+          (letterClass(letter) === 'vowel') ?
+          '2px solid rgb(139, 0, 0)' : '2px solid yellow',
 
           borderRadius: letterClass(letter) === 'vowel' ? '20px' : '40px',
 

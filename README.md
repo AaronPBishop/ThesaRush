@@ -9,7 +9,6 @@ Redux actions are utilized in order to perform various board operations, such as
 * Unlockable animations awarded by point accrual (animations will be style-varying particle-effects that occur upon letter clears)
 * New tile mechanics, such as:
 1. Rock Tiles (must be used twice in order to clear)
-2. Bomb Tiles (clears all tiles in 1 tile radius when used, dropped when player submits 2 - 6+ letter words in a row)
 
 ## Technologies used:
 * ![React Badge](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=000&style=flat)

@@ -11,7 +11,8 @@ const Column = ({ letters, colPos }) => {
             colPos={colPos} 
             rowPos={i} 
             type={typeof letter === 'object' && letter !== null && letter.type}
-            color={typeof letter === 'object' && letter !== null && letter.color} 
+            color={typeof letter === 'object' && letter !== null && letter.color}
+            properties={typeof letter === 'object' && letter !== null && letter.properties} 
             key={i}
             />
           ))}
