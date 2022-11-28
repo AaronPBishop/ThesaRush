@@ -77,7 +77,7 @@ const Letter = ({ hidden, letter, colPos, rowPos, type, color, properties }) => 
           (letterClass(letter) === 'vowel') ?
           '2px solid rgb(139, 0, 0)' : '2px solid yellow',
 
-          borderRadius: letterClass(letter) === 'vowel' ? '20px' : '40px',
+          borderRadius: properties !== 'normal' ? '8px' : letterClass(letter) === 'vowel' ? '20px' : '40px',
 
           cursor: 'pointer'
         }}

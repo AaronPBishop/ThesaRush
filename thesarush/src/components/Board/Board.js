@@ -25,9 +25,9 @@ const Board = ({ difficulty }) => {
     }, [board]);
 
     const difficultyLevels = {
-        easy: 2500,
-        medium: 2000,
-        hard: 1500,
+        easy: 2000,
+        medium: 1500,
+        hard: 1200,
         rush: 1000
     };
 

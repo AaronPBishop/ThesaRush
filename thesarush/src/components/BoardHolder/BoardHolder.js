@@ -37,6 +37,7 @@ const BoardHolder = () => {
     const [isValid, setIsValid] = useState(false);
     const [invalid, setInvalid] = useState(false);
     const [formInput, setFormInput] = useState('');
+    const [allWords, setAllWords] = useState({});
 
     const state = useSelector(state => state.game);
     const submitted = useSelector(state => state.game.statuses.submitted);
@@ -51,14 +52,18 @@ const BoardHolder = () => {
     const theme = useSelector(state => state.theme);
 
     useEffect(() => {
+        setAllWords(data);
+    }, []);
+
+    useEffect(() => {
         setFormInput(orderedInput);
     }, [state]);
  
     useEffect(() => {
         const makeSearch = async () => {
-            if (orderedInput.length <= 1) return;
+            if (orderedInput.length <= 2) return;
   
-            if (data[orderedInput.toLowerCase()]) {
+            if (allWords[orderedInput.toLowerCase()]) {
                 setIsValid(true);
                 dispatch(clearTiles());
                 dispatch(rearrangeTiles());
