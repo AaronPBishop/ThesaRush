@@ -66,11 +66,14 @@ const Letter = ({ hidden, letter, colPos, rowPos, type, color, properties }) => 
           textShadow: letterClass(letter) === 'rare' && properties !== 'bomb' && '2px 2px black',
 
           backgroundColor: clicked === true ? 'rgb(30, 30, 30)' 
-          : properties === 'normal' ? color 
+          : properties === 'normal' || properties === 'gold' ? color 
           : properties === 'bomb' ? 'rgb(255,69,0)'
-          : (typeof properties === 'object') && (Object.keys(properties)[0] === 'stone') && '#383630',
+          : (typeof properties === 'object') && (Object.keys(properties)[0] === 'stone') && (properties.stone === 2) ? '#383630'
+          : (typeof properties === 'object') && (Object.keys(properties)[0] === 'stone') && (properties.stone === 1) && 'rgb(40, 38, 30)',
 
-          boxShadow: properties === 'bomb' ? '0px 0px 15px 5px rgb(255, 49, 49)' : (typeof properties === 'object') && (Object.keys(properties)[0] === 'stone') && '0px 0px 10px 4px #383630',
+          boxShadow: properties === 'bomb' ? '0px 0px 15px 5px rgb(255, 49, 49)' 
+          : (typeof properties === 'object') && (Object.keys(properties)[0] === 'stone') ? '0px 0px 10px 4px #383630' 
+          : properties === 'gold' && '0px 0px 10px 1.5px #FFD700',
 
           border: clicked === true ? '2px solid yellow' 
           : (typeof properties === 'object') && (Object.keys(properties)[0] === 'stone') ? '2px solid #787366'
