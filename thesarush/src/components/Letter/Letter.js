@@ -66,16 +66,18 @@ const Letter = ({ hidden, letter, colPos, rowPos, type, color, properties }) => 
           textShadow: letterClass(letter) === 'rare' && '2px 2px black',
 
           backgroundColor: clicked === true ? 'rgb(30, 30, 30)' 
-          : properties === 'normal' ? color : properties === 'bomb' && 'rgb(255,69,0)',
+          : properties === 'normal' ? color 
+          : properties === 'bomb' ? 'rgb(255,69,0)'
+          : (typeof properties === 'object') && (Object.keys(properties)[0] === 'stone') && '#383630',
 
-          boxShadow: properties === 'bomb' && '0px 0px 15px 5px rgb(255, 49, 49)',
+          boxShadow: properties === 'bomb' ? '0px 0px 15px 5px rgb(255, 49, 49)' : (typeof properties === 'object') && (Object.keys(properties)[0] === 'stone') && '0px 0px 10px 4px #383630',
 
-          border: clicked === true ?
-          '2px solid yellow' : properties === 'bomb' ? 
-          '2px solid rgb(180, 65, 0)' : (letterClass(letter) === 'consonant') ? 
-          '2px solid rgb(255, 255, 0)' : 
-          (letterClass(letter) === 'vowel') ?
-          '2px solid rgb(139, 0, 0)' : '2px solid yellow',
+          border: clicked === true ? '2px solid yellow' 
+          : (typeof properties === 'object') && (Object.keys(properties)[0] === 'stone') ? '2px solid #787366'
+          : properties === 'bomb' ? '2px solid rgb(180, 65, 0)' 
+          : (letterClass(letter) === 'consonant') ? '2px solid rgb(255, 255, 0)' 
+          : (letterClass(letter) === 'vowel') ? '2px solid rgb(139, 0, 0)' 
+          : '2px solid yellow',
 
           borderRadius: properties !== 'normal' ? '8px' : letterClass(letter) === 'vowel' ? '20px' : '40px',
 

@@ -40,7 +40,6 @@ export const insertRow = (board) => {
     return board;
 };
 
-
 const insertColumnVal = (board, properties='normal') => {
     const newLetter = letterGenerator('new', properties);
     const randomColumn = Math.floor((Math.random() * board.length));

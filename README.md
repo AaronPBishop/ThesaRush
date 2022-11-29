@@ -6,6 +6,7 @@
 * Varying levels of difficulty to choose from
 * Bomb tiles (spawned when 6+ letter valid word is submitted, clears all tiles surrounding it in a 1 tile vicinity when used)
 * Gold tiles (multiply word score x2 for each gold letter used in a word)
+* Stone tiles (must be used twice in order to destroy)
 * 8+ letter words now clear entire bottom row
 * Keyboard controls (spacebar to submit a word, tab to clear input bar)
 * Word submissions are now validated by indexing a JSON file containing 370,000+ English words, cutting out fetch delays
@@ -22,9 +23,7 @@ Redux actions are utilized in order to perform various board operations, such as
 * User accounts/Multiplayer challenges
 * Badges
 * Unlockable animations awarded by point accrual (animations will be style-varying particle-effects that occur upon letter clears)
-* New tile mechanics, such as:
-1. Rock Tiles (must be used twice in order to clear)
-2. Lava Tiles (must be used when first dropped, otherwise turns all tiles in surrounding vicinity to rock)
+* Lava Tiles (must be used when first dropped, otherwise turns all tiles in surrounding vicinity to stone)
 
 ## Technologies used:
 * ![React Badge](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=000&style=flat)

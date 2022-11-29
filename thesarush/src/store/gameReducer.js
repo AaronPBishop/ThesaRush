@@ -274,22 +274,26 @@ const gameReducer = (state = initialState, action) => {
                         };
                     };
 
-                    currentState.board[col][row] = null;
-                    currentState.stats.tilesCleared += 1;
+                    if (typeof currentState.board[col][row].properties === 'object' && (Object.keys(currentState.board[col][row].properties)[0] === 'stone') && currentState.board[col][row].properties.stone > 1) {
+                        currentState.board[col][row].properties.stone -= 1;
+                    } else {
+                        currentState.board[col][row] = null;
+                        currentState.stats.tilesCleared += 1;
 
-                    for (let j = currentState.board[col].length; j > 0; j--) {
-                        if (j < row) {
-                            if (currentState.board[col][j] !== null && currentState.board[col][j] !== undefined) {
-                                if (currentState.board[col][j].type !== 'rearranged') {
-                                    currentState.board[col][j].type = 'rearranged';
+                        for (let j = currentState.board[col].length; j > 0; j--) {
+                            if (j < row) {
+                                if (currentState.board[col][j] !== null && currentState.board[col][j] !== undefined) {
+                                    if (currentState.board[col][j].type !== 'rearranged') {
+                                        currentState.board[col][j].type = 'rearranged';
 
-                                    continue;
-                                };
+                                        continue;
+                                    };
 
-                                if (currentState.board[col][j].type === 'rearranged') {
-                                    currentState.board[col][j].type = 'unarranged';
+                                    if (currentState.board[col][j].type === 'rearranged') {
+                                        currentState.board[col][j].type = 'unarranged';
 
-                                    continue;
+                                        continue;
+                                    };
                                 };
                             };
                         };
