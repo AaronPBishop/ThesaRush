@@ -1,0 +1,17 @@
+#points {
+    display: flex;
+    justify-content: center;
+
+    font-family: 'Roboto', sans-serif;
+
+    position: relative;
+    bottom: 42vh;
+
+    animation: slide;
+    animation-duration: 0.2s;
+}
+
+@keyframes slide {
+    from {bottom: 32vh}
+    to {bottom: 42vh}
+}

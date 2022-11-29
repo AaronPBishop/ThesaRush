@@ -1,0 +1,54 @@
+.letters {
+    font-family: 'Roboto', sans-serif;
+    font-size: 25px;
+
+    line-height: 52px;
+    letter-spacing: -1.5px;
+
+    min-width: 55px;
+    max-width: 55px;
+    min-height: 55px;
+    max-height: 55px;
+
+    margin: 2px;
+
+    cursor: default;
+    user-select: none;
+    z-index: 300;
+}
+
+.new-letters {
+    animation: drop 0.4s forwards;
+
+    position: relative;
+    bottom: 340px;
+    z-index: 300;
+}
+
+.rearranged-letters {
+    animation: redrop 0.4s forwards;
+
+    position: relative;
+    bottom: 40px;
+}
+
+.unarranged-letters {
+    animation: undrop 0.4s forwards;
+
+    position: relative;
+    bottom: 45px;
+}
+
+@keyframes drop {
+    100%{transform: translateY(10px)}
+}
+
+@keyframes redrop {
+    100%{transform: translateY(40px)}
+}
+
+@keyframes undrop {
+    100%{transform: translateY(45px)}
+}
+
+/* create key-frames drop to translate y number of pixels related to length of array - shorter array will translate less */

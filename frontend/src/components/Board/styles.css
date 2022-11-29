@@ -1,0 +1,19 @@
+#game-box {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+
+    min-height: 650px;
+    max-height: 650px;
+    min-width: 670px;
+    max-width: 670px;
+
+    position: relative;
+    bottom: 13vh;
+    margin: auto;
+
+    border-radius: 25px;
+    border: 2px solid rgb(255, 255, 60);
+
+    overflow: hidden;
+}
