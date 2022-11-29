@@ -6,8 +6,6 @@ import Board from '../Board/Board';
 import Points from '../Points/Points';
 import orderInput from '../../functions/orderInput.js';
 
-import * as data from '../../dictionary/words_dictionary';
-
 import './styles.css';
 
 import { 
@@ -29,7 +27,7 @@ import {
     resetStats
 } from '../../store/gameReducer';
 
-const BoardHolder = () => {
+const BoardHolder = ({ dictionary }) => {
     const history = useHistory();
     const params = useParams();
     const dispatch = useDispatch();
@@ -52,7 +50,7 @@ const BoardHolder = () => {
         const makeSearch = async () => {
             if (orderedInput.length <= 2) return;
   
-            if (data[orderedInput.toLowerCase()]) {
+            if (dictionary[orderedInput.toLowerCase()]) {
                 setIsValid(true);
                 dispatch(clearTiles());
                 dispatch(rearrangeTiles());

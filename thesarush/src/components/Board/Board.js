@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { addColumn, dropLetters, setTileDropped } from '../../store/gameReducer.js';
+import { initiateBoard, dropLetters, setTileDropped } from '../../store/gameReducer.js';
 import Column from '../Column/Column.js';
 import letterGenerator from '../../functions/letterGenerator.js';
 
@@ -31,14 +31,14 @@ const Board = ({ difficulty }) => {
 
         for (let i = 0; i < 11; i++) {
             if (i > 7) column.push(letterGenerator('initial'));
-            else column.push(null)
+            else column.push(null);
         };
         
         return column;
     };
 
     useEffect(() => {
-        dispatch(addColumn(randomColumn));
+        dispatch(initiateBoard(randomColumn));
     }, []);
 
     useEffect(() => {

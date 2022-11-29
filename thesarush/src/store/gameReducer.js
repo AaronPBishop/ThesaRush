@@ -27,9 +27,9 @@ const initialState = {
 };
 
 // BOARD ACTIONS
-export const addColumn = (columnGenerator) => {
+export const initiateBoard = (columnGenerator) => {
     return {
-        type: 'ADD_COLUMN',
+        type: 'INITIATE_BOARD',
         payload: columnGenerator
     };
 };
@@ -207,7 +207,7 @@ const gameReducer = (state = initialState, action) => {
 
     switch (action.type) {
         // BOARD REDUCERS
-        case 'ADD_COLUMN': {
+        case 'INITIATE_BOARD': {
             for (let i = 0; i < 8; i++) {
                 currentState.board.push(action.payload());
             };

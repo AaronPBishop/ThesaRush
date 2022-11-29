@@ -6,6 +6,8 @@ import Menu from './components/Menu/Menu.js';
 import GameOver from './components/GameOver/GameOver.js';
 import Audio from './components/Audio/Audio.js';
 
+import * as data from './dictionary/words_dictionary';
+
 const App = () => {
   const totalScore = useSelector(state => state.game.stats.score);
   const totalWords = useSelector(state => state.game.stats.words);
@@ -29,7 +31,7 @@ const App = () => {
         </Route>
 
         <Route path='/game/:difficulty'>
-          <BoardHolder />
+          <BoardHolder dictionary={data} />
         </Route>
 
       </Switch>
