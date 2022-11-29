@@ -36,10 +36,7 @@ const BoardHolder = () => {
 
     const [isValid, setIsValid] = useState(false);
     const [invalid, setInvalid] = useState(false);
-    const [formInput, setFormInput] = useState('');
-    const [allWords, setAllWords] = useState({});
 
-    const state = useSelector(state => state.game);
     const submitted = useSelector(state => state.game.statuses.submitted);
     const tileDropped = useSelector(state => state.game.statuses.tileDropped);
 
@@ -50,20 +47,12 @@ const BoardHolder = () => {
     const points = useSelector(state => state.game.stats.points);
 
     const theme = useSelector(state => state.theme);
-
-    useEffect(() => {
-        setAllWords(data);
-    }, []);
-
-    useEffect(() => {
-        setFormInput(orderedInput);
-    }, [state]);
  
     useEffect(() => {
         const makeSearch = async () => {
             if (orderedInput.length <= 2) return;
   
-            if (allWords[orderedInput.toLowerCase()]) {
+            if (data[orderedInput.toLowerCase()]) {
                 setIsValid(true);
                 dispatch(clearTiles());
                 dispatch(rearrangeTiles());
@@ -162,7 +151,7 @@ const BoardHolder = () => {
 
                 <div id='board'>
                     
-                    <Board difficulty={params.difficulty} invalidSubmit={''} />
+                    <Board difficulty={params.difficulty} />
                     
                     <form
                     onSubmit={e => {
@@ -183,7 +172,7 @@ const BoardHolder = () => {
                             id='word-bar' 
                             type='text' 
                             disabled={true} 
-                            value={formInput}>
+                            value={orderedInput}>
                             </input>
 
                         <button id='send' type='submit'></button>

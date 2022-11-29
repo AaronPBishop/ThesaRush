@@ -30,7 +30,7 @@ const letterGenerator = (type, properties='normal') => {
     const randomProperty = Math.floor(Math.random() * 100);
     const randomLetter = Math.floor(Math.random() * 100);
 
-    if (properties === 'normal' && randomLetter > 1.5 && randomProperty <= 3) properties = {'stone': 2};
+    if (properties === 'normal' && randomLetter > 1.5 && randomProperty <= 2.5) properties = {'stone': 2};
 
     if (randomLetter >= 40) return {letter: consonants[Math.floor((Math.random()*consonants.length))], type: type, color: determineColor('consonant'), properties: properties};
     if (randomLetter > 1.5 && randomLetter < 40) return {letter: vowels[Math.floor((Math.random()*vowels.length))], type: type, color: determineColor('vowel'), properties: properties}

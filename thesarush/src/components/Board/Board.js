@@ -14,15 +14,10 @@ const Board = ({ difficulty }) => {
     const history = useHistory();
 
     const [switched, setSwitched] = useState(false);
-    const [boardState, setBoardState] = useState([]);
 
     const dispatch = useDispatch();
 
     const board = useSelector(state => state.game.board);
-
-    useEffect(() => {
-        setBoardState(board);
-    }, [board]);
 
     const difficultyLevels = {
         easy: 2000,
@@ -43,7 +38,7 @@ const Board = ({ difficulty }) => {
     };
 
     useEffect(() => {
-        for (let i = 0; i < 8; i++) dispatch(addColumn(randomColumn()));
+        dispatch(addColumn(randomColumn));
     }, []);
 
     useEffect(() => {
@@ -63,11 +58,13 @@ const Board = ({ difficulty }) => {
 
         if (checkGameOver(board)) {
             setTimeout(() => {
-                clearInterval(interval);
-                clearInterval(resetDrop);
+                if (checkGameOver(board)) {
+                    clearInterval(interval);
+                    clearInterval(resetDrop);
 
-                history.push('/gameover');
-            }, 1000);
+                    history.push('/gameover');
+                };
+            }, 1500);
         };
 
         return () => {
@@ -79,7 +76,7 @@ const Board = ({ difficulty }) => {
     return (
         <div className='main-board'>
             <center>
-                {boardState.map((col, i) => <Column letters={col} colPos={i} key={i} />)}
+                {board.map((col, i) => <Column letters={col} colPos={i} key={i} />)}
             </center>
         </div>
     );
