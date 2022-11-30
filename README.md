@@ -10,6 +10,7 @@ Redux actions are utilized in order to perform various board operations, such as
 > From your terminal, `cd` into `/frontend`, run `npm install`, then run `npm start`. Have fun!
 
 ## What's new in the latest build:
+* Badges that award 30+ points each, which can be earned by clearing a fixed number of special tiles
 * Multiple different 'themes' to choose from
 * Soundtrack that can be toggled on/off
 * Varying levels of difficulty to choose from
@@ -20,11 +21,9 @@ Redux actions are utilized in order to perform various board operations, such as
 * Keyboard controls (spacebar to submit a word, tab to clear input bar)
 * Word submissions are now validated by indexing a JSON file containing 370,000+ English words, cutting out fetch delays
 * All new tile styling (consonants are denoted by shades of blue, vowels are denoted by shades of red and a 'cushion cut' appearance)
-* Eliminated all page refreshes
 
 **Features to come:**
 * User accounts/Multiplayer challenges
-* Badges
 * Unlockable animations awarded by point accrual (animations will be style-varying particle-effects that occur upon letter clears)
 * Lava Tiles (must be used when first dropped, otherwise turns all tiles in surrounding vicinity to stone)
 

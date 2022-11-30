@@ -222,7 +222,7 @@ const gameReducer = (state = initialState, action) => {
         case 'CLEAR_TILES': {
             const values = Object.values(currentState.finalTiles);
 
-            if (values.length >= 6) currentState.statuses.submittedLongWord = true;
+            if (values.length >= 2) currentState.statuses.submittedLongWord = true;
 
             if (values.length >= 8) {
                 currentState.stats.wordSmith += 1;

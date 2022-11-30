@@ -114,7 +114,7 @@ const GameOver = ({ points, numWords, longestWord, tilesCleared, bombardier, sto
                     className='badges-li' 
                     style={{display: wordSmith > 0 ? 'block' : 'none'}}>
                         {
-                            clickedWordSmith ? <p>Submitted an 8+ letter word</p> :
+                            clickedWordSmith ? <p>Submitted 8+ letter word</p> :
                             <div>
                                 <p>🛠️ Word Smith: <b>{wordSmith}</b></p>
                                 <p style={{position: 'relative', left: '0.3vw'}}>+ {wordSmith * 30} points</p>
