@@ -19,7 +19,7 @@ const Menu = () => {
 
     return (
         <div
-        style={{backgroundColor: theme.backgroundColor}} 
+        style={{backgroundColor: theme.backgroundColor, overflowY: clickedInstructions && 'auto'}} 
         id='menu-box'>
             <div style={{position: 'relative', top: '25vh', visibility: (clickedPlay === false) && (clickedInstructions === false) && (clickedTheme === false) ? 'visible' : 'hidden'}}>
                 <button
@@ -71,13 +71,11 @@ const Menu = () => {
 
             <div 
             style={{
-                display: 'flex',
+                display: clickedPlay === true ? 'flex' : 'none',
                 justifyContent: 'center',
                 margin: 'auto',
                 flexWrap: 'wrap',
                 position: 'relative', 
-                top: '4vh', 
-                visibility: clickedPlay === true ? 'visible' : 'hidden', 
                 maxWidth: '5vw',
             }}>
 
@@ -174,14 +172,14 @@ const Menu = () => {
 
             <div 
             style={{
-                display: 'flex',
+                display: clickedInstructions === true ? 'flex' : 'none',
                 justifyContent: 'center',
                 textAlign: 'left',
                 margin: 'auto',
                 flexWrap: 'wrap',
                 position: 'relative', 
-                bottom: '58vh', 
-                visibility: clickedInstructions === true ? 'visible' : 'hidden', 
+                bottom: '10vh', 
+                marginBottom: '-6vh',
                 minWidth: '25vw',
                 maxWidth: '25vw',
             }}>
@@ -204,7 +202,7 @@ const Menu = () => {
                     fontFamily: 'Roboto',
                     fontSize: '20px',
                     color: 'white',
-                    userSelect: 'none'
+                    lineHeight: '30px'
                 }}>
                     <li>
                         Form words by clicking letter tiles. Don't let the tiles reach the top!
@@ -215,23 +213,35 @@ const Menu = () => {
                     </li>
 
                     <li style={{marginTop: '3vh'}}>
-                        Clicked a wrong letter? Deselect and maintain the order of your word by clicking the same tile again
+                        Clicked a wrong letter? Deselect and maintain the order of your word by clicking the same tile again.
                     </li>
 
                     <li style={{marginTop: '3vh'}}>
-                        Submit a word by pressing 'spacebar' or clicking the green button to the right of the input area
+                        Submit a word by pressing 'spacebar' or clicking the green button to the right of the input area.
                     </li>
 
                     <li style={{marginTop: '3vh'}}>
-                        Clear the input bar by pressing 'tab' or clicking the red button to the left of the input area
+                        Clear the input bar by pressing 'tab' or clicking the red button to the left of the input area.
                     </li>
 
                     <li style={{marginTop: '3vh'}}>
-                        Use gold letters to multiply your score x2 for each gold letter used in your word
+                        Submit an 8+ letter word to clear the <i>entire bottom row</i> and get a bomb tile.
                     </li>
 
                     <li style={{marginTop: '3vh'}}>
-                        Rack up points by submitting longer words!
+                        Submit a 6+ letter word and the next letter that drops will be a bomb tile. Use it to clear all the letters around it in a 1-tile vicinity!
+                    </li>
+
+                    <li style={{marginTop: '3vh'}}>
+                        Stone tiles must be used twice in order to destroy them. You will know you've damaged a stone tile if its shade is darker than before.
+                    </li>
+
+                    <li style={{marginTop: '3vh'}}>
+                        Use gold letters to multiply your score x2 for each gold letter used in your word.
+                    </li>
+
+                    <li style={{marginTop: '3vh'}}>
+                        Earn badges and rack up points by submitting longer words and using special tiles!
                     </li>
                 </ol>
 
@@ -239,13 +249,10 @@ const Menu = () => {
 
             <div 
             style={{
-                display: 'flex',
+                display: clickedTheme === true ? 'flex' : 'none',
                 justifyContent: 'center',
                 margin: 'auto',
                 flexWrap: 'wrap',
-                position: 'relative', 
-                bottom: '130vh', 
-                visibility: clickedTheme === true ? 'visible' : 'hidden', 
                 maxWidth: '5vw',
             }}>
 

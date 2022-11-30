@@ -8,4 +8,6 @@ body {
     background-repeat: no-repeat;
 
     overflow: hidden;
+
+    user-select: none;
 }

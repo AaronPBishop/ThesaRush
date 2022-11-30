@@ -40,7 +40,7 @@
     width: 75vh;
     height: 5vh;
 
-    user-select: none;
+    pointer-events: none;
 }
 
 #clear {

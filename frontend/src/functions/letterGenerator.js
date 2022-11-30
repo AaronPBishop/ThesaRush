@@ -1,5 +1,5 @@
-const vowels = ['A', 'E', 'I', 'O', 'U', 'Y'];
-const consonants = ['B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'R', 'S', 'T', 'V', 'W']
+const vowels = ['A', 'A', 'E', 'E', 'I', 'O', 'O', 'U', 'Y'];
+const consonants = ['B', 'B', 'C', 'C', 'D', 'D', 'F', 'F', 'G', 'G', 'H', 'H', 'J', 'K', 'K', 'L', 'L', 'M', 'M', 'N', 'N', 'P', 'P', 'R', 'R', 'S', 'S', 'T', 'T', 'V', 'W']
 const rareConsonants = ['X', 'Z', 'Q'];
 
 const vowelColors = () => {
@@ -33,9 +33,9 @@ const letterGenerator = (type, properties='normal') => {
     if (properties === 'normal' && randomLetter > 1.5 && randomProperty <= 2.5) properties = {'stone': 2};
     if (properties === 'normal' && randomLetter <= 1.5 && randomProperty > 2.5) properties = 'gold';
 
-    if (randomLetter >= 39) return {letter: consonants[Math.floor((Math.random()*consonants.length))], type: type, color: determineColor('consonant'), properties: properties};
+    if (randomLetter >= 38) return {letter: consonants[Math.floor((Math.random()*consonants.length))], type: type, color: determineColor('consonant'), properties: properties};
     
-    if (randomLetter > 1.5 && randomLetter < 39) return {letter: vowels[Math.floor((Math.random()*vowels.length))], type: type, color: determineColor('vowel'), properties: properties}
+    if (randomLetter > 1.5 && randomLetter < 38) return {letter: vowels[Math.floor((Math.random()*vowels.length))], type: type, color: determineColor('vowel'), properties: properties}
 
     return {letter: rareConsonants[Math.floor((Math.random()*rareConsonants.length))], type: type, color: determineColor('rare'), properties: properties};
 };

@@ -13,6 +13,9 @@ const App = () => {
   const totalWords = useSelector(state => state.game.stats.words);
   const longestWord = useSelector(state => state.game.stats.longestWord);
   const tilesCleared = useSelector(state => state.game.stats.tilesCleared);
+  const bombardier = useSelector(state => state.game.stats.bombardier);
+  const stoneCrusher = useSelector(state => state.game.stats.stoneCrusher);
+  const goldMiner = useSelector(state => state.game.stats.goldMiner);
 
   return (
     <div>
@@ -27,7 +30,15 @@ const App = () => {
         </Route>
 
         <Route path='/gameover'>
-          <GameOver points={totalScore} numWords={totalWords} longestWord={longestWord} tilesCleared={tilesCleared} />
+          <GameOver 
+          points={totalScore} 
+          numWords={totalWords} 
+          longestWord={longestWord} 
+          tilesCleared={tilesCleared}
+          bombardier={Math.trunc(bombardier / 2)} 
+          stoneCrusher={Math.trunc(stoneCrusher / 3)}
+          goldMiner={Math.trunc(goldMiner / 3)}
+          />
         </Route>
 
         <Route path='/game/:difficulty'>

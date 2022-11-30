@@ -20,8 +20,11 @@ const initialState = {
         points: 0, 
         score: 0, 
         words: 0,
-        longestWord: '',
         tilesCleared: 0,
+        bombardier: 0,
+        stoneCrusher: 0,
+        goldMiner: 0,
+        longestWord: '',
         difficulty: undefined
     }
 };
@@ -252,6 +255,8 @@ const gameReducer = (state = initialState, action) => {
 
                 if (currentState.board[col][row] !== null) {
                     if (currentState.board[col][row].properties === 'bomb') {
+                        currentState.stats.bombardier += 1;
+
                         const neighbors = getNeighbors(currentState.board, values[i]);
 
                         for (let i = 0; i < neighbors.length; i++) {
@@ -279,6 +284,8 @@ const gameReducer = (state = initialState, action) => {
                     if (typeof currentState.board[col][row].properties === 'object' && (Object.keys(currentState.board[col][row].properties)[0] === 'stone') && currentState.board[col][row].properties.stone > 1) {
                         currentState.board[col][row].properties.stone -= 1;
                     } else {
+                        if (currentState.board[col][row].properties.stone) currentState.stats.stoneCrusher += 1;
+
                         currentState.board[col][row] = null;
                         currentState.stats.tilesCleared += 1;
 
@@ -445,7 +452,12 @@ const gameReducer = (state = initialState, action) => {
 
             const pointsMap = {5: 7, 6: 9, 7: 11, 8: 16, 9: 20};
 
-            action.payload2.split('').forEach(letter => {if (scoreMultipliers.includes(letter)) multiplier += 1});
+            action.payload2.split('').forEach(letter => {
+                if (scoreMultipliers.includes(letter)) {
+                    multiplier += 1;
+                    currentState.stats.goldMiner += 1;
+                };
+            });
 
             if (action.payload < 5) {
                 currentState.stats.points += action.payload;
