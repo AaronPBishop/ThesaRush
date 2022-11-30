@@ -6,7 +6,7 @@ import { resetGame, resetStats } from '../../store/gameReducer';
 
 import './styles.css';
 
-const GameOver = ({ points, numWords, longestWord, tilesCleared, bombardier, stoneCrusher, goldMiner }) => {
+const GameOver = ({ points, numWords, longestWord, tilesCleared, bombardier, stoneCrusher, goldMiner, wordSmith }) => {
     const dispatch = useDispatch();
     const history = useHistory();
     
@@ -20,9 +20,10 @@ const GameOver = ({ points, numWords, longestWord, tilesCleared, bombardier, sto
     const [clickedBombardier, setClickedBombardier] = useState(false);
     const [clickedStoneCrusher, setClickedStoneCrusher] = useState(false);
     const [clickedGoldMiner, setClickedGoldMiner] = useState(false);
+    const [clickedWordSmith, setClickedWordSmith] = useState(false);
 
     useEffect(() => {
-        setBadges(bombardier + stoneCrusher + goldMiner);
+        setBadges(bombardier + stoneCrusher + goldMiner + wordSmith);
     }, []);
 
     useEffect(() => {
@@ -104,6 +105,19 @@ const GameOver = ({ points, numWords, longestWord, tilesCleared, bombardier, sto
                             <div>
                                 <p>🪙 Gold Miner: <b>{goldMiner}</b></p>
                                 <p style={{position: 'relative', left: '0.3vw'}}>+ {goldMiner * 30} points</p>
+                            </div>
+                        }
+                    </li>
+
+                    <li
+                    onClick={() => setClickedWordSmith(clicked => !clicked)}
+                    className='badges-li' 
+                    style={{display: wordSmith > 0 ? 'block' : 'none'}}>
+                        {
+                            clickedWordSmith ? <p>Submitted an 8+ letter word</p> :
+                            <div>
+                                <p>🛠️ Word Smith: <b>{wordSmith}</b></p>
+                                <p style={{position: 'relative', left: '0.3vw'}}>+ {wordSmith * 30} points</p>
                             </div>
                         }
                     </li>

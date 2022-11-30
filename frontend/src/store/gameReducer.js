@@ -24,6 +24,7 @@ const initialState = {
         bombardier: 0,
         stoneCrusher: 0,
         goldMiner: 0,
+        wordSmith: 0,
         longestWord: '',
         difficulty: undefined
     }
@@ -224,6 +225,8 @@ const gameReducer = (state = initialState, action) => {
             if (values.length >= 6) currentState.statuses.submittedLongWord = true;
 
             if (values.length >= 8) {
+                currentState.stats.wordSmith += 1;
+                
                 for (let i = 0; i < currentState.board.length; i++) {
                     const currColumn = currentState.board[i];
 

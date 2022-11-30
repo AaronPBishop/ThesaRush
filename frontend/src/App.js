@@ -16,6 +16,7 @@ const App = () => {
   const bombardier = useSelector(state => state.game.stats.bombardier);
   const stoneCrusher = useSelector(state => state.game.stats.stoneCrusher);
   const goldMiner = useSelector(state => state.game.stats.goldMiner);
+  const wordSmith = useSelector(state => state.game.stats.wordSmith);
 
   return (
     <div>
@@ -38,6 +39,7 @@ const App = () => {
           bombardier={Math.trunc(bombardier / 2)} 
           stoneCrusher={Math.trunc(stoneCrusher / 3)}
           goldMiner={Math.trunc(goldMiner / 3)}
+          wordSmith={wordSmith}
           />
         </Route>
 
