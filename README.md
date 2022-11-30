@@ -46,3 +46,5 @@ Redux actions are utilized in order to perform various board operations, such as
 ### _Viewing/selecting badges_
 ![image](https://user-images.githubusercontent.com/95946808/204883618-d8f53c00-5ed7-444d-a94b-c5ddb21f755a.png)
 
+### _Scoring points_
+![image](https://user-images.githubusercontent.com/95946808/204886715-9ac9eddd-b0f2-4249-a776-6dae0f2675c1.png)
