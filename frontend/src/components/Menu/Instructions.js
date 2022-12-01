@@ -93,8 +93,8 @@ const Instructions = ({ clickedBack }) => {
             <div
             className='instructions-containers'
             style={{
-                backgroundColor: 'rgb(255, 70, 0)', 
-                borderBottom: '4px solid rgb(215, 30, 0)',
+                backgroundColor: 'rgb(255, 140, 0)', 
+                borderBottom: '4px solid rgb(205, 90, 0)',
                 fontSize: clickedSpecialTiles === false ? '24px' : '18px'
             }}
             onClick={() => setClickedSpecialTiles(clicked => !clicked)}
@@ -113,6 +113,10 @@ const Instructions = ({ clickedBack }) => {
                             
                         <li style={{marginTop: '4vh'}}>
                             Gold tiles are always 'X', 'Q', or 'Z'. Use gold tiles to multiply your score x2 for each gold tile used in your word.
+                        </li>
+
+                        <li style={{marginTop: '4vh'}}>
+                            Each time 50 points are accrued in your total score, the next tile dropped will be a void tile. Click on a void tile, then press any letter on your keyboard to turn it into whatever letter you wish for!
                         </li>
                     </div>
                 }

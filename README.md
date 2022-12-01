@@ -10,17 +10,16 @@ Redux actions are utilized in order to perform various board operations, such as
 > From your terminal, `cd` into `/frontend`, run `npm install`, then run `npm start`. Have fun!
 
 ## What's new in the latest build:
+* Void tiles (spawned each time 50 points are accrued in total score, can be turned into any letter you wish!)
 * Badges that award 30+ points each, which can be earned by clearing a fixed number of special tiles
 * Multiple different 'themes' to choose from
 * Soundtrack that can be toggled on/off
 * Varying levels of difficulty to choose from
 * Bomb tiles (spawned when 6+ letter valid word is submitted, clears all tiles surrounding it in a 1 tile vicinity when used)
-* Gold tiles (multiply word score x2 for each gold letter used in a word)
 * Stone tiles (must be used twice in order to destroy)
 * 8+ letter words now clear entire bottom row
-* Keyboard controls (spacebar to submit a word, tab to clear input bar)
+* Keyboard controls (spacebar to submit a word, tab to clear input bar, Q to undo last selection)
 * Word submissions are now validated by indexing a JSON file containing 370,000+ English words, cutting out fetch delays
-* All new tile styling (consonants are denoted by shades of blue, vowels are denoted by shades of red and a 'cushion cut' appearance)
 
 **Features to come:**
 * User accounts/Multiplayer challenges

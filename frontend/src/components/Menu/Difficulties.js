@@ -93,8 +93,8 @@ const Difficulties = ({ clickedBack }) => {
             <div
             className='difficulty-containers'
             style={{
-                backgroundColor: 'rgb(255, 70, 0)', 
-                borderBottom: '4px solid rgb(215, 30, 0)',
+                backgroundColor: 'rgb(255, 140, 0)', 
+                borderBottom: '4px solid rgb(205, 90, 0)',
                 fontSize: clickedHard === false ? '24px' : '16px'
             }}
             onClick={() => {

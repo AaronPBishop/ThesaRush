@@ -14,12 +14,14 @@ const initialState = {
         cleared: false,
         submitted: false,
         tileDropped: false,
-        submittedLongWord: false
+        submittedLongWord: false,
+        earnedVoid: false
     },
     stats: {
-        invalidWords: 0,
         points: 0, 
         score: 0, 
+        trackScore: 0,
+        invalidWords: 0,
         words: 0,
         tilesCleared: 0,
         bombardier: 0,
@@ -54,6 +56,15 @@ export const rearrangeTiles = () => {
 export const dropLettersAction = () => {
     return {
         type: 'DROP_LETTERS'
+    };
+};
+
+export const setLetter = (col, row, letter) => {
+    return {
+        type: 'SET_LETTER',
+        payload1: col,
+        payload2: row,
+        payload3: letter
     };
 };
 
@@ -285,7 +296,7 @@ const gameReducer = (state = initialState, action) => {
                         };
                     };
 
-                    if (typeof currentState.board[col][row].properties === 'object' && (Object.keys(currentState.board[col][row].properties)[0] === 'stone') && currentState.board[col][row].properties.stone > 1) {
+                    if (typeof currentState.board[col][row].properties === 'object' && (currentState.board[col][row].properties.stone) && currentState.board[col][row].properties.stone > 1) {
                         currentState.board[col][row].properties.stone -= 1;
                     } else {
                         if (currentState.board[col][row].properties.stone) currentState.stats.stoneCrusher += 1;
@@ -332,7 +343,21 @@ const gameReducer = (state = initialState, action) => {
                 return currentState;
             };
 
+            if (currentState.statuses.earnedVoid === true) {
+                currentState.board = dropLetters(currentState.board, {void: true});
+                currentState.statuses.earnedVoid = false;
+                currentState.stats.trackScore = 0;
+
+                return currentState;
+            };
+
             currentState.board = dropLetters(currentState.board);
+
+            return currentState;
+        };
+
+        case 'SET_LETTER': {
+            currentState.board[action.payload1][action.payload2].letter = action.payload3;
 
             return currentState;
         };
@@ -493,23 +518,28 @@ const gameReducer = (state = initialState, action) => {
             if (action.payload < 5) {
                 currentState.stats.points += action.payload;
                 currentState.stats.score += action.payload;
+                currentState.stats.trackScore += action.payload;
             };
 
             if (action.payload > 4) {
                 currentState.stats.points += pointsMap[action.payload];
                 currentState.stats.score += pointsMap[action.payload];
+                currentState.stats.trackScore += pointsMap[action.payload];
             };
 
             if (action.payload > 9) {
                 currentState.stats.points += (action.payload * 3);
                 currentState.stats.score += (action.payload * 3);
+                currentState.stats.trackScore += (action.payload * 3);
             };
 
             if (multiplier > 0) {
                 currentState.stats.points += action.payload *= multiplier;
                 currentState.stats.score += action.payload *= multiplier;
+                currentState.stats.trackScore += action.payload *= multiplier;
             };
 
+            if (currentState.stats.trackScore >= 50) currentState.statuses.earnedVoid = true;
             return currentState;
         };
 

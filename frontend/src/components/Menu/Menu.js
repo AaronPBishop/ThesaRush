@@ -28,8 +28,8 @@ const Menu = () => {
             style={{
                 position: 'relative', 
                 display: (clickedPlay === false) && (clickedInstructions === false) && (clickedTheme === false) ? 'flex' : 'none',
-                backgroundColor: 'rgb(140, 0, 55)', 
-                borderBottom: '4px solid rgb(105, 0, 40)'
+                backgroundColor: 'rgb(10, 50, 100)', 
+                borderBottom: '4px solid rgb(0, 35, 80)'
             }}>
                 <button
                 className='menu-buttons'
@@ -47,8 +47,8 @@ const Menu = () => {
             style={{
                 position: 'relative', 
                 display: (clickedPlay === false) && (clickedInstructions === false) && (clickedTheme === false) ? 'flex' : 'none',
-                backgroundColor: 'rgb(255, 70, 0)', 
-                borderBottom: '4px solid rgb(215, 30, 0)'
+                backgroundColor: 'rgb(0, 100, 60)', 
+                borderBottom: '4px solid rgb(0, 70, 30)'
             }}>
                 <button
                 className='menu-buttons'
@@ -66,8 +66,8 @@ const Menu = () => {
             style={{
                 position: 'relative', 
                 display: (clickedPlay === false) && (clickedInstructions === false) && (clickedTheme === false) ? 'flex' : 'none',
-                backgroundColor: 'rgb(0, 100, 60)', 
-                borderBottom: '4px solid rgb(0, 70, 30)'
+                backgroundColor: 'rgb(255, 140, 0)', 
+                borderBottom: '4px solid rgb(205, 90, 0)'
             }}>
                 <button
                 className='menu-buttons'

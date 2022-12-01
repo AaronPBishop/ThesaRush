@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { setInput, removeInputVal, incrementOrder, setTiles, removeTile } from '../../store/gameReducer';
+import { setInput, removeInputVal, incrementOrder, setTiles, removeTile, setLetter } from '../../store/gameReducer';
 
 import { letterClass } from '../../functions/letterGenerator.js';
 
@@ -17,8 +17,11 @@ const Letter = ({ hidden, letter, colPos, rowPos, type, color, properties }) => 
 
     const [hasClicked, setHasClicked] = useState(false);
     const [clicked, setClicked] = useState(false);
+    const [clickedVoid, setClickedVoid] = useState(false);
+    const [newLetter, setNewLetter] = useState('');
 
     useEffect(() => {
+        if (letter === '') setClickedVoid(true);
         setHasClicked(true);
 
         const positions = [];
@@ -50,6 +53,23 @@ const Letter = ({ hidden, letter, colPos, rowPos, type, color, properties }) => 
       if (colPos === removedChar[0] && rowPos === removedChar[1]) setClicked(false);
     }, [removedChar]);
 
+    useEffect(() => {
+      const keyDownHandler = e => {
+        e.preventDefault();
+
+        setNewLetter(String.fromCharCode(e.keyCode));
+        if (properties.void) setClicked(false);
+      };
+
+      document.addEventListener('keydown', keyDownHandler);
+
+      return () => document.removeEventListener('keydown', keyDownHandler);
+    }, [clickedVoid]);
+
+    useEffect(() => {
+      if (letter === '') dispatch(setLetter(colPos, rowPos, newLetter));
+    }, [newLetter]);
+
     return (
       <div
         className={
@@ -69,19 +89,21 @@ const Letter = ({ hidden, letter, colPos, rowPos, type, color, properties }) => 
 
           textShadow: letterClass(letter) === 'rare' && properties !== 'bomb' && '2px 2px black',
 
-          backgroundColor: clicked === true ? 'rgb(30, 30, 30)' 
-          : properties === 'normal' || properties === 'gold' ? color 
+          backgroundColor: clicked === true && !properties.void ? 'rgb(30, 30, 30)' 
+          : properties === 'normal' || properties === 'gold' || properties.void ? color 
           : properties === 'bomb' ? 'rgb(255,69,0)'
-          : (typeof properties === 'object') && (Object.keys(properties)[0] === 'stone') && (properties.stone === 2) ? '#383630'
-          : (typeof properties === 'object') && (Object.keys(properties)[0] === 'stone') && (properties.stone === 1) && 'rgb(40, 38, 30)',
+          : (typeof properties === 'object') && (properties.stone) && (properties.stone === 2) ? '#383630'
+          : (typeof properties === 'object') && (properties.stone) && (properties.stone === 1) && 'rgb(40, 38, 30)',
 
           boxShadow: properties === 'bomb' ? '0px 0px 15px 5px rgb(255, 49, 49)' 
-          : (typeof properties === 'object') && (Object.keys(properties)[0] === 'stone') ? '0px 0px 10px 4px #383630' 
+          : (typeof properties === 'object') && (properties.stone) ? '0px 0px 10px 4px #383630'
+          : (typeof properties === 'object') && (properties.void) ? '0px 0px 10px 1px white' 
           : properties === 'gold' && '0px 0px 10px 1.5px #FFD700',
 
           border: clicked === true ? '2px solid yellow' 
-          : (typeof properties === 'object') && (Object.keys(properties)[0] === 'stone') ? '2px solid #787366'
+          : (typeof properties === 'object') && (properties.stone) ? '2px solid #787366'
           : properties === 'bomb' ? '2px solid rgb(180, 65, 0)' 
+          : (typeof properties === 'object') && (properties.void) ? '2px solid white'
           : (letterClass(letter) === 'consonant') ? '2px solid rgb(255, 255, 0)' 
           : (letterClass(letter) === 'vowel') ? '2px solid rgb(139, 0, 0)' 
           : '2px solid yellow',

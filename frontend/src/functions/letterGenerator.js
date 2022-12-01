@@ -27,6 +27,8 @@ export const letterClass = (letter) => {
 };
 
 const letterGenerator = (type, properties='normal') => {
+    if (typeof properties === 'object' && properties.void) return {letter: '', type: type, color: 'rgb(0, 0, 0)', properties: properties};
+
     const randomProperty = Math.floor(Math.random() * 100);
     const randomLetter = Math.floor(Math.random() * 100);
 
