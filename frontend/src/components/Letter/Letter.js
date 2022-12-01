@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { setInput, removeInputVal, incrementOrder, setTiles, removeTile, setWait } from '../../store/gameReducer';
+import { setInput, removeInputVal, incrementOrder, setTiles, removeTile } from '../../store/gameReducer';
 
 import { letterClass } from '../../functions/letterGenerator.js';
 
@@ -11,9 +11,9 @@ const Letter = ({ hidden, letter, colPos, rowPos, type, color, properties }) => 
     const dispatch = useDispatch();
     
     const order = useSelector(state => Number(state.game.order));
-    
     const cleared = useSelector(state => state.game.statuses.cleared);
     const submitted = useSelector(state => state.game.statuses.submitted);
+    const removedChar = useSelector(state => state.game.removedChar);
 
     const [hasClicked, setHasClicked] = useState(false);
     const [clicked, setClicked] = useState(false);
@@ -45,6 +45,10 @@ const Letter = ({ hidden, letter, colPos, rowPos, type, color, properties }) => 
     useEffect(() => {
       setClicked(false);
     }, [submitted, cleared]);
+
+    useEffect(() => {
+      if (colPos === removedChar[0] && rowPos === removedChar[1]) setClicked(false);
+    }, [removedChar]);
 
     return (
       <div

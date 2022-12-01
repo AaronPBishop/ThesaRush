@@ -9,6 +9,7 @@ const initialState = {
     order: 0,
     tiles: {},
     finalTiles: {},
+    removedChar: [],
     statuses: {
         cleared: false,
         submitted: false,
@@ -372,6 +373,33 @@ const gameReducer = (state = initialState, action) => {
             for (let key in currentState.input) {
                 delete currentState.input[key];
             };
+
+            return currentState;
+        };
+
+        case 'REMOVE_LAST_CHAR': {
+            let highestChar = 0;
+            for (let i = 0; i < Object.values(currentState.input).length; i++) {
+                if (Object.values(currentState.input)[i][1] > highestChar) highestChar = Object.values(currentState.input)[i][1];
+            };
+            
+            const coordinates = [];
+            for (let key in currentState.input) {
+                const currLetter = currentState.input[key];
+
+                if (currLetter[1] === highestChar) {
+                    coordinates.push(Number(key.split('')[0]));
+                    coordinates.push(Number(key.split('')[1]));
+
+                    delete currentState.input[key];
+                };
+            };
+
+            for (let key in currentState.tiles) {
+                if (currentState.tiles[key][0] === coordinates[0] && currentState.tiles[key][1] === coordinates[1]) delete currentState.tiles[key];
+            };
+
+            currentState.removedChar = [...coordinates];
 
             return currentState;
         };

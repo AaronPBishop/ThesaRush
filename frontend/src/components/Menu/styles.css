@@ -27,11 +27,154 @@
 
 .menu-buttons {
     border: 2px solid transparent;
+    font-family: 'Roboto';
+    font-weight: bold;
+    font-size: 24px;
+    color: white;
+    background-color: transparent;
+    cursor: pointer;
 }
 
 .menu-buttons:hover {
-    padding-left: 1.5vw;
-    padding-right: 1.5vw;
-    border: 2px solid rgb(255, 255, 60);
+    font-style: italic;
+    text-shadow: 0px 1px 2px rgb(40, 40, 40);
+}
+
+.menu-button-divs {
+    justify-content: center;
+
+    top: 22vh;
+
+    height: 10vh;
+    width: 14vw;
+
+    border: 4px solid transparent;
+    border-radius: 6px;
+
+    background-color: rgb(20, 20, 20);
+
+    margin: auto;
+    margin-bottom: 4vh;
+
+    cursor: pointer;
+}
+
+.menu-back-buttons {
+    font-family: 'Roboto';
+    font-weight: bold;
+    font-size: 24px;
+    position: relative;
+    color: rgb(255, 255, 0);
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.menu-back-buttons:hover {
+    font-style: italic;
+    text-shadow: 0px 1px 2px rgb(40, 40, 40);
+}
+
+.instructions-containers {
+    display: flex;
+    justify-content: center;
+
+    margin-bottom: 4vh;
+    margin-right: 2.5vw;
+
+    padding: 0.5vw;
+
+    min-width: 18vw;
+    max-width: 18vw;
+
+    border: 4px solid transparent;
+
+    border-radius: 8px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+
+    cursor: pointer;
+}
+
+.instructional-badges-li {
+    background-color: rgb(20, 20, 20);
+
+    text-align: center;
+    line-height: 5px;
+
+    min-width: 16vw;
+    max-width: 16vw;
+
+    padding: 4px;
+
+    margin-bottom: 2vh;
+
+    border: 2px solid #FFD700; 
     border-radius: 12px;
+
+    cursor: pointer;
+}
+
+.theme-containers {
+    font-family: 'Roboto', sans-serif;
+    font-size: 24px;
+
+    line-height: 6vh;
+
+    color: white;
+
+    display: flex;
+    justify-content: center;
+
+    list-style: none;
+
+    padding: 0.6vw;
+    margin-bottom: 6vh;
+    margin-right: 2.5vw;
+
+    min-width: 12vw;
+    max-width: 12vw;
+    min-height: 6vh;
+    max-height: 6vh;
+
+    border: 2px solid yellow;
+    border-radius: 12px;
+
+    cursor: pointer;
+}
+
+.difficulty-containers {
+    display: flex;
+    justify-content: center;
+
+    line-height: 6vh;
+
+    padding: 1vw;
+    margin-bottom: 4vh;
+
+    min-width: 16vw;
+    max-width: 16vw;
+
+    border: 4px solid transparent;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+}
+
+.difficulty-desc {
+    font-family: 'Roboto';
+    margin-top: -0.5vh;
+    font-style: italic;
+    line-height: 2vh;
+}
+
+.play-difficulty {
+    font-size: 26px;
+    margin-top: 5vh;
+}
+
+.play-difficulty:hover {
+    font-style: italic;
+    text-shadow: 0px 1px 2px rgb(40, 40, 40);
 }

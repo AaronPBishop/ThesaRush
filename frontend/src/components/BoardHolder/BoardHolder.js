@@ -24,7 +24,8 @@ import {
     resetPoints, 
     incrementWords, 
     setLongestWord,
-    resetStats
+    resetStats,
+    removeLastChar
 } from '../../store/gameReducer';
 
 const BoardHolder = ({ dictionary }) => {
@@ -111,6 +112,10 @@ const BoardHolder = ({ dictionary }) => {
                 dispatch(resetInput());
                 dispatch(resetOrder());
                 dispatch(resetTiles());
+            };
+
+            if (e.keyCode === 81) {
+                dispatch(removeLastChar());
             };
         };
     

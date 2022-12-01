@@ -112,13 +112,13 @@ b {
 }
 
 ::-webkit-scrollbar-track {
-	border-radius: 14px;
+	border-radius: 44px;
     margin-top: 3vh;
     margin-bottom: 3vh;
 	background-color: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-    border-radius: 14px;
+    border-radius: 44px;
 	background-color: rgb(255, 255, 60);
 }
