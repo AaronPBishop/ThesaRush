@@ -47,8 +47,8 @@ const Menu = () => {
             style={{
                 position: 'relative', 
                 display: (clickedPlay === false) && (clickedInstructions === false) && (clickedTheme === false) ? 'flex' : 'none',
-                backgroundColor: 'rgb(180, 180, 0)', 
-                borderBottom: '4px solid rgb(125, 125, 0)'
+                backgroundColor: 'rgb(255, 70, 0)', 
+                borderBottom: '4px solid rgb(215, 30, 0)'
             }}>
                 <button
                 className='menu-buttons'

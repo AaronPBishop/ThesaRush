@@ -93,8 +93,8 @@ const Instructions = ({ clickedBack }) => {
             <div
             className='instructions-containers'
             style={{
-                backgroundColor: 'rgb(180, 180, 0)', 
-                borderBottom: '4px solid rgb(125, 125, 0)',
+                backgroundColor: 'rgb(255, 70, 0)', 
+                borderBottom: '4px solid rgb(215, 30, 0)',
                 fontSize: clickedSpecialTiles === false ? '24px' : '18px'
             }}
             onClick={() => setClickedSpecialTiles(clicked => !clicked)}
