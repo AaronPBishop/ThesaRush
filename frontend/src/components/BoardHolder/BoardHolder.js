@@ -3,7 +3,8 @@ import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Board from '../Board/Board';
-import Points from '../Points/Points';
+import Points from '../Scoring/Points';
+import InGameBadges from '../Scoring/InGameBadges';
 import orderInput from '../../functions/orderInput.js';
 
 import './styles.css';
@@ -36,6 +37,9 @@ const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmit
 
     const [isValid, setIsValid] = useState(false);
     const [invalid, setInvalid] = useState(false);
+
+    const [earnedBadge, setEarnedBadge] = useState(false);
+    const [currBadge, setCurrBadge] = useState('');
 
     const submitted = useSelector(state => state.game.statuses.submitted);
     const tileDropped = useSelector(state => state.game.statuses.tileDropped);
@@ -129,10 +133,13 @@ const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmit
         if (bombardier > 0) {
             dispatch(addToScore(30));
             setIsValid(true);
+            setEarnedBadge(true);
+            setCurrBadge('bombardier');
 
             const timer = setTimeout(() => {
-                setIsValid(false);
                 dispatch(resetPoints());
+                setIsValid(false);
+                setEarnedBadge(false);
             }, 1000);
 
             return () => clearTimeout(timer);
@@ -143,10 +150,14 @@ const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmit
         if (stoneCrusher > 0) {
             dispatch(addToScore(30));
             setIsValid(true);
+            setEarnedBadge(true);
+            setCurrBadge('stoneCrusher');
             
             const timer = setTimeout(() => {
-                setIsValid(false);
                 dispatch(resetPoints());
+                setIsValid(false);
+                setEarnedBadge(false);
+                setCurrBadge('');
             }, 1000);
         
             return () => clearTimeout(timer);
@@ -157,10 +168,14 @@ const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmit
         if (goldMiner > 0) {
             dispatch(addToScore(30));
             setIsValid(true);
+            setEarnedBadge(true);
+            setCurrBadge('goldMiner');
             
             const timer = setTimeout(() => {
-                setIsValid(false);
                 dispatch(resetPoints());
+                setIsValid(false);
+                setEarnedBadge(false);
+                setCurrBadge('');
             }, 1000);
         
             return () => clearTimeout(timer);
@@ -171,10 +186,14 @@ const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmit
         if (wordSmith > 0) {
             dispatch(addToScore(30));
             setIsValid(true);
+            setEarnedBadge(true);
+            setCurrBadge('wordSmith');
             
             const timer = setTimeout(() => {
-                setIsValid(false);
                 dispatch(resetPoints());
+                setIsValid(false);
+                setEarnedBadge(false);
+                setCurrBadge('');
             }, 1000);
         
             return () => clearTimeout(timer);
@@ -185,10 +204,14 @@ const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmit
         if (voidMaster > 0) {
             dispatch(addToScore(30));
             setIsValid(true);
+            setEarnedBadge(true);
+            setCurrBadge('voidMaster');
             
             const timer = setTimeout(() => {
-                setIsValid(false);
                 dispatch(resetPoints());
+                setIsValid(false);
+                setEarnedBadge(false);
+                setCurrBadge('');
             }, 1000);
         
             return () => clearTimeout(timer);
@@ -221,6 +244,7 @@ const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmit
 
                 <div style={{position: 'absolute'}}>
                     <Points hidden={isValid === false} numPoints={points} />
+                    <InGameBadges hidden={earnedBadge === false} badge={currBadge} />
                 </div>
 
                 <div id='board'>
