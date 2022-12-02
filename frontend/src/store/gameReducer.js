@@ -548,7 +548,7 @@ const gameReducer = (state = initialState, action) => {
                 currentState.stats.trackScore += action.payload *= multiplier;
             };
 
-            if (currentState.stats.trackScore >= 5) currentState.statuses.earnedVoid = true; // CHANGE TO 50
+            if (currentState.stats.trackScore >= 50) currentState.statuses.earnedVoid = true; // CHANGE TO 50
 
             return currentState;
         };
