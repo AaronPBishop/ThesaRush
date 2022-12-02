@@ -12,6 +12,7 @@ const Instructions = ({ clickedBack }) => {
     const [clickedStoneCrusher, setClickedStoneCrusher] = useState(false);
     const [clickedGoldMiner, setClickedGoldMiner] = useState(false);
     const [clickedWordSmith, setClickedWordSmith] = useState(false);
+    const [clickedVoidMaster, setClickedVoidMaster] = useState(false);
 
     useEffect(() => {
         setClickedGamePlay(false);
@@ -116,7 +117,7 @@ const Instructions = ({ clickedBack }) => {
                         </li>
 
                         <li style={{marginTop: '4vh'}}>
-                            Each time 50 points are accrued in your total score, the next tile dropped will be a void tile. Click on a void tile, then press any letter on your keyboard to turn it into whatever letter you wish for!
+                            Each time 50 points are accrued in your total score, the next tile dropped will be a void tile. Click on a void tile, then press any letter you wish for on your keyboard to turn it into that letter!
                         </li>
                     </div>
                 }
@@ -195,6 +196,21 @@ const Instructions = ({ clickedBack }) => {
                                     clickedWordSmith ? <p>Submit 8+ letter word</p> :
                                     <div>
                                         <p>🛠️ Word Smith</p>
+                                        <p style={{position: 'relative', left: '0.7vw'}}>+ 30 points</p>
+                                    </div>
+                                }
+                            </li>
+
+                            <li
+                            onClick={e => {
+                                e.stopPropagation();
+                                setClickedVoidMaster(clicked => !clicked);
+                            }}
+                            className='instructional-badges-li'>
+                                {
+                                    clickedVoidMaster ? <p>Use 2 void tiles</p> :
+                                    <div>
+                                        <p>🪄 Void Master</p>
                                         <p style={{position: 'relative', left: '0.7vw'}}>+ 30 points</p>
                                     </div>
                                 }

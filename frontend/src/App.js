@@ -17,6 +17,7 @@ const App = () => {
   const stoneCrusher = useSelector(state => state.game.stats.stoneCrusher);
   const goldMiner = useSelector(state => state.game.stats.goldMiner);
   const wordSmith = useSelector(state => state.game.stats.wordSmith);
+  const voidMaster = useSelector(state => state.game.stats.voidMaster);
 
   return (
     <div>
@@ -40,11 +41,19 @@ const App = () => {
           stoneCrusher={Math.trunc(stoneCrusher / 3)}
           goldMiner={Math.trunc(goldMiner / 3)}
           wordSmith={wordSmith}
+          voidMaster={Math.trunc(voidMaster / 2)}
           />
         </Route>
 
         <Route path='/game/:difficulty'>
-          <BoardHolder dictionary={data} />
+          <BoardHolder 
+          dictionary={data}
+          bombardier={Math.trunc(bombardier / 2)} 
+          stoneCrusher={Math.trunc(stoneCrusher / 3)}
+          goldMiner={Math.trunc(goldMiner / 3)}
+          wordSmith={wordSmith}
+          voidMaster={Math.trunc(voidMaster / 2)}
+          />
         </Route>
 
       </Switch>

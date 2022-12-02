@@ -28,6 +28,7 @@ const initialState = {
         stoneCrusher: 0,
         goldMiner: 0,
         wordSmith: 0,
+        voidMaster: 0,
         longestWord: '',
         difficulty: undefined
     }
@@ -184,6 +185,13 @@ export const determinePoints = (points, letters) => {
     };
 };
 
+export const addToScore = (points) => {
+    return {
+        type: 'ADD_TO_SCORE',
+        payload: points
+    };
+};
+
 export const resetPoints = () => {
     return {
         type: 'RESET_POINTS'
@@ -300,6 +308,7 @@ const gameReducer = (state = initialState, action) => {
                         currentState.board[col][row].properties.stone -= 1;
                     } else {
                         if (currentState.board[col][row].properties.stone) currentState.stats.stoneCrusher += 1;
+                        if (typeof currentState.board[col][row].properties === 'object' && (currentState.board[col][row].properties.void)) currentState.stats.voidMaster += 1;
 
                         currentState.board[col][row] = null;
                         currentState.stats.tilesCleared += 1;
@@ -539,7 +548,18 @@ const gameReducer = (state = initialState, action) => {
                 currentState.stats.trackScore += action.payload *= multiplier;
             };
 
-            if (currentState.stats.trackScore >= 50) currentState.statuses.earnedVoid = true;
+            if (currentState.stats.trackScore >= 5) currentState.statuses.earnedVoid = true; // CHANGE TO 50
+
+            return currentState;
+        };
+
+        case 'ADD_TO_SCORE': {
+            currentState.stats.score += action.payload;
+            currentState.stats.points += action.payload;
+            currentState.stats.trackScore += action.payload;
+
+            if (currentState.stats.trackScore >= 5) currentState.statuses.earnedVoid = true;
+
             return currentState;
         };
 

@@ -6,7 +6,7 @@ import { resetGame, resetStats } from '../../store/gameReducer';
 
 import './styles.css';
 
-const GameOver = ({ points, numWords, longestWord, tilesCleared, bombardier, stoneCrusher, goldMiner, wordSmith }) => {
+const GameOver = ({ points, numWords, longestWord, tilesCleared, bombardier, stoneCrusher, goldMiner, wordSmith, voidMaster }) => {
     const dispatch = useDispatch();
     const history = useHistory();
     
@@ -15,20 +15,16 @@ const GameOver = ({ points, numWords, longestWord, tilesCleared, bombardier, sto
 
     const [playAgain, setPlayAgain] = useState(false);
     const [badges, setBadges] = useState(0);
-    const [finalScore, setFinalScore] = useState(points);
 
     const [clickedBombardier, setClickedBombardier] = useState(false);
     const [clickedStoneCrusher, setClickedStoneCrusher] = useState(false);
     const [clickedGoldMiner, setClickedGoldMiner] = useState(false);
     const [clickedWordSmith, setClickedWordSmith] = useState(false);
+    const [clickedVoidMaster, setClickedVoidMaster] = useState(false);
 
     useEffect(() => {
-        setBadges(bombardier + stoneCrusher + goldMiner + wordSmith);
+        setBadges(bombardier + stoneCrusher + goldMiner + wordSmith + voidMaster);
     }, []);
-
-    useEffect(() => {
-        setFinalScore(finalScore + (badges * 30));
-    }, [badges]);
 
     useEffect(() => {
         if (playAgain === true) history.push(`/game/${difficulty}`);
@@ -42,7 +38,7 @@ const GameOver = ({ points, numWords, longestWord, tilesCleared, bombardier, sto
 
             <div id='stats-box'>
                 <p>
-                    Final Score: <b>{finalScore}</b>
+                    Final Score: <b>{points}</b>
                 </p>
 
                 <p>
@@ -118,6 +114,19 @@ const GameOver = ({ points, numWords, longestWord, tilesCleared, bombardier, sto
                             <div>
                                 <p>🛠️ Word Smith: <b>{wordSmith}</b></p>
                                 <p style={{position: 'relative', left: '0.3vw'}}>+ {wordSmith * 30} points</p>
+                            </div>
+                        }
+                    </li>
+
+                    <li
+                    onClick={() => setClickedVoidMaster(clicked => !clicked)}
+                    className='badges-li' 
+                    style={{display: voidMaster > 0 ? 'block' : 'none'}}>
+                        {
+                            clickedVoidMaster ? <p>Used 2 void tiles</p> :
+                            <div>
+                                <p>🪄 Void Master: <b>{voidMaster}</b></p>
+                                <p>+ {voidMaster * 30} points</p>
                             </div>
                         }
                     </li>

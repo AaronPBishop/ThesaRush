@@ -17,11 +17,12 @@ const Letter = ({ hidden, letter, colPos, rowPos, type, color, properties }) => 
 
     const [hasClicked, setHasClicked] = useState(false);
     const [clicked, setClicked] = useState(false);
-    const [clickedVoid, setClickedVoid] = useState(false);
+    const [clickedVoid, setClickedVoid] = useState({colPos: null, rowPos: null});
     const [newLetter, setNewLetter] = useState('');
 
     useEffect(() => {
-        if (letter === '') setClickedVoid(true);
+        if (letter === '') setClickedVoid({colPos: colPos, rowPos: rowPos});
+
         setHasClicked(true);
 
         const positions = [];
@@ -67,7 +68,7 @@ const Letter = ({ hidden, letter, colPos, rowPos, type, color, properties }) => 
     }, [clickedVoid]);
 
     useEffect(() => {
-      if (letter === '') dispatch(setLetter(colPos, rowPos, newLetter));
+      if (letter === '' && colPos === clickedVoid.colPos && rowPos === clickedVoid.rowPos) dispatch(setLetter(colPos, rowPos, newLetter));
     }, [newLetter]);
 
     return (

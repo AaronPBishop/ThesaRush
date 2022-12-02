@@ -21,6 +21,7 @@ import {
     resetGame,
     incrementInvalidWords, 
     determinePoints, 
+    addToScore,
     resetPoints, 
     incrementWords, 
     setLongestWord,
@@ -28,7 +29,7 @@ import {
     removeLastChar
 } from '../../store/gameReducer';
 
-const BoardHolder = ({ dictionary }) => {
+const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmith, voidMaster }) => {
     const history = useHistory();
     const params = useParams();
     const dispatch = useDispatch();
@@ -123,6 +124,76 @@ const BoardHolder = ({ dictionary }) => {
     
         return () => document.removeEventListener('keydown', keyDownHandler);
     }, []);
+
+    useEffect(() => {
+        if (bombardier > 0) {
+            dispatch(addToScore(30));
+            setIsValid(true);
+
+            const timer = setTimeout(() => {
+                setIsValid(false);
+                dispatch(resetPoints());
+            }, 1000);
+
+            return () => clearTimeout(timer);
+        };
+    }, [bombardier]);
+
+    useEffect(() => {
+        if (stoneCrusher > 0) {
+            dispatch(addToScore(30));
+            setIsValid(true);
+            
+            const timer = setTimeout(() => {
+                setIsValid(false);
+                dispatch(resetPoints());
+            }, 1000);
+        
+            return () => clearTimeout(timer);
+        };
+    }, [stoneCrusher]);
+
+    useEffect(() => {
+        if (goldMiner > 0) {
+            dispatch(addToScore(30));
+            setIsValid(true);
+            
+            const timer = setTimeout(() => {
+                setIsValid(false);
+                dispatch(resetPoints());
+            }, 1000);
+        
+            return () => clearTimeout(timer);
+        };
+    }, [goldMiner]);
+
+    useEffect(() => {
+        if (wordSmith > 0) {
+            dispatch(addToScore(30));
+            setIsValid(true);
+            
+            const timer = setTimeout(() => {
+                setIsValid(false);
+                dispatch(resetPoints());
+            }, 1000);
+        
+            return () => clearTimeout(timer);
+        };
+    }, [wordSmith]);
+
+    useEffect(() => {
+        if (voidMaster > 0) {
+            dispatch(addToScore(30));
+            setIsValid(true);
+            
+            const timer = setTimeout(() => {
+                setIsValid(false);
+                dispatch(resetPoints());
+            }, 1000);
+        
+            return () => clearTimeout(timer);
+        };
+    }, [voidMaster]);
     
     return (
         <div id='main-content'>
