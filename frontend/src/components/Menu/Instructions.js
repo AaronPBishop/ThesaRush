@@ -1,4 +1,7 @@
 import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+
+import Letter from '../Letter/Letter.js'
 
 import './styles.css';
 
@@ -13,6 +16,8 @@ const Instructions = ({ clickedBack }) => {
     const [clickedGoldMiner, setClickedGoldMiner] = useState(false);
     const [clickedWordSmith, setClickedWordSmith] = useState(false);
     const [clickedVoidMaster, setClickedVoidMaster] = useState(false);
+
+    const theme = useSelector(state => state.theme);
 
     useEffect(() => {
         setClickedGamePlay(false);
@@ -119,6 +124,27 @@ const Instructions = ({ clickedBack }) => {
                         <li style={{marginTop: '4vh'}}>
                             Each time 50 points are accrued in your total score, the next tile dropped will be a void tile. Click on a void tile, then press any letter you wish for on your keyboard to turn it into that letter!
                         </li>
+
+                        <div style={{
+                            display: 'flex', 
+                            justifyContent: 'space-evenly', 
+                            marginTop: '4vh', 
+                            backgroundColor: theme.backgroundColor,
+                            height: '12vh',
+                            width: '19vw',
+                            boxShadow: '0px 0px 1px 1px black',
+                            borderRadius: '12px'
+                            }}>
+                            <div style={{
+                                display: 'flex', 
+                                justifyContent: 'center', 
+                                marginTop: '1.5vh'}}>
+                                <Letter hidden={false} letter='B' colPos={0} rowPos={0} type='new' color={null} properties='bomb' />
+                                <Letter hidden={false} letter='S' colPos={0} rowPos={0} type='new' color={null} properties={{stone: 2}} />
+                                <Letter hidden={false} letter='G' colPos={0} rowPos={0} type='new' color='rgb(210, 200, 30)' properties='gold' />
+                                <Letter hidden={false} letter='' colPos={0} rowPos={0} type='new' color='black' properties={{void: true}} />
+                            </div>
+                        </div>
                     </div>
                 }
             </div>
