@@ -1,9 +1,9 @@
 from flask import Blueprint, jsonify
 
-bp = Blueprint("users", __name__, url_prefix="/users")
-
 from app import app, db
 from app.models import User
+
+bp = Blueprint("users", __name__, url_prefix="/users")
 
 @bp.route('/<id>', methods=['GET'])
 def get_user(id):

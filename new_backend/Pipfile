@@ -7,6 +7,10 @@ name = "pypi"
 flask = "*"
 python-dotenv = "*"
 sqlalchemy = "*"
+flask-sqlalchemy = "*"
+alembic = "*"
+psycopg2-binary = "*"
+flask-migrate = "*"
 
 [dev-packages]
 pylint = "*"
