@@ -35,16 +35,17 @@
 
     background-color: rgb(10, 10, 10);
 
-    min-height: 185px;
-    max-height: 185px;
+    min-height: 30vh;
+    max-height: 30vh;
     min-width: 300px;
     max-width: 300px;
     
     box-shadow: 0px 10px 20px rgb(0, 110, 0);
 
     position: relative;
-    bottom: 5vh;
+    bottom: 8vh;
     margin: auto;
+    margin-bottom: -4vh;
 
     overflow-y: auto;
     overflow-x: hidden;
