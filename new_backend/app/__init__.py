@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_migrate import Migrate
 
-from app.user_routes import user_routes
+from .routes import users
 from .models import db
 
 import os
@@ -13,7 +13,7 @@ app.config.from_mapping({
   'SQLALCHEMY_TRACK_MODIFICATIONS': False,
 })
 
-app.register_blueprint(user_routes.bp)
+app.register_blueprint(users.bp)
 
 db.init_app(app)
 

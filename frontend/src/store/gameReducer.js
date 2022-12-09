@@ -225,6 +225,19 @@ export const resetStats = () => {
 };
 
 
+// THUNK
+export const fetchUser = () => async (dispatch) => {
+    const fetchReq = await fetch(`/users/1`, {
+        method: 'GET'
+    });
+
+    const fetchJSON = await fetchReq.json();
+    const data = [fetchJSON];
+
+    console.log(data)
+    dispatch(resetPoints())
+};
+
 // MAIN REDUCER
 const gameReducer = (state = initialState, action) => {
     const currentState = { ...state };

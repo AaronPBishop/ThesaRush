@@ -1,6 +1,8 @@
 import { Switch, Route } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
+import { fetchUser } from './store/gameReducer.js';
+
 import BoardHolder from './components/BoardHolder/BoardHolder.js';
 import Menu from './components/Menu/Menu.js';
 import GameOver from './components/GameOver/GameOver.js';

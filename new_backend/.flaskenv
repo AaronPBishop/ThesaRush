@@ -1,1 +1,1 @@
-FLASK_APP=thesarush.py
+FLASK_APP=app
