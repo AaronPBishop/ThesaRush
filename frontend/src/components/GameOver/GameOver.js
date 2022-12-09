@@ -11,7 +11,7 @@ const GameOver = ({ points, numWords, longestWord, tilesCleared, bombardier, sto
     const history = useHistory();
     
     const difficulty = useSelector(state => state.game.stats.difficulty);
-    const theme = useSelector(state => state.theme);
+    const menu = useSelector(state => state.menu);
 
     const [playAgain, setPlayAgain] = useState(false);
     const [badges, setBadges] = useState(0);
@@ -32,7 +32,7 @@ const GameOver = ({ points, numWords, longestWord, tilesCleared, bombardier, sto
     
     return (
         <div 
-        style={{backgroundColor: theme.backgroundColor}}
+        style={{backgroundColor: menu.backgroundColor}}
         id='game-over'>
             <p id='gameover-header'>Game Over!</p>
 

@@ -2,12 +2,12 @@ import { createStore, compose, applyMiddleware, combineReducers } from 'redux';
 import thunk from "redux-thunk";
 
 import gameReducer from './game.js';
-import themeReducer from './theme.js';
+import menuReducer from './menu.js';
 import userReducer from './user.js';
 
 const rootReducer = combineReducers({
     game: gameReducer,
-    theme: themeReducer,
+    menu: menuReducer,
     user: userReducer
 });
 

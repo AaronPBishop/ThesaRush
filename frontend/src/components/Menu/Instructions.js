@@ -17,7 +17,7 @@ const Instructions = ({ clickedBack }) => {
     const [clickedWordSmith, setClickedWordSmith] = useState(false);
     const [clickedVoidMaster, setClickedVoidMaster] = useState(false);
 
-    const theme = useSelector(state => state.theme);
+    const menu = useSelector(state => state.menu);
 
     useEffect(() => {
         setClickedGamePlay(false);
@@ -129,7 +129,7 @@ const Instructions = ({ clickedBack }) => {
                             display: 'flex', 
                             justifyContent: 'space-evenly', 
                             marginTop: '4vh', 
-                            backgroundColor: theme.backgroundColor,
+                            backgroundColor: menu.backgroundColor,
                             height: '12vh',
                             width: '19vw',
                             boxShadow: '0px 0px 1px 1px black',

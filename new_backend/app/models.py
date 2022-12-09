@@ -22,16 +22,16 @@ class User(Base):
     user_name = Column(String(14), nullable=False)
     user_email = Column(String(250), nullable=False)
     user_password = Column(String(20), nullable=False)
-    points = Column(Integer)
-    points_balance = Column(Integer)
-    words = Column(Integer) 
-    longest_word = Column(String(40))
-    tiles_cleared =  Column(Integer)
-    badges = Column(Integer)
-    lives = Column(Integer)
+    points = Column(Integer, nullable=True)
+    points_balance = Column(Integer, nullable=True)
+    words = Column(Integer, nullable=True) 
+    longest_word = Column(String(40), nullable=True)
+    tiles_cleared =  Column(Integer, nullable=True)
+    badges = Column(Integer, nullable=True)
+    lives = Column(Integer, nullable=True)
 
     trophies = relationship("Trophy", back_populates="user", cascade="all, delete")
-    league = relationship("LeaderBoard", back_populates=("rankings"))
+    # league = relationship("LeaderBoard", back_populates=("rankings"))
 
 
 class Trophy(Base):
@@ -44,9 +44,9 @@ class Trophy(Base):
     user = relationship("User", back_populates="trophies")
 
 
-class LeaderBoard(Base):
-    __tablename__ = 'leaderboard'
+# class LeaderBoard(Base):
+#     __tablename__ = 'leaderboard'
 
-    league = Column(String(40), primary_key=True)
+#     league = Column(String(40), primary_key=True)
 
-    rankings = relationship("User", back_populates="league")
+#     rankings = relationship("User", back_populates="league")

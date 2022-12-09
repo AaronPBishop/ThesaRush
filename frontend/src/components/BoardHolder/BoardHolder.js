@@ -50,7 +50,7 @@ const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmit
     const invalidWords = useSelector(state => state.game.stats.invalidWords)
     const points = useSelector(state => state.game.stats.points);
 
-    const theme = useSelector(state => state.theme);
+    const menu = useSelector(state => state.menu);
  
     useEffect(() => {
         const makeSearch = async () => {
@@ -239,7 +239,7 @@ const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmit
                 boxShadow: invalid === false ? 
                 '0px 10px 20px rgb(0, 110, 0)' : 
                 '0px 20px 40px 20px rgb(210, 4, 45)',
-                backgroundColor: theme.backgroundColor
+                backgroundColor: menu.backgroundColor
                 }}>
 
                 <div style={{position: 'absolute'}}>

@@ -1,11 +1,14 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
+import Navigation from '../Navigation/Navigation.js';
+import LogInForm from './LogInForm.js';
+import SignUpForm from './SignUpForm.js';
+import Difficulties from './Difficulties';
 import Instructions from './Instructions.js';
 import Themes from './Themes.js';
 
 import './styles.css';
-import Difficulties from './Difficulties';
 
 const Menu = () => {
     const [clickedPlay, setClickedPlay] = useState(false);
@@ -13,67 +16,85 @@ const Menu = () => {
     const [clickedTheme, setClickedTheme] = useState(false);
     const [clickedBack, setClickedBack] = useState(false);
 
-    const theme = useSelector(state => state.theme);
+    const menu = useSelector(state => state.menu);
 
     return (
         <div
-        style={{backgroundColor: theme.backgroundColor, overflowY: clickedInstructions ? 'auto' : clickedPlay && 'auto'}} 
+        style={{backgroundColor: menu.backgroundColor, overflowY: clickedInstructions ? 'auto' : clickedPlay && 'auto'}} 
         id='menu-box'>
             <div 
-            className='menu-button-divs'
-            onClick={() => {
-                setClickedBack(false);
-                setClickedPlay(true);
-            }}
             style={{
-                position: 'relative', 
-                display: (clickedPlay === false) && (clickedInstructions === false) && (clickedTheme === false) ? 'flex' : 'none',
-                backgroundColor: 'rgb(10, 50, 100)', 
-                borderBottom: '4px solid rgb(0, 35, 80)'
+                display: !clickedPlay && !clickedInstructions && !clickedTheme ? 'block' : 'none',
+                marginBottom: '-5vh'
             }}>
-                <button
-                className='menu-buttons'
-                >
-                    Play
-                </button>
+                <Navigation />
             </div>
 
-            <div 
-            className='menu-button-divs'
-            onClick={() => {
-                setClickedBack(false);
-                setClickedInstructions(true);
-            }}
-            style={{
-                position: 'relative', 
-                display: (clickedPlay === false) && (clickedInstructions === false) && (clickedTheme === false) ? 'flex' : 'none',
-                backgroundColor: 'rgb(0, 100, 60)', 
-                borderBottom: '4px solid rgb(0, 70, 30)'
-            }}>
-                <button
-                className='menu-buttons'
-                >
-                    Instructions
-                </button>
+            <div style={{display: menu.clickedSignUp === false ? 'none' : 'block'}}>
+                <SignUpForm />
             </div>
 
-            <div 
-            className='menu-button-divs'
-            onClick={() => {
-                setClickedBack(false);
-                setClickedTheme(true);
-            }}
-            style={{
-                position: 'relative', 
-                display: (clickedPlay === false) && (clickedInstructions === false) && (clickedTheme === false) ? 'flex' : 'none',
-                backgroundColor: 'rgb(255, 140, 0)', 
-                borderBottom: '4px solid rgb(205, 90, 0)'
-            }}>
-                <button
-                className='menu-buttons'
-                >
-                    Theme
-                </button>
+            <div style={{display: menu.clickedLogIn === false ? 'none' : 'block'}}>
+                <LogInForm />
+            </div>
+
+            <div style={{display: (menu.clickedSignUp === false) && (menu.clickedLogIn === false) ? 'block' : 'none'}}>
+                <div 
+                className='menu-button-divs'
+                onClick={() => {
+                    setClickedBack(false);
+                    setClickedPlay(true);
+                }}
+                style={{
+                    position: 'relative', 
+                    display: (clickedPlay === false) && (clickedInstructions === false) && (clickedTheme === false) ? 'flex' : 'none',
+                    backgroundColor: 'rgb(10, 50, 100)', 
+                    borderBottom: '4px solid rgb(0, 35, 80)'
+                }}>
+                    <button
+                    className='menu-buttons'
+                    >
+                        Play
+                    </button>
+                </div>
+
+                <div 
+                className='menu-button-divs'
+                onClick={() => {
+                    setClickedBack(false);
+                    setClickedInstructions(true);
+                }}
+                style={{
+                    position: 'relative', 
+                    display: (clickedPlay === false) && (clickedInstructions === false) && (clickedTheme === false) ? 'flex' : 'none',
+                    backgroundColor: 'rgb(0, 100, 60)', 
+                    borderBottom: '4px solid rgb(0, 70, 30)'
+                }}>
+                    <button
+                    className='menu-buttons'
+                    >
+                        Instructions
+                    </button>
+                </div>
+
+                <div 
+                className='menu-button-divs'
+                onClick={() => {
+                    setClickedBack(false);
+                    setClickedTheme(true);
+                }}
+                style={{
+                    position: 'relative', 
+                    display: (clickedPlay === false) && (clickedInstructions === false) && (clickedTheme === false) ? 'flex' : 'none',
+                    backgroundColor: 'rgb(255, 140, 0)', 
+                    borderBottom: '4px solid rgb(205, 90, 0)'
+                }}>
+                    <button
+                    className='menu-buttons'
+                    >
+                        Theme
+                    </button>
+                </div>
             </div>
 
             <div 
