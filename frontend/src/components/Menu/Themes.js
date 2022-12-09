@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 
-import { setBackgroundColor } from '../../store/themeReducer';
+import { setBackgroundColor } from '../../store/theme';
 
 const Themes = () => {
     const dispatch = useDispatch();

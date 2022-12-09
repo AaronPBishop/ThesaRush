@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { setDifficulty } from '../../store/gameReducer';
+import { setDifficulty } from '../../store/game';
 import { useHistory } from 'react-router-dom';
 
 import './styles.css';

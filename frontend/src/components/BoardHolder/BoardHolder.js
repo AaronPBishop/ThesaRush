@@ -28,7 +28,7 @@ import {
     setLongestWord,
     resetStats,
     removeLastChar
-} from '../../store/gameReducer';
+} from '../../store/game';
 
 const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmith, voidMaster }) => {
     const history = useHistory();

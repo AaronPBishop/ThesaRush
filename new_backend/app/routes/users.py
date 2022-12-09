@@ -7,14 +7,10 @@ bp = Blueprint("users", __name__, url_prefix="/users")
 @bp.route('/<id>', methods=['GET'])
 def get_user(id):
     status = 200
-
-    user = {'name': 'name', 'id': 'id'}
-
-    return jsonify(user), status
     
-    # queried_user = User.query.get_or_404(id)
+    queried_user = User.query.get_or_404(id)
     
-    # return jsonify(queried_user), status
+    return jsonify(queried_user), status
 
 
 @bp.route('/<id>', methods=['PUT'])

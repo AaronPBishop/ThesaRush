@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { resetGame, resetStats } from '../../store/gameReducer';
+import { resetGame, resetStats } from '../../store/game';
 
 import './styles.css';
 

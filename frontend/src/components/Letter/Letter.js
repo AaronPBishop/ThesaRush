@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { setInput, removeInputVal, incrementOrder, setTiles, removeTile, setLetter } from '../../store/gameReducer';
+import { setInput, removeInputVal, incrementOrder, setTiles, removeTile, setLetter } from '../../store/game';
 
 import { letterClass } from '../../functions/letterGenerator.js';
 

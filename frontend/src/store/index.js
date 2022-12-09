@@ -1,16 +1,25 @@
 import { createStore, compose, applyMiddleware, combineReducers } from 'redux';
-import gameReducer from './gameReducer.js';
-import themeReducer from './themeReducer.js';
+import thunk from "redux-thunk";
 
-const logger = require("redux-logger").default;
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-
-const enhancer = composeEnhancers(applyMiddleware(logger));
+import gameReducer from './game.js';
+import themeReducer from './theme.js';
+import userReducer from './user.js';
 
 const rootReducer = combineReducers({
     game: gameReducer,
-    theme: themeReducer
+    theme: themeReducer,
+    user: userReducer
 });
+
+let enhancer;
+
+if (process.env.NODE_ENV === "production") {
+  enhancer = applyMiddleware(thunk);
+} else {
+  const logger = require("redux-logger").default;
+  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+  enhancer = composeEnhancers(applyMiddleware(thunk, logger));
+};
 
 const configureStore = (preLoadedState) => {
     return createStore(rootReducer, preLoadedState, enhancer);
