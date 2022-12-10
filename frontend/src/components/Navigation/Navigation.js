@@ -6,7 +6,7 @@ import LogIn from "./LogIn.js";
 import LogOut from "./LogOut.js";
 import User from "./User.js";
 
-const Navigation = () => {
+const Navigation = ({ hidden }) => {
     const user = useSelector(state => state.user);
 
     const [loggedIn, setLoggedIn] = useState(false);
@@ -25,7 +25,7 @@ const Navigation = () => {
 
     return (
         <div style={{display: 'flex', justifyContent: 'space-between'}}>
-            <LogOut />
+            <LogOut hidden={hidden} />
             <User userName={user.user_name} />
         </div>
     );

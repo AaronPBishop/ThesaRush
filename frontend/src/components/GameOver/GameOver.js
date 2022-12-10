@@ -27,8 +27,12 @@ const GameOver = ({ points, numWords, longestWord, tilesCleared, bombardier, sto
     useEffect(() => {
         setBadges(bombardier + stoneCrusher + goldMiner + wordSmith + voidMaster);
 
-        if (user.user_id) dispatch(updateUserData(user.user_id, points, numWords, longestWord, tilesCleared, badges));
+        // if (user.user_id) dispatch(updateUserData(user.user_id, points, numWords, longestWord, tilesCleared, badges));
     }, []);
+
+    useEffect(() => {
+        if (user.user_id) dispatch(updateUserData(user.user_id, points, numWords, longestWord, tilesCleared, badges));
+    }, [badges]);
 
     useEffect(() => {
         if (playAgain === true) history.push(`/game/${difficulty}`);

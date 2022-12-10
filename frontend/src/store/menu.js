@@ -1,7 +1,8 @@
 const initialState = {
     backgroundColor: 'rgb(0, 0, 0)',
     clickedSignUp: false,
-    clickedLogIn: false
+    clickedLogIn: false,
+    clickedProfile: false
 };
 
 export const setBackgroundColor = (color) => {
@@ -25,6 +26,13 @@ export const setClickedLogIn = (boolean) => {
     };
 };
 
+export const setClickedProfile = (boolean) => {
+    return {
+        type: 'SET_CLICKED_PROFILE',
+        payload: boolean
+    };
+};
+
 const menuReducer = (state = initialState, action) => {
     const currentState = { ...state };
 
@@ -43,6 +51,12 @@ const menuReducer = (state = initialState, action) => {
 
         case 'SET_CLICKED_LOG_IN': {
             currentState.clickedLogIn = action.payload;
+
+            return currentState;
+        };
+
+        case 'SET_CLICKED_PROFILE': {
+            currentState.clickedProfile = action.payload;
 
             return currentState;
         };

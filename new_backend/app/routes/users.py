@@ -30,7 +30,10 @@ def update_user_scores(id):
     print(req_data)
     queried_user = User.query.get_or_404(id)
 
+    if queried_user.high_score < req_data['points']:
+        queried_user.high_score = req_data['points']
     queried_user.points += req_data['points']
+    queried_user.points_balance += req_data['points']
     queried_user.words += req_data['words']
     if len(req_data['longest_word']) > len(queried_user.longest_word):
         queried_user.longest_word = req_data['longest_word']
@@ -40,7 +43,9 @@ def update_user_scores(id):
     db.session.commit()
 
     res_data = {
+        'high_score': queried_user.high_score,
         'points': queried_user.points,
+        'points_balance': queried_user.points_balance,
         'words': queried_user.words,
         'longest_word': queried_user.longest_word,
         'tiles_cleared': queried_user.tiles_cleared,
@@ -60,6 +65,14 @@ def create_new_user():
     new_user.user_name = req_data['user_name']
     new_user.user_email = req_data['email']
     new_user.user_password = req_data['password']
+
+    new_user.high_score = 0
+    new_user.points = 0
+    new_user.points_balance = 0
+    new_user.words = 0
+    new_user.longest_word = ''
+    new_user.tiles_cleared = 0
+    new_user.badges = 0
 
     db.session.add(new_user)
     db.session.commit()

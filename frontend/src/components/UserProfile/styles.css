@@ -1,0 +1,43 @@
+#profile-box {
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+
+    margin: auto;
+
+    color: white;
+
+    min-height: 650px;
+    max-height: 650px;
+
+    min-width: 670px;
+    max-width: 670px;
+    
+    box-shadow: 0px 10px 20px rgb(0, 110, 0);
+
+    position: relative;
+    top: 4vh;
+
+    border-radius: 25px;
+    border: 2px solid rgb(255, 255, 60);
+
+    overflow: hidden;
+}
+
+.user-stat-boxes {
+    background-color: rgb(20, 20, 20);
+
+    text-align: center;
+
+    min-width: 13vw;
+    max-width: 13vw;
+
+    height: 8vh;
+
+    margin: 2vh;
+    padding: 1vw;
+
+    border: 2px solid #FFD700; 
+    border-radius: 12px;
+
+    cursor: pointer;
+}

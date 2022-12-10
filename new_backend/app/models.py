@@ -19,9 +19,12 @@ class User(db.Model):
     __tablename__ = 'users'
 
     id = Column(Integer, primary_key=True)
+    
     user_name = Column(String(14), nullable=False)
     user_email = Column(String(250), nullable=False)
     user_password = Column(String(20), nullable=False)
+
+    high_score = Column(Integer, nullable=True)
     points = Column(Integer, nullable=True)
     points_balance = Column(Integer, nullable=True)
     words = Column(Integer, nullable=True) 

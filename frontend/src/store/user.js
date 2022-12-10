@@ -53,7 +53,6 @@ export const loginUserThunk = (email, password) => async (dispatch) => {
 
     const fetchJSON = await fetchReq.json();
     const data = fetchJSON;
-    console.log(data)
 
     dispatch(logInUser(data.id, email));
     dispatch(fetchUserData(data.id));

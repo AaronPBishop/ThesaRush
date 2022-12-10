@@ -8,6 +8,8 @@ import Difficulties from './Difficulties';
 import Instructions from './Instructions.js';
 import Themes from './Themes.js';
 
+import UserProfile from '../UserProfile/UserProfile.js';
+
 import './styles.css';
 
 const Menu = () => {
@@ -19,6 +21,7 @@ const Menu = () => {
     const menu = useSelector(state => state.menu);
 
     return (
+        menu.clickedProfile === true ? <UserProfile /> :
         <div
         style={{backgroundColor: menu.backgroundColor, overflowY: clickedInstructions ? 'auto' : clickedPlay && 'auto'}} 
         id='menu-box'>
