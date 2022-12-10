@@ -2,6 +2,9 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { loginUserThunk, fetchUserData } from '../../store/user.js';
+import { setClickedLogIn } from '../../store/menu.js';
+
+import './styles.css'
 
 const LogInForm = () => {
     const dispatch = useDispatch();
@@ -14,11 +17,8 @@ const LogInForm = () => {
         e.preventDefault();
 
         dispatch(loginUserThunk(email, password));
+        dispatch(setClickedLogIn(false));
     };
-
-    useEffect(() => {
-        if (user.userId) dispatch(fetchUserData(user.userId))
-    }, [user]);
 
     return (
         <div

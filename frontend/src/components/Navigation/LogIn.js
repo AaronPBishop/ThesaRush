@@ -1,13 +1,18 @@
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { setClickedLogIn, setClickedSignUp } from '../../store/menu.js';
 
 import './styles.css'
 
-const LogIn = () => {
+const LogIn = ({ loggedIn }) => {
     const dispatch = useDispatch();
 
     const menu = useSelector(state => state.menu);
+
+    useEffect(() => {
+        if (loggedIn === true) dispatch(setClickedLogIn(false));
+    }, [loggedIn]);
 
     return (
         <div 
@@ -15,6 +20,7 @@ const LogIn = () => {
             if (menu.clickedSignUp === true) {
                 dispatch(setClickedSignUp(false));
                 dispatch(setClickedLogIn(true));
+
                 return;
             };
 

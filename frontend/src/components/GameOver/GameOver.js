@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { resetGame, resetStats } from '../../store/game';
+import { updateUserData } from '../../store/user.js';
 
 import './styles.css';
 
@@ -12,6 +13,7 @@ const GameOver = ({ points, numWords, longestWord, tilesCleared, bombardier, sto
     
     const difficulty = useSelector(state => state.game.stats.difficulty);
     const menu = useSelector(state => state.menu);
+    const user = useSelector(state => state.user);
 
     const [playAgain, setPlayAgain] = useState(false);
     const [badges, setBadges] = useState(0);
@@ -24,6 +26,8 @@ const GameOver = ({ points, numWords, longestWord, tilesCleared, bombardier, sto
 
     useEffect(() => {
         setBadges(bombardier + stoneCrusher + goldMiner + wordSmith + voidMaster);
+
+        if (user.user_id) dispatch(updateUserData(user.user_id, points, numWords, longestWord, tilesCleared, badges));
     }, []);
 
     useEffect(() => {

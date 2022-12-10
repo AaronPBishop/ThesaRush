@@ -15,7 +15,7 @@ friends = Table(
     Column("friend_id", Integer, ForeignKey("users.id"), primary_key=True)
 )
 
-class User(Base):
+class User(db.Model):
     __tablename__ = 'users'
 
     id = Column(Integer, primary_key=True)
@@ -29,12 +29,13 @@ class User(Base):
     tiles_cleared =  Column(Integer, nullable=True)
     badges = Column(Integer, nullable=True)
     lives = Column(Integer, nullable=True)
+    # current_league = Column(String(40), ForeignKey('leaderboard.league'), nullable=True)
 
     trophies = relationship("Trophy", back_populates="user", cascade="all, delete")
     # league = relationship("LeaderBoard", back_populates=("rankings"))
 
 
-class Trophy(Base):
+class Trophy(db.Model):
     __tablename__ = 'trophies'
 
     id = Column(Integer, primary_key=True)
@@ -44,9 +45,9 @@ class Trophy(Base):
     user = relationship("User", back_populates="trophies")
 
 
-# class LeaderBoard(Base):
+# class LeaderBoard(db.Model):
 #     __tablename__ = 'leaderboard'
-
-#     league = Column(String(40), primary_key=True)
+#     id = Column(Integer, primary_key=True)
+#     league = Column(String(40))
 
 #     rankings = relationship("User", back_populates="league")

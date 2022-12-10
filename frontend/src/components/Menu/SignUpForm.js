@@ -2,6 +2,9 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { signUpUserThunk, fetchUserData } from '../../store/user.js';
+import { setClickedSignUp } from '../../store/menu.js';
+
+import './styles.css'
 
 const SignUpForm = () => {
     const dispatch = useDispatch();
@@ -15,11 +18,8 @@ const SignUpForm = () => {
         e.preventDefault();
 
         dispatch(signUpUserThunk(userName, email, password));
+        dispatch(setClickedSignUp(false));
     };
-
-    useEffect(() => {
-        if (user.userId) dispatch(fetchUserData(user.userId))
-    }, [user]);
 
     return (
         <div

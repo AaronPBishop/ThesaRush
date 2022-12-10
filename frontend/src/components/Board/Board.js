@@ -23,7 +23,7 @@ const Board = ({ difficulty }) => {
         easy: 2000,
         medium: 1500,
         hard: 1200,
-        rush: 1000
+        rush: 100
     };
 
     const randomColumn = () => {
