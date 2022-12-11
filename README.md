@@ -7,28 +7,24 @@ Players are awarded points based off of the length of a submitted word, and poin
 Redux actions are utilized in order to perform various board operations, such as splicing off submitted letters and moving remaining letters into their respective places as needed, or reordering letters in the input bar upon selection/deselection of tiles.
 
 ### To play:
-> From your terminal, `cd` into `/frontend`, run `npm install`, then run `npm start`. Have fun!
+> From your terminal, `cd` into `/frontend`, run `npm install`, then run `npm start`. Then, `cd` into `/new_backend`, and run `flask run`. Have fun!
 
 ## What's new in the latest build:
+* User accounts - You can now create a user account and all of your score data will be saved from session to session.
+* Lives (1,000 points each, can be bought within user profile) - Stay tuned, you'll be able to cheat game-overs with these in a future update!
 * Void tiles (spawned each time 50 points are accrued in total score, can be turned into any letter you wish!)
-* Badges that award 30+ points each, which can be earned by clearing a fixed number of special tiles
-* Multiple different 'themes' to choose from
-* Soundtrack that can be toggled on/off
-* Varying levels of difficulty to choose from
-* Bomb tiles (spawned when 6+ letter valid word is submitted, clears all tiles surrounding it in a 1 tile vicinity when used)
-* Stone tiles (must be used twice in order to destroy)
-* 8+ letter words now clear entire bottom row
-* Keyboard controls (spacebar to submit a word, tab to clear input bar, Q to undo last selection)
-* Word submissions are now validated by indexing a JSON file containing 370,000+ English words, cutting out fetch delays
+* Badges that award 30+ points each, which can be earned by clearing a fixed number of special tiles.
 
 **Features to come:**
-* User accounts/Multiplayer challenges
+* Leagues/multiplayer challenges
 * Unlockable animations awarded by point accrual (animations will be style-varying particle-effects that occur upon letter clears)
 * Lava Tiles (must be used when first dropped, otherwise turns all tiles in surrounding vicinity to stone)
 
 ## Technologies used:
+* ![Flask Badge](https://img.shields.io/badge/Flask-000?logo=flask&logoColor=fff&style=flat)
 * ![React Badge](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=000&style=flat)
 * ![Redux Badge](https://img.shields.io/badge/Redux-764ABC?logo=redux&logoColor=fff&style=flat)
+* ![SQLite Badge](https://img.shields.io/badge/SQLite-003B57?logo=sqlite&logoColor=fff&style=flat)
 * ![JavaScript Badge](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=000&style=flat)
 * ![CSS3 Badge](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=fff&style=flat)
 * ![npm Badge](https://img.shields.io/badge/npm-CB3837?logo=npm&logoColor=fff&style=flat)
