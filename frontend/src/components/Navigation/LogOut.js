@@ -9,7 +9,7 @@ const LogOut = ({ hidden }) => {
 
     return (
         <div 
-        style={{visibility: hidden ? 'hidden' : 'visible'}}
+        style={{visibility: hidden ? 'hidden' : 'visible', minWidth: '6vw', maxWidth: '6vw'}}
         onClick={() => dispatch(logOutUser())}
         className="navigation-buttons">
             Log Out

@@ -26,8 +26,6 @@ const GameOver = ({ points, numWords, longestWord, tilesCleared, bombardier, sto
 
     useEffect(() => {
         setBadges(bombardier + stoneCrusher + goldMiner + wordSmith + voidMaster);
-
-        // if (user.user_id) dispatch(updateUserData(user.user_id, points, numWords, longestWord, tilesCleared, badges));
     }, []);
 
     useEffect(() => {

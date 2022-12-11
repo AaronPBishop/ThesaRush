@@ -15,6 +15,7 @@ const SignUp = ({ loggedIn }) => {
 
     return (
         <div 
+        style={{minWidth: '6vw', maxWidth: '6vw'}}
         onClick={() => {
             if (menu.clickedLogIn === true) {
                 dispatch(setClickedLogIn(false));

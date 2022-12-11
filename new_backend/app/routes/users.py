@@ -12,6 +12,7 @@ def fetch_user_data(id):
     res_data = {
         'user_id': queried_user.id,
         'user_name': queried_user.user_name,
+        'high_score': queried_user.high_score,
         'points': queried_user.points,
         'points_balance': queried_user.points_balance,
         'words': queried_user.words,
@@ -27,7 +28,6 @@ def fetch_user_data(id):
 @bp.route('/<id>', methods=['PUT'])
 def update_user_scores(id):
     req_data = request.json
-    print(req_data)
     queried_user = User.query.get_or_404(id)
 
     if queried_user.high_score < req_data['points']:
@@ -73,6 +73,7 @@ def create_new_user():
     new_user.longest_word = ''
     new_user.tiles_cleared = 0
     new_user.badges = 0
+    new_user.lives = 0
 
     db.session.add(new_user)
     db.session.commit()
@@ -107,3 +108,24 @@ def login_user():
                 if password != user.user_password:
                     status = 404
                     return jsonify(status)
+
+
+@bp.route('/lives/<id>', methods=['PUT'])
+def update_user_lives(id):
+    queried_user = User.query.get_or_404(id)
+
+    if queried_user.points_balance < 1000:
+        return jsonify({'error': 'Not enough points', 'status': 400}), 400
+
+    if queried_user.points_balance >= 1000:
+        queried_user.points_balance -= 1000
+        queried_user.lives += 1
+
+    db.session.commit()
+
+    res_data = {
+        'points_balance': queried_user.points_balance,
+        'lives': queried_user.lives
+    }
+    
+    return jsonify(res_data)

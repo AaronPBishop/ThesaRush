@@ -24,8 +24,15 @@
 }
 
 .user-stat-boxes {
-    background-color: rgb(20, 20, 20);
+    font-size: 18px;
+    
+    background-color: rgb(255, 140, 0);
 
+    border: none;
+    border-bottom: 4px solid rgb(205, 90, 0);
+
+    /* background-color: rgb(140, 0, 55);
+    border-bottom: 4px solid rgb(105, 0, 40); */
     text-align: center;
 
     min-width: 13vw;
@@ -36,7 +43,6 @@
     margin: 2vh;
     padding: 1vw;
 
-    border: 2px solid #FFD700; 
     border-radius: 12px;
 
     cursor: pointer;

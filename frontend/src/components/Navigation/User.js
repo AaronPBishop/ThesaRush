@@ -11,6 +11,7 @@ const User = ({ userName }) => {
 
     return (
         <div 
+        style={{minWidth: '6vw', maxWidth: '14vw'}}
         onClick={() => {
             menu.clickedProfile === false ? dispatch(setClickedProfile(true)) : dispatch(setClickedProfile(false));
         }}
