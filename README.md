@@ -43,3 +43,7 @@ Redux actions are utilized in order to perform various board operations, such as
 
 ### _Scoring points_
 ![image](https://user-images.githubusercontent.com/95946808/204886715-9ac9eddd-b0f2-4249-a776-6dae0f2675c1.png)
+
+### _Viewing User Profile_
+![image](https://user-images.githubusercontent.com/95946808/206955988-4c332298-14c3-433f-87e1-a2e7b3e64f5d.png)
+
