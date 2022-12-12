@@ -5,6 +5,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { resetGame, resetStats } from '../../store/game';
 import { updateUserData } from '../../store/user.js';
 
+import Badge from '../Badge/Badge.js';
+
 import './styles.css';
 
 const GameOver = ({ points, numWords, longestWord, tilesCleared, bombardier, stoneCrusher, goldMiner, wordSmith, voidMaster }) => {
@@ -18,19 +20,19 @@ const GameOver = ({ points, numWords, longestWord, tilesCleared, bombardier, sto
     const [playAgain, setPlayAgain] = useState(false);
     const [badges, setBadges] = useState(0);
 
-    const [clickedBombardier, setClickedBombardier] = useState(false);
-    const [clickedStoneCrusher, setClickedStoneCrusher] = useState(false);
-    const [clickedGoldMiner, setClickedGoldMiner] = useState(false);
-    const [clickedWordSmith, setClickedWordSmith] = useState(false);
-    const [clickedVoidMaster, setClickedVoidMaster] = useState(false);
+    const mapBadges = {
+        bombardier: bombardier,
+        stoneCrusher: stoneCrusher,
+        goldMiner: goldMiner,
+        wordSmith: wordSmith,
+        voidMaster: voidMaster
+    };
 
     useEffect(() => {
         setBadges(bombardier + stoneCrusher + goldMiner + wordSmith + voidMaster);
+        
+        if (user.user_id) dispatch(updateUserData(user.user_id, points, numWords, longestWord, tilesCleared, bombardier, stoneCrusher, goldMiner, wordSmith, voidMaster));
     }, []);
-
-    useEffect(() => {
-        if (user.user_id) dispatch(updateUserData(user.user_id, points, numWords, longestWord, tilesCleared, badges));
-    }, [badges]);
 
     useEffect(() => {
         if (playAgain === true) history.push(`/game/${difficulty}`);
@@ -63,80 +65,24 @@ const GameOver = ({ points, numWords, longestWord, tilesCleared, bombardier, sto
                     Badges: <b>{badges}</b>
                 </p>
 
-                <ul 
-                style={{
-                    display: badges > 0 ? 'block' : 'none', 
-                    marginLeft: '0.2vw',
-                    listStyle: 'none', 
-                    textAlign: 'left',
-                    position: 'relative',
-                    top: '0.5vh'
-                }}>
-                    <li 
-                    onClick={() => setClickedBombardier(clicked => !clicked)}
-                    className='badges-li'
-                    style={{display: bombardier > 0 ? 'block' : 'none'}}>
+                {
+                    badges > 0 &&
+                    <div style={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        flexWrap: 'wrap',
+                        position: 'relative',
+                        top: '1vh'
+                    }}>
                         {
-                            clickedBombardier ? <p>Used 2 bomb tiles</p> : 
-                            <div>
-                                <p>💣 Bombardier: <b>{bombardier}</b></p>
-                                <p style={{position: 'relative', left: '0.3vw'}}>+ {bombardier * 30} points</p>
-                            </div>
+                            Object.keys(mapBadges).map((badge, i) => {
+                                if (mapBadges[badge] > 0) return (
+                                    <Badge badgeType={badge} numBadges={mapBadges[badge]} key={i} />
+                                );
+                            })
                         }
-                    </li>
-
-                    <li
-                    onClick={() => setClickedStoneCrusher(clicked => !clicked)}
-                    className='badges-li' 
-                    style={{display: stoneCrusher > 0 ? 'block' : 'none'}}>
-                        {
-                            clickedStoneCrusher ? <p>Destroyed 3 stone tiles</p> :
-                            <div>
-                                <p>🪨 Stone Crusher: <b>{stoneCrusher}</b></p>
-                                <p style={{position: 'relative', left: '0.3vw'}}>+ {stoneCrusher * 30} points</p>
-                            </div>
-                        }
-                    </li>
-
-                    <li
-                    onClick={() => setClickedGoldMiner(clicked => !clicked)}
-                    className='badges-li' 
-                    style={{display: goldMiner > 0 ? 'block' : 'none'}}>
-                        {
-                            clickedGoldMiner ? <p>Cleared 3 gold tiles</p> :
-                            <div>
-                                <p>🪙 Gold Miner: <b>{goldMiner}</b></p>
-                                <p style={{position: 'relative', left: '0.3vw'}}>+ {goldMiner * 30} points</p>
-                            </div>
-                        }
-                    </li>
-
-                    <li
-                    onClick={() => setClickedWordSmith(clicked => !clicked)}
-                    className='badges-li' 
-                    style={{display: wordSmith > 0 ? 'block' : 'none'}}>
-                        {
-                            clickedWordSmith ? <p>Submitted 8+ letter word</p> :
-                            <div>
-                                <p>🛠️ Word Smith: <b>{wordSmith}</b></p>
-                                <p style={{position: 'relative', left: '0.3vw'}}>+ {wordSmith * 30} points</p>
-                            </div>
-                        }
-                    </li>
-
-                    <li
-                    onClick={() => setClickedVoidMaster(clicked => !clicked)}
-                    className='badges-li' 
-                    style={{display: voidMaster > 0 ? 'block' : 'none'}}>
-                        {
-                            clickedVoidMaster ? <p>Used 2 void tiles</p> :
-                            <div>
-                                <p>🪄 Void Master: <b>{voidMaster}</b></p>
-                                <p>+ {voidMaster * 30} points</p>
-                            </div>
-                        }
-                    </li>
-                </ul>
+                    </div>
+                }
             </div>
 
             <div

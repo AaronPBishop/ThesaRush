@@ -96,25 +96,6 @@
     cursor: pointer;
 }
 
-.instructional-badges-li {
-    background-color: rgb(20, 20, 20);
-
-    text-align: center;
-    line-height: 5px;
-
-    min-width: 16vw;
-    max-width: 16vw;
-
-    padding: 4px;
-
-    margin-bottom: 2vh;
-
-    border: 2px solid #FFD700; 
-    border-radius: 12px;
-
-    cursor: pointer;
-}
-
 .theme-containers {
     font-family: 'Roboto', sans-serif;
     font-size: 24px;

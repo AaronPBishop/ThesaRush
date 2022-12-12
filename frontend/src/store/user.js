@@ -77,7 +77,7 @@ export const fetchUserData = (id) => async (dispatch) => {
     dispatch(populateUserData(userData));
 };
 
-export const updateUserData = (id, points, words, longestWord, tilesCleared, badges) => async (dispatch) => {
+export const updateUserData = (id, points, words, longestWord, tilesCleared, bombardier, stoneCrusher, goldMiner, wordSmith, voidMaster) => async (dispatch) => {
     const fetchReq = await fetch(`/users/${id}`, {
         method: 'PUT',
         headers: {'Content-Type': 'application/json'},
@@ -86,7 +86,11 @@ export const updateUserData = (id, points, words, longestWord, tilesCleared, bad
             words: words,
             longest_word: longestWord,
             tiles_cleared: tilesCleared,
-            badges: badges
+            bombardier: bombardier,
+            stone_crusher: stoneCrusher,
+            gold_miner: goldMiner,
+            word_smith: wordSmith,
+            void_master: voidMaster
         })
     });
 

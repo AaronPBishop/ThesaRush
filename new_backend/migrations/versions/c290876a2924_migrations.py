@@ -1,8 +1,8 @@
 """migrations
 
-Revision ID: d33609576c2e
+Revision ID: c290876a2924
 Revises: 
-Create Date: 2022-12-10 15:50:47.824255
+Create Date: 2022-12-11 19:18:29.467582
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'd33609576c2e'
+revision = 'c290876a2924'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -29,8 +29,12 @@ def upgrade():
     sa.Column('words', sa.Integer(), nullable=True),
     sa.Column('longest_word', sa.String(length=40), nullable=True),
     sa.Column('tiles_cleared', sa.Integer(), nullable=True),
-    sa.Column('badges', sa.Integer(), nullable=True),
     sa.Column('lives', sa.Integer(), nullable=True),
+    sa.Column('bombardier', sa.Integer(), nullable=True),
+    sa.Column('stone_crusher', sa.Integer(), nullable=True),
+    sa.Column('gold_miner', sa.Integer(), nullable=True),
+    sa.Column('word_smith', sa.Integer(), nullable=True),
+    sa.Column('void_master', sa.Integer(), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('trophies',

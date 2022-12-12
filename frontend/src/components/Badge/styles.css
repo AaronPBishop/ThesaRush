@@ -1,0 +1,40 @@
+.badges {
+    background-color: rgb(20, 20, 20);
+
+    min-width: 13vw;
+    max-width: 13vw;
+
+    min-height: 6vh;
+    max-height: 9vh;
+
+    padding: 4px;
+
+    margin-bottom: 2vh;
+
+    border: 2px solid #FFD700; 
+    border-radius: 12px;
+    
+    cursor: pointer;
+}
+
+.instructional-badges-li {
+    background-color: rgb(20, 20, 20);
+
+    text-align: center;
+    line-height: 5px;
+
+    min-width: 16vw;
+    max-width: 16vw;
+
+    min-height: 6vh;
+    max-height: 9vh;
+
+    padding: 4px;
+
+    margin-bottom: 2vh;
+
+    border: 2px solid #FFD700; 
+    border-radius: 12px;
+
+    cursor: pointer;
+}

@@ -18,8 +18,12 @@ def fetch_user_data(id):
         'words': queried_user.words,
         'longest_word': queried_user.longest_word,
         'tiles_cleared': queried_user.tiles_cleared,
-        'badges': queried_user.badges,
-        'lives': queried_user.lives
+        'lives': queried_user.lives,
+        'bombardier': queried_user.bombardier,
+        'stone_crusher': queried_user.stone_crusher,
+        'gold_miner': queried_user.gold_miner,
+        'word_smith': queried_user.word_smith,
+        'void_master': queried_user.void_master,
     }
     
     return jsonify(res_data)
@@ -38,7 +42,11 @@ def update_user_scores(id):
     if len(req_data['longest_word']) > len(queried_user.longest_word):
         queried_user.longest_word = req_data['longest_word']
     queried_user.tiles_cleared += req_data['tiles_cleared']
-    queried_user.badges += req_data['badges']
+    queried_user.bombardier += req_data['bombardier']
+    queried_user.stone_crusher += req_data['stone_crusher']
+    queried_user.gold_miner += req_data['gold_miner']
+    queried_user.word_smith += req_data['word_smith']
+    queried_user.void_master += req_data['void_master']
 
     db.session.commit()
 
@@ -49,7 +57,11 @@ def update_user_scores(id):
         'words': queried_user.words,
         'longest_word': queried_user.longest_word,
         'tiles_cleared': queried_user.tiles_cleared,
-        'badges': queried_user.badges,
+        'bombardier': queried_user.bombardier,
+        'stone_crusher': queried_user.stone_crusher,
+        'gold_miner': queried_user.gold_miner,
+        'word_smith': queried_user.word_smith,
+        'void_master': queried_user.void_master
     }
     
     return jsonify(res_data)
@@ -60,20 +72,30 @@ def create_new_user():
     req_data = request.json
     status = 202
 
-    new_user = User()
+    users = User.query.all()
+    for user in users:
+        if user.user_email == req_data['email']:
+            return jsonify({'error': 'This email already exists', 'status': 400}), 400
+        if user.user_name == req_data['user_name']:
+            return jsonify({'error': 'This username is taken', 'status': 400}), 400
 
-    new_user.user_name = req_data['user_name']
-    new_user.user_email = req_data['email']
-    new_user.user_password = req_data['password']
-
-    new_user.high_score = 0
-    new_user.points = 0
-    new_user.points_balance = 0
-    new_user.words = 0
-    new_user.longest_word = ''
-    new_user.tiles_cleared = 0
-    new_user.badges = 0
-    new_user.lives = 0
+    new_user = User(
+        user_name = req_data['user_name'],
+        user_email = req_data['email'],
+        user_password = req_data['password'],
+        high_score = 0,
+        points = 0,
+        points_balance = 0,
+        words = 0,
+        longest_word = '',
+        tiles_cleared = 0,
+        lives = 0,
+        bombardier = 0,
+        stone_crusher = 0,
+        gold_miner = 0,
+        word_smith = 0,
+        void_master = 0
+    )
 
     db.session.add(new_user)
     db.session.commit()

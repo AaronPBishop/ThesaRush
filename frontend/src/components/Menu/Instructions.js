@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 import Letter from '../Letter/Letter.js'
+import Badge from '../Badge/Badge.js';
 
 import './styles.css';
 
@@ -10,12 +11,6 @@ const Instructions = ({ clickedBack }) => {
     const [clickedControls, setClickedControls] = useState(false);
     const [clickedSpecialTiles, setClickedSpecialTiles] = useState(false);
     const [clickedBadges, setClickedBadges] = useState(false);
-
-    const [clickedBombardier, setClickedBombardier] = useState(false);
-    const [clickedStoneCrusher, setClickedStoneCrusher] = useState(false);
-    const [clickedGoldMiner, setClickedGoldMiner] = useState(false);
-    const [clickedWordSmith, setClickedWordSmith] = useState(false);
-    const [clickedVoidMaster, setClickedVoidMaster] = useState(false);
 
     const menu = useSelector(state => state.menu);
 
@@ -167,80 +162,25 @@ const Instructions = ({ clickedBack }) => {
                         </li>
 
                         <div style={{marginLeft: '0.5vw', marginTop: '4vh'}}>
-                            <li 
-                            onClick={e => {
-                                e.stopPropagation();
-                                setClickedBombardier(clicked => !clicked);
-                            }}
-                            className='instructional-badges-li'>
-                                {
-                                    clickedBombardier ? <p>Use 2 bomb tiles</p> : 
-                                    <div>
-                                        <p>💣 Bombardier</p>
-                                        <p style={{position: 'relative', left: '0.7vw'}}>+ 30 points</p>
-                                    </div>
-                                }
-                            </li>
+                            <div onClick={e => e.stopPropagation()}>
+                                <Badge badgeType='bombardier' numBadges={0} type='instructional' />
+                            </div>
 
-                            <li
-                            onClick={e => {
-                                e.stopPropagation();
-                                setClickedStoneCrusher(clicked => !clicked);
-                            }}
-                            className='instructional-badges-li'>
-                                {
-                                    clickedStoneCrusher ? <p>Destroy 3 stone tiles</p> :
-                                    <div>
-                                        <p>🪨 Stone Crusher</p>
-                                        <p style={{position: 'relative', left: '0.2vw'}}>+ 30 points</p>
-                                    </div>
-                                }
-                            </li>
+                            <div onClick={e => e.stopPropagation()}>
+                                <Badge badgeType='stoneCrusher' numBadges={0} type='instructional' />
+                            </div>
 
-                            <li
-                            onClick={e => {
-                                e.stopPropagation();
-                                setClickedGoldMiner(clicked => !clicked);
-                            }}
-                            className='instructional-badges-li'>
-                                {
-                                    clickedGoldMiner ? <p>Clear 3 gold tiles</p> :
-                                    <div>
-                                        <p>🪙 Gold Miner</p>
-                                        <p style={{position: 'relative', left: '0.9vw'}}>+ 30 points</p>
-                                    </div>
-                                }
-                            </li>
+                            <div onClick={e => e.stopPropagation()}>
+                                <Badge badgeType='goldMiner' numBadges={0} type='instructional' />
+                            </div>
 
-                            <li
-                            onClick={e => {
-                                e.stopPropagation();
-                                setClickedWordSmith(clicked => !clicked);
-                            }}
-                            className='instructional-badges-li'>
-                                {
-                                    clickedWordSmith ? <p>Submit 8+ letter word</p> :
-                                    <div>
-                                        <p>🛠️ Word Smith</p>
-                                        <p style={{position: 'relative', left: '0.7vw'}}>+ 30 points</p>
-                                    </div>
-                                }
-                            </li>
+                            <div onClick={e => e.stopPropagation()}>
+                                <Badge badgeType='wordSmith' numBadges={0} type='instructional' />
+                            </div>
 
-                            <li
-                            onClick={e => {
-                                e.stopPropagation();
-                                setClickedVoidMaster(clicked => !clicked);
-                            }}
-                            className='instructional-badges-li'>
-                                {
-                                    clickedVoidMaster ? <p>Use 2 void tiles</p> :
-                                    <div>
-                                        <p>🪄 Void Master</p>
-                                        <p style={{position: 'relative', left: '0.7vw'}}>+ 30 points</p>
-                                    </div>
-                                }
-                            </li>
+                            <div onClick={e => e.stopPropagation()}>
+                                <Badge badgeType='voidMaster' numBadges={0} type='instructional' />
+                            </div>
                         </div>
                     </div>
                 }

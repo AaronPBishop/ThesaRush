@@ -15,6 +15,7 @@ friends = Table(
     Column("friend_id", Integer, ForeignKey("users.id"), primary_key=True)
 )
 
+
 class User(db.Model):
     __tablename__ = 'users'
 
@@ -24,14 +25,20 @@ class User(db.Model):
     user_email = Column(String(250), nullable=False)
     user_password = Column(String(20), nullable=False)
 
-    high_score = Column(Integer, nullable=True)
-    points = Column(Integer, nullable=True)
-    points_balance = Column(Integer, nullable=True)
-    words = Column(Integer, nullable=True) 
-    longest_word = Column(String(40), nullable=True)
-    tiles_cleared =  Column(Integer, nullable=True)
-    badges = Column(Integer, nullable=True)
-    lives = Column(Integer, nullable=True)
+    high_score = Column(Integer)
+    points = Column(Integer)
+    points_balance = Column(Integer)
+    words = Column(Integer) 
+    longest_word = Column(String(40))
+    tiles_cleared =  Column(Integer)
+    lives = Column(Integer)
+
+    bombardier = Column(Integer)
+    stone_crusher = Column(Integer)
+    gold_miner = Column(Integer)
+    word_smith = Column(Integer)
+    void_master = Column(Integer)
+
     # current_league = Column(String(40), ForeignKey('leaderboard.league'), nullable=True)
 
     trophies = relationship("Trophy", back_populates="user", cascade="all, delete")
