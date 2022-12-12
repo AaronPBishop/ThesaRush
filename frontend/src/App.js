@@ -38,8 +38,8 @@ const App = () => {
           longestWord={longestWord} 
           tilesCleared={tilesCleared}
           bombardier={Math.trunc(bombardier / 2)} 
-          stoneCrusher={Math.trunc(stoneCrusher / 1)}
-          goldMiner={Math.trunc(goldMiner / 1)}
+          stoneCrusher={Math.trunc(stoneCrusher / 3)}
+          goldMiner={Math.trunc(goldMiner / 3)}
           wordSmith={wordSmith}
           voidMaster={Math.trunc(voidMaster / 2)}
           />
@@ -49,8 +49,8 @@ const App = () => {
           <BoardHolder 
           dictionary={data}
           bombardier={Math.trunc(bombardier / 2)} 
-          stoneCrusher={Math.trunc(stoneCrusher / 1)}
-          goldMiner={Math.trunc(goldMiner / 1)}
+          stoneCrusher={Math.trunc(stoneCrusher / 3)}
+          goldMiner={Math.trunc(goldMiner / 3)}
           wordSmith={wordSmith}
           voidMaster={Math.trunc(voidMaster / 2)}
           />
