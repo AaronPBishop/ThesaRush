@@ -119,7 +119,7 @@ def login_user():
     users = User.query.all()
     for user in users:
         if user.user_email == email:
-            if password == user.user_password:
+            if user.user_password == password:
                 res_data = {
                     'id': user.id,
                     'status': status

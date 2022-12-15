@@ -3,9 +3,11 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { initiateBoard, dropLettersAction, setTileDropped } from '../../store/game.js';
-import Column from '../Column/Column.js';
-import letterGenerator from '../../functions/letterGenerator.js';
 
+import Column from '../Column/Column.js';
+import OfferLife from './OfferLife.js';
+
+import letterGenerator from '../../functions/letterGenerator.js';
 import checkGameOver from '../../functions/checkGameOver.js';
 
 import './styles.css';
@@ -14,6 +16,8 @@ const Board = ({ difficulty }) => {
     const history = useHistory();
 
     const [switched, setSwitched] = useState(false);
+    const [paused, setPaused] = useState(false);
+    const [offerLife, setOfferLife] = useState(false);
 
     const dispatch = useDispatch();
 
@@ -43,9 +47,11 @@ const Board = ({ difficulty }) => {
 
     useEffect(() => {
         const interval = setInterval(() => {
-          setSwitched((switched) => !switched);
+            if (!paused) {
+                setSwitched(switched => !switched);
 
-          dispatch(setTileDropped(true));
+                dispatch(setTileDropped(true));
+            };
         }, difficultyLevels[difficulty]);
 
         const resetDrop = setTimeout(() => {
