@@ -3,9 +3,9 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { initiateBoard, dropLettersAction, setTileDropped } from '../../store/game.js';
+import { loadOffer } from '../../store/statuses.js';
 
 import Column from '../Column/Column.js';
-import OfferLife from './OfferLife.js';
 
 import letterGenerator from '../../functions/letterGenerator.js';
 import checkGameOver from '../../functions/checkGameOver.js';
@@ -15,13 +15,14 @@ import './styles.css';
 const Board = ({ difficulty }) => {
     const history = useHistory();
 
-    const [switched, setSwitched] = useState(false);
-    const [paused, setPaused] = useState(false);
-    const [offerLife, setOfferLife] = useState(false);
-
     const dispatch = useDispatch();
 
     const board = useSelector(state => state.game.board);
+    const user = useSelector(state => state.user);
+    const paused = useSelector(state => state.statuses.paused);
+
+    const [switched, setSwitched] = useState(false);
+    const [tripped, setTripped] = useState(false);
 
     const difficultyLevels = {
         easy: 2000,
@@ -41,43 +42,54 @@ const Board = ({ difficulty }) => {
         return column;
     };
 
-    useEffect(() => {
-        dispatch(initiateBoard(randomColumn));
-    }, []);
+    useEffect(() => {dispatch(initiateBoard(randomColumn))}, []);
 
     useEffect(() => {
         const interval = setInterval(() => {
-            if (!paused) {
+            if (user.user_name) {
+                if (paused === false) {
+                    setSwitched(switched => !switched);
+    
+                    dispatch(setTileDropped(true));
+                };
+            } else {
                 setSwitched(switched => !switched);
-
+    
                 dispatch(setTileDropped(true));
             };
         }, difficultyLevels[difficulty]);
 
-        const resetDrop = setTimeout(() => {
-            dispatch(setTileDropped(false));
-
-            return;
-        }, 400);
+        const resetDrop = setTimeout(() => {dispatch(setTileDropped(false))}, 400);
 
         if (board.length) dispatch(dropLettersAction());
 
         if (checkGameOver(board)) {
-            setTimeout(() => {
+            const gracePeriod = setTimeout(() => {
                 if (checkGameOver(board)) {
-                    clearInterval(interval);
-                    clearInterval(resetDrop);
+                    if (user.user_name) {
+                        dispatch(loadOffer(true));
 
-                    history.push('/gameover');
+                        const offerAllotment = setTimeout(() => {
+                            setTripped(tripped => !tripped);
+
+                            clearTimeout(gracePeriod);
+                            clearTimeout(offerAllotment);
+                        }, 6000);
+                    } else {
+                        clearTimeout(gracePeriod);
+                        history.push('/gameover');
+                    };
                 };
-            }, 1500);
+            }, 900);
         };
 
         return () => {
             clearInterval(interval);
-            clearInterval(resetDrop);
+            clearTimeout(resetDrop);
         };
-    }, [switched]);
+    }, [switched, paused]);
+
+    useEffect(() => {if (paused === true) history.push('/gameover')}, [tripped]);
 
     return (
         <div className='main-board'>

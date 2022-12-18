@@ -114,6 +114,18 @@ export const buyLife = (id) => async (dispatch) => {
     dispatch(updateLives(userData.points_balance, userData.lives));
 };
 
+export const spendLife = (id) => async (dispatch) => {
+    const fetchReq = await fetch(`/users/lives/use/${id}`, {
+        method: 'PUT',
+        headers: {'Content-Type': 'application/json'}
+    });
+
+    const fetchJSON = await fetchReq.json();
+    const userData = fetchJSON;
+
+    dispatch(updateLives(userData.points_balance, userData.lives));
+};
+
 
 const userReducer = (state = initialState, action) => {
     const currentState = { ...state };

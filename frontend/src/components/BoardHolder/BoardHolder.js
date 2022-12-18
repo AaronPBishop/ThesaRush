@@ -6,6 +6,7 @@ import Board from '../Board/Board';
 import Points from '../Scoring/Points';
 import InGameBadges from '../Scoring/InGameBadges';
 import orderInput from '../../functions/orderInput.js';
+import OfferLife from './OfferLife.js';
 
 import './styles.css';
 
@@ -30,6 +31,8 @@ import {
     removeLastChar
 } from '../../store/game';
 
+import { resetStatuses } from '../../store/statuses';
+
 const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmith, voidMaster }) => {
     const history = useHistory();
     const params = useParams();
@@ -43,6 +46,7 @@ const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmit
 
     const submitted = useSelector(state => state.game.statuses.submitted);
     const tileDropped = useSelector(state => state.game.statuses.tileDropped);
+    const loadOffer = useSelector(state => state.statuses.loadOffer);
 
     const input = useSelector(state => state.game.input);
     const orderedInput = orderInput(Object.values(input));
@@ -51,6 +55,8 @@ const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmit
     const points = useSelector(state => state.game.stats.points);
 
     const menu = useSelector(state => state.menu);
+
+    const user = useSelector(state => state.user);
  
     useEffect(() => {
         const makeSearch = async () => {
@@ -224,6 +230,7 @@ const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmit
             onClick={e => { 
                 dispatch(resetGame());
                 dispatch(resetStats());
+                dispatch(resetStatuses());
 
                 history.push('/');
 
@@ -246,6 +253,12 @@ const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmit
                     <Points hidden={isValid === false} numPoints={points} />
                     <InGameBadges hidden={earnedBadge === false} badge={currBadge} />
                 </div>
+
+                {/* <div 
+                id='offerlife-container'
+                style={{display: loadOffer === true ? 'block' : 'none', position: 'absolute', zIndex: '300'}}> */}
+                <OfferLife userLives={user.lives} />
+                {/* </div> */}
 
                 <div id='board'>
                     

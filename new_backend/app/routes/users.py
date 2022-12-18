@@ -9,24 +9,7 @@ bp = Blueprint("users", __name__, url_prefix="/users")
 def fetch_user_data(id):
     queried_user = User.query.get_or_404(id)
 
-    res_data = {
-        'user_id': queried_user.id,
-        'user_name': queried_user.user_name,
-        'high_score': queried_user.high_score,
-        'points': queried_user.points,
-        'points_balance': queried_user.points_balance,
-        'words': queried_user.words,
-        'longest_word': queried_user.longest_word,
-        'tiles_cleared': queried_user.tiles_cleared,
-        'lives': queried_user.lives,
-        'bombardier': queried_user.bombardier,
-        'stone_crusher': queried_user.stone_crusher,
-        'gold_miner': queried_user.gold_miner,
-        'word_smith': queried_user.word_smith,
-        'void_master': queried_user.void_master,
-    }
-    
-    return jsonify(res_data)
+    return queried_user.to_dict()
 
 
 @bp.route('/<id>', methods=['PUT'])
@@ -36,11 +19,13 @@ def update_user_scores(id):
 
     if queried_user.high_score < req_data['points']:
         queried_user.high_score = req_data['points']
+
+    if len(req_data['longest_word']) > len(queried_user.longest_word):
+        queried_user.longest_word = req_data['longest_word']
+
     queried_user.points += req_data['points']
     queried_user.points_balance += req_data['points']
     queried_user.words += req_data['words']
-    if len(req_data['longest_word']) > len(queried_user.longest_word):
-        queried_user.longest_word = req_data['longest_word']
     queried_user.tiles_cleared += req_data['tiles_cleared']
     queried_user.bombardier += req_data['bombardier']
     queried_user.stone_crusher += req_data['stone_crusher']
@@ -48,23 +33,13 @@ def update_user_scores(id):
     queried_user.word_smith += req_data['word_smith']
     queried_user.void_master += req_data['void_master']
 
-    db.session.commit()
+    # for key, val in req_data.items():
+    #     if key != 'longest_word':
+    #         queried_user[key] += val
 
-    res_data = {
-        'high_score': queried_user.high_score,
-        'points': queried_user.points,
-        'points_balance': queried_user.points_balance,
-        'words': queried_user.words,
-        'longest_word': queried_user.longest_word,
-        'tiles_cleared': queried_user.tiles_cleared,
-        'bombardier': queried_user.bombardier,
-        'stone_crusher': queried_user.stone_crusher,
-        'gold_miner': queried_user.gold_miner,
-        'word_smith': queried_user.word_smith,
-        'void_master': queried_user.void_master
-    }
+    db.session.commit()
     
-    return jsonify(res_data)
+    return queried_user.to_dict()
 
 
 @bp.route('/new', methods=['POST'])
@@ -85,7 +60,7 @@ def create_new_user():
         user_password = req_data['password'],
         high_score = 0,
         points = 0,
-        points_balance = 0,
+        points_balance = 1000,
         words = 0,
         longest_word = '',
         tiles_cleared = 0,
@@ -133,7 +108,7 @@ def login_user():
 
 
 @bp.route('/lives/<id>', methods=['PUT'])
-def update_user_lives(id):
+def add_life(id):
     queried_user = User.query.get_or_404(id)
 
     if queried_user.points_balance < 1000:
@@ -142,6 +117,22 @@ def update_user_lives(id):
     if queried_user.points_balance >= 1000:
         queried_user.points_balance -= 1000
         queried_user.lives += 1
+
+    db.session.commit()
+
+    res_data = {
+        'points_balance': queried_user.points_balance,
+        'lives': queried_user.lives
+    }
+    
+    return jsonify(res_data)
+
+
+@bp.route('/lives/use/<id>', methods=['PUT'])
+def use_life(id):
+    queried_user = User.query.get_or_404(id)
+
+    queried_user.lives -= 1
 
     db.session.commit()
 

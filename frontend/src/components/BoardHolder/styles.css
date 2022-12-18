@@ -103,3 +103,28 @@
     outline: 0;
     padding: 12px 14px;
 }
+
+#offerlife-container {
+    border: 4px solid transparent;
+    bottom: 30vh;
+    font-family: 'Roboto';
+    position: absolute;
+    color: white;
+    border-radius: 100vh;
+    box-shadow: 0px 2px 40px 5px rgb(90, 90, 210);
+    width: 20vw;
+    height: 40vh;
+    z-index: 300;
+
+    animation: offerlife-slide .4s, reduce-border 6s;
+}
+
+@keyframes offerlife-slide {
+    from {bottom: 60vh}
+    to {bottom: 30vh}
+}
+
+@keyframes reduce-border {
+    from {border-color: rgb(120, 120, 255)}
+    to {border-color: transparent}
+}

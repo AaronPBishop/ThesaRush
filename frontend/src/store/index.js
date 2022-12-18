@@ -4,11 +4,13 @@ import thunk from "redux-thunk";
 import gameReducer from './game.js';
 import menuReducer from './menu.js';
 import userReducer from './user.js';
+import statusReducer from './statuses.js';
 
 const rootReducer = combineReducers({
     game: gameReducer,
     menu: menuReducer,
-    user: userReducer
+    user: userReducer,
+    statuses: statusReducer
 });
 
 let enhancer;

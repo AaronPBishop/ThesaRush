@@ -14,6 +14,7 @@ const Letter = ({ hidden, letter, colPos, rowPos, type, color, properties }) => 
     const cleared = useSelector(state => state.game.statuses.cleared);
     const submitted = useSelector(state => state.game.statuses.submitted);
     const removedChar = useSelector(state => state.game.removedChar);
+    const paused = useSelector(state => state.statuses.paused);
 
     const [hasClicked, setHasClicked] = useState(false);
     const [clicked, setClicked] = useState(false);
@@ -111,11 +112,11 @@ const Letter = ({ hidden, letter, colPos, rowPos, type, color, properties }) => 
 
           borderRadius: properties !== 'normal' ? '8px' : letterClass(letter) === 'vowel' ? '20px' : '40px',
 
-          cursor: 'pointer'
+          cursor: !paused && 'pointer'
         }}
         disabled={clicked}
         onClick={() => {
-        setClicked((clicked) => !clicked);
+          if (!paused) setClicked((clicked) => !clicked);
         }}>
         {letter}
       </div>

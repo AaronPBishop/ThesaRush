@@ -75,6 +75,12 @@ export const dropRow = () => {
     };
 };
 
+export const clearColumn = () => {
+    return {
+        type: 'CLEAR_COLUMN'
+    };
+};
+
 export const resetGame = () => {
     return {
         type: 'RESET_GAME'
@@ -372,6 +378,18 @@ const gameReducer = (state = initialState, action) => {
 
         case 'DROP_ROW': {
             currentState.board = insertRow(currentState.board);
+
+            return currentState;
+        };
+
+        case 'CLEAR_COLUMN': {
+            for (let row = 0; row < currentState.board.length; row++) {
+                if (currentState.board[row][1] !== null || currentState.board[row][2] !== null) {
+                    for (let col = 0; col < currentState.board[row].length; col++) {
+                        currentState.board[row][col] = null;
+                    };
+                };
+            };
 
             return currentState;
         };

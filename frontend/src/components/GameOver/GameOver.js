@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { resetGame, resetStats } from '../../store/game';
+import { resetStatuses } from '../../store/statuses';
 import { updateUserData } from '../../store/user.js';
 
 import Badge from '../Badge/Badge.js';
@@ -97,6 +98,7 @@ const GameOver = ({ points, numWords, longestWord, tilesCleared, bombardier, sto
                 onClick={async e => {
                     dispatch(resetGame());
                     dispatch(resetStats());
+                    dispatch(resetStatuses());
 
                     setPlayAgain(true);
                     
@@ -109,6 +111,7 @@ const GameOver = ({ points, numWords, longestWord, tilesCleared, bombardier, sto
                     onClick={e => {
                         dispatch(resetGame());
                         dispatch(resetStats());
+                        dispatch(resetStatuses());
 
                         history.push('/');
 

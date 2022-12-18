@@ -49,5 +49,3 @@
 @keyframes undrop {
     100%{transform: translateY(45px)}
 }
-
-/* create key-frames drop to translate y number of pixels related to length of array - shorter array will translate less */
