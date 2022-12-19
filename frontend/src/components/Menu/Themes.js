@@ -18,9 +18,9 @@ const Themes = () => {
 
             <div
             onClick={() => {
-                dispatch(setBackgroundColor('rgb(10, 10, 30)'));
+                dispatch(setBackgroundColor('linear-gradient(rgb(10, 10, 30), rgb(5, 5, 20)'));
             }}
-            style={{backgroundColor: 'rgb(10, 10, 30)'}}
+            style={{background: 'linear-gradient(rgb(10, 10, 30), rgb(5, 5, 20)'}}
             className='theme-containers'
             >
                 <li>Midnight</li>
@@ -28,9 +28,9 @@ const Themes = () => {
 
             <div
             onClick={() => {
-                dispatch(setBackgroundColor('rgb(45, 0, 25)'));
+                dispatch(setBackgroundColor('linear-gradient(rgb(45, 0, 25), rgb(30, 0, 10)'));
             }}
-            style={{backgroundColor: 'rgb(45, 0, 25)'}}
+            style={{background: 'linear-gradient(rgb(45, 0, 25), rgb(30, 0, 10)'}}
             className='theme-containers'
             >
                 <li>Dawn</li>
@@ -38,9 +38,9 @@ const Themes = () => {
 
             <div
             onClick={() => {
-                dispatch(setBackgroundColor('rgb(0, 30, 25)'));
+                dispatch(setBackgroundColor('linear-gradient(rgb(0, 25, 25), rgb(0, 15, 15)'));
             }}
-            style={{backgroundColor: 'rgb(0, 30, 25)'}}
+            style={{background: 'linear-gradient(rgb(0, 25, 25), rgb(0, 15, 15)'}}
             className='theme-containers'
             >
                 <li>Meadow</li>

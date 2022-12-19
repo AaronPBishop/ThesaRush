@@ -246,7 +246,7 @@ const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmit
                 boxShadow: invalid === false ? 
                 '0px 10px 20px rgb(0, 110, 0)' : 
                 '0px 20px 40px 20px rgb(210, 4, 45)',
-                backgroundColor: menu.backgroundColor
+                background: menu.backgroundColor
                 }}>
 
                 <div style={{position: 'absolute'}}>

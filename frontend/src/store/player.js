@@ -25,6 +25,7 @@ const playerReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'POPULATE_PLAYER_DATA': {
             const playerData = {};
+            
             for (let key in action.payload) playerData[key] = action.payload[key];
 
             currentState[action.payload.user_id] = playerData;

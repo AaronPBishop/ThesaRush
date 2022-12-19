@@ -29,7 +29,7 @@ const LeaderBoard = () => {
             width: '26vw',
             height: '55vh',
             overflowY: 'auto',
-            backgroundColor: backgroundColor,
+            background: backgroundColor,
             border: '2px solid #FFD700',
             borderRadius: '12px'
         }}>

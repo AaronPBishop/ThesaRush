@@ -14,7 +14,6 @@ const RankedPlayer = ({ score, userName, id }) => {
     const [clicked, setClicked] = useState(false);
 
     const [statsMap] = useState({
-        high_score: 'High Score',
         points: 'Total points Earned',
         words: 'Valid Words Submitted',
         longest_word: 'Longest Word',

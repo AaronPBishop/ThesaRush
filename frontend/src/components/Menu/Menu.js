@@ -24,7 +24,7 @@ const Menu = () => {
     return (
         menu.clickedProfile === true ? <UserProfile /> :
         <div
-        style={{backgroundColor: menu.backgroundColor, overflowY: clickedInstructions ? 'auto' : clickedPlay && 'auto'}} 
+        style={{background: menu.backgroundColor, overflowY: clickedInstructions ? 'auto' : clickedPlay && 'auto'}} 
         id='menu-box'>
             <div 
             style={{

@@ -12,7 +12,7 @@ const UserProfile = () => {
 
     return (
         <div 
-        style={{backgroundColor: menu.backgroundColor}}
+        style={{background: menu.backgroundColor}}
         id='profile-box'>
             <Navigation hidden={true} />
 

@@ -16,7 +16,7 @@ const Audio = () => {
             border: '2px solid rgb(255, 255, 60)',
             borderRadius: '30vw',
             boxShadow: '0px 5px 15px rgb(0 110 0)',
-            backgroundColor: menu.backgroundColor,
+            background: menu.backgroundColor,
             width: '6vw',
             height: '4vh'
         }}>
@@ -24,7 +24,7 @@ const Audio = () => {
             style={{
                 cursor: 'pointer',
                 border: 'none',
-                backgroundColor: menu.backgroundColor,
+                background: menu.backgroundColor,
                 color: 'white'
             }}
             onClick={e => {
@@ -41,7 +41,7 @@ const Audio = () => {
             style={{
                 cursor: 'pointer',
                 border: 'none',
-                backgroundColor: menu.backgroundColor,
+                background: menu.backgroundColor,
                 color: 'white'
             }}
             onClick={e => {

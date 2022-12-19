@@ -41,7 +41,7 @@ const GameOver = ({ points, numWords, longestWord, tilesCleared, bombardier, sto
     
     return (
         <div 
-        style={{backgroundColor: menu.backgroundColor}}
+        style={{background: menu.backgroundColor}}
         id='game-over'>
             <p id='gameover-header'>Game Over!</p>
 

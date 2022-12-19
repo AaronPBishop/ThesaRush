@@ -17,7 +17,7 @@ const OfferLife = () => {
     return (
         <div
         id='offerlife-container'
-        style={{display: offerState === true ? 'flex' : 'none', backgroundColor: backgroundColor}}>
+        style={{display: offerState === true ? 'flex' : 'none', background: backgroundColor}}>
             <div style={{display: 'flex', justifyContent: 'center', flexWrap: 'wrap', maxWidth: '10vw', margin: 'auto'}}>
                 <div 
                 onClick={() => {

@@ -1,5 +1,4 @@
 from flask import Blueprint, request, jsonify
-from sqlalchemy import desc
 
 from app.models import User, db
 
@@ -61,11 +60,11 @@ def create_new_user():
         user_password = req_data['password'],
         high_score = 0,
         points = 0,
-        points_balance = 1000,
+        points_balance = 0,
         words = 0,
         longest_word = '',
         tiles_cleared = 0,
-        lives = 0,
+        lives = 1,
         bombardier = 0,
         stone_crusher = 0,
         gold_miner = 0,
