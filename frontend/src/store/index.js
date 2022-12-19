@@ -5,12 +5,16 @@ import gameReducer from './game.js';
 import menuReducer from './menu.js';
 import userReducer from './user.js';
 import statusReducer from './statuses.js';
+import leaderBoardReducer from './leaderboard.js';
+import playerReducer from './player.js';
 
 const rootReducer = combineReducers({
     game: gameReducer,
     menu: menuReducer,
     user: userReducer,
-    statuses: statusReducer
+    statuses: statusReducer,
+    leaderBoard: leaderBoardReducer,
+    player: playerReducer
 });
 
 let enhancer;

@@ -1,4 +1,5 @@
 from flask import Blueprint, request, jsonify
+from sqlalchemy import desc
 
 from app.models import User, db
 
@@ -105,6 +106,17 @@ def login_user():
                 if password != user.user_password:
                     status = 404
                     return jsonify(status)
+
+
+@bp.route('/rankings', methods=['GET'])
+def fetch_ranking_data():
+    users = User.query.all()
+
+    rankings = {}
+    for user in users:
+        rankings[user.high_score] = [user.user_name, user.id]
+   
+    return jsonify(rankings)
 
 
 @bp.route('/lives/<id>', methods=['PUT'])

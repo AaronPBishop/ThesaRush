@@ -254,11 +254,7 @@ const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmit
                     <InGameBadges hidden={earnedBadge === false} badge={currBadge} />
                 </div>
 
-                {/* <div 
-                id='offerlife-container'
-                style={{display: loadOffer === true ? 'block' : 'none', position: 'absolute', zIndex: '300'}}> */}
-                <OfferLife userLives={user.lives} />
-                {/* </div> */}
+                <OfferLife />
 
                 <div id='board'>
                     

@@ -11,6 +11,7 @@ import Themes from './Themes.js';
 import UserProfile from '../UserProfile/UserProfile.js';
 
 import './styles.css';
+import LeaderBoard from '../LeaderBoard/LeaderBoard.js';
 
 const Menu = () => {
     const [clickedPlay, setClickedPlay] = useState(false);
@@ -41,7 +42,11 @@ const Menu = () => {
                 <LogInForm />
             </div>
 
-            <div style={{display: (menu.clickedSignUp === false) && (menu.clickedLogIn === false) ? 'block' : 'none'}}>
+            <div style={{display: menu.clickedLeaderBoard === false ? 'none' : 'block'}}>
+                <LeaderBoard />
+            </div>
+
+            <div style={{display: (menu.clickedSignUp === false) && (menu.clickedLogIn === false) && (menu.clickedLeaderBoard === false) ? 'block' : 'none'}}>
                 <div 
                 className='menu-button-divs'
                 onClick={() => {

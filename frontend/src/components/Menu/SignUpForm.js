@@ -1,15 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { signUpUserThunk, fetchUserData } from '../../store/user.js';
+import { signUpUserThunk } from '../../store/user.js';
 import { setClickedSignUp } from '../../store/menu.js';
 
 import './styles.css'
 
 const SignUpForm = () => {
     const dispatch = useDispatch();
-    const user = useSelector(state => state.user);
-
+    
     const [userName, setUserName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');

@@ -2,7 +2,8 @@ const initialState = {
     backgroundColor: 'rgb(0, 0, 0)',
     clickedSignUp: false,
     clickedLogIn: false,
-    clickedProfile: false
+    clickedProfile: false,
+    clickedLeaderBoard: false
 };
 
 export const setBackgroundColor = (color) => {
@@ -33,6 +34,13 @@ export const setClickedProfile = (boolean) => {
     };
 };
 
+export const setClickedLeaderBoard = (boolean) => {
+    return {
+        type: 'SET_CLICKED_LEADERBOARD',
+        payload: boolean
+    };
+};
+
 const menuReducer = (state = initialState, action) => {
     const currentState = { ...state };
 
@@ -57,6 +65,12 @@ const menuReducer = (state = initialState, action) => {
 
         case 'SET_CLICKED_PROFILE': {
             currentState.clickedProfile = action.payload;
+
+            return currentState;
+        };
+
+        case 'SET_CLICKED_LEADERBOARD': {
+            currentState.clickedLeaderBoard = action.payload;
 
             return currentState;
         };

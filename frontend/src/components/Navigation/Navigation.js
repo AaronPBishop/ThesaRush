@@ -5,6 +5,7 @@ import SignUp from "./SignUp.js";
 import LogIn from "./LogIn.js";
 import LogOut from "./LogOut.js";
 import User from "./User.js";
+import LeaderBoardButton from "./LeaderBoardButton.js";
 
 const Navigation = ({ hidden }) => {
     const user = useSelector(state => state.user);
@@ -19,6 +20,7 @@ const Navigation = ({ hidden }) => {
     if (!loggedIn) return (
         <div style={{display: 'flex', justifyContent: 'space-between'}}>
             <SignUp loggedIn={loggedIn} />
+            <LeaderBoardButton />
             <LogIn loggedIn={loggedIn} />
         </div>
     );
@@ -26,6 +28,7 @@ const Navigation = ({ hidden }) => {
     return (
         <div style={{display: 'flex', justifyContent: 'space-between'}}>
             <LogOut hidden={hidden} />
+            <LeaderBoardButton hidden={hidden} />
             <User userName={user.user_name} />
         </div>
     );

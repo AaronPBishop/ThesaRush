@@ -1,14 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 
 import { clearColumn } from "../../store/game.js";
 import { buyLife, spendLife } from "../../store/user.js";
 import { setPaused, loadOffer } from '../../store/statuses.js';
 
-const OfferLife = ({ userLives }) => {
+const OfferLife = () => {
     const dispatch = useDispatch();
-
-    const [insufficient, setInsufficient] = useState(false);
 
     const user = useSelector(state => state.user);
     const offerState = useSelector(state => state.statuses.loadOffer);
@@ -23,7 +21,7 @@ const OfferLife = ({ userLives }) => {
             <div style={{display: 'flex', justifyContent: 'center', flexWrap: 'wrap', maxWidth: '10vw', margin: 'auto'}}>
                 <div 
                 onClick={() => {
-                    if (userLives > 0) {
+                    if (user.lives > 0) {
                         dispatch(spendLife(user.user_id));
                         dispatch(clearColumn());
                         dispatch(setPaused(false));
@@ -32,18 +30,14 @@ const OfferLife = ({ userLives }) => {
                         return;
                     };
                     
-                    if (userLives < 1) {
-                        if (user.points_balance >= 1000) {
-                            dispatch(buyLife(user.user_id));
-                            dispatch(spendLife(user.user_id));
-                            dispatch(clearColumn());
-                            dispatch(setPaused(false));
-                            dispatch(loadOffer(false));
-            
-                            return;
-                        } else {
-                            setInsufficient(true);
-                        };
+                    if (user.lives < 1) {
+                        dispatch(buyLife(user.user_id));
+                        dispatch(spendLife(user.user_id));
+                        dispatch(clearColumn());
+                        dispatch(setPaused(false));
+                        dispatch(loadOffer(false));
+        
+                        return;
                     };
                 }}
                 style={{
@@ -54,10 +48,11 @@ const OfferLife = ({ userLives }) => {
                     fontWeight: 'bold',
                     cursor: 'pointer'
                 }}>
-                    {userLives > 0 ? 'USE LIFE' : insufficient === true ? 'NOT ENOUGH POINTS' : 'BUY LIFE'}
+                    {user.lives > 0 ? 'USE LIFE' : 'BUY LIFE'}
                 </div>
                 
-                <p>{userLives > 0 ? `${userLives} lives available` : '-1000 points'}</p>
+                <p>{user.lives > 0 ? `${user.lives} lives available` : '-1000 points'}</p>
+                <b style={{visibility: user.lives < 1 ? 'visible' : 'hidden'}}>{`${user.points_balance} points available`}</b>
             </div>
         </div>
     );

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { setClickedSignUp, setClickedLogIn } from '../../store/menu.js';
+import { setClickedSignUp, setClickedLogIn, setClickedLeaderBoard } from '../../store/menu.js';
 
 import './styles.css'
 
@@ -17,8 +17,9 @@ const SignUp = ({ loggedIn }) => {
         <div 
         style={{minWidth: '6vw', maxWidth: '6vw'}}
         onClick={() => {
-            if (menu.clickedLogIn === true) {
+            if (menu.clickedLogIn === true || menu.clickedLeaderBoard === true) {
                 dispatch(setClickedLogIn(false));
+                dispatch(setClickedLeaderBoard(false));
                 dispatch(setClickedSignUp(true));
                 return;
             };

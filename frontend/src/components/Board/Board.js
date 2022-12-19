@@ -66,7 +66,7 @@ const Board = ({ difficulty }) => {
         if (checkGameOver(board)) {
             const gracePeriod = setTimeout(() => {
                 if (checkGameOver(board)) {
-                    if (user.user_name) {
+                    if (user.user_name && (user.points_balance >= 1000 || user.lives > 0)) {
                         dispatch(loadOffer(true));
 
                         const offerAllotment = setTimeout(() => {
