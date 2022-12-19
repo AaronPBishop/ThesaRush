@@ -266,21 +266,20 @@ const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmit
                         handleSubmit();
                     }}
                     className='input-actions'>
-                            <button type='reset' id='clear' onClick={() => {
-                                dispatch(setCleared((cleared) => !cleared));
+                        <button type='reset' id='clear' onClick={() => {
+                            dispatch(setCleared((cleared) => !cleared));
+                            dispatch(resetInput());
+                            dispatch(resetOrder());
+                            dispatch(resetTiles());
+                        }}>
+                        </button>
 
-                                dispatch(resetInput());
-                                dispatch(resetOrder());
-                                dispatch(resetTiles());
-                            }}>
-                            </button>
-
-                            <input 
-                            id='word-bar' 
-                            type='text' 
-                            disabled={true} 
-                            value={orderedInput}>
-                            </input>
+                        <input 
+                        id='word-bar' 
+                        type='text' 
+                        disabled={true} 
+                        value={orderedInput}>
+                        </input>
 
                         <button id='send' type='submit'></button>
                     </form>
