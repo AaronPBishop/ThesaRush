@@ -42,6 +42,8 @@ const Letter = ({ hidden, letter, colPos, rowPos, type, color, properties }) => 
         if (hasClicked === true && clicked === false) {
           dispatch(removeInputVal([colPos, rowPos].join('')));
           dispatch(removeTile([colPos, rowPos])); 
+
+          if (properties.void) setClickedVoid({colPos: null, rowPos: null});
         };
 
         for (let i = 0; i < positions.length; i++) dispatch(setTiles(positions[i]));
@@ -59,7 +61,7 @@ const Letter = ({ hidden, letter, colPos, rowPos, type, color, properties }) => 
       const keyDownHandler = e => {
         e.preventDefault();
 
-        setNewLetter(String.fromCharCode(e.keyCode));
+        if (String.fromCharCode(e.keyCode).match(/[A-Za-z]/) && colPos === clickedVoid.colPos && rowPos === clickedVoid.rowPos) setNewLetter(String.fromCharCode(e.keyCode));
         if (properties.void) setClicked(false);
       };
 
@@ -69,7 +71,10 @@ const Letter = ({ hidden, letter, colPos, rowPos, type, color, properties }) => 
     }, [clickedVoid]);
 
     useEffect(() => {
-      if (letter === '' && colPos === clickedVoid.colPos && rowPos === clickedVoid.rowPos) dispatch(setLetter(colPos, rowPos, newLetter));
+      if (letter === '' && colPos === clickedVoid.colPos && rowPos === clickedVoid.rowPos) {
+        dispatch(setLetter(colPos, rowPos, newLetter));
+        setNewLetter('');
+      };
     }, [newLetter]);
 
     return (

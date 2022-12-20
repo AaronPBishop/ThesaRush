@@ -532,7 +532,7 @@ const gameReducer = (state = initialState, action) => {
             const scoreMultipliers = ['X', 'Z', 'Q'];
             let multiplier = 0;
 
-            const pointsMap = {5: 7, 6: 9, 7: 11, 8: 16, 9: 20};
+            const pointsMap = {5: 7, 6: 9, 7: 11, 8: 16, 9: 20, 10: 30, 11: 45, 12: 70, 13: 100, 14: 140, 15: 190, 16: 250};
 
             action.payload2.split('').forEach(letter => {
                 if (scoreMultipliers.includes(letter)) {
@@ -553,10 +553,10 @@ const gameReducer = (state = initialState, action) => {
                 currentState.stats.trackScore += pointsMap[action.payload];
             };
 
-            if (action.payload > 9) {
-                currentState.stats.points += (action.payload * 3);
-                currentState.stats.score += (action.payload * 3);
-                currentState.stats.trackScore += (action.payload * 3);
+            if (action.payload > 16) {
+                currentState.stats.points += (action.payload * 20);
+                currentState.stats.score += (action.payload * 20);
+                currentState.stats.trackScore += (action.payload * 20);
             };
 
             if (multiplier > 0) {
@@ -575,7 +575,7 @@ const gameReducer = (state = initialState, action) => {
             currentState.stats.points += action.payload;
             currentState.stats.trackScore += action.payload;
 
-            if (currentState.stats.trackScore >= 5) currentState.statuses.earnedVoid = true;
+            if (currentState.stats.trackScore >= 50) currentState.statuses.earnedVoid = true;
 
             return currentState;
         };

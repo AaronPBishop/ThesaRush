@@ -53,6 +53,7 @@ const RankedPlayer = ({ score, userName, id }) => {
                 borderRadius: '12px',
                 minWidth: '24vw',
                 maxWidth: '24vw',
+                maxHeight: !clicked && '7vh',
                 overflowY: 'auto',
                 cursor: 'pointer'
             }}>
