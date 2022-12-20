@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { fetchPlayerData } from "../../store/player";
@@ -10,8 +10,13 @@ const RankedPlayer = ({ score, userName, id }) => {
 
     const user = useSelector(state => state.user);
     const player = useSelector(state => state.player);
+    const clickedLeaderBoard = useSelector(state => state.menu.clickedLeaderBoard);
 
     const [clicked, setClicked] = useState(false);
+
+    useEffect(() => {
+        if (clickedLeaderBoard === false) setClicked(false);
+    }, [clickedLeaderBoard])
 
     const [statsMap] = useState({
         points: 'Total points Earned',
