@@ -20,22 +20,15 @@ def update_user_scores(id):
     if queried_user.high_score < req_data['points']:
         queried_user.high_score = req_data['points']
 
+    queried_user.points_balance += req_data['points']
+
     if len(req_data['longest_word']) > len(queried_user.longest_word):
         queried_user.longest_word = req_data['longest_word']
 
-    queried_user.points += req_data['points']
-    queried_user.points_balance += req_data['points']
-    queried_user.words += req_data['words']
-    queried_user.tiles_cleared += req_data['tiles_cleared']
-    queried_user.bombardier += req_data['bombardier']
-    queried_user.stone_crusher += req_data['stone_crusher']
-    queried_user.gold_miner += req_data['gold_miner']
-    queried_user.word_smith += req_data['word_smith']
-    queried_user.void_master += req_data['void_master']
-
-    # for key, val in req_data.items():
-    #     if key != 'longest_word':
-    #         queried_user[key] += val
+    for key, val in req_data.items():
+        if key != 'longest_word':
+            attr = getattr(queried_user, key)
+            setattr(queried_user, key, attr + val)
 
     db.session.commit()
     

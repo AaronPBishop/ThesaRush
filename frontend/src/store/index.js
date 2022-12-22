@@ -6,7 +6,7 @@ import menuReducer from './menu.js';
 import userReducer from './user.js';
 import statusReducer from './statuses.js';
 import leaderBoardReducer from './leaderboard.js';
-import playerReducer from './player.js';
+import playersReducer from './players.js';
 
 const rootReducer = combineReducers({
     game: gameReducer,
@@ -14,7 +14,7 @@ const rootReducer = combineReducers({
     user: userReducer,
     statuses: statusReducer,
     leaderBoard: leaderBoardReducer,
-    player: playerReducer
+    players: playersReducer
 });
 
 let enhancer;

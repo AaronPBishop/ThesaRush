@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { fetchLeaderBoardData } from "../../store/leaderboard.js";
-import { fetchPlayerData } from "../../store/player.js";
+import { fetchPlayerData } from "../../store/players.js";
 
 import RankedPlayer from "./RankedPlayer.js";
 

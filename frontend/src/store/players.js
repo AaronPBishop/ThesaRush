@@ -19,7 +19,7 @@ export const fetchPlayerData = () => async (dispatch) => {
 };
 
 
-const playerReducer = (state = initialState, action) => {
+const playersReducer = (state = initialState, action) => {
     const currentState = { ...state };
 
     switch (action.type) {
@@ -33,4 +33,4 @@ const playerReducer = (state = initialState, action) => {
     };
 };
 
-export default playerReducer;
+export default playersReducer;

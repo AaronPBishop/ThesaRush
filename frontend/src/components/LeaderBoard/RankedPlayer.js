@@ -5,7 +5,7 @@ const RankedPlayer = ({ score, userName, id }) => {
     const ignoreStats = ['user_id', 'user_name', 'high_score', 'points_balance', 'lives'];
 
     const user = useSelector(state => state.user);
-    const player = useSelector(state => state.player);
+    const players = useSelector(state => state.players);
     const clickedLeaderBoard = useSelector(state => state.menu.clickedLeaderBoard);
 
     const [clicked, setClicked] = useState(false);
@@ -66,12 +66,12 @@ const RankedPlayer = ({ score, userName, id }) => {
                 
                <div style={{display: clicked ? 'block' : 'none', marginTop: '2vh'}}>
                     {
-                        player[id] &&
-                        orderKeys(Object.keys(player[id])).map((stat, i) => (
+                        players[id] &&
+                        orderKeys(Object.keys(players[id])).map((stat, i) => (
                             !ignoreStats.includes(stat) &&
                             <div style={{display: 'flex', justifyContent: 'space-between', width: '24vw', margin: 'auto', flexWrap: 'wrap'}} key={i}>
                                 <p style={{margin: '1vw'}}>{statsMap[stat]}:</p>
-                                <b style={{margin: '1vw'}}>{player[id][stat]}</b>
+                                <b style={{margin: '1vw'}}>{players[id][stat]}</b>
                             </div>
                         ))          
                     }

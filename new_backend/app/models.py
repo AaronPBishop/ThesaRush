@@ -44,12 +44,6 @@ class User(db.Model):
     trophies = relationship("Trophy", back_populates="user", cascade="all, delete")
     # league = relationship("LeaderBoard", back_populates=("rankings"))
 
-    # def __getitem__(self, key):
-    #     return getattr(self, key)
-
-    # def __setitem__(self, key, value):
-    #     self[key] += value
-
     def to_dict(self):
         # json_trophies = []
         # for trophy in self.trophies:
