@@ -1,11 +1,7 @@
 import { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-
-import { fetchPlayerData } from "../../store/player";
+import { useSelector } from "react-redux";
 
 const RankedPlayer = ({ score, userName, id }) => {
-    const dispatch = useDispatch();
-
     const ignoreStats = ['user_id', 'user_name', 'high_score', 'points_balance', 'lives'];
 
     const user = useSelector(state => state.user);
@@ -43,10 +39,7 @@ const RankedPlayer = ({ score, userName, id }) => {
 
     return (
             <div 
-            onClick={() => {
-                setClicked(clicked => !clicked);
-                dispatch(fetchPlayerData(id));
-            }}
+            onClick={() => setClicked(clicked => !clicked)}
             style={{
                 display: 'flex',
                 justifyContent: 'space-between',

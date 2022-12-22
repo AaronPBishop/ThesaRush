@@ -7,8 +7,8 @@ export const populatePlayerData = (playerData) => {
     };
 };
 
-export const fetchPlayerData = (id) => async (dispatch) => {
-    const fetchReq = await fetch(`/users/${id}`, {
+export const fetchPlayerData = () => async (dispatch) => {
+    const fetchReq = await fetch(`/users/all`, {
         method: 'GET'
     });
 
@@ -24,12 +24,8 @@ const playerReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case 'POPULATE_PLAYER_DATA': {
-            const playerData = {};
-            
-            for (let key in action.payload) playerData[key] = action.payload[key];
+            for (let key in action.payload) currentState[key] = action.payload[key];
 
-            currentState[action.payload.user_id] = playerData;
-            
             return currentState;
         };
 

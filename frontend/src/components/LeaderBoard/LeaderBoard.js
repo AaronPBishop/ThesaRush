@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { fetchLeaderBoardData } from "../../store/leaderboard.js";
+import { fetchPlayerData } from "../../store/player.js";
 
 import RankedPlayer from "./RankedPlayer.js";
 
@@ -13,7 +14,10 @@ const LeaderBoard = () => {
     const backgroundColor = useSelector(state => state.backgroundColor);
 
     useEffect(() => {
-        if (clickedLeaderBoard === true) dispatch(fetchLeaderBoardData());
+        if (clickedLeaderBoard === true) {
+            dispatch(fetchLeaderBoardData());
+            dispatch(fetchPlayerData());
+        };
     }, [clickedLeaderBoard]);
 
     return (

@@ -24,7 +24,6 @@ const leaderBoardReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'POPULATE_LEADERBOARD': {
             currentState.length = 0;
-            console.log(action.payload)
 
             for (let score in action.payload) {
                 const playerObj = {};

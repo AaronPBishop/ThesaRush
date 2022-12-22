@@ -42,6 +42,17 @@ def update_user_scores(id):
     return queried_user.to_dict()
 
 
+@bp.route('/all', methods=['GET'])
+def fetch_all_players():
+    queried_users = User.query.all()
+
+    users = {}
+    for user in queried_users:
+        users[user.id] = user.to_dict()
+
+    return jsonify(users)
+
+
 @bp.route('/new', methods=['POST'])
 def create_new_user():
     req_data = request.json
