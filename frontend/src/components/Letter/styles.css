@@ -5,47 +5,46 @@
     line-height: 52px;
     letter-spacing: -1.5px;
 
-    min-width: 55px;
-    max-width: 55px;
-    min-height: 55px;
-    max-height: 55px;
+    min-width: 3.58vw;
+    max-width: 3.58vw;
+    min-height: 7.58vh;
+    max-height: 7.58vh;
 
     margin: 2px;
 
-    cursor: default;
-    z-index: 300;
+    position: relative;
+    bottom: 14vh
 }
 
 .new-letters {
-    animation: drop 0.4s forwards;
-
     position: relative;
-    bottom: 340px;
-    z-index: 300;
+
+    animation: drop 0.4s forwards;
 }
 
 .rearranged-letters {
-    animation: redrop 0.4s forwards;
-
     position: relative;
-    bottom: 40px;
+
+    animation: redrop 0.4s forwards;
 }
 
 .unarranged-letters {
-    animation: undrop 0.4s forwards;
-
     position: relative;
-    bottom: 45px;
+    
+    animation: undrop 0.4s forwards;
 }
 
 @keyframes drop {
-    100%{transform: translateY(10px)}
+    from {bottom: 100vh}
+    to {bottom: 14vh}
 }
 
 @keyframes redrop {
-    100%{transform: translateY(40px)}
+    from {bottom: 20vh}
+    to {bottom: 14vh}
 }
 
 @keyframes undrop {
-    100%{transform: translateY(45px)}
+    from {bottom: 22vh}
+    to {bottom: 14vh}
 }
