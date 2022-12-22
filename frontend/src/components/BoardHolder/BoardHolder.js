@@ -46,7 +46,6 @@ const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmit
 
     const submitted = useSelector(state => state.game.statuses.submitted);
     const tileDropped = useSelector(state => state.game.statuses.tileDropped);
-    const loadOffer = useSelector(state => state.statuses.loadOffer);
 
     const input = useSelector(state => state.game.input);
     const orderedInput = orderInput(Object.values(input));
@@ -55,8 +54,6 @@ const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmit
     const points = useSelector(state => state.game.stats.points);
 
     const menu = useSelector(state => state.menu);
-
-    const user = useSelector(state => state.user);
  
     useEffect(() => {
         const makeSearch = async () => {

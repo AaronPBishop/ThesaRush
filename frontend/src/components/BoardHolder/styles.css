@@ -20,6 +20,8 @@
     
     position: relative;
     bottom: 13.4vh;
+
+    animation: input-drop 0.6s;
 }
 
 #word-bar {
@@ -120,6 +122,11 @@
     z-index: 300;
 
     animation: offerlife-slide .4s, reduce-border 6s;
+}
+
+@keyframes input-drop {
+    from {bottom: 100vh}
+    to {bottom: 13.4vh}
 }
 
 @keyframes offerlife-slide {
