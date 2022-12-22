@@ -35,7 +35,7 @@ Redux actions are utilized in order to perform various board operations, such as
 ![image](https://user-images.githubusercontent.com/95946808/204881946-808bf41a-54d9-4712-87a7-f7b0f5d14c60.png)
 
 ### _Viewing Leaderboard_
-![image](https://user-images.githubusercontent.com/95946808/208342298-98569016-4c39-4054-9c6f-8a2bf38f8300.png)
+![image](https://user-images.githubusercontent.com/95946808/209049639-44836faf-e3f6-4fbc-b8c6-0c0157ec24ed.png)
 
 ### _Game over/score overview_
 ![image](https://user-images.githubusercontent.com/95946808/204883383-2984d39a-c755-4442-838c-647bddef4f56.png)
