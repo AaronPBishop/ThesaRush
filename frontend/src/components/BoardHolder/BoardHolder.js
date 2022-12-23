@@ -52,6 +52,7 @@ const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmit
 
     const invalidWords = useSelector(state => state.game.stats.invalidWords)
     const points = useSelector(state => state.game.stats.points);
+    const score = useSelector(state => state.game.stats.score);
 
     const menu = useSelector(state => state.menu);
  
@@ -223,19 +224,28 @@ const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmit
     
     return (
         <div id='main-content'>
-            <h1 
-            onClick={e => { 
-                dispatch(resetGame());
-                dispatch(resetStats());
-                dispatch(resetStatuses());
+            <div style={{
+                display: 'flex',
+                justifyContent: 'center',
+            }}>
+                <div id='score-tab'>
+                    Score: <b>{score}</b>
+                </div>
 
-                history.push('/');
+                <h1 
+                onClick={e => { 
+                    dispatch(resetGame());
+                    dispatch(resetStats());
+                    dispatch(resetStatuses());
 
-                e.preventDefault();
-            }}
-            id='header'>
-                ThesaRush
-            </h1>
+                    history.push('/');
+
+                    e.preventDefault();
+                }}
+                id='header'>
+                    ThesaRush
+                </h1>
+            </div>
             
             <div 
             id='game-box'

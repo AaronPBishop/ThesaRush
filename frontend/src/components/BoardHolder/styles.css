@@ -1,7 +1,4 @@
 #header {
-    display: flex;
-    justify-content: center;
-
     font-family: 'Bungee Spice', cursive;
 
     position: relative;
@@ -10,6 +7,29 @@
     font-size: 60px;
 
     cursor: pointer;
+}
+
+#score-tab {
+    position: absolute;
+    top: 3.4vh;
+
+    margin-right: 33vw;
+
+    font-family: 'Roboto'; 
+    text-align: center;
+
+    height: 20vh;
+    min-width: 6vw;
+    max-width: 8vw;
+
+    color: white; 
+    background-color: rgb(140, 0, 55);
+
+    border: 3px solid rgb(105, 0, 40);
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+
+    padding: 4px;
 }
 
 .input-actions {
