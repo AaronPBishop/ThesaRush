@@ -14,7 +14,7 @@ const Letter = ({ hidden, letter, colPos, rowPos, type, color, properties }) => 
     const cleared = useSelector(state => state.game.statuses.cleared);
     const submitted = useSelector(state => state.game.statuses.submitted);
     const removedChar = useSelector(state => state.game.removedChar);
-    const paused = useSelector(state => state.statuses.paused);
+    const paused = useSelector(state => state.offerStatuses.paused);
 
     const [hasClicked, setHasClicked] = useState(false);
     const [clicked, setClicked] = useState(false);

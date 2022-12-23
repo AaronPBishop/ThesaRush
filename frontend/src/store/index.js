@@ -4,7 +4,7 @@ import thunk from "redux-thunk";
 import gameReducer from './game.js';
 import menuReducer from './menu.js';
 import userReducer from './user.js';
-import statusReducer from './statuses.js';
+import offerStatusesReducer from './offerStatuses.js';
 import leaderBoardReducer from './leaderboard.js';
 import playersReducer from './players.js';
 
@@ -12,7 +12,7 @@ const rootReducer = combineReducers({
     game: gameReducer,
     menu: menuReducer,
     user: userReducer,
-    statuses: statusReducer,
+    offerStatuses: offerStatusesReducer,
     leaderBoard: leaderBoardReducer,
     players: playersReducer
 });

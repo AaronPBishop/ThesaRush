@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
 import { signUpUserThunk } from '../../store/user.js';
 import { setClickedSignUp } from '../../store/menu.js';
@@ -13,10 +13,33 @@ const SignUpForm = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleSubmit = e => {
-        e.preventDefault();
+    const [submitted, setSubmitted] = useState(false);
+    const [errors, setErrors] = useState([]);
 
-        dispatch(signUpUserThunk(userName, email, password));
+    useEffect(() => {
+        const errorsArr = [];
+
+        const validateEmail = (email) => {
+            return email.match(
+              /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            );
+        };
+
+        if (submitted === true) {
+            if (!validateEmail(email)) {
+                errorsArr.push('Must use a valid email');
+                setErrors(errorsArr);
+                
+                setSubmitted(false);
+            } else {
+                handleSubmit();
+            };
+        };
+    }, [submitted]);
+
+    const handleSubmit = () => {
+        dispatch(signUpUserThunk(userName, email.toLowerCase(), password));
+
         dispatch(setClickedSignUp(false));
     };
 
@@ -25,6 +48,7 @@ const SignUpForm = () => {
         style={{
             display: 'flex',
             justifyContent: 'center',
+            flexWrap: 'wrap',
             margin: 'auto',
             marginTop: '18vh',
             padding: '2vw',
@@ -33,7 +57,15 @@ const SignUpForm = () => {
             border: '2px solid #FFD700',
             borderRadius: '12px'
         }}>
-            <form onSubmit={handleSubmit}>
+            <div
+            style={{
+                fontFamily: 'Roboto',
+                marginBottom: '2vh'
+            }}>
+                {errors.length > 0 && errors}
+            </div>
+
+            <form>
                 <label className='signup-inputs'>
                     <input
                       type="text"
@@ -67,7 +99,12 @@ const SignUpForm = () => {
                     />
                 </label>
 
-                <button type='submit' id='signup-button'>
+                <button
+                onClick={e => {
+                    e.preventDefault();
+                    setSubmitted(true);
+                }}
+                id='signup-button'>
                     Confirm
                 </button>
             </form>

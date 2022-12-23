@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { resetGame, resetStats } from '../../store/game';
-import { resetStatuses } from '../../store/statuses';
+import { resetStatuses } from '../../store/offerStatuses';
 import { updateUserData } from '../../store/user.js';
 
 import Badge from '../Badge/Badge.js';

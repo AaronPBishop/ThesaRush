@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { initiateBoard, dropLettersAction, setTileDropped } from '../../store/game.js';
-import { loadOffer } from '../../store/statuses.js';
+import { loadOffer } from '../../store/offerStatuses.js';
 
 import Column from '../Column/Column.js';
 
@@ -19,7 +19,7 @@ const Board = ({ difficulty }) => {
 
     const board = useSelector(state => state.game.board);
     const user = useSelector(state => state.user);
-    const paused = useSelector(state => state.statuses.paused);
+    const paused = useSelector(state => state.offerStatuses.paused);
 
     const [switched, setSwitched] = useState(false);
     const [tripped, setTripped] = useState(false);

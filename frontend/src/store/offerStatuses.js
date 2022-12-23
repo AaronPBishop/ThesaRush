@@ -23,7 +23,7 @@ export const resetStatuses = () => {
     };
 };
 
-const statusReducer = (state = initialState, action) => {
+const offerStatusesReducer = (state = initialState, action) => {
     const currentState = { ...state };
 
     switch (action.type) {
@@ -45,4 +45,4 @@ const statusReducer = (state = initialState, action) => {
     };
 };
 
-export default statusReducer;
+export default offerStatusesReducer;

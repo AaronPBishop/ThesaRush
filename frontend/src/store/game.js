@@ -14,7 +14,7 @@ const initialState = {
         cleared: false,
         submitted: false,
         tileDropped: false,
-        submittedLongWord: false,
+        earnedBomb: false,
         earnedVoid: false
     },
     stats: {
@@ -247,7 +247,7 @@ const gameReducer = (state = initialState, action) => {
         case 'CLEAR_TILES': {
             const values = Object.values(currentState.finalTiles);
 
-            if (values.length >= 6) currentState.statuses.submittedLongWord = true;
+            if (values.length >= 6) currentState.statuses.earnedBomb = true;
 
             if (values.length >= 8) {
                 currentState.stats.wordSmith += 1;
@@ -350,9 +350,9 @@ const gameReducer = (state = initialState, action) => {
         };
 
         case 'DROP_LETTERS': {
-            if (currentState.statuses.submittedLongWord === true) {
+            if (currentState.statuses.earnedBomb === true) {
                 currentState.board = dropLetters(currentState.board, 'bomb');
-                currentState.statuses.submittedLongWord = false;
+                currentState.statuses.earnedBomb = false;
 
                 return currentState;
             };

@@ -3,13 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { clearColumn } from "../../store/game.js";
 import { buyLife, spendLife } from "../../store/user.js";
-import { setPaused, loadOffer } from '../../store/statuses.js';
+import { setPaused, loadOffer } from '../../store/offerStatuses.js';
 
 const OfferLife = () => {
     const dispatch = useDispatch();
 
     const user = useSelector(state => state.user);
-    const offerState = useSelector(state => state.statuses.loadOffer);
+    const offerState = useSelector(state => state.offerStatuses.loadOffer);
     const backgroundColor = useSelector(state => state.menu.backgroundColor);
 
     useEffect(() => {if (offerState === true) dispatch(setPaused(true))}, [offerState]);

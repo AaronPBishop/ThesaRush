@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import { loginUserThunk } from '../../store/user.js';
 import { setClickedLogIn } from '../../store/menu.js';
@@ -15,7 +15,7 @@ const LogInForm = () => {
     const handleSubmit = e => {
         e.preventDefault();
 
-        dispatch(loginUserThunk(email, password));
+        dispatch(loginUserThunk(email.toLowerCase(), password));
         dispatch(setClickedLogIn(false));
     };
 

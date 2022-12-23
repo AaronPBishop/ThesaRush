@@ -31,7 +31,7 @@ import {
     removeLastChar
 } from '../../store/game';
 
-import { resetStatuses } from '../../store/statuses';
+import { resetStatuses } from '../../store/offerStatuses';
 
 const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmith, voidMaster }) => {
     const history = useHistory();
