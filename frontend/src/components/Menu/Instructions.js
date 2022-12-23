@@ -48,7 +48,7 @@ const Instructions = ({ clickedBack }) => {
                         </li>
 
                         <li style={{marginTop: '4vh'}}>
-                            Invalid words cause new tiles to drop immediately. Three invalid submissions in a row causes an entire row of letters to drop.
+                            Invalid words cause new tiles to drop immediately. Three invalid submissions in a row causes an entire row of tiles to drop.
                         </li>
 
                         <li style={{marginTop: '4vh'}}>
@@ -57,6 +57,10 @@ const Instructions = ({ clickedBack }) => {
 
                         <li style={{marginTop: '4vh'}}>
                             Submit an 8+ letter word to clear the <i>entire bottom row</i> and get a bomb tile.
+                        </li>
+
+                        <li style={{marginTop: '4vh'}}>
+                            Lives cost 1k points and are offered upon `Game Over` to signed-in users if adequate points or lives are available. Upon using, all columns stacked to the height of the board will be cleared and you may continue playing!
                         </li>
                     </div>
                 }
@@ -133,11 +137,11 @@ const Instructions = ({ clickedBack }) => {
                             <div style={{
                                 display: 'flex', 
                                 justifyContent: 'center', 
-                                marginTop: '1.5vh'}}>
-                                <Letter hidden={false} letter='B' colPos={0} rowPos={0} type='new' color={null} properties='bomb' />
-                                <Letter hidden={false} letter='S' colPos={0} rowPos={0} type='new' color={null} properties={{stone: 2}} />
-                                <Letter hidden={false} letter='G' colPos={0} rowPos={0} type='new' color='rgb(210, 200, 30)' properties='gold' />
-                                <Letter hidden={false} letter='' colPos={0} rowPos={0} type='new' color='black' properties={{void: true}} />
+                                marginTop: '15.5vh'}}>
+                                <Letter hidden={false} letter='B' colPos={0} rowPos={0} color={null} properties='bomb' />
+                                <Letter hidden={false} letter='S' colPos={0} rowPos={0} color={null} properties={{stone: 2}} />
+                                <Letter hidden={false} letter='G' colPos={0} rowPos={0} color='rgb(210, 200, 30)' properties='gold' />
+                                <Letter hidden={false} letter='' colPos={0} rowPos={0} color='black' properties={{void: true}} />
                             </div>
                         </div>
                     </div>
