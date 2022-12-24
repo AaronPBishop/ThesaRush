@@ -45,9 +45,9 @@ class User(db.Model):
     # league = relationship("LeaderBoard", back_populates=("rankings"))
 
     def to_dict(self):
-        # json_trophies = []
-        # for trophy in self.trophies:
-        #     json_trophies.append(trophy.to_dict())
+        json_trophies = []
+        for trophy in self.trophies:
+            json_trophies.append(trophy.to_dict())
 
         return {
             'user_id': self.id,
@@ -63,8 +63,8 @@ class User(db.Model):
             'stone_crusher': self.stone_crusher,
             'gold_miner': self.gold_miner,
             'word_smith': self.word_smith,
-            'void_master': self.void_master
-            # 'trophies': json_trophies
+            'void_master': self.void_master,
+            'trophies': json_trophies
         }
 
 
@@ -76,6 +76,14 @@ class Trophy(db.Model):
     user_id = Column(Integer, ForeignKey('users.id'), nullable=False)
 
     user = relationship("User", back_populates="trophies")
+
+    def to_dict(self):
+
+        return {
+            'trophy_id': self.id,
+            'trophy_name': self.trophy_name,
+            'user_id': self.user_id
+        }
 
 
 # class LeaderBoard(db.Model):

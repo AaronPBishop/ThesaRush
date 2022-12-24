@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 
-from app.models import User, db
+from app.models import User, Trophy, db
 
 bp = Blueprint("users", __name__, url_prefix="/users")
 
@@ -29,6 +29,25 @@ def update_user_scores(id):
         if key != 'longest_word':
             attr = getattr(queried_user, key)
             setattr(queried_user, key, attr + val)
+
+    if queried_user.bombardier >= 50:
+        has_trophy = False
+        for trophy in queried_user.trophies:
+            curr_trophy = trophy.to_dict()
+
+            if curr_trophy['trophy_name'] == 'Blast Master':
+                has_trophy = True
+        
+        if has_trophy == False:
+            new_trophy = Trophy(
+                trophy_name='Blast Master',
+                user_id=queried_user.id
+            )
+
+            queried_user.points += 5000
+            queried_user.points_balance += 5000
+
+            db.session.add(new_trophy)
 
     db.session.commit()
     
