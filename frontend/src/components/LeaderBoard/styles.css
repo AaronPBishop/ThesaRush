@@ -1,0 +1,13 @@
+.player-headings {
+    display: flex;
+    justify-content: center;
+    font-family: 'Bungee Spice';
+
+    width: 20vw;
+
+    padding: 0.5vw;
+    margin-bottom: 2vh;
+
+    border-top: 2px solid rgb(120, 120, 255);
+    border-bottom: 2px solid rgb(120, 120, 255);
+}
