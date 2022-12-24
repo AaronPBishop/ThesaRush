@@ -6,6 +6,7 @@ import './styles.css'
 const UserStats = () => {
     const user = useSelector(state => state.user);
 
+    const [clicked, setClicked] = useState(false);
     const [stat, setStat] = useState('');
 
     useEffect(() => {
@@ -16,21 +17,26 @@ const UserStats = () => {
 
     const [statsMap] = useState({
         high_score: ['High Score', false],
-        points: ['Total points Earned', false],
+        points: ['Total Points Earned', false],
         words: ['Valid Words Submitted', false],
         longest_word: ['Longest Word', false],
         tiles_cleared: ['Tiles Cleared', false]
     });
 
     return (
-        <div className='user-profile-boxes'>
+        <div 
+        className='user-profile-boxes'>
             <p>Player Stats</p>
             {
                 Object.keys(user).map((stat, i) => {
                     return (
                         statsMap[stat] && 
                         <div 
-                        onClick={() => setStat(`${stat}`)}
+                        onClick={() => {
+                            setStat(`${stat}`);
+                            setClicked(clicked => !clicked);
+                        }}
+                        id={clicked ? 'stat-swivel' : 'stat-re-swivel'}
                         className='user-stat-boxes'
                         key={i}
                         >

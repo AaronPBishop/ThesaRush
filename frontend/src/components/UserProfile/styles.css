@@ -6,20 +6,54 @@
 
     color: white;
 
-    min-height: 89.4vh;
-    max-height: 89.4vh;
+    min-height: 97vh;
+    max-height: 97vh;
     min-width: 55vw;
     max-width: 55vw;
     
     box-shadow: 0px 10px 20px rgb(0, 110, 0);
 
-    position: relative;
-    top: 4vh;
-
     border-radius: 25px;
     border: 2px solid rgb(255, 255, 60);
 
     overflow: hidden;
+}
+
+#user-trophies-container {
+    display: flex;
+    justify-content: center;
+    
+    position: absolute;
+    top: 2vh;
+
+    width: 38vw;
+    height: 28vh;
+
+    padding: 1vw;
+    margin-left: 2vw;
+
+    border: 2px solid rgb(225, 225, 40);
+    border-radius: 12px;
+}
+
+.user-profile-boxes {
+    display: flex; 
+    justify-content: center;
+
+    border: 2px solid rgb(225, 225, 40);
+    border-radius: 12px;
+
+    margin-top: 30.5vh;
+    margin-left: 2vw;
+
+    overflow-Y: auto;
+    flex-wrap: wrap;
+
+    min-width: 18vw;
+    max-width: 18vw;
+    max-height: 58vh;
+
+    z-Index: 300;
 }
 
 .user-stat-boxes {
@@ -45,17 +79,18 @@
     cursor: pointer;
 }
 
-.user-profile-boxes {
-    display: flex; 
-    justify-content: center;
-    border: 2px solid rgb(225, 225, 40);
-    border-radius: 12px;
-    margin-top: 10vh;
-    margin-right: 1vw;
-    overflow-Y: auto;
-    flex-wrap: wrap;
-    min-width: 18vw;
-    max-width: 18vw;
-    max-height: 68vh;
-    z-Index: 300;
+/* #stat-swivel {
+    animation: stat-swivel .2s;
 }
+
+#stat-re-swivel {
+    animation: stat-re-swivel .2s;
+}
+
+@keyframes stat-swivel {
+    from {height: 0vh;}
+}
+
+@keyframes stat-re-swivel {
+    from {height: 0vh;}
+} */

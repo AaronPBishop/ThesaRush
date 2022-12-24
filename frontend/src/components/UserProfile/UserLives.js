@@ -18,8 +18,8 @@ const UserLives = () => {
             flexWrap: 'wrap',
             maxWidth: '10vw',
             maxHeight: '10vh',
-            marginLeft: '2vw',
-            marginTop: '60vh'
+            marginRight: '1vw',
+            marginTop: '70.5vh'
         }}>
             <p style={{marginBottom: '-1.5vh'}}>Lives Available: <b>{user.lives}</b></p>
             <p style={{marginBottom: '1.5vh'}}>Points balance: <b>{user.points_balance}</b></p>

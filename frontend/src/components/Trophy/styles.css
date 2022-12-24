@@ -1,0 +1,42 @@
+.trophies {
+    display: flex;
+    justify-content: center;
+
+    background-image: url('../../trophy-solid.svg');
+    background-position-x: center;
+    background-position-y: 3vh;
+    background-size: 18vh;
+    background-repeat: no-repeat;
+
+    border-radius: 8px;
+
+    width: 16vw;
+    height: 30vh;
+
+    cursor: pointer;
+}
+
+#animate-text {
+    animation: push-text .25s;
+}
+
+#animate-swivel {
+    animation: swivel .2s;
+}
+
+#re-animate-swivel {
+    animation: re-swivel .2s;
+}
+
+@keyframes push-text {
+    from {position: absolute}
+    to {position: relative}
+}
+
+@keyframes swivel {
+    from {width: 0vw}
+}
+
+@keyframes re-swivel {
+    from {width: 0vw}
+}

@@ -102,14 +102,20 @@ const RankedPlayer = ({ score, userName, id }) => {
                         }
                     </div>
 
-                    <div style={{display: players[id] && players[id].trophies.length > 0 ? 'flex' : 'none', justifyContent: 'center', marginTop: '4vh'}}>
+                    <div style={{display: players[id] && players[id].trophies.length > 0 ? 'flex' : 'none', justifyContent: 'center', marginTop: '2vh'}}>
                         <div className='player-headings'>Trophies</div>
                     </div>
 
                     <div style={{display: 'flex', justifyContent: 'center', flexWrap: 'wrap', marginTop: '2.5vh'}}>
                         {
                             players[id] && players[id].trophies.length > 0 &&
-                            players[id].trophies.map((trophy, i) =>  <Trophy trophyType={trophy.trophy_name} key={i} />)
+                            players[id].trophies.map((trophy, i) => 
+                                <div
+                                style={{marginBottom: '4vh'}}
+                                onClick={e => e.stopPropagation()}>
+                                    <Trophy trophyType={trophy.trophy_name} key={i} />
+                                </div>
+                            )
                         }
                     </div>
                 </div>

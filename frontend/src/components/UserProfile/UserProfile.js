@@ -4,11 +4,13 @@ import Navigation from '../Navigation/Navigation.js';
 import UserStats from './UserStats.js';
 import UserLives from './UserLives.js';
 import UserBadges from './UserBadges.js';
+import Trophy from '../Trophy/Trophy.js';
 
 import './styles.css'
 
 const UserProfile = () => {
     const menu = useSelector(state => state.menu);
+    const user = useSelector(state => state.user);
 
     return (
         <div 
@@ -16,10 +18,28 @@ const UserProfile = () => {
         id='profile-box'>
             <Navigation hidden={true} />
 
+            <div id='user-trophies-container'>
+                {
+                    user.trophies.length > 0 ?
+                    user.trophies.map((trophy, i) => (
+                        <div
+                        style={{marginBottom: '4vh'}}
+                        onClick={e => e.stopPropagation()}>
+                            <Trophy trophyType={trophy.trophy_name} container={'userProfile'} key={i} />
+                        </div>
+                    )) : 
+                    <div style={{marginTop: '6vh', fontSize: '24px', lineHeight: '6vh'}}>
+                        <b>No Trophies Earned Yet!</b>
+                        <br/>
+                        <b>Rack up badges to earn them.</b>
+                    </div>
+                }
+            </div>
+
             <div style={{display: 'flex', justifyContent: 'space-between', width: 'contain'}}>
-                <UserLives />
                 <UserBadges />
                 <UserStats />
+                <UserLives />
             </div>
         </div>
     );
