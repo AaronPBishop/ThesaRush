@@ -42,10 +42,6 @@ class User(db.Model):
     trophies = relationship("Trophy", back_populates="user", cascade="all, delete")
 
     def to_dict(self):
-        json_trophies = []
-        for trophy in self.trophies:
-            json_trophies.append(trophy.to_dict())
-
         return {
             'user_id': self.id,
             'user_name': self.user_name,
@@ -61,14 +57,10 @@ class User(db.Model):
             'gold_miner': self.gold_miner,
             'word_smith': self.word_smith,
             'void_master': self.void_master,
-            'trophies': json_trophies
+            'trophies': [trophy.to_dict() for trophy in self.trophies]
         }
 
     def to_safe_dict(self):
-        json_trophies = []
-        for trophy in self.trophies:
-            json_trophies.append(trophy.to_dict())
-
         return {
             'points': self.points,
             'words': self.words,
@@ -79,7 +71,7 @@ class User(db.Model):
             'gold_miner': self.gold_miner,
             'word_smith': self.word_smith,
             'void_master': self.void_master,
-            'trophies': json_trophies
+            'trophies': [trophy.to_dict() for trophy in self.trophies]
         }
 
     def has_trophy(self, trophy_type):

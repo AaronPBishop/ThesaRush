@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request
 
 from app.models import User, Trophy, db
 
@@ -13,7 +13,7 @@ def fetch_user_data(id):
 
 
 @bp.route('/<id>', methods=['PUT'])
-def update_user_scores(id):
+def update_user_data(id):
     req_data = request.json
     queried_user = User.query.get_or_404(id)
 
@@ -54,20 +54,19 @@ def fetch_all_players():
     for user in queried_users:
         users[user.id] = user.to_safe_dict()
 
-    return jsonify(users)
+    return users
 
 
 @bp.route('/new', methods=['POST'])
 def create_new_user():
     req_data = request.json
-    status = 202
 
     users = User.query.all()
     for user in users:
         if user.user_email == req_data['email']:
-            return jsonify({'error': 'This email already exists', 'status': 400}), 400
+            return {'error': 'This email already exists', 'status': 400}, 400
         if user.user_name == req_data['user_name']:
-            return jsonify({'error': 'This username is taken', 'status': 400}), 400
+            return {'error': 'This username is taken', 'status': 400}, 400
 
     new_user = User(
         user_name = req_data['user_name'],
@@ -92,17 +91,16 @@ def create_new_user():
 
     res_data = {
         'id': new_user.id,
-        'status': status
+        'status': 200
     }
 
-    return jsonify(res_data)
+    return res_data
 
 
 @bp.route('/login', methods=['POST'])
 def login_user():
     req_data = request.json
-    status = 200
-
+    
     email = req_data['email']
     password = req_data['password']
     
@@ -110,16 +108,10 @@ def login_user():
     for user in users:
         if user.user_email == email:
             if user.user_password == password:
-                res_data = {
-                    'id': user.id,
-                    'status': status
-                }
-
-                return jsonify(res_data)
+                return {'id': user.id, 'status': 200}, 200
             else:
                 if password != user.user_password:
-                    status = 404
-                    return jsonify(status)
+                    return {'error': 'Incorrect password', 'status': 400}, 400
 
 
 @bp.route('/rankings', methods=['GET'])
@@ -130,7 +122,7 @@ def fetch_ranking_data():
     for user in users:
         rankings[user.high_score] = [user.user_name, user.id]
    
-    return jsonify(rankings)
+    return rankings
 
 
 @bp.route('/lives/<id>', methods=['PUT'])
@@ -138,20 +130,15 @@ def add_life(id):
     queried_user = User.query.get_or_404(id)
 
     if queried_user.points_balance < 1000:
-        return jsonify({'error': 'Not enough points', 'status': 400}), 400
+        return {'error': 'Not enough points', 'status': 400}, 400
 
     if queried_user.points_balance >= 1000:
         queried_user.points_balance -= 1000
         queried_user.lives += 1
 
     db.session.commit()
-
-    res_data = {
-        'points_balance': queried_user.points_balance,
-        'lives': queried_user.lives
-    }
     
-    return jsonify(res_data)
+    return {'points_balance': queried_user.points_balance, 'lives': queried_user.lives}, 201
 
 
 @bp.route('/lives/use/<id>', methods=['PUT'])
@@ -161,10 +148,5 @@ def use_life(id):
     queried_user.lives -= 1
 
     db.session.commit()
-
-    res_data = {
-        'points_balance': queried_user.points_balance,
-        'lives': queried_user.lives
-    }
     
-    return jsonify(res_data)
+    return {'points_balance': queried_user.points_balance, 'lives': queried_user.lives}, 201

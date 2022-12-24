@@ -1,26 +1,19 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
+
+import StatBox from './StatBox';
 
 import './styles.css'
 
 const UserStats = () => {
     const user = useSelector(state => state.user);
 
-    const [clicked, setClicked] = useState(false);
-    const [stat, setStat] = useState('');
-
-    useEffect(() => {
-        if (stat.length) statsMap[stat][1] = !statsMap[stat][1];
-
-        setStat('');
-    }, [stat]);
-
     const [statsMap] = useState({
-        high_score: ['High Score', false],
-        points: ['Total Points Earned', false],
-        words: ['Valid Words Submitted', false],
-        longest_word: ['Longest Word', false],
-        tiles_cleared: ['Tiles Cleared', false]
+        high_score: 'High Score',
+        points: 'Total Points Earned',
+        words: 'Valid Words Submitted',
+        longest_word: 'Longest Word',
+        tiles_cleared: 'Tiles Cleared'
     });
 
     return (
@@ -28,34 +21,7 @@ const UserStats = () => {
         className='user-profile-boxes'>
             <p>Player Stats</p>
             {
-                Object.keys(user).map((stat, i) => {
-                    return (
-                        statsMap[stat] && 
-                        <div 
-                        onClick={() => {
-                            setStat(`${stat}`);
-                            setClicked(clicked => !clicked);
-                        }}
-                        id={clicked ? 'stat-swivel' : 'stat-re-swivel'}
-                        className='user-stat-boxes'
-                        key={i}
-                        >
-                            <p style={{marginTop: statsMap[stat][1] && '-0.5vh'}}>{statsMap[stat][0]}</p>
-                            {
-                                statsMap[stat][1] &&
-                                <p style={{
-                                    marginTop: '-1vh', 
-                                    color: 'rgb(223, 255, 0)', 
-                                    fontWeight: 'bold', 
-                                    textShadow: '0px 1px 2px black',
-                                    letterSpacing: '1px'
-                                }}>
-                                    {user[stat]}
-                                </p>
-                            }
-                        </div>
-                    )
-                })
+                Object.keys(user).map((stat, i) => statsMap[stat] && <StatBox statName={statsMap[stat]} statTotal={user[stat]} key={i} />)
             }
         </div>
     );

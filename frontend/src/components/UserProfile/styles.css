@@ -29,6 +29,8 @@
     width: 38vw;
     height: 28vh;
 
+    overflow-x: auto;
+
     padding: 1vw;
     margin-left: 2vw;
 
@@ -79,7 +81,7 @@
     cursor: pointer;
 }
 
-/* #stat-swivel {
+#stat-swivel {
     animation: stat-swivel .2s;
 }
 
@@ -93,4 +95,4 @@
 
 @keyframes stat-re-swivel {
     from {height: 0vh;}
-} */
+}
