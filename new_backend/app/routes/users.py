@@ -30,24 +30,16 @@ def update_user_scores(id):
             attr = getattr(queried_user, key)
             setattr(queried_user, key, attr + val)
 
-    if queried_user.bombardier >= 50:
-        has_trophy = False
-        for trophy in queried_user.trophies:
-            curr_trophy = trophy.to_dict()
+    if queried_user.bombardier >= 50 and queried_user.has_trophy('Master Blaster') == False:
+        new_trophy = Trophy(
+            trophy_name='Master Blaster',
+            user_id=queried_user.id
+        )
 
-            if curr_trophy['trophy_name'] == 'Blast Master':
-                has_trophy = True
-        
-        if has_trophy == False:
-            new_trophy = Trophy(
-                trophy_name='Blast Master',
-                user_id=queried_user.id
-            )
+        queried_user.points += 5000
+        queried_user.points_balance += 5000
 
-            queried_user.points += 5000
-            queried_user.points_balance += 5000
-
-            db.session.add(new_trophy)
+        db.session.add(new_trophy)
 
     db.session.commit()
     
@@ -60,7 +52,7 @@ def fetch_all_players():
 
     users = {}
     for user in queried_users:
-        users[user.id] = user.to_dict()
+        users[user.id] = user.to_safe_dict()
 
     return jsonify(users)
 

@@ -39,10 +39,7 @@ class User(db.Model):
     word_smith = Column(Integer)
     void_master = Column(Integer)
 
-    # current_league = Column(String(40), ForeignKey('leaderboard.league'), nullable=True)
-
     trophies = relationship("Trophy", back_populates="user", cascade="all, delete")
-    # league = relationship("LeaderBoard", back_populates=("rankings"))
 
     def to_dict(self):
         json_trophies = []
@@ -67,6 +64,36 @@ class User(db.Model):
             'trophies': json_trophies
         }
 
+    def to_safe_dict(self):
+        json_trophies = []
+        for trophy in self.trophies:
+            json_trophies.append(trophy.to_dict())
+
+        return {
+            'points': self.points,
+            'words': self.words,
+            'longest_word': self.longest_word,
+            'tiles_cleared': self.tiles_cleared,
+            'bombardier': self.bombardier,
+            'stone_crusher': self.stone_crusher,
+            'gold_miner': self.gold_miner,
+            'word_smith': self.word_smith,
+            'void_master': self.void_master,
+            'trophies': json_trophies
+        }
+
+    def has_trophy(self, trophy_type):
+        has_trophy = False
+
+        for trophy in self.trophies:
+            curr_trophy = trophy.to_dict()
+
+            if curr_trophy['trophy_name'] == trophy_type:
+                has_trophy = True
+
+        return has_trophy
+
+
 
 class Trophy(db.Model):
     __tablename__ = 'trophies'
@@ -84,11 +111,3 @@ class Trophy(db.Model):
             'trophy_name': self.trophy_name,
             'user_id': self.user_id
         }
-
-
-# class LeaderBoard(db.Model):
-#     __tablename__ = 'leaderboard'
-#     id = Column(Integer, primary_key=True)
-#     league = Column(String(40))
-
-#     rankings = relationship("User", back_populates="league")

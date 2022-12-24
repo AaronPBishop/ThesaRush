@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 import Badge from "../Badge/Badge.js";
+import Trophy from "../Trophy/Trophy.js";
 
 import './styles.css';
 
 const RankedPlayer = ({ score, userName, id }) => {
-    const ignoreStats = ['user_id', 'user_name', 'high_score', 'points_balance', 'lives', 'trophies'];
     const badges = ['bombardier', 'stone_crusher', 'gold_miner', 'word_smith', 'void_master'];
 
     const user = useSelector(state => state.user);
@@ -76,7 +76,7 @@ const RankedPlayer = ({ score, userName, id }) => {
                     {
                         players[id] &&
                         orderKeys(Object.keys(players[id])).map((stat, i) => (
-                            (!ignoreStats.includes(stat) && !badges.includes(stat)) &&
+                            (stat !== 'trophies' && !badges.includes(stat)) &&
                             <div style={{display: 'flex', justifyContent: 'space-between', width: '24vw', margin: 'auto', flexWrap: 'wrap'}} key={i}>
                                 <p style={{margin: '1vw'}}>{statsMap[stat]}:</p>
                                 <b style={{margin: '1vw'}}>{players[id][stat]}</b>
@@ -92,13 +92,24 @@ const RankedPlayer = ({ score, userName, id }) => {
                         {
                             players[id] &&
                             Object.keys(players[id]).map((stat, i) => (
-                                (badges.includes(stat)) &&
+                                (players[id][stat] > 0 && badges.includes(stat)) &&
                                 <div 
                                 style={{marginBottom: '1vh'}}
                                 onClick={e => e.stopPropagation()}>
                                     <Badge badgeType={mapPlayerBadges[stat]} numBadges={players[id][stat]} key={i} />
                                 </div>
                             ))          
+                        }
+                    </div>
+
+                    <div style={{display: players[id] && players[id].trophies.length > 0 ? 'flex' : 'none', justifyContent: 'center', marginTop: '4vh'}}>
+                        <div className='player-headings'>Trophies</div>
+                    </div>
+
+                    <div style={{display: 'flex', justifyContent: 'center', flexWrap: 'wrap', marginTop: '2.5vh'}}>
+                        {
+                            players[id] && players[id].trophies.length > 0 &&
+                            players[id].trophies.map((trophy, i) =>  <Trophy trophyType={trophy.trophy_name} key={i} />)
                         }
                     </div>
                 </div>
