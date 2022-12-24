@@ -6,7 +6,7 @@ import Badge from "../Badge/Badge.js";
 import './styles.css';
 
 const RankedPlayer = ({ score, userName, id }) => {
-    const ignoreStats = ['user_id', 'user_name', 'high_score', 'points_balance', 'lives'];
+    const ignoreStats = ['user_id', 'user_name', 'high_score', 'points_balance', 'lives', 'trophies'];
     const badges = ['bombardier', 'stone_crusher', 'gold_miner', 'word_smith', 'void_master'];
 
     const user = useSelector(state => state.user);
