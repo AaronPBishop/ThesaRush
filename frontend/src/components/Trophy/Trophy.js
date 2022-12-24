@@ -11,7 +11,28 @@ const Trophy = ({ trophyType, container }) => {
             backgroundColor: 'rgb(255,69,0)',
             color: 'yellow',
             boxShadow: '0px 0px 15px 5px rgb(255, 49, 49)',
-            border: '4px solid rgb(180, 65, 0)'
+            border: '4px solid rgb(160, 55, 0)'
+        },
+        ObeliskOracle: {
+            description: 'Earned 50 Stone Crusher Badges',
+            backgroundColor: 'rgb(30, 80, 60)',
+            color: 'white',
+            boxShadow: '0px 0px 14px 8px #383630',
+            border: '4px solid rgb(0, 40, 30)'
+        },
+        KingMidas: {
+            description: 'Earned 50 Gold Miner Badges',
+            backgroundColor: 'rgb(210, 200, 30)',
+            color: 'white',
+            boxShadow: '0px 0px 12px 4px #FFD700',
+            border: '4px solid yellow'
+        },
+        AntimatterVirtuoso: {
+            description: 'Earned 50 Void Master Badges',
+            backgroundColor: 'black',
+            color: 'white',
+            boxShadow: '0px 0px 12px 4px white',
+            border: '4px solid white'
         }
     };
 

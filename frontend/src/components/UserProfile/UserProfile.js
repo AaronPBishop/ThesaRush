@@ -23,7 +23,7 @@ const UserProfile = () => {
                     user.trophies.length > 0 ?
                     user.trophies.map((trophy, i) => (
                         <div
-                        style={{marginBottom: '4vh'}}
+                        style={{marginRight: '2vw', marginLeft: '2vw', marginBottom: '4vh'}}
                         onClick={e => e.stopPropagation()}>
                             <Trophy trophyType={trophy.trophy_name} container={'userProfile'} key={i} />
                         </div>

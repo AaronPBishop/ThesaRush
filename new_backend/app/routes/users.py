@@ -41,6 +41,39 @@ def update_user_data(id):
 
         db.session.add(new_trophy)
 
+    if queried_user.stone_crusher >= 50 and queried_user.has_trophy('Obelisk Oracle') == False:
+        new_trophy = Trophy(
+            trophy_name='Obelisk Oracle',
+            user_id=queried_user.id
+        )
+
+        queried_user.points += 5000
+        queried_user.points_balance += 5000
+
+        db.session.add(new_trophy)
+
+    if queried_user.gold_miner >= 50 and queried_user.has_trophy('King Midas') == False:
+        new_trophy = Trophy(
+            trophy_name='King Midas',
+            user_id=queried_user.id
+        )
+
+        queried_user.points += 5000
+        queried_user.points_balance += 5000
+
+        db.session.add(new_trophy)
+
+    if queried_user.void_master >= 50 and queried_user.has_trophy('Antimatter Virtuoso') == False:
+        new_trophy = Trophy(
+            trophy_name='Antimatter Virtuoso',
+            user_id=queried_user.id
+        )
+
+        queried_user.points += 5000
+        queried_user.points_balance += 5000
+
+        db.session.add(new_trophy)
+
     db.session.commit()
     
     return queried_user.to_dict()

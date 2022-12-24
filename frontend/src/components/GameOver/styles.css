@@ -107,14 +107,19 @@ b {
 }
 
 ::-webkit-scrollbar {
+    height: 3px;
     width: 3px;
 	background-color: transparent;
 }
 
 ::-webkit-scrollbar-track {
 	border-radius: 44px;
+
     margin-top: 3vh;
     margin-bottom: 3vh;
+    margin-left: 3vh;
+    margin-right: 3vh;
+    
 	background-color: transparent;
 }
 

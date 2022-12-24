@@ -21,12 +21,13 @@
 
 #user-trophies-container {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     
     position: absolute;
     top: 2vh;
 
-    width: 38vw;
+    min-width: 38vw;
+    max-width: 38vw;
     height: 28vh;
 
     overflow-x: auto;
