@@ -50,6 +50,8 @@
     margin-left: 2vw;
 
     overflow-Y: auto;
+    overflow-x: hidden;
+
     flex-wrap: wrap;
 
     min-width: 18vw;
