@@ -8,14 +8,6 @@ db = SQLAlchemy()
 
 Base = declarative_base()
 
-friends = Table(
-    "friends",
-    Base.metadata,
-    Column("user_id", Integer, ForeignKey("users.id"), primary_key=True),
-    Column("friend_id", Integer, ForeignKey("users.id"), primary_key=True)
-)
-
-
 class User(db.Model):
     __tablename__ = 'users'
 
