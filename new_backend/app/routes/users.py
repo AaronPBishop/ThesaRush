@@ -30,49 +30,26 @@ def update_user_data(id):
             attr = getattr(queried_user, key)
             setattr(queried_user, key, attr + val)
 
-    if queried_user.bombardier >= 50 and queried_user.has_trophy('Master Blaster') == False:
-        new_trophy = Trophy(
-            trophy_name='Master Blaster',
-            user_id=queried_user.id
-        )
+    trophies = {
+        'bombardier': 'Master Blaster',
+        'stone_crusher': 'Obelisk Oracle',
+        'gold_miner': 'King Midas',
+        'void_master': 'Antimatter Virtuoso'
+    }
 
-        queried_user.points += 5000
-        queried_user.points_balance += 5000
+    for key, val in trophies.items():
+        attr = getattr(queried_user, key)
 
-        db.session.add(new_trophy)
+        if attr >= 50 and queried_user.has_trophy(val) == False:
+            new_trophy = Trophy(
+                trophy_name=val,
+                user_id=queried_user.id
+            )
 
-    if queried_user.stone_crusher >= 50 and queried_user.has_trophy('Obelisk Oracle') == False:
-        new_trophy = Trophy(
-            trophy_name='Obelisk Oracle',
-            user_id=queried_user.id
-        )
-
-        queried_user.points += 5000
-        queried_user.points_balance += 5000
-
-        db.session.add(new_trophy)
-
-    if queried_user.gold_miner >= 50 and queried_user.has_trophy('King Midas') == False:
-        new_trophy = Trophy(
-            trophy_name='King Midas',
-            user_id=queried_user.id
-        )
-
-        queried_user.points += 5000
-        queried_user.points_balance += 5000
-
-        db.session.add(new_trophy)
-
-    if queried_user.void_master >= 50 and queried_user.has_trophy('Antimatter Virtuoso') == False:
-        new_trophy = Trophy(
-            trophy_name='Antimatter Virtuoso',
-            user_id=queried_user.id
-        )
-
-        queried_user.points += 5000
-        queried_user.points_balance += 5000
-
-        db.session.add(new_trophy)
+            queried_user.points += 5000
+            queried_user.points_balance += 5000
+    
+            db.session.add(new_trophy)
 
     db.session.commit()
     

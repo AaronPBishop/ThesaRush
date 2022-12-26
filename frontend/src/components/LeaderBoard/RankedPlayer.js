@@ -111,7 +111,7 @@ const RankedPlayer = ({ score, userName, id }) => {
                             players[id] && players[id].trophies.length > 0 &&
                             players[id].trophies.map((trophy, i) => 
                                 <div
-                                style={{minWidth: '16vw', maxWidth: '16vw', marginBottom: '4vh'}}
+                                style={{display: 'flex', justifyContent: 'center', minWidth: '16vw', maxWidth: '16vw', marginBottom: '4vh'}}
                                 onClick={e => e.stopPropagation()}>
                                     <Trophy trophyType={trophy.trophy_name} key={i} />
                                 </div>
