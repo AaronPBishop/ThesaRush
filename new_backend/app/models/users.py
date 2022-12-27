@@ -1,12 +1,7 @@
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.ext.declarative import declarative_base
+from .db import db
 from sqlalchemy.orm import relationship
-from sqlalchemy.schema import Column, ForeignKey, Table
-from sqlalchemy.types import Integer, String
-
-db = SQLAlchemy()
-
-Base = declarative_base()
+from sqlalchemy.schema import Column, ForeignKey
+from sqlalchemy.types import String, Integer
 
 class User(db.Model):
     __tablename__ = 'users'
@@ -17,6 +12,7 @@ class User(db.Model):
     user_email = Column(String(250), nullable=False)
     user_password = Column(String(20), nullable=False)
 
+    level = Column(Integer)
     high_score = Column(Integer)
     points = Column(Integer)
     points_balance = Column(Integer)
@@ -31,12 +27,16 @@ class User(db.Model):
     word_smith = Column(Integer)
     void_master = Column(Integer)
 
+    league_name = Column(String, ForeignKey('leagues.league_name'))
+
+    league = relationship("League", back_populates="ranked_players")
     trophies = relationship("Trophy", back_populates="user", cascade="all, delete")
 
     def to_dict(self):
         return {
             'user_id': self.id,
             'user_name': self.user_name,
+            'level': self.level,
             'high_score': self.high_score,
             'points': self.points,
             'points_balance': self.points_balance,
@@ -49,11 +49,15 @@ class User(db.Model):
             'gold_miner': self.gold_miner,
             'word_smith': self.word_smith,
             'void_master': self.void_master,
+            'league': self.league_name,
             'trophies': [trophy.to_dict() for trophy in self.trophies]
         }
 
     def to_safe_dict(self):
         return {
+            'high_score': self.high_score,
+            'user_name': self.user_name,
+            'level': self.level,
             'points': self.points,
             'words': self.words,
             'longest_word': self.longest_word,
@@ -63,6 +67,7 @@ class User(db.Model):
             'gold_miner': self.gold_miner,
             'word_smith': self.word_smith,
             'void_master': self.void_master,
+            'league': self.league_name,
             'trophies': [trophy.to_dict() for trophy in self.trophies]
         }
 
@@ -76,22 +81,3 @@ class User(db.Model):
                 has_trophy = True
 
         return has_trophy
-
-
-
-class Trophy(db.Model):
-    __tablename__ = 'trophies'
-
-    id = Column(Integer, primary_key=True)
-    trophy_name = Column(String(100))
-    user_id = Column(Integer, ForeignKey('users.id'), nullable=False)
-
-    user = relationship("User", back_populates="trophies")
-
-    def to_dict(self):
-
-        return {
-            'trophy_id': self.id,
-            'trophy_name': self.trophy_name,
-            'user_id': self.user_id
-        }
