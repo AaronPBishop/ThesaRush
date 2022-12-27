@@ -1,39 +1,33 @@
-const initialState = [];
+const initialState = {};
 
-export const populateLeaderBoard = (data) => {
+export const populateLeaderBoard = (players, leagueName) => {
     return {
         type: 'POPULATE_LEADERBOARD',
-        payload: data
+        payload1: players,
+        payload2: leagueName
     };
 };
 
-export const fetchLeaderBoardData = () => async (dispatch) => {
-    const fetchReq = await fetch(`/users/rankings`, {
+export const fetchLeaderBoardData = (leagueName) => async (dispatch) => {
+    const fetchReq = await fetch(`/api/leagues/${leagueName}`, {
         method: 'GET'
     });
 
     const fetchJSON = await fetchReq.json();
     const leaderBoardData = fetchJSON;
 
-    dispatch(populateLeaderBoard(leaderBoardData));
+    dispatch(populateLeaderBoard(leaderBoardData.players, leaderBoardData.league_name));
 };
 
 const leaderBoardReducer = (state = initialState, action) => {
-    const currentState = [ ...state ];
+    const currentState = { ...state };
 
     switch (action.type) {
         case 'POPULATE_LEADERBOARD': {
-            currentState.length = 0;
+            action.payload1.forEach(player => currentState[player.user_name] = player);
+            currentState['league'] = action.payload2;
 
-            for (let score in action.payload) {
-                const playerObj = {};
-
-                playerObj[score] = action.payload[score][0];
-                playerObj['id'] = action.payload[score][1];
-                currentState.push(playerObj);
-            };
-
-            return currentState.reverse();
+            return currentState;
         };
 
         default: return currentState;

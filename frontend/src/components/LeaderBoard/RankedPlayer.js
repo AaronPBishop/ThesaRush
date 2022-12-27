@@ -6,22 +6,26 @@ import Trophy from "../Trophy/Trophy.js";
 
 import './styles.css';
 
-const RankedPlayer = ({ score, userName, id }) => {
+const RankedPlayer = ({ score, userName }) => {
+    const ignore = ['league', 'user_name', 'trophies', 'points'];
     const badges = ['bombardier', 'stone_crusher', 'gold_miner', 'word_smith', 'void_master'];
 
     const user = useSelector(state => state.user);
-    const players = useSelector(state => state.players);
+    const rankings = useSelector(state => state.leaderBoard);
     const clickedLeaderBoard = useSelector(state => state.menu.clickedLeaderBoard);
 
     const [clicked, setClicked] = useState(false);
 
-    useEffect(() => {if (clickedLeaderBoard === false) setClicked(false)}, [clickedLeaderBoard])
+    useEffect(() => {
+        if (clickedLeaderBoard === false) setClicked(false);
+    }, [clickedLeaderBoard]);
 
     const [statsMap] = useState({
-        points: 'Total points Earned',
+        high_score: 'High Score',
         words: 'Valid Words Submitted',
         longest_word: 'Longest Word',
-        tiles_cleared: 'Tiles Cleared'
+        tiles_cleared: 'Tiles Cleared',
+        level: 'Level'
     });
 
     const mapPlayerBadges = {
@@ -59,6 +63,7 @@ const RankedPlayer = ({ score, userName, id }) => {
                 overflowY: 'auto',
                 cursor: 'pointer'
             }}>
+             
                 <p style={{
                     margin: '1vw',
                     color: user.user_name === userName.toString() && 'rgb(255, 255, 60)',
@@ -67,6 +72,7 @@ const RankedPlayer = ({ score, userName, id }) => {
                         {userName}
                     </p>
                 <b style={{margin: '1vw'}}>{score}</b>
+    
                 
                <div style={{display: clicked ? 'block' : 'none', marginTop: '2vh'}}>
 
@@ -74,12 +80,12 @@ const RankedPlayer = ({ score, userName, id }) => {
                         <div className='player-headings'>Stats</div>
                     </div>
                     {
-                        players[id] &&
-                        orderKeys(Object.keys(players[id])).map((stat, i) => (
-                            (stat !== 'trophies' && !badges.includes(stat)) &&
+                        rankings[userName] &&
+                        orderKeys(Object.keys(rankings[userName])).map((stat, i) => (
+                            (!ignore.includes(stat) && !badges.includes(stat)) &&
                             <div style={{display: 'flex', justifyContent: 'space-between', width: '24vw', margin: 'auto', flexWrap: 'wrap'}} key={i}>
                                 <p style={{margin: '1vw'}}>{statsMap[stat]}:</p>
-                                <b style={{margin: '1vw'}}>{players[id][stat]}</b>
+                                <b style={{margin: '1vw'}}>{rankings[userName][stat]}</b>
                             </div>
                         ))          
                     }
@@ -90,26 +96,26 @@ const RankedPlayer = ({ score, userName, id }) => {
 
                     <div style={{display: 'flex', justifyContent: 'center', flexWrap: 'wrap', marginTop: '2.5vh'}}>
                         {
-                            players[id] &&
-                            Object.keys(players[id]).map((stat, i) => (
-                                (players[id][stat] > 0 && badges.includes(stat)) &&
+                            rankings[userName] &&
+                            Object.keys(rankings[userName]).map((stat, i) => (
+                                (rankings[userName][stat] > 0 && badges.includes(stat)) &&
                                 <div 
                                 style={{marginBottom: '1vh'}}
                                 onClick={e => e.stopPropagation()}>
-                                    <Badge badgeType={mapPlayerBadges[stat]} numBadges={players[id][stat]} key={i} />
+                                    <Badge badgeType={mapPlayerBadges[stat]} numBadges={rankings[userName][stat]} key={i} />
                                 </div>
                             ))          
                         }
                     </div>
 
-                    <div style={{display: players[id] && players[id].trophies.length > 0 ? 'flex' : 'none', justifyContent: 'center', marginTop: '2vh'}}>
+                    <div style={{display: rankings[userName] && rankings[userName].trophies && rankings[userName].trophies.length > 0 ? 'flex' : 'none', justifyContent: 'center', marginTop: '2vh'}}>
                         <div className='player-headings'>Trophies</div>
                     </div>
 
                     <div style={{display: 'flex', justifyContent: 'center', flexWrap: 'wrap', marginTop: '2.5vh'}}>
                         {
-                            players[id] && players[id].trophies.length > 0 &&
-                            players[id].trophies.map((trophy, i) => 
+                            rankings[userName] && rankings[userName].trophies && rankings[userName].trophies.length > 0 &&
+                            rankings[userName].trophies.map((trophy, i) => 
                                 <div
                                 style={{display: 'flex', justifyContent: 'center', minWidth: '16vw', maxWidth: '16vw', marginBottom: '4vh'}}
                                 onClick={e => e.stopPropagation()}>

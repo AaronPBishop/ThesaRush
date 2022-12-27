@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 import Navigation from '../Navigation/Navigation.js';
 import LogInForm from './LogInForm.js';
@@ -7,19 +7,25 @@ import SignUpForm from './SignUpForm.js';
 import Difficulties from './Difficulties';
 import Instructions from './Instructions.js';
 import Themes from './Themes.js';
-
+import LeaderBoard from '../LeaderBoard/LeaderBoard.js';
 import UserProfile from '../UserProfile/UserProfile.js';
 
+import { placeUserLeague } from '../../store/user.js';
+
 import './styles.css';
-import LeaderBoard from '../LeaderBoard/LeaderBoard.js';
 
 const Menu = () => {
+    const dispatch = useDispatch();
+
     const [clickedPlay, setClickedPlay] = useState(false);
     const [clickedInstructions, setClickedInstructions] = useState(false);
     const [clickedTheme, setClickedTheme] = useState(false);
     const [clickedBack, setClickedBack] = useState(false);
 
     const menu = useSelector(state => state.menu);
+    const user = useSelector(state => state.user)
+
+    useEffect(() => {if (user.user_name) dispatch(placeUserLeague(user.user_id))}, []);
 
     return (
         menu.clickedProfile === true ? <UserProfile /> :

@@ -19,7 +19,7 @@ const LeaderBoardButton = ({ hidden }) => {
             menu.clickedLeaderBoard === false ? dispatch(setClickedLeaderBoard(true)) : dispatch(setClickedLeaderBoard(false));
         }}
         className="navigation-buttons">
-            Leader Board
+            <p style={{fontFamily: 'Bungee Spice', textShadow: 'black 0px 2px 4px', margin: '0px'}}>League</p>
         </div>
     );
 };

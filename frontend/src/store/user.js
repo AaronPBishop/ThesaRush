@@ -30,7 +30,7 @@ export const logOutUser = () => {
 
 // THUNKS
 export const signUpUserThunk = (userName, email, password) => async (dispatch) => {
-    const fetchReq = await fetch(`/users/new`, {
+    const fetchReq = await fetch(`/api/users/new`, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
@@ -49,7 +49,7 @@ export const signUpUserThunk = (userName, email, password) => async (dispatch) =
 
 
 export const loginUserThunk = (email, password) => async (dispatch) => {
-    const fetchReq = await fetch(`/users/login`, {
+    const fetchReq = await fetch(`/api/users/login`, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
@@ -67,7 +67,7 @@ export const loginUserThunk = (email, password) => async (dispatch) => {
 
 
 export const fetchUserData = (id) => async (dispatch) => {
-    const fetchReq = await fetch(`/users/${id}`, {
+    const fetchReq = await fetch(`/api/users/${id}`, {
         method: 'GET'
     });
 
@@ -78,7 +78,7 @@ export const fetchUserData = (id) => async (dispatch) => {
 };
 
 export const updateUserData = (id, points, words, longestWord, tilesCleared, bombardier, stoneCrusher, goldMiner, wordSmith, voidMaster) => async (dispatch) => {
-    const fetchReq = await fetch(`/users/${id}`, {
+    const fetchReq = await fetch(`/api/users/${id}`, {
         method: 'PUT',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
@@ -100,8 +100,19 @@ export const updateUserData = (id, points, words, longestWord, tilesCleared, bom
     dispatch(populateUserData(userData));
 };
 
+export const placeUserLeague = (id) => async (dispatch) => {
+    const fetchReq = await fetch(`/api/users/place_league/${id}`, {
+        method: 'GET'
+    });
+
+    const fetchJSON = await fetchReq.json();
+    const userData = fetchJSON;
+
+    dispatch(populateUserData(userData));
+};
+
 export const buyLife = (id) => async (dispatch) => {
-    const fetchReq = await fetch(`/users/lives/${id}`, {
+    const fetchReq = await fetch(`/api/users/lives/${id}`, {
         method: 'PUT',
         headers: {'Content-Type': 'application/json'}
     });
@@ -115,7 +126,7 @@ export const buyLife = (id) => async (dispatch) => {
 };
 
 export const spendLife = (id) => async (dispatch) => {
-    const fetchReq = await fetch(`/users/lives/use/${id}`, {
+    const fetchReq = await fetch(`/api/users/lives/use/${id}`, {
         method: 'PUT',
         headers: {'Content-Type': 'application/json'}
     });
