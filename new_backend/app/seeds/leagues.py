@@ -12,6 +12,7 @@ def seed_leagues():
     db.session.add(gold)
     db.session.add(ethereal)
     db.session.add(galaxy)
+
     db.session.commit()
 
 def undo_leagues():

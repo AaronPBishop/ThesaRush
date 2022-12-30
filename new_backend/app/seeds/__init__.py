@@ -6,10 +6,8 @@ from app.models.db import db, environment, SCHEMA
 seed_commands = AppGroup('seed')
 
 @seed_commands.command('all')
-
 def seed():
     if environment == 'production':
-
         undo_leagues()
     seed_leagues()
 
