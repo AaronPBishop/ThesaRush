@@ -3,7 +3,7 @@ const initialState = {
     clickedSignUp: false,
     clickedLogIn: false,
     clickedProfile: false,
-    clickedLeaderBoard: false
+    clickedLeague: false
 };
 
 export const setBackgroundColor = (color) => {
@@ -34,9 +34,9 @@ export const setClickedProfile = (boolean) => {
     };
 };
 
-export const setClickedLeaderBoard = (boolean) => {
+export const setClickedLeague = (boolean) => {
     return {
-        type: 'SET_CLICKED_LEADERBOARD',
+        type: 'SET_CLICKED_LEAGUE',
         payload: boolean
     };
 };
@@ -69,8 +69,8 @@ const menuReducer = (state = initialState, action) => {
             return currentState;
         };
 
-        case 'SET_CLICKED_LEADERBOARD': {
-            currentState.clickedLeaderBoard = action.payload;
+        case 'SET_CLICKED_LEAGUE': {
+            currentState.clickedLeague = action.payload;
 
             return currentState;
         };

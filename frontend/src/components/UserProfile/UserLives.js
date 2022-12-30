@@ -16,10 +16,10 @@ const UserLives = () => {
             display: 'flex',
             justifyContent: 'center',
             flexWrap: 'wrap',
+            marginTop: '12vh',
             maxWidth: '10vw',
             maxHeight: '10vh',
-            marginRight: '1vw',
-            marginTop: '70.5vh'
+            marginLeft: '0.2vw'
         }}>
             <p style={{marginBottom: '-1.5vh'}}>Lives Available: <b>{user.lives}</b></p>
             <p style={{marginBottom: '1.5vh'}}>Points balance: <b>{user.points_balance}</b></p>

@@ -52,11 +52,14 @@
     overflow-Y: auto;
     overflow-x: hidden;
 
+    padding: 1vh;
+
     flex-wrap: wrap;
 
     min-width: 18vw;
     max-width: 18vw;
-    max-height: 58vh;
+
+    max-height: 57vh;
 
     z-Index: 300;
 }
@@ -77,6 +80,7 @@
     height: 8vh;
 
     margin: 2vh;
+
     padding: 1vw;
 
     border-radius: 12px;

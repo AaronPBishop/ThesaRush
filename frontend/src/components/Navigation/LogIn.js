@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { setClickedLogIn, setClickedSignUp, setClickedLeaderBoard } from '../../store/menu.js';
+import { setClickedLogIn, setClickedSignUp, setClickedLeague } from '../../store/menu.js';
 
 import './styles.css'
 
@@ -18,9 +18,9 @@ const LogIn = ({ loggedIn }) => {
         <div 
         style={{minWidth: '6vw', maxWidth: '6vw'}}
         onClick={() => {
-            if (menu.clickedSignUp === true || menu.clickedLeaderBoard === true) {
+            if (menu.clickedSignUp === true || menu.clickedLeague === true) {
                 dispatch(setClickedSignUp(false));
-                dispatch(setClickedLeaderBoard(false));
+                dispatch(setClickedLeague(false));
                 dispatch(setClickedLogIn(true));
 
                 return;

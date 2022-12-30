@@ -1,8 +1,8 @@
 import { useSelector, useDispatch } from "react-redux";
 
-import { setClickedLogIn, setClickedSignUp, setClickedLeaderBoard } from '../../store/menu.js';
+import { setClickedLogIn, setClickedSignUp, setClickedLeague } from '../../store/menu.js';
 
-const LeaderBoardButton = ({ hidden }) => {
+const LeagueButton = ({ hidden }) => {
     const dispatch = useDispatch();
 
     const menu = useSelector(state => state.menu);
@@ -16,7 +16,7 @@ const LeaderBoardButton = ({ hidden }) => {
                 dispatch(setClickedLogIn(false));
             };
 
-            menu.clickedLeaderBoard === false ? dispatch(setClickedLeaderBoard(true)) : dispatch(setClickedLeaderBoard(false));
+            menu.clickedLeague === false ? dispatch(setClickedLeague(true)) : dispatch(setClickedLeague(false));
         }}
         className="navigation-buttons">
             <p style={{fontFamily: 'Bungee Spice', textShadow: 'black 0px 2px 4px', margin: '0px'}}>League</p>
@@ -24,4 +24,4 @@ const LeaderBoardButton = ({ hidden }) => {
     );
 };
 
-export default LeaderBoardButton;
+export default LeagueButton;

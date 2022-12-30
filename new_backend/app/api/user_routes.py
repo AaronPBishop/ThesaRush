@@ -18,10 +18,6 @@ def update_user_data(id):
     req_data = request.json
     queried_user = User.query.get_or_404(id)
 
-    queried_user.level = math.floor(queried_user.points / 1000)
-    if queried_user.level > 30:
-        queried_user.level = 30
-
     if queried_user.high_score < req_data['points']:
         queried_user.high_score = req_data['points']
 
@@ -56,6 +52,11 @@ def update_user_data(id):
     
             db.session.add(new_trophy)
 
+    queried_user.level = math.floor(queried_user.points / 1000)
+    if queried_user.level > 30:
+        queried_user.level = 30
+
+    db.session.add(queried_user)
     db.session.commit()
     
     return queried_user.to_dict()
@@ -134,6 +135,9 @@ def place_user_league(id):
                 queried_user.league_name = key
 
                 queried_league.ranked_players.append(queried_user)
+
+                db.session.add(queried_user)
+                db.session.add(queried_league)
 
                 db.session.commit()
 

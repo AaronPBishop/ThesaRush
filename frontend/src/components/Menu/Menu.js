@@ -7,7 +7,7 @@ import SignUpForm from './SignUpForm.js';
 import Difficulties from './Difficulties';
 import Instructions from './Instructions.js';
 import Themes from './Themes.js';
-import LeaderBoard from '../LeaderBoard/LeaderBoard.js';
+import League from '../League/League.js';
 import UserProfile from '../UserProfile/UserProfile.js';
 
 import { placeUserLeague } from '../../store/user.js';
@@ -48,11 +48,11 @@ const Menu = () => {
                 <LogInForm />
             </div>
 
-            <div style={{display: menu.clickedLeaderBoard === false ? 'none' : 'block'}}>
-                <LeaderBoard />
+            <div style={{display: menu.clickedLeague === false ? 'none' : 'block'}}>
+                <League />
             </div>
 
-            <div style={{display: (menu.clickedSignUp === false) && (menu.clickedLogIn === false) && (menu.clickedLeaderBoard === false) ? 'block' : 'none'}}>
+            <div style={{display: (menu.clickedSignUp === false) && (menu.clickedLogIn === false) && (menu.clickedLeague === false) ? 'block' : 'none'}}>
                 <div 
                 className='menu-button-divs'
                 onClick={() => {
