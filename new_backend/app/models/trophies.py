@@ -13,7 +13,6 @@ class Trophy(db.Model):
     user = relationship("User", back_populates="trophies")
 
     def to_dict(self):
-
         return {
             'trophy_id': self.id,
             'trophy_name': self.trophy_name,
