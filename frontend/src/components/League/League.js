@@ -72,7 +72,7 @@ const League = () => {
             {
                 user.user_name && clickedBrowse === false ?
                 <div>
-                    <p style={{fontSize: '26px', marginTop: !clickedPlayer ? '-22vh' : '-2vh'}}>{rankings.league} League</p>
+                    <p style={{fontSize: '26px', marginTop: clickedPlayer ? '2vh' : rankings.players && rankings.players.length < 3 ? '-18vh' : rankings.players && rankings.players.length >= 3 && '4vh'}}>{rankings.league} League</p>
 
                     {
                         rankings.players && rankings.players.map((player, i) => (
@@ -94,7 +94,7 @@ const League = () => {
                         backgroundColor: 'black',
                         flexWrap: 'wrap', 
                         margin: 'auto', 
-                        marginTop: '4vh',
+                        marginTop: '2vh',
                         overflowY: 'auto'
                     }}>
                     {
