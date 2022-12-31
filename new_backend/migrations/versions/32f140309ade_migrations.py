@@ -1,8 +1,8 @@
 """migrations
 
-Revision ID: 826811588672
+Revision ID: 32f140309ade
 Revises: 
-Create Date: 2022-12-30 18:57:20.338051
+Create Date: 2022-12-30 19:41:13.222547
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '826811588672'
+revision = '32f140309ade'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -50,6 +50,7 @@ def upgrade():
     sa.Column('time', sa.Integer(), nullable=True),
     sa.Column('sender_score', sa.Integer(), nullable=True),
     sa.Column('receiver_score', sa.Integer(), nullable=True),
+    sa.Column('winner', sa.Integer(), nullable=True),
     sa.Column('sender_id', sa.Integer(), nullable=False),
     sa.Column('receiver_id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['receiver_id'], ['users.id'], ),
