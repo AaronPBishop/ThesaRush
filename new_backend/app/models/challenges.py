@@ -10,16 +10,27 @@ class Challenge(db.Model):
     id = Column(Integer, primary_key=True)
     
     time = Column(Integer)
-    player_1_score = Column(Integer, nullable=True)
-    player_2_score = Column(Integer, nullable=True)
+    sender_score = Column(Integer, nullable=True)
+    receiver_score = Column(Integer, nullable=True)
+    winner = Column(Integer, nullable=True)
 
-    associations = relationship("PlayerChallenge", back_populates="challenge")
+    sender_id = Column(Integer, ForeignKey('users.id'), nullable=False)
+    receiver_id = Column(Integer, ForeignKey('users.id'), nullable=False)
+
+    sender = relationship("User", primaryjoin="User.id==Challenge.sender_id", back_populates="sent_challenges")
+    receiver = relationship("User", primaryjoin="User.id==Challenge.receiver_id", back_populates="received_challenges")
 
     def to_dict(self):
         return {
             'challenge_id': self.id,
+            'sender': {
+                'id': self.sender.id,
+                'score': self.sender_score
+            },
+            'receiver': {
+                'id': self.receiver.id,
+                'score': self.receiver_score
+            },
             'time': self.time,
-            'player_1_score': self.player_1_score,
-            'player_2_score': self.player_2_score,
-            'player_data': self.associations.to_player_dict()
+            'winner': self.winner
         }

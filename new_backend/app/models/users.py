@@ -31,8 +31,9 @@ class User(db.Model):
 
     league = relationship("League", back_populates="ranked_players")
     trophies = relationship("Trophy", back_populates="user", cascade="all, delete")
-    sent_challenges = relationship("Challenge", back_populates="challenge_sender", cascade="all, delete")
-    received_challenges = relationship("Challenge", back_populates="challenge_receiver", cascade="all, delete")
+
+    sent_challenges = relationship("Challenge", foreign_keys="Challenge.sender_id", back_populates="sender", cascade="all, delete")
+    received_challenges = relationship("Challenge", foreign_keys="Challenge.receiver_id", back_populates="receiver", cascade="all, delete")
 
     def to_dict(self):
         return {
@@ -53,8 +54,8 @@ class User(db.Model):
             'void_master': self.void_master,
             'league': self.league_name,
             'trophies': [trophy.to_dict() for trophy in self.trophies],
-            'sent_challenges': [challenge.to_challenge_dict() for challenge in self.sent_challenges],
-            'received_challenges': [challenge.to_challenge_dict() for challenge in self.received_challenges]
+            'sent_challenges': [challenge.to_dict() for challenge in self.sent_challenges],
+            'received_challenges': [challenge.to_dict() for challenge in self.received_challenges]
         }
 
     def to_safe_dict(self):
