@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { resetGame, resetStats } from '../../store/game';
 import { resetStatuses } from '../../store/offerStatuses';
 import { updateUserData } from '../../store/user.js';
+import { resetChallengeState } from '../../store/challenge';
 
 import Badge from '../Badge/Badge.js';
 
@@ -99,6 +100,7 @@ const GameOver = ({ points, numWords, longestWord, tilesCleared, bombardier, sto
                     dispatch(resetGame());
                     dispatch(resetStats());
                     dispatch(resetStatuses());
+                    dispatch(resetChallengeState());
 
                     setPlayAgain(true);
                     
@@ -112,6 +114,7 @@ const GameOver = ({ points, numWords, longestWord, tilesCleared, bombardier, sto
                         dispatch(resetGame());
                         dispatch(resetStats());
                         dispatch(resetStatuses());
+                        dispatch(resetChallengeState());
 
                         history.push('/');
 

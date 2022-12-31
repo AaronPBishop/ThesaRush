@@ -6,13 +6,15 @@ import menuReducer from './menu.js';
 import userReducer from './user.js';
 import offerStatusesReducer from './offerStatuses.js';
 import leagueReducer from './league.js';
+import challengeReducer from './challenge.js';
 
 const rootReducer = combineReducers({
     game: gameReducer,
     menu: menuReducer,
     user: userReducer,
     offerStatuses: offerStatusesReducer,
-    league: leagueReducer
+    league: leagueReducer,
+    challenge: challengeReducer
 });
 
 let enhancer;

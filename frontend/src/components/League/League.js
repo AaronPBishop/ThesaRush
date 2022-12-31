@@ -35,7 +35,7 @@ const League = () => {
     }, [clickedLeague]);
 
     useEffect(() => {dispatch(fetchLeagueData(currLeague))}, [rerender, currLeague]);
-    
+
     return (
         <div
         style={{
@@ -47,7 +47,7 @@ const League = () => {
             margin: 'auto',
             marginTop: '14vh',
             padding: '2vw',
-            width: '26vw',
+            width: '30vw',
             height: '55vh',
             overflowY: 'auto',
             background: user.user_name ? mapBackgroundColor[rankings.league] : backgroundColor,
@@ -69,6 +69,7 @@ const League = () => {
                 }}>
                     <p style={{marginTop: '1.5vh'}}>Browse All Leagues</p>
                 </div>
+
             {
                 user.user_name && clickedBrowse === false ?
                 <div>
