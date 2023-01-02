@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { resetGame, resetStats } from '../../store/game';
 import { resetStatuses } from '../../store/offerStatuses';
 import { updateUserData } from '../../store/user.js';
-import { resetChallengeState } from '../../store/challenge';
+import { resetChallengeState, sendChallenge, updateChallenge } from '../../store/challenge';
 
 import Badge from '../Badge/Badge.js';
 
@@ -18,6 +18,7 @@ const GameOver = ({ points, numWords, longestWord, tilesCleared, bombardier, sto
     const difficulty = useSelector(state => state.game.stats.difficulty);
     const menu = useSelector(state => state.menu);
     const user = useSelector(state => state.user);
+    const challenge = useSelector(state => state.challenge);
 
     const [playAgain, setPlayAgain] = useState(false);
     const [badges, setBadges] = useState(0);
@@ -34,6 +35,16 @@ const GameOver = ({ points, numWords, longestWord, tilesCleared, bombardier, sto
         setBadges(bombardier + stoneCrusher + goldMiner + wordSmith + voidMaster);
         
         if (user.user_id) dispatch(updateUserData(user.user_id, points, numWords, longestWord, tilesCleared, bombardier, stoneCrusher, goldMiner, wordSmith, voidMaster));
+
+        if (challenge.inChallenge && challenge.completedChallenge) {
+            if (challenge.isChallenger) {
+                dispatch(sendChallenge(challenge.time, points, challenge.senderId, challenge.receiverId))
+            };
+
+            if (challenge.isChallengee) {
+                dispatch(updateChallenge(points, challenge.challengeId))
+            };
+        };
     }, []);
 
     useEffect(() => {
@@ -45,7 +56,18 @@ const GameOver = ({ points, numWords, longestWord, tilesCleared, bombardier, sto
         style={{background: menu.backgroundColor}}
         id='game-over'>
             <p id='gameover-header'>Game Over!</p>
-
+            <div
+            style={{
+                fontFamily: 'Roboto',
+                fontSize: '20px',
+                display: challenge.inChallenge ? 'flex' : 'none',
+                justifyContent: 'center',
+                position: 'relative',
+                bottom: '14vh',
+                marginBottom: '-2vh'
+            }}>
+                <b>{(challenge.isChallenger && challenge.completedChallenge) ? 'Challenge Sent!' : (challenge.isChallenger && challenge.completedChallenge === false) ? 'Challenge Failed' : challenge.isChallengee && challenge.completedChallenge ? 'Challenge Completed!' : challenge.isChallengee && challenge.completedChallenge === false && 'Challenge Failed'}</b>
+            </div>
             <div id='stats-box'>
                 <p>
                     Final Score: <b>{points}</b>

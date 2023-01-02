@@ -1,16 +1,20 @@
 const initialState = {
     inChallenge: false,
     completedChallenge: false,
+    isChallenger: false,
+    isChalengee: false,
+    challengeId: null,
     senderId: null,
     receiverId: null,
     time: null
 };
 
 
-export const setInChallenge = (boolean) => {
+export const setInChallenge = (boolean, playerType) => {
     return {
         type: 'SET_IN_CHALLENGE',
-        payload: boolean
+        payload1: boolean,
+        payload2: playerType
     };
 };
 
@@ -36,14 +40,25 @@ export const resetChallengeState = () => {
     };
 };
 
-export const sendChallenge = (senderId, receiverId, time) => async () => {
+export const sendChallenge = (time, score, senderId, receiverId) => async () => {
     await fetch(`/api/challenges/new`, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
+            time: time,
+            score: score,
             senderId: senderId, 
             receiverId: receiverId,
-            time: time
+        })
+    });
+};
+
+export const updateChallenge = (challengeId, score) => async () => {
+    await fetch(`/api/challenges/${challengeId}`, {
+        method: 'PUT',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            score: score
         })
     });
 };
@@ -53,7 +68,10 @@ const challengeReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case 'SET_IN_CHALLENGE': {
-            currentState.inChallenge = action.payload;
+            currentState.inChallenge = action.payload1;
+            
+            if (action.payload2 === 'challenger') currentState.isChallenger = true;
+            if (action.payload2 === 'chalengee') currentState.isChalengee = true;
 
             return currentState;
         };

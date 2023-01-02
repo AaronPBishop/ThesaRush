@@ -16,7 +16,8 @@ const UserLives = () => {
             display: 'flex',
             justifyContent: 'center',
             flexWrap: 'wrap',
-            marginTop: '12vh',
+            marginTop: '20vh',
+            marginBottom: '8vh',
             maxWidth: '10vw',
             maxHeight: '10vh',
             marginLeft: '0.2vw'
@@ -32,7 +33,7 @@ const UserLives = () => {
                 borderRadius: '12px',
                 width: '10vw',
                 padding: '1.5vh',
-                cursor: 'pointer',
+                cursor: 'pointer'
             }}
             onClick={() => {
                 if (user.points_balance < 1000) {
