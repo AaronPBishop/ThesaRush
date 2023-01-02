@@ -32,6 +32,7 @@ import {
 } from '../../store/game';
 
 import { resetStatuses } from '../../store/offerStatuses';
+import { resetChallengeState } from '../../store/challenge';
 
 const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmith, voidMaster }) => {
     const history = useHistory();
@@ -237,6 +238,7 @@ const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmit
                     dispatch(resetGame());
                     dispatch(resetStats());
                     dispatch(resetStatuses());
+                    dispatch(resetChallengeState());
 
                     history.push('/');
 

@@ -60,6 +60,7 @@ class User(db.Model):
 
     def to_safe_dict(self):
         return {
+            'player_id': self.id,
             'high_score': self.high_score,
             'user_name': self.user_name,
             'level': self.level,

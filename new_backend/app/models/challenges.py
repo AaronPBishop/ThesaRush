@@ -1,7 +1,7 @@
 from .db import db
 from sqlalchemy.orm import relationship
 from sqlalchemy.schema import Column, ForeignKey
-from sqlalchemy.types import String, Integer
+from sqlalchemy.types import Integer, Boolean
 
 
 class Challenge(db.Model):
@@ -12,7 +12,8 @@ class Challenge(db.Model):
     time = Column(Integer)
     sender_score = Column(Integer, nullable=True)
     receiver_score = Column(Integer, nullable=True)
-    winner = Column(Integer, nullable=True)
+    completed = Column(Boolean)
+    redeemed = Column(Boolean)
 
     sender_id = Column(Integer, ForeignKey('users.id'), nullable=False)
     receiver_id = Column(Integer, ForeignKey('users.id'), nullable=False)
@@ -32,5 +33,6 @@ class Challenge(db.Model):
                 'score': self.receiver_score
             },
             'time': self.time,
-            'winner': self.winner
+            'completed': self.completed,
+            'redeemed': self.redeemed
         }

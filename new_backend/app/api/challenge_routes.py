@@ -11,39 +11,12 @@ def update_challenge(id):
 
     queried_challenge = Challenge.query.get_or_404(id)
 
-    if req_data['senderScore'] != None:
-        queried_challenge.sender_score = req_data['senderScore']
-    if req_data['receiverScore'] != None:
-        queried_challenge.receiver_score = req_data['receiverScore']
-
-    if queried_challenge.sender_score != None and queried_challenge.receiver_score != None:
-        data = queried_challenge.to_dict()
-
-        if queried_challenge.sender_score > queried_challenge.receiver_score:
-            queried_challenge.winner = data['sender']['id']
-
-            db.session.commit()
-            return queried_challenge.to_dict()
-
-        if queried_challenge.sender_score < queried_challenge.receiver_score:
-            queried_challenge.winner = data['receiver']['id']
-
-            db.session.commit()
-            return queried_challenge.to_dict()
+    queried_challenge.receiver_score = req_data['score']
+    queried_challenge.completed = True
 
     db.session.commit()
+
     return queried_challenge.to_dict()
-
-
-@challenge_routes.route('/<id>', methods=['DELETE'])
-def delete_challenge(id):
-    queried_challenge = Challenge.query.get_or_404(id)
-
-    if queried_challenge.winner != None:
-        db.session.delete(queried_challenge)
-        db.session.commit()
-
-    return {'Status': 'Challenge completed'}, 202
 
 
 @challenge_routes.route('/new', methods=['POST'])
@@ -55,6 +28,9 @@ def create_new_challenge():
 
     new_challenge = Challenge(
         time=req_data['time'],
+        sender_score=req_data['score'],
+        completed=False,
+        redeemed=False,
         sender_id=sender.id,
         receiver_id=receiver.id
     )
@@ -66,3 +42,19 @@ def create_new_challenge():
     db.session.commit()
    
     return sender.to_dict()
+
+
+@challenge_routes.route('/redeem', methods=['PUT'])
+def redeem_challenge():
+    req_data = request.json
+
+    queried_user = User.query.get_or_404(req_data['playerId'])
+    queried_challenge = Challenge.query.get_or_404(req_data['challengeId'])
+
+    queried_user.points += 500
+    queried_user.points_balance += 500
+    queried_challenge.redeemed = True
+
+    db.session.commit()
+
+    return queried_user.to_dict()

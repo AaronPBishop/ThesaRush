@@ -11,3 +11,17 @@
     border-top: 2px solid rgb(120, 120, 255);
     border-bottom: 2px solid rgb(120, 120, 255);
 }
+
+.challenge-times {
+    font-family: 'Roboto';
+    line-height: 6vh;
+
+    width: 10vw;
+    height: 6vh;
+
+    margin: 2vh;
+
+    background-color: rgb(140, 0, 55);
+    border-bottom: 3px solid rgb(105, 0, 40);
+    border-radius: 8px;
+}

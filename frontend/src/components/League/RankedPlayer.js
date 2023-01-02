@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 
 import Badge from "../Badge/Badge.js";
 import Trophy from "../Trophy/Trophy.js";
+import ChallengeTime from "./ChallengeTime.js";
 
 import './styles.css';
 
@@ -15,6 +16,7 @@ const RankedPlayer = ({ score, userName, index }) => {
     const clickedLeague = useSelector(state => state.menu.clickedLeague);
 
     const [clicked, setClicked] = useState(false);
+    const [clickedChallenge, setClickedChallenge] = useState(false);
 
     useEffect(() => {
         if (clickedLeague === false) setClicked(false);
@@ -45,7 +47,18 @@ const RankedPlayer = ({ score, userName, index }) => {
         return order;
     };
 
-    return (
+    if (clickedChallenge) return (
+        <div
+        onClick={e => {
+            e.stopPropagation();
+            setClickedChallenge(clicked => !clicked);
+        }} 
+        style={{display: 'flex', justifyContent: 'center', cursor: 'pointer'}}>
+            <ChallengeTime senderId={user.user_id} receiverId={rankings.players[index].player_id} />
+        </div>
+    );
+
+    if (!clickedChallenge) return (
             <div 
             onClick={() => setClicked(clicked => !clicked)}
             style={{
@@ -71,7 +84,28 @@ const RankedPlayer = ({ score, userName, index }) => {
                     fontWeight: user.user_name === userName.toString() && 'bold'
                     }}>
                         {userName}
-                    </p>
+                </p>
+
+                <div 
+                onClick={e => {
+                    e.stopPropagation();
+                    setClickedChallenge(clicked => !clicked);
+                }}
+                style={{
+                    fontFamily: 'Roboto',
+                    fontSize: '12px',
+                    lineHeight: '8px',
+                    height: '4vh',
+                    width: '6vw',
+                    backgroundColor: 'rgb(140, 0, 55)',
+                    borderBottom: '3px solid rgb(105, 0, 40)',
+                    borderRadius: '8px',
+                    marginTop: '1.2vh',
+                    cursor: 'pointer'
+                }}>
+                    <p>Challenge</p>
+                </div>
+                
                 <b style={{margin: '1vw'}}>{score}</b>
     
                 
