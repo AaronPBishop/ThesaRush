@@ -8,7 +8,7 @@ import ChallengeTime from "./ChallengeTime.js";
 import './styles.css';
 
 const RankedPlayer = ({ score, userName, index }) => {
-    const ignore = ['league', 'user_name', 'trophies', 'points'];
+    const ignore = ['league', 'user_name', 'trophies', 'points', 'player_id'];
     const badges = ['bombardier', 'stone_crusher', 'gold_miner', 'word_smith', 'void_master'];
 
     const user = useSelector(state => state.user);
@@ -27,7 +27,9 @@ const RankedPlayer = ({ score, userName, index }) => {
         words: 'Valid Words Submitted',
         longest_word: 'Longest Word',
         tiles_cleared: 'Tiles Cleared',
-        level: 'Level'
+        level: 'Level',
+        wins: 'Wins',
+        losses: 'Losses'
     });
 
     const mapPlayerBadges = {
@@ -79,6 +81,8 @@ const RankedPlayer = ({ score, userName, index }) => {
             }}>
              
                 <p style={{
+                    textAlign: 'left',
+                    width: '1.5vw',
                     margin: '1vw',
                     color: user.user_name === userName.toString() && 'rgb(255, 255, 60)',
                     fontWeight: user.user_name === userName.toString() && 'bold'
@@ -92,6 +96,7 @@ const RankedPlayer = ({ score, userName, index }) => {
                     setClickedChallenge(clicked => !clicked);
                 }}
                 style={{
+                    display: user.user_name === userName.toString() ? 'none' : 'block',
                     fontFamily: 'Roboto',
                     fontSize: '12px',
                     lineHeight: '8px',

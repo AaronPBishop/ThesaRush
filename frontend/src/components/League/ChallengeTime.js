@@ -29,7 +29,7 @@ const ChallengeTime = ({ senderId, receiverId }) => {
 
                 <div onClick={() => {
                     dispatch(setInChallenge(true, 'challenger'));
-                    dispatch(populateChallengeData(senderId, receiverId, 6000));
+                    dispatch(populateChallengeData(null, senderId, receiverId, 10000));
 
                     history.push('/game/rush');
                 }} 
@@ -37,7 +37,7 @@ const ChallengeTime = ({ senderId, receiverId }) => {
 
                 <div onClick={() => { 
                     dispatch(setInChallenge(true, 'challenger'));
-                    dispatch(populateChallengeData(senderId, receiverId, 120000));
+                    dispatch(populateChallengeData(null, senderId, receiverId, 120000));
 
                     history.push('/game/rush');
                 }} 
@@ -45,7 +45,7 @@ const ChallengeTime = ({ senderId, receiverId }) => {
 
                 <div onClick={() => {
                     dispatch(setInChallenge(true, 'challenger'));
-                    dispatch(populateChallengeData(senderId, receiverId, 180000));
+                    dispatch(populateChallengeData(null, senderId, receiverId, 180000));
 
                     history.push('/game/rush');
                 }} 

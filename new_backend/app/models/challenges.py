@@ -26,10 +26,12 @@ class Challenge(db.Model):
             'challenge_id': self.id,
             'sender': {
                 'id': self.sender.id,
+                'user_name': self.sender.user_name,
                 'score': self.sender_score
             },
             'receiver': {
                 'id': self.receiver.id,
+                'user_name': self.receiver.user_name,
                 'score': self.receiver_score
             },
             'time': self.time,

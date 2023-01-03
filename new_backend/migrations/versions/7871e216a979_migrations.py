@@ -1,14 +1,8 @@
 """migrations
 
-<<<<<<< HEAD:new_backend/migrations/versions/695214ddb867_migrations.py
-Revision ID: 695214ddb867
+Revision ID: 7871e216a979
 Revises: 
-Create Date: 2022-12-30 16:07:43.058412
-=======
-Revision ID: 32f140309ade
-Revises: 
-Create Date: 2022-12-30 19:41:13.222547
->>>>>>> challenges:new_backend/migrations/versions/32f140309ade_migrations.py
+Create Date: 2023-01-02 18:55:09.733305
 
 """
 from alembic import op
@@ -16,11 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-<<<<<<< HEAD:new_backend/migrations/versions/695214ddb867_migrations.py
-revision = '695214ddb867'
-=======
-revision = '32f140309ade'
->>>>>>> challenges:new_backend/migrations/versions/32f140309ade_migrations.py
+revision = '7871e216a979'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -46,6 +36,8 @@ def upgrade():
     sa.Column('longest_word', sa.String(length=40), nullable=True),
     sa.Column('tiles_cleared', sa.Integer(), nullable=True),
     sa.Column('lives', sa.Integer(), nullable=True),
+    sa.Column('wins', sa.Integer(), nullable=True),
+    sa.Column('losses', sa.Integer(), nullable=True),
     sa.Column('bombardier', sa.Integer(), nullable=True),
     sa.Column('stone_crusher', sa.Integer(), nullable=True),
     sa.Column('gold_miner', sa.Integer(), nullable=True),
@@ -60,7 +52,8 @@ def upgrade():
     sa.Column('time', sa.Integer(), nullable=True),
     sa.Column('sender_score', sa.Integer(), nullable=True),
     sa.Column('receiver_score', sa.Integer(), nullable=True),
-    sa.Column('winner', sa.Integer(), nullable=True),
+    sa.Column('completed', sa.Boolean(), nullable=True),
+    sa.Column('redeemed', sa.Boolean(), nullable=True),
     sa.Column('sender_id', sa.Integer(), nullable=False),
     sa.Column('receiver_id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['receiver_id'], ['users.id'], ),

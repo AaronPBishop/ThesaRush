@@ -2,7 +2,7 @@ const initialState = {
     inChallenge: false,
     completedChallenge: false,
     isChallenger: false,
-    isChalengee: false,
+    isChallengee: false,
     challengeId: null,
     senderId: null,
     receiverId: null,
@@ -18,12 +18,13 @@ export const setInChallenge = (boolean, playerType) => {
     };
 };
 
-export const populateChallengeData = (senderId, receiverId, time) => {
+export const populateChallengeData = (challengeId, senderId, receiverId, time) => {
     return {
         type: 'POPULATE_CHALLENGE_DATA',
-        payload1: senderId,
-        payload2: receiverId,
-        payload3: time
+        payload1: challengeId,
+        payload2: senderId,
+        payload3: receiverId,
+        payload4: time
     };
 };
 
@@ -63,6 +64,17 @@ export const updateChallenge = (challengeId, score) => async () => {
     });
 };
 
+export const redeemChallenge = (challengeId, playerId) => async () => {
+    await fetch(`/api/challenges/redeem`, {
+        method: 'PUT',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            challengeId: challengeId,
+            playerId: playerId
+        })
+    });
+};
+
 const challengeReducer = (state = initialState, action) => {
     const currentState = { ...state };
 
@@ -71,15 +83,16 @@ const challengeReducer = (state = initialState, action) => {
             currentState.inChallenge = action.payload1;
             
             if (action.payload2 === 'challenger') currentState.isChallenger = true;
-            if (action.payload2 === 'chalengee') currentState.isChalengee = true;
+            if (action.payload2 === 'challengee') currentState.isChallengee = true;
 
             return currentState;
         };
 
         case 'POPULATE_CHALLENGE_DATA': {
-            currentState.senderId = action.payload1;
-            currentState.receiverId = action.payload2;
-            currentState.time = action.payload3;
+            currentState.challengeId = action.payload1;
+            currentState.senderId = action.payload2;
+            currentState.receiverId = action.payload3;
+            currentState.time = action.payload4;
 
             return currentState;
         };

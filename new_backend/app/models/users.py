@@ -20,6 +20,8 @@ class User(db.Model):
     longest_word = Column(String(40))
     tiles_cleared =  Column(Integer)
     lives = Column(Integer)
+    wins = Column(Integer)
+    losses = Column(Integer)
 
     bombardier = Column(Integer)
     stone_crusher = Column(Integer)
@@ -55,7 +57,9 @@ class User(db.Model):
             'league': self.league_name,
             'trophies': [trophy.to_dict() for trophy in self.trophies],
             'sent_challenges': [challenge.to_dict() for challenge in self.sent_challenges],
-            'received_challenges': [challenge.to_dict() for challenge in self.received_challenges]
+            'received_challenges': [challenge.to_dict() for challenge in self.received_challenges],
+            'wins': self.wins,
+            'losses': self.losses
         }
 
     def to_safe_dict(self):
@@ -74,7 +78,9 @@ class User(db.Model):
             'word_smith': self.word_smith,
             'void_master': self.void_master,
             'league': self.league_name,
-            'trophies': [trophy.to_dict() for trophy in self.trophies]
+            'trophies': [trophy.to_dict() for trophy in self.trophies],
+            'wins': self.wins,
+            'losses': self.losses
         }
 
     def has_trophy(self, trophy_type):

@@ -14,6 +14,14 @@ def update_challenge(id):
     queried_challenge.receiver_score = req_data['score']
     queried_challenge.completed = True
 
+    if queried_challenge.sender_score > queried_challenge.receiver_score:
+        queried_challenge.sender.wins += 1
+        queried_challenge.receiver.losses += 1
+
+    if queried_challenge.sender_score < queried_challenge.receiver_score:
+        queried_challenge.receiver.wins += 1
+        queried_challenge.sender.losses += 1
+
     db.session.commit()
 
     return queried_challenge.to_dict()
@@ -48,8 +56,8 @@ def create_new_challenge():
 def redeem_challenge():
     req_data = request.json
 
-    queried_user = User.query.get_or_404(req_data['playerId'])
     queried_challenge = Challenge.query.get_or_404(req_data['challengeId'])
+    queried_user = User.query.get_or_404(req_data['playerId'])
 
     queried_user.points += 500
     queried_user.points_balance += 500
