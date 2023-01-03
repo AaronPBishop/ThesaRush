@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
+import { setClickedLeague } from '../../store/menu.js';
 import { setInChallenge, populateChallengeData } from "../../store/challenge";
 
 const ChallengeTime = ({ senderId, receiverId }) => {
@@ -28,14 +29,16 @@ const ChallengeTime = ({ senderId, receiverId }) => {
                 <p>Choose a Time</p>
 
                 <div onClick={() => {
+                    dispatch(setClickedLeague(false));
                     dispatch(setInChallenge(true, 'challenger'));
-                    dispatch(populateChallengeData(null, senderId, receiverId, 10000));
+                    dispatch(populateChallengeData(null, senderId, receiverId, 60000));
 
                     history.push('/game/rush');
                 }} 
                 className='challenge-times'>One Minute</div>
 
                 <div onClick={() => { 
+                    dispatch(setClickedLeague(false));
                     dispatch(setInChallenge(true, 'challenger'));
                     dispatch(populateChallengeData(null, senderId, receiverId, 120000));
 
@@ -44,6 +47,7 @@ const ChallengeTime = ({ senderId, receiverId }) => {
                 className='challenge-times'>Two Minutes</div>
 
                 <div onClick={() => {
+                    dispatch(setClickedLeague(false));
                     dispatch(setInChallenge(true, 'challenger'));
                     dispatch(populateChallengeData(null, senderId, receiverId, 180000));
 

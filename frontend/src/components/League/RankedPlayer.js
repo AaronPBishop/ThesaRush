@@ -43,8 +43,10 @@ const RankedPlayer = ({ score, userName, index }) => {
     const orderKeys = (keys) => {
         const order = [];
 
-        keys.forEach(key => {if (key !== 'longest_word') order.push(key)});
+        keys.forEach(key => {if (key !== 'longest_word' && key !== 'wins' && key !== 'losses') order.push(key)});
         order.push('longest_word');
+        order.push('wins');
+        order.push('losses');
 
         return order;
     };
@@ -82,7 +84,7 @@ const RankedPlayer = ({ score, userName, index }) => {
              
                 <p style={{
                     textAlign: 'left',
-                    width: '1.5vw',
+                    width: '4vw',
                     margin: '1vw',
                     color: user.user_name === userName.toString() && 'rgb(255, 255, 60)',
                     fontWeight: user.user_name === userName.toString() && 'bold'
@@ -96,7 +98,7 @@ const RankedPlayer = ({ score, userName, index }) => {
                     setClickedChallenge(clicked => !clicked);
                 }}
                 style={{
-                    display: user.user_name === userName.toString() ? 'none' : 'block',
+                    display: user.user_name === userName.toString() || clicked ? 'none' : 'block',
                     fontFamily: 'Roboto',
                     fontSize: '12px',
                     lineHeight: '8px',
@@ -111,7 +113,7 @@ const RankedPlayer = ({ score, userName, index }) => {
                     <p>Challenge</p>
                 </div>
                 
-                <b style={{margin: '1vw'}}>{score}</b>
+                <b style={{textAlign: 'right', width: user.user_name !== userName.toString() && '2vw', margin: '1vw'}}>{score}</b>
     
                 
                <div style={{display: clicked ? 'block' : 'none', marginTop: '2vh'}}>
@@ -166,6 +168,30 @@ const RankedPlayer = ({ score, userName, index }) => {
                             )
                         }
                     </div>
+
+                    <div style={{display: 'flex', justifyContent: 'center', marginBottom: '2vh'}}>
+                        <div 
+                        onClick={e => {
+                            e.stopPropagation();
+                            setClickedChallenge(clicked => !clicked);
+                        }}
+                        style={{
+                            display: user.user_name === userName.toString() ? 'none' : 'block',
+                            fontFamily: 'Roboto',
+                            fontSize: '18px',
+                            lineHeight: '1.5vh',
+                            height: '6vh',
+                            width: '16vw',
+                            backgroundColor: 'rgb(140, 0, 55)',
+                            borderBottom: '3px solid rgb(105, 0, 40)',
+                            borderRadius: '8px',
+                            marginTop: '1.2vh',
+                            cursor: 'pointer'
+                        }}>
+                            <p>Challenge</p>
+                        </div>
+                    </div>
+
                 </div>
              
             </div>

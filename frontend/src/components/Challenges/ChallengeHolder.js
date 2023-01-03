@@ -46,10 +46,10 @@ const ChallengeHolder = () => {
             </div>
 
             <div
-            style={{display: clickedSent ? 'flex' : 'none', justifyContent: 'space-between', margin: 'auto', width: '38vw', flexWrap: 'wrap'}}>
+            style={{display: clickedSent ? 'flex' : 'none', justifyContent: 'space-between', margin: 'auto', width: '40vw', flexWrap: 'wrap'}}>
                 <div>
                     <p>Pending</p>
-                    <div style={{display: 'flex', justifyContent: 'center', border: '2px solid rgb(255, 255, 60)', borderRadius: '12px', width: '18.5vw', height: '60vh', overflowY: 'auto'}}>
+                    <div style={{display: 'flex', justifyContent: 'center', flexWrap: 'wrap', border: '2px solid rgb(255, 255, 60)', borderRadius: '12px', width: '18.5vw', height: '60vh', overflowY: 'auto'}}>
                     {
                         user.sent_challenges.map((challenge, i) => {
                             if (challenge.completed === false) return (
@@ -64,7 +64,7 @@ const ChallengeHolder = () => {
                 
                 <div>
                     <p>Completed</p>
-                    <div style={{display: 'flex', justifyContent: 'center', border: '2px solid rgb(255, 255, 60)', borderRadius: '12px', width: '18.5vw', height: '60vh', overflowY: 'auto'}}>
+                    <div style={{display: 'flex', justifyContent: 'center', flexWrap: 'wrap', border: '2px solid rgb(255, 255, 60)', borderRadius: '12px', width: '18.5vw', height: '60vh', overflowY: 'auto'}}>
                         {
                             user.sent_challenges.map((challenge, i) => {
                                 if (challenge.completed === true) return (
@@ -79,10 +79,10 @@ const ChallengeHolder = () => {
             </div>
 
             <div
-            style={{display: clickedReceived ? 'flex' : 'none', justifyContent: 'space-between', margin: 'auto', width: '38vw', flexWrap: 'wrap'}}>
+            style={{display: clickedReceived ? 'flex' : 'none', justifyContent: 'space-between', margin: 'auto', width: '40vw', flexWrap: 'wrap'}}>
                 <div>
                     <p>Pending</p>
-                    <div style={{display: 'flex', justifyContent: 'center', border: '2px solid rgb(255, 255, 60)', borderRadius: '12px', width: '18.5vw', height: '60vh', overflowY: 'auto'}}>
+                    <div style={{display: 'flex', justifyContent: 'center', flexWrap: 'wrap', border: '2px solid rgb(255, 255, 60)', borderRadius: '12px', width: '18.5vw', height: '60vh', overflowY: 'auto'}}>
                     {
                         user.received_challenges.map((challenge, i) => {
                             if (challenge.completed === false) return (
@@ -97,7 +97,7 @@ const ChallengeHolder = () => {
                 
                 <div>
                     <p>Completed</p>
-                    <div style={{display: 'flex', justifyContent: 'center', border: '2px solid rgb(255, 255, 60)', borderRadius: '12px', width: '18.5vw', height: '60vh', overflowY: 'auto'}}>
+                    <div style={{display: 'flex', justifyContent: 'center', flexWrap: 'wrap', border: '2px solid rgb(255, 255, 60)', borderRadius: '12px', width: '18.5vw', height: '60vh', overflowY: 'auto'}}>
                         {
                             user.received_challenges.map((challenge, i) => {
                                 if (challenge.completed === true) return (

@@ -36,7 +36,9 @@ const GameOver = ({ points, numWords, longestWord, tilesCleared, bombardier, sto
         
         if (user.user_id) dispatch(updateUserData(user.user_id, points, numWords, longestWord, tilesCleared, bombardier, stoneCrusher, goldMiner, wordSmith, voidMaster));
 
-        if (challenge.inChallenge && challenge.completedChallenge) {
+        if (challenge.inChallenge && challenge.isChallengee && challenge.completedChallenge === false) dispatch(updateChallenge(challenge.challengeId, 0));
+
+        if (challenge.inChallenge && challenge.completedChallenge === true) {
 
             if (challenge.isChallenger) {
                 dispatch(sendChallenge(challenge.time, points, challenge.senderId, challenge.receiverId));
@@ -121,6 +123,7 @@ const GameOver = ({ points, numWords, longestWord, tilesCleared, bombardier, sto
             }}>
                 <button 
                 id='play-again' 
+                style={{display: challenge.inChallenge && 'none'}}
                 onClick={async e => {
                     dispatch(resetGame());
                     dispatch(resetStats());
