@@ -29,7 +29,7 @@ const Challenge = ({ id, type, sender, receiver, time, completed, redeemed }) =>
             {
                 type === 'sent' ?
                 <div style={{display: 'flex', justifyContent: 'center', margin: 'auto', width: '10vw', flexWrap: 'wrap', lineHeight: '1vh'}}>
-                    <div style={{lineHeight: '2.5vh', marginTop: !completed && '3vh'}}>
+                    <div style={{lineHeight: '2.5vh', marginTop: !completed && '4vh'}}>
                         <p>Time: <b>{timeMap[time]}</b></p>
                         <p>Your Score: <b>{sender.score}</b></p>
                         <p style={{display: completed ? 'block' : 'none'}}>{receiver.user_name}'s Score: <b>{receiver.score}</b></p>
@@ -76,7 +76,8 @@ const Challenge = ({ id, type, sender, receiver, time, completed, redeemed }) =>
                     <div style={{lineHeight: '2.5vh'}}>
                         <p>Time: <b>{timeMap[time]}</b></p>
                         <p>Your Score: <b>{completed ? receiver.score : 'Pending'}</b></p>
-                        <p>{completed ? `${sender.user_name}'s Score: ${sender.score}` : `Challenger: ${sender.user_name}`}</p>
+                        <p style={{display: completed ? 'block' : 'none'}}>{sender.user_name}'s Score: <b>{sender.score}</b></p>
+                        <p style={{display: !completed ? 'block' : 'none'}}>Challenger: <b>{sender.user_name}</b></p>
                     </div>
 
                     <div 

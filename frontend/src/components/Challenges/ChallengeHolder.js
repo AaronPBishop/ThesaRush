@@ -48,7 +48,7 @@ const ChallengeHolder = () => {
             <div
             style={{display: clickedSent ? 'flex' : 'none', justifyContent: 'space-between', margin: 'auto', width: '40vw', flexWrap: 'wrap'}}>
                 <div>
-                    <p>Pending</p>
+                    <p style={{fontFamily: 'Bungee Spice'}}>Pending</p>
                     <div style={{display: 'flex', justifyContent: 'center', backgroundColor: 'black', flexWrap: 'wrap', border: '2px solid rgb(255, 255, 60)', borderRadius: '12px', width: '18.5vw', height: '60vh', overflowY: 'auto'}}>
                     {
                         user.sent_challenges.map((challenge, i) => {
@@ -63,7 +63,7 @@ const ChallengeHolder = () => {
                 </div>
                 
                 <div>
-                    <p>Completed</p>
+                    <p style={{fontFamily: 'Bungee Spice'}}>Completed</p>
                     <div style={{display: 'flex', justifyContent: 'center', backgroundColor: 'black', flexWrap: 'wrap', border: '2px solid rgb(255, 255, 60)', borderRadius: '12px', width: '18.5vw', height: '60vh', overflowY: 'auto'}}>
                         {
                             user.sent_challenges.map((challenge, i) => {
@@ -81,7 +81,7 @@ const ChallengeHolder = () => {
             <div
             style={{display: clickedReceived ? 'flex' : 'none', justifyContent: 'space-between', margin: 'auto', width: '40vw', flexWrap: 'wrap'}}>
                 <div>
-                    <p>Pending</p>
+                    <p style={{fontFamily: 'Bungee Spice'}}>Pending</p>
                     <div style={{display: 'flex', justifyContent: 'center', backgroundColor: 'black', flexWrap: 'wrap', border: '2px solid rgb(255, 255, 60)', borderRadius: '12px', width: '18.5vw', height: '60vh', overflowY: 'auto'}}>
                     {
                         user.received_challenges.map((challenge, i) => {
@@ -96,7 +96,7 @@ const ChallengeHolder = () => {
                 </div>
                 
                 <div>
-                    <p>Completed</p>
+                    <p style={{fontFamily: 'Bungee Spice'}}>Completed</p>
                     <div style={{display: 'flex', justifyContent: 'center', backgroundColor: 'black', flexWrap: 'wrap', border: '2px solid rgb(255, 255, 60)', borderRadius: '12px', width: '18.5vw', height: '60vh', overflowY: 'auto'}}>
                         {
                             user.received_challenges.map((challenge, i) => {
