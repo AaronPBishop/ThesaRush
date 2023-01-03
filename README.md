@@ -10,14 +10,12 @@ Redux actions are utilized in order to perform various board operations, such as
 > From your terminal, `cd` into `/frontend`, run `npm install`, then run `npm start`. Then, `cd` into `/new_backend`, and run `flask run`. Have fun!
 
 ## What's new in the latest build:
-* Leaderboard - See where you rank on the leaderboard and view other players stats by clicking on their score cards!
+* Challenges - You can now send and receive challenges from other players! Choose a time limit and rack up as many points as you can to send a challenge to another player. Await their response and compare your results! Winners may claim 500 points for a win.
+* Trophies - Earn 50 of any badge type and receive a Trophy to show off on your scorecard plus 5,000 points!
+* Leagues - See where you rank in your league and view other player's stats by clicking on their score cards!
 * Lives (1,000 points each, can be bought within user profile or upon game-over when signed in) - Circumvent a `Game Over` and get that high score you always wanted! 
 * User accounts - You can now create a user account and all of your score data will be saved from session to session.
 * Void tiles (spawned each time 50 points are accrued in total score, can be turned into any letter you wish!)
-
-**Features to come:**
-* Trophies
-* Leagues/multiplayer challenges
 
 ## Technologies used:
 * ![Flask Badge](https://img.shields.io/badge/Flask-000?logo=flask&logoColor=fff&style=flat)
