@@ -16,8 +16,8 @@ const UserLives = () => {
             display: 'flex',
             justifyContent: 'center',
             flexWrap: 'wrap',
-            marginTop: '20vh',
-            marginBottom: '8vh',
+            marginTop: '7.5vh',
+            marginBottom: '-10vh',
             maxWidth: '10vw',
             maxHeight: '10vh',
             marginLeft: '0.2vw'
