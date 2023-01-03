@@ -16,7 +16,7 @@ const ChallengeHolder = () => {
             height: '82vh',
             border: '3px solid rgb(120, 120, 255)',
             borderRadius: '12px',
-            boxShadow: 'blue 0px 1px 6px 1px',
+            boxShadow: 'blue 0px 0.1px 6px 1px',
             marginTop: '3vh'
         }}>
             <div style={{display: 'flex', justifyContent: 'space-between', marginBottom: '2vh'}}>
@@ -46,10 +46,10 @@ const ChallengeHolder = () => {
             </div>
 
             <div
-            style={{display: clickedSent ? 'flex' : 'none', justifyContent: 'space-between', margin: 'auto', width: '40vw', flexWrap: 'wrap'}}>
+            style={{display: clickedSent ? 'flex' : 'none', justifyContent: 'space-between', margin: 'auto', width: '42vw', flexWrap: 'wrap'}}>
                 <div>
                     <p style={{fontFamily: 'Bungee Spice'}}>Pending</p>
-                    <div style={{display: 'flex', justifyContent: 'center', backgroundColor: 'black', flexWrap: 'wrap', border: '2px solid rgb(255, 255, 60)', borderRadius: '12px', width: '18.5vw', height: '60vh', overflowY: 'auto'}}>
+                    <div style={{display: 'flex', justifyContent: 'center', backgroundColor: 'black', flexWrap: 'wrap', border: '2.5px solid rgb(120, 120, 255)', borderRadius: '12px', width: '19vw', height: '60vh', overflowY: 'auto'}}>
                     {
                         user.sent_challenges.map((challenge, i) => {
                             if (challenge.completed === false) return (
@@ -64,7 +64,7 @@ const ChallengeHolder = () => {
                 
                 <div>
                     <p style={{fontFamily: 'Bungee Spice'}}>Completed</p>
-                    <div style={{display: 'flex', justifyContent: 'center', backgroundColor: 'black', flexWrap: 'wrap', border: '2px solid rgb(255, 255, 60)', borderRadius: '12px', width: '18.5vw', height: '60vh', overflowY: 'auto'}}>
+                    <div style={{display: 'flex', justifyContent: 'center', backgroundColor: 'black', flexWrap: 'wrap', border: '2.5px solid rgb(120, 120, 255)', borderRadius: '12px', width: '19vw', height: '60vh', overflowY: 'auto'}}>
                         {
                             user.sent_challenges.map((challenge, i) => {
                                 if (challenge.completed === true) return (
@@ -79,10 +79,10 @@ const ChallengeHolder = () => {
             </div>
 
             <div
-            style={{display: clickedReceived ? 'flex' : 'none', justifyContent: 'space-between', margin: 'auto', width: '40vw', flexWrap: 'wrap'}}>
+            style={{display: clickedReceived ? 'flex' : 'none', justifyContent: 'space-between', margin: 'auto', width: '42vw', flexWrap: 'wrap'}}>
                 <div>
                     <p style={{fontFamily: 'Bungee Spice'}}>Pending</p>
-                    <div style={{display: 'flex', justifyContent: 'center', backgroundColor: 'black', flexWrap: 'wrap', border: '2px solid rgb(255, 255, 60)', borderRadius: '12px', width: '18.5vw', height: '60vh', overflowY: 'auto'}}>
+                    <div style={{display: 'flex', justifyContent: 'center', backgroundColor: 'black', flexWrap: 'wrap', border: '2.5px solid rgb(120, 120, 255)', borderRadius: '12px', width: '19vw', height: '60vh', overflowY: 'auto'}}>
                     {
                         user.received_challenges.map((challenge, i) => {
                             if (challenge.completed === false) return (
@@ -97,7 +97,7 @@ const ChallengeHolder = () => {
                 
                 <div>
                     <p style={{fontFamily: 'Bungee Spice'}}>Completed</p>
-                    <div style={{display: 'flex', justifyContent: 'center', backgroundColor: 'black', flexWrap: 'wrap', border: '2px solid rgb(255, 255, 60)', borderRadius: '12px', width: '18.5vw', height: '60vh', overflowY: 'auto'}}>
+                    <div style={{display: 'flex', justifyContent: 'center', backgroundColor: 'black', flexWrap: 'wrap', border: '2.5px solid rgb(120, 120, 255)', borderRadius: '12px', width: '19vw', height: '60vh', overflowY: 'auto'}}>
                         {
                             user.received_challenges.map((challenge, i) => {
                                 if (challenge.completed === true) return (
