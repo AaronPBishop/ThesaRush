@@ -1,7 +1,6 @@
-import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { setClickedLeague, setClickedProfile } from '../../store/menu.js';
+import { setClickedLeague, setClickedProfile, setClickedChallenges } from '../../store/menu.js';
 
 import Navigation from '../Navigation/Navigation.js';
 import UserStats from './UserStats.js';
@@ -18,8 +17,6 @@ const UserProfile = () => {
     const menu = useSelector(state => state.menu);
     const user = useSelector(state => state.user);
 
-    const [clickedChallenges, setClickedChallenges] = useState(false);
-
     const mapBackgroundColor = {
         'Bronze': 'linear-gradient(to bottom, rgb(160, 75, 55), rgb(170, 45, 25))',
         'Silver': 'linear-gradient(to bottom, rgb(174, 162, 162), rgb(117, 130, 131))',
@@ -33,7 +30,7 @@ const UserProfile = () => {
         style={{background: menu.backgroundColor}}
         id='profile-box'>
             {
-                !clickedChallenges ?
+                !menu.clickedChallenges ?
                 <div>
                     <Navigation hidden={true} />
 
@@ -87,7 +84,7 @@ const UserProfile = () => {
                         
                             <p style={{fontFamily: 'Bungee Spice', fontSize: '20px', marginTop: '6vh'}}>Challenges</p>
                             <div
-                            onClick={() => setClickedChallenges(true)}
+                            onClick={() => dispatch(setClickedChallenges(true))}
                             style={{
                                 backgroundColor: 'rgb(140, 0, 55)',
                                 border: 'none',

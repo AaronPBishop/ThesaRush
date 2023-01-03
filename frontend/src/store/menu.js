@@ -3,7 +3,8 @@ const initialState = {
     clickedSignUp: false,
     clickedLogIn: false,
     clickedProfile: false,
-    clickedLeague: false
+    clickedLeague: false,
+    clickedChallenges: false
 };
 
 export const setBackgroundColor = (color) => {
@@ -41,6 +42,13 @@ export const setClickedLeague = (boolean) => {
     };
 };
 
+export const setClickedChallenges = (boolean) => {
+    return {
+        type: 'SET_CLICKED_CHALLENGES',
+        payload: boolean
+    };
+};
+
 const menuReducer = (state = initialState, action) => {
     const currentState = { ...state };
 
@@ -71,6 +79,12 @@ const menuReducer = (state = initialState, action) => {
 
         case 'SET_CLICKED_LEAGUE': {
             currentState.clickedLeague = action.payload;
+
+            return currentState;
+        };
+
+        case 'SET_CLICKED_CHALLENGES': {
+            currentState.clickedChallenges = action.payload;
 
             return currentState;
         };

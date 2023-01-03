@@ -9,7 +9,7 @@ const LeagueButton = ({ hidden }) => {
 
     return (
         <div 
-        style={{visibility: hidden ? 'hidden' : 'visible', minWidth: '16vw', maxWidth: '16vw'}}
+        style={{display: hidden ? 'none' : 'block', minWidth: '16vw', maxWidth: '16vw'}}
         onClick={() => {
             if (menu.clickedSignUp === true || menu.clickedLogIn === true) {
                 dispatch(setClickedSignUp(false));

@@ -8,6 +8,7 @@ import { fetchUserData, updateUserData } from '../../store/user.js';
 import { resetChallengeState, sendChallenge, updateChallenge } from '../../store/challenge';
 
 import Badge from '../Badge/Badge.js';
+import ChallengeStatus from './ChallengeStatus.js';
 
 import './styles.css';
 
@@ -61,6 +62,7 @@ const GameOver = ({ points, numWords, longestWord, tilesCleared, bombardier, sto
         style={{background: menu.backgroundColor}}
         id='game-over'>
             <p id='gameover-header'>Game Over!</p>
+
             <div
             style={{
                 fontFamily: 'Roboto',
@@ -71,8 +73,9 @@ const GameOver = ({ points, numWords, longestWord, tilesCleared, bombardier, sto
                 bottom: '14vh',
                 marginBottom: '-2vh'
             }}>
-                <b>{(challenge.isChallenger && challenge.completedChallenge) ? 'Challenge Sent!' : (challenge.isChallenger && challenge.completedChallenge === false) ? 'Challenge Failed' : challenge.isChallengee && challenge.completedChallenge ? 'Challenge Completed!' : challenge.isChallengee && challenge.completedChallenge === false && 'Challenge Failed'}</b>
+                <ChallengeStatus />
             </div>
+
             <div id='stats-box'>
                 <p>
                     Final Score: <b>{points}</b>
@@ -153,7 +156,7 @@ const GameOver = ({ points, numWords, longestWord, tilesCleared, bombardier, sto
                         fontWeight: 'bold',
                         fontSize: '20px',
                         position: 'relative',
-                        top: '10vh',
+                        top: challenge.inChallenge === true ? '4vh' : '10vh',
                         color: 'rgb(255, 255, 0)',
                         backgroundColor: 'transparent',
                         border: 'none',

@@ -2,13 +2,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 import { fetchUserData } from '../../store/user.js';
-import { updateChallenge, populateChallengeData, setInChallenge, redeemChallenge } from "../../store/challenge.js";
+import { populateChallengeData, setInChallenge, redeemChallenge } from "../../store/challenge.js";
+import { setClickedProfile, setClickedChallenges } from  '../../store/menu.js';
 
 const Challenge = ({ id, type, sender, receiver, time, completed, redeemed }) => {
     const history = useHistory();
     const dispatch = useDispatch();
 
     const user = useSelector(state => state.user);
+
+    const timeMap = {
+        60000: '1 Minute',
+        120000: '2 Minutes',
+        180000: '3 Minutes'
+    };
 
     return (
         <div
@@ -23,7 +30,7 @@ const Challenge = ({ id, type, sender, receiver, time, completed, redeemed }) =>
                 type === 'sent' ?
                 <div style={{display: 'flex', justifyContent: 'center', margin: 'auto', width: '10vw', flexWrap: 'wrap', lineHeight: '1vh'}}>
                     <div style={{lineHeight: '2.5vh', marginTop: !completed && '3vh'}}>
-                        <p>Time: <b>{time}</b></p>
+                        <p>Time: <b>{timeMap[time]}</b></p>
                         <p>Your Score: <b>{sender.score}</b></p>
                         <p style={{display: completed ? 'block' : 'none'}}>{receiver.user_name}'s Score: <b>{receiver.score}</b></p>
                         <p style={{display: !completed ? 'block' : 'none'}}>Challengee: <b>{receiver.user_name}</b></p>
@@ -67,7 +74,7 @@ const Challenge = ({ id, type, sender, receiver, time, completed, redeemed }) =>
                 :
                 <div style={{display: 'flex', justifyContent: 'center', margin: 'auto', width: '10vw', flexWrap: 'wrap', lineHeight: '1vh'}}>
                     <div style={{lineHeight: '2.5vh'}}>
-                        <p>Time: <b>{time}</b></p>
+                        <p>Time: <b>{timeMap[time]}</b></p>
                         <p>Your Score: <b>{completed ? receiver.score : 'Pending'}</b></p>
                         <p>{completed ? `${sender.user_name}'s Score: ${sender.score}` : `Challenger: ${sender.user_name}`}</p>
                     </div>
@@ -76,6 +83,9 @@ const Challenge = ({ id, type, sender, receiver, time, completed, redeemed }) =>
                     onClick={async () => {
                         dispatch(setInChallenge(true, 'challengee'));
                         dispatch(populateChallengeData(id, sender.id, receiver.id, time));
+
+                        dispatch(setClickedProfile(false));
+                        dispatch(setClickedChallenges(false));
 
                         history.push('/game/rush');
                     }}

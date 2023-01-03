@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 
-import { setClickedLeague, setClickedProfile } from '../../store/menu.js';
+import { setClickedChallenges, setClickedLeague, setClickedProfile } from '../../store/menu.js';
 
 import './styles.css';
 
@@ -15,6 +15,7 @@ const User = ({ userName }) => {
         onClick={() => {
             dispatch(setClickedLeague(false));
             menu.clickedProfile === false ? dispatch(setClickedProfile(true)) : dispatch(setClickedProfile(false));
+            menu.clickedChallenges === true && dispatch(setClickedChallenges(false));
         }}
         className="navigation-buttons">
             {userName}

@@ -6,6 +6,7 @@ import LogIn from "./LogIn.js";
 import LogOut from "./LogOut.js";
 import User from "./User.js";
 import LeagueButton from "./LeagueButton.js";
+import BackButton from "./BackButton.js";
 
 const Navigation = ({ hidden }) => {
     const user = useSelector(state => state.user);
@@ -29,6 +30,7 @@ const Navigation = ({ hidden }) => {
         <div style={{display: 'flex', justifyContent: 'space-between'}}>
             <LogOut hidden={hidden} />
             <LeagueButton hidden={hidden} />
+            <BackButton />
             <User userName={user.user_name} />
         </div>
     );
