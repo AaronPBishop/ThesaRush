@@ -56,6 +56,8 @@ const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmit
     const score = useSelector(state => state.game.stats.score);
 
     const menu = useSelector(state => state.menu);
+
+    const challenge = useSelector(state => state.challenge);
  
     useEffect(() => {
         const makeSearch = async () => {
@@ -257,6 +259,18 @@ const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmit
                 '0px 20px 40px 20px rgb(210, 4, 45)',
                 background: menu.backgroundColor
             }}>
+
+                <div 
+                style={{
+                    display: challenge.inChallenge ? 'block' : 'none',
+                    position: 'absolute', 
+                    marginBottom: '90vh', 
+                    width: '40vw', 
+                    border: '10px solid rgb(200, 0, 65)',
+                    borderRadius: '2px',
+                    animation: `challenge-timer ${challenge.time / 1000}s`
+                }}>
+                </div>
 
                 <div style={{position: 'absolute'}}>
                     <Points hidden={isValid === false} numPoints={points} />

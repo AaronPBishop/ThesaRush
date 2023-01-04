@@ -158,3 +158,8 @@
     from {border-color: rgb(120, 120, 255)}
     to {border-color: transparent}
 }
+
+@keyframes challenge-timer {
+    from {width: 40vw}
+    to {width: 0vw}
+}
