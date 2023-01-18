@@ -90,7 +90,7 @@ def create_new_user():
         gold_miner = 0,
         word_smith = 0,
         void_master = 0,
-        league_name = 'Bronze',
+        league_name = '',
         wins=0,
         losses=0
     )

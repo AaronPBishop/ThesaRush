@@ -85,7 +85,7 @@ const RankedPlayer = ({ score, userName, index }) => {
                 <p style={{
                     textAlign: 'left',
                     width: '4vw',
-                    margin: '1vw',
+                    marginLeft: '1vw',
                     color: user.user_name === userName.toString() && 'rgb(255, 255, 60)',
                     fontWeight: user.user_name === userName.toString() && 'bold'
                     }}>
@@ -113,7 +113,14 @@ const RankedPlayer = ({ score, userName, index }) => {
                     <p>Challenge</p>
                 </div>
                 
-                <b style={{textAlign: 'right', width: user.user_name !== userName.toString() && '2vw', margin: '1vw'}}>{score}</b>
+                <div style={{marginRight: '0.6vw', marginTop: '2vh'}}>
+                    <b 
+                    style={{
+                        textAlign: 'right'
+                    }}>
+                        {score}
+                    </b>
+                </div>
     
                 
                <div style={{display: clicked ? 'block' : 'none', marginTop: '2vh'}}>
