@@ -32,8 +32,8 @@ Redux actions are utilized in order to perform various board operations, such as
 ### _Main gameplay_
 ![image](https://user-images.githubusercontent.com/95946808/204881946-808bf41a-54d9-4712-87a7-f7b0f5d14c60.png)
 
-### _Viewing Leaderboard_
-![image](https://user-images.githubusercontent.com/95946808/209049639-44836faf-e3f6-4fbc-b8c6-0c0157ec24ed.png)
+### _Viewing Leagues_
+![image](https://user-images.githubusercontent.com/95946808/213813175-3c03b9a0-da12-4ce5-94a1-a8ab0950c6af.png)
 
 ### _Game over/score overview_
 ![image](https://user-images.githubusercontent.com/95946808/204883383-2984d39a-c755-4442-838c-647bddef4f56.png)
@@ -42,7 +42,7 @@ Redux actions are utilized in order to perform various board operations, such as
 ![image](https://user-images.githubusercontent.com/95946808/204886715-9ac9eddd-b0f2-4249-a776-6dae0f2675c1.png)
 
 ### _Viewing User Profile_
-![image](https://user-images.githubusercontent.com/95946808/206955988-4c332298-14c3-433f-87e1-a2e7b3e64f5d.png)
+![image](https://user-images.githubusercontent.com/95946808/213813028-ff81fffb-f104-4660-b536-88f144dbcd37.png)
 
 ### _Extending Gameplay_
 ![image](https://user-images.githubusercontent.com/95946808/208339904-372fdc26-5033-470b-8752-95e7e25f6d8e.png)
