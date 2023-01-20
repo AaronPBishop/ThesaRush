@@ -46,3 +46,6 @@ Redux actions are utilized in order to perform various board operations, such as
 
 ### _Extending Gameplay_
 ![image](https://user-images.githubusercontent.com/95946808/208339904-372fdc26-5033-470b-8752-95e7e25f6d8e.png)
+
+### _Viewing Challenges_
+![image](https://user-images.githubusercontent.com/95946808/213819327-6369b607-5a7c-4d9b-ac63-fa84908d5eeb.png)
