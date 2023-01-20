@@ -66,3 +66,13 @@ def redeem_challenge():
     db.session.commit()
 
     return queried_user.to_dict()
+
+
+@challenge_routes.route('/delete/<id>', methods=['DELETE'])
+def delete_challenge(id):
+    queried_challenge = Challenge.query.get_or_404(id)
+
+    db.session.delete(queried_challenge)
+    db.session.commit()
+
+    return {'status': 200}, 200

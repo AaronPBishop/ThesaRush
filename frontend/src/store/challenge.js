@@ -75,6 +75,14 @@ export const redeemChallenge = (challengeId, playerId) => async () => {
     });
 };
 
+
+export const deleteChallenge = (challengeId) => async () => {
+    await fetch(`/api/challenges/delete/${challengeId}`, {
+        method: 'DELETE'
+    });
+};
+
+
 const challengeReducer = (state = initialState, action) => {
     const currentState = { ...state };
 

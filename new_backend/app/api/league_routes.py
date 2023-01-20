@@ -1,6 +1,6 @@
-from flask import Blueprint, request
+from flask import Blueprint
 
-from app.models import League, User, Trophy, db
+from app.models import League, db
 
 league_routes = Blueprint("leagues", __name__)
 
