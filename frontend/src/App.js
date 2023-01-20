@@ -1,14 +1,25 @@
+import { useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import BoardHolder from './components/BoardHolder/BoardHolder.js';
 import Menu from './components/Menu/Menu.js';
 import GameOver from './components/GameOver/GameOver.js';
 import Audio from './components/Audio/Audio.js';
 
+import { setBackgroundColor } from './store/menu.js';
+
 import * as data from './dictionary/words_dictionary';
 
 const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const background = window.localStorage.getItem('backgroundColor');
+
+    if (background !== null) dispatch(setBackgroundColor(background));
+  }, []);
+
   const totalScore = useSelector(state => state.game.stats.score);
   const totalWords = useSelector(state => state.game.stats.words);
   const longestWord = useSelector(state => state.game.stats.longestWord);

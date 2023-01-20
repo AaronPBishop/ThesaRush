@@ -120,7 +120,9 @@ const League = () => {
                 </div> 
 
                 : !user.user_name &&
-                <p style={{width: '14vw', fontSize: '26px', marginTop: '14vh'}}>Sign In to Access Leagues</p>
+                <div style={{display: 'flex', justifyContent: 'center', marginTop: '16vh'}}>
+                    <p style={{width: '14vw', fontSize: '26px'}}>Sign In to Access Leagues</p>
+                </div>
             }
         </div>
     );
