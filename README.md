@@ -7,7 +7,7 @@ Players are awarded points based off of the length of a submitted word, and poin
 Redux actions are utilized in order to perform various board operations, such as splicing off submitted letters and moving remaining letters into their respective places as needed, or reordering letters in the input bar upon selection/deselection of tiles.
 
 ### To play:
-> From your terminal, `cd` into `/frontend`, run `npm install`, then run `npm start`. Then, `cd` into `/new_backend`, and run `flask run`. Have fun!
+> From your terminal, `cd` into `/frontend`, run `npm install` from your terminal, then run `npm start`. In a separate terminal, `cd` into `/new_backend` and create a `.env` file based on the example `.env.example` file provided (within the same directory). Run `pipenv shell` in your terminal to start your virtual environment, then run `pipenv install -r requirements.txt`. Next, run `flask db upgrade`, followed by `flask seed all`, and finally `flask run`. Have fun!
 
 ## What's new in the latest build:
 * Challenges - You can now send and receive challenges from other players! Choose a time limit and rack up as many points as you can to send a challenge to another player. Await their response and compare your results! Winners may claim 500 points for a win.

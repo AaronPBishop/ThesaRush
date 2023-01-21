@@ -121,13 +121,13 @@ const Challenge = ({ id, type, sender, receiver, time, completed, redeemed }) =>
                             borderBottom: '3.5px solid rgb(105, 0, 40)',
                             borderRadius: '12px',
                             width: '5.5vw',
-                            height: '3.8vh',
-                            lineHeight: '2.2vh',
+                            height: '2vh',
+                            lineHeight: '2.3vh',
                             marginTop: '1vh',
                             padding: '1.5vh',
                             cursor: 'pointer'
                         }}>
-                            Decline Challenge
+                            Decline
                         </div>
 
                         <div 
@@ -147,13 +147,13 @@ const Challenge = ({ id, type, sender, receiver, time, completed, redeemed }) =>
                             borderBottom: '3.5px solid rgb(105, 0, 40)',
                             borderRadius: '12px',
                             width: '5.5vw',
-                            height: '3.8vh',
-                            lineHeight: '2.2vh',
+                            height: '2vh',
+                            lineHeight: '2.3vh',
                             marginTop: '1vh',
                             padding: '1.5vh',
                             cursor: 'pointer'
                         }}>
-                            Accept Challenge
+                            Accept
                         </div>
                     </div>
                     

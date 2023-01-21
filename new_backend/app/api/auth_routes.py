@@ -32,13 +32,13 @@ def login():
     form = LoginForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
-    # if form.validate_on_submit():
-    user = User.query.filter(User.user_email == form.data['email']).first()
-    login_user(user)
+    if form.validate_on_submit():
+        user = User.query.filter(User.user_email == form.data['email']).first()
+        login_user(user)
 
-    return {'id': user.id, 'status': 200}, 200
+        return {'id': user.id, 'status': 200}, 200
 
-    # return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
 # ? User logout ********************************************************************
@@ -59,7 +59,7 @@ def create_new_user():
         new_user = User(
             user_name = form.data['user_name'],
             user_email = form.data['email'],
-            user_password = form.data['password'],
+            password = form.data['password'],
             level = 0,
             high_score = 0,
             points = 0,
