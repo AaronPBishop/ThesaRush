@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -8,17 +8,27 @@ import GameOver from './components/GameOver/GameOver.js';
 import Audio from './components/Audio/Audio.js';
 
 import { setBackgroundColor } from './store/menu.js';
+import { authenticate } from './store/user.js';
 
 import * as data from './dictionary/words_dictionary';
 
 const App = () => {
   const dispatch = useDispatch();
 
+  const [loaded, setLoaded] = useState(false);
+
   useEffect(() => {
     const background = window.localStorage.getItem('backgroundColor');
 
     if (background !== null) dispatch(setBackgroundColor(background));
   }, []);
+
+  useEffect(() => {
+    (async () => {
+      await dispatch(authenticate());
+      setLoaded(true);
+    })();
+  }, [dispatch]);
 
   const totalScore = useSelector(state => state.game.stats.score);
   const totalWords = useSelector(state => state.game.stats.words);

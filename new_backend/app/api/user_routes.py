@@ -62,62 +62,6 @@ def update_user_data(id):
     return queried_user.to_dict()
 
 
-@user_routes.route('/new', methods=['POST'])
-def create_new_user():
-    req_data = request.json
-
-    users = User.query.all()
-    for user in users:
-        if user.user_email == req_data['email']:
-            return {'error': 'This email already exists', 'status': 400}, 400
-        if user.user_name == req_data['user_name']:
-            return {'error': 'This username is taken', 'status': 400}, 400
-
-    new_user = User(
-        user_name = req_data['user_name'],
-        user_email = req_data['email'],
-        user_password = req_data['password'],
-        level = 0,
-        high_score = 0,
-        points = 0,
-        points_balance = 0,
-        words = 0,
-        longest_word = '',
-        tiles_cleared = 0,
-        lives = 1,
-        bombardier = 0,
-        stone_crusher = 0,
-        gold_miner = 0,
-        word_smith = 0,
-        void_master = 0,
-        league_name = '',
-        wins=0,
-        losses=0
-    )
-
-    db.session.add(new_user)
-    db.session.commit()
-
-    return {'id': new_user.id, 'status': 200}, 200
-
-
-@user_routes.route('/login', methods=['POST'])
-def login_user():
-    req_data = request.json
-    
-    email = req_data['email']
-    password = req_data['password']
-    
-    users = User.query.all()
-    for user in users:
-        if user.user_email == email:
-            if user.user_password == password:
-                return {'id': user.id, 'status': 200}, 200
-            else:
-                if password != user.user_password:
-                    return {'error': 'Incorrect password', 'status': 400}, 400
-
-
 @user_routes.route('/place_league/<id>', methods=['GET'])
 def place_user_league(id):
     queried_user = User.query.get_or_404(id)

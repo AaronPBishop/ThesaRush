@@ -1,10 +1,15 @@
-from .db import db
+from .db import db, environment
 from sqlalchemy.orm import relationship
+from flask_login import UserMixin
+from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy.schema import Column, ForeignKey
 from sqlalchemy.types import String, Integer
 
-class User(db.Model):
+class User(db.Model, UserMixin):
     __tablename__ = 'users'
+
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
 
     id = Column(Integer, primary_key=True)
     
@@ -36,6 +41,17 @@ class User(db.Model):
 
     sent_challenges = relationship("Challenge", foreign_keys="Challenge.sender_id", back_populates="sender", cascade="all, delete")
     received_challenges = relationship("Challenge", foreign_keys="Challenge.receiver_id", back_populates="receiver", cascade="all, delete")
+
+    @property
+    def password(self):
+        return self.user_password
+
+    @password.setter
+    def password(self, password):
+        self.user_password = generate_password_hash(password)
+
+    def check_password(self, password):
+        return check_password_hash(self.user_password, password)
 
     def to_dict(self):
         return {

@@ -29,8 +29,51 @@ export const logOutUser = () => {
 };
 
 // THUNKS
+export const authenticate = () => async (dispatch) => {
+    const request = await fetch('/api/auth/', {
+        headers: {'Content-Type': 'application/json'}
+    });
+
+    if (request.ok) {
+        const data = await request.json();
+
+        if (data.errors) return;
+
+        dispatch(populateUserData(data));
+    };
+};
+
+
+export const loginUserThunk = (email, password) => async (dispatch) => {
+    const fetchReq = await fetch(`/api/auth/login`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            email: email, 
+            password: password
+        })
+    });
+
+    if (fetchReq.ok) {
+        const fetchJSON = await fetchReq.json();
+        const data = fetchJSON;
+
+        dispatch(logInUser(data.id, email));
+        dispatch(fetchUserData(data.id));
+
+        return null;
+    } else if (fetchReq.status < 500) {
+        const data = await fetchReq.json();
+    
+        if (data.errors) return data.errors;
+    } else {
+        return ['An error occurred. Please try again.']
+    };
+};
+
+
 export const signUpUserThunk = (userName, email, password) => async (dispatch) => {
-    const fetchReq = await fetch(`/api/users/new`, {
+    const fetchReq = await fetch(`/api/auth/signup`, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
@@ -40,29 +83,21 @@ export const signUpUserThunk = (userName, email, password) => async (dispatch) =
         })
     });
 
-    const fetchJSON = await fetchReq.json();
-    const data = fetchJSON;
+    if (fetchReq.ok) {
+        const fetchJSON = await fetchReq.json();
+        const data = fetchJSON;
 
-    dispatch(logInUser(data.id, email))
-    dispatch(fetchUserData(data.id));
-};
+        dispatch(logInUser(data.id, email))
+        dispatch(fetchUserData(data.id));
 
-
-export const loginUserThunk = (email, password) => async (dispatch) => {
-    const fetchReq = await fetch(`/api/users/login`, {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({
-            email: email, 
-            password: password
-        })
-    });
-
-    const fetchJSON = await fetchReq.json();
-    const data = fetchJSON;
-
-    dispatch(logInUser(data.id, email));
-    dispatch(fetchUserData(data.id));
+        return null;
+    } else if (fetchReq.status < 500) {
+        const data = await fetchReq.json();
+    
+        if (data.errors) return data.errors;
+    } else {
+        return ['An error occurred. Please try again.']
+    };
 };
 
 
