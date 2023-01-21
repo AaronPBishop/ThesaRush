@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 
-import { logOutUser } from '../../store/user.js';
+import { logOutUserThunk } from '../../store/user.js';
 
 import './styles.css'
 
@@ -12,7 +12,7 @@ const LogOut = ({ hidden }) => {
     return (
         <div 
         style={{display: menu.clickedChallenges === true ? 'none' : 'block', visibility: hidden ? 'hidden' : 'visible', minWidth: '6vw', maxWidth: '6vw'}}
-        onClick={() => dispatch(logOutUser())}
+        onClick={() => dispatch(logOutUserThunk())}
         className="navigation-buttons">
             Log Out
         </div>

@@ -101,6 +101,15 @@ export const signUpUserThunk = (userName, email, password) => async (dispatch) =
 };
 
 
+export const logOutUserThunk = () => async (dispatch) => {
+    await fetch(`/api/auth/logout`, {
+        method: 'GET'
+    });
+
+    dispatch(logOutUser());
+};
+
+
 export const fetchUserData = (id) => async (dispatch) => {
     const fetchReq = await fetch(`/api/users/${id}`, {
         method: 'GET'

@@ -32,13 +32,13 @@ def login():
     form = LoginForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
-    if form.validate_on_submit():
-        user = User.query.filter(User.email == form.data['email']).first()
-        login_user(user)
+    # if form.validate_on_submit():
+    user = User.query.filter(User.user_email == form.data['email']).first()
+    login_user(user)
 
-        return {'id': user.id, 'status': 200}, 200
+    return {'id': user.id, 'status': 200}, 200
 
-    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+    # return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
 # ? User logout ********************************************************************
@@ -73,7 +73,7 @@ def create_new_user():
             gold_miner = 0,
             word_smith = 0,
             void_master = 0,
-            league_name = '',
+            league_name = 'Bronze',
             wins=0,
             losses=0
         )
