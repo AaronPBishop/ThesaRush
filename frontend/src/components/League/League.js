@@ -49,7 +49,8 @@ const League = () => {
             overflowY: 'auto',
             background: user.user_name ? mapBackgroundColor[rankings.league] : backgroundColor,
             border: '2px solid #FFD700',
-            borderRadius: '12px'
+            borderRadius: '12px',
+            overflowX: 'hidden'
         }}>
                 <div 
                 onClick={() => setClickedBrowse(clicked => !clicked)}

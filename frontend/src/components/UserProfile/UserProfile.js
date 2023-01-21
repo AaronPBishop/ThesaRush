@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 
-import { setClickedLeague, setClickedProfile, setClickedChallenges } from '../../store/menu.js';
+import { setClickedLeague, setClickedProfile, setClickedChallenges, setClickedEditAccount } from '../../store/menu.js';
 
 import Navigation from '../Navigation/Navigation.js';
 import UserStats from './UserStats.js';
@@ -10,6 +10,7 @@ import Trophy from '../Trophy/Trophy.js';
 import ChallengeHolder from '../Challenges/ChallengeHolder.js';
 
 import './styles.css'
+import EditAccount from './EditAccount.js';
 
 const UserProfile = () => {
     const dispatch = useDispatch();
@@ -27,10 +28,14 @@ const UserProfile = () => {
 
     return (
         <div 
-        style={{background: menu.backgroundColor}}
-        id='profile-box'>
+        id='profile-box'
+        style={{
+            background: menu.backgroundColor, 
+            minWidth: menu.clickedEditAccount ? '40vw' : '55vw',
+            maxWidth: menu.clickedEditAccount ? '40vw' : '55vw'
+        }}>
             {
-                !menu.clickedChallenges ?
+                (!menu.clickedChallenges && !menu.clickedEditAccount) ?
                 <div>
                     <Navigation hidden={true} />
 
@@ -61,7 +66,7 @@ const UserProfile = () => {
                             margin: 'auto',
                             flexWrap: 'wrap'
                         }}>
-                            <p style={{fontFamily: 'Bungee Spice', fontSize: '20px'}}>League</p>
+                            <p style={{fontFamily: 'Bungee Spice', fontSize: '20px', marginBottom: '1vh'}}>League</p>
                             <div 
                             onClick={() => {
                                 dispatch(setClickedProfile(false));
@@ -82,27 +87,45 @@ const UserProfile = () => {
                                 <p>{user.league}</p>
                             </div>
                         
-                            <p style={{fontFamily: 'Bungee Spice', fontSize: '20px', marginTop: '6vh'}}>Challenges</p>
+                            <p style={{fontFamily: 'Bungee Spice', fontSize: '20px', marginBottom: '1vh'}}>Challenges</p>
                             <div
                             onClick={() => dispatch(setClickedChallenges(true))}
                             style={{
+                                lineHeight: '1vh',
                                 backgroundColor: 'rgb(140, 0, 55)',
                                 border: 'none',
                                 borderBottom: '3.5px solid rgb(105, 0, 40)',
                                 borderRadius: '12px',
                                 width: '9vw',
-                                height: '6vh',
+                                height: '5vh',
                                 padding: '1.5vh',
                                 cursor: 'pointer'
                             }}>
                                 <p>Browse All</p>
+                            </div>
+
+                            <p style={{fontFamily: 'Bungee Spice', fontSize: '20px', marginBottom: '1vh'}}>Account</p>
+                            <div 
+                            onClick={() => dispatch(setClickedEditAccount(true))}
+                            style={{
+                                lineHeight: '6vh',
+                                backgroundColor: 'rgb(140, 0, 55)',
+                                border: 'none',
+                                borderBottom: '3.5px solid rgb(105, 0, 40)',
+                                borderRadius: '12px',
+                                width: '9vw',
+                                height: '5vh',
+                                padding: '1.5vh',
+                                cursor: 'pointer'
+                            }}>
+                                <b>{user.user_name}</b>
                             </div>
                         
                             <UserLives />
                         </div>
                     </div>
                 </div> 
-                : 
+                : menu.clickedChallenges ?
                 <div>
                     <Navigation hidden={true} />
                     
@@ -110,6 +133,8 @@ const UserProfile = () => {
                         <ChallengeHolder />
                     </div>
                 </div>
+                : menu.clickedEditAccount &&
+                <EditAccount />
             }
         </div>
     );

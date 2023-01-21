@@ -57,6 +57,7 @@ class User(db.Model, UserMixin):
         return {
             'user_id': self.id,
             'user_name': self.user_name,
+            'email': self.user_email,
             'level': self.level,
             'high_score': self.high_score,
             'points': self.points,

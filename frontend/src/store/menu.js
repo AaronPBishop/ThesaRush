@@ -4,7 +4,8 @@ const initialState = {
     clickedLogIn: false,
     clickedProfile: false,
     clickedLeague: false,
-    clickedChallenges: false
+    clickedChallenges: false,
+    clickedEditAccount: false
 };
 
 export const setBackgroundColor = (color) => {
@@ -49,6 +50,13 @@ export const setClickedChallenges = (boolean) => {
     };
 };
 
+export const setClickedEditAccount = (boolean) => {
+    return {
+        type: 'SET_CLICKED_EDIT_ACCOUNT',
+        payload: boolean
+    };
+};
+
 const menuReducer = (state = initialState, action) => {
     const currentState = { ...state };
 
@@ -85,6 +93,12 @@ const menuReducer = (state = initialState, action) => {
 
         case 'SET_CLICKED_CHALLENGES': {
             currentState.clickedChallenges = action.payload;
+
+            return currentState;
+        };
+
+        case 'SET_CLICKED_EDIT_ACCOUNT': {
+            currentState.clickedEditAccount = action.payload;
 
             return currentState;
         };

@@ -35,17 +35,17 @@ export const authenticate = () => async (dispatch) => {
     });
 
     if (request.ok) {
-        const data = await request.json();
+        const response = await request.json();
 
-        if (data.errors) return;
+        if (response.errors) return;
 
-        dispatch(populateUserData(data));
+        dispatch(populateUserData(response));
     };
 };
 
 
 export const loginUserThunk = (email, password) => async (dispatch) => {
-    const fetchReq = await fetch(`/api/auth/login`, {
+    const request = await fetch(`/api/auth/login`, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
@@ -54,18 +54,17 @@ export const loginUserThunk = (email, password) => async (dispatch) => {
         })
     });
 
-    if (fetchReq.ok) {
-        const fetchJSON = await fetchReq.json();
-        const data = fetchJSON;
+    if (request.ok) {
+        const response = await request.json();
 
-        dispatch(logInUser(data.id, email));
-        dispatch(fetchUserData(data.id));
+        dispatch(logInUser(response.id, email));
+        dispatch(fetchUserData(response.id));
 
         return null;
-    } else if (fetchReq.status < 500) {
-        const data = await fetchReq.json();
+    } else if (request.status < 500) {
+        const response = await request.json();
     
-        if (data.errors) return data.errors;
+        if (response.errors) return response.errors;
     } else {
         return ['An error occurred. Please try again.']
     };
@@ -73,7 +72,7 @@ export const loginUserThunk = (email, password) => async (dispatch) => {
 
 
 export const signUpUserThunk = (userName, email, password) => async (dispatch) => {
-    const fetchReq = await fetch(`/api/auth/signup`, {
+    const request = await fetch(`/api/auth/signup`, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
@@ -83,16 +82,16 @@ export const signUpUserThunk = (userName, email, password) => async (dispatch) =
         })
     });
 
-    if (fetchReq.ok) {
-        const fetchJSON = await fetchReq.json();
-        const data = fetchJSON;
+    if (request.ok) {
+        const response = await request.json();
+        const data = response;
 
         dispatch(logInUser(data.id, email))
         dispatch(fetchUserData(data.id));
 
         return null;
-    } else if (fetchReq.status < 500) {
-        const data = await fetchReq.json();
+    } else if (request.status < 500) {
+        const data = await request.json();
     
         if (data.errors) return data.errors;
     } else {
@@ -111,18 +110,18 @@ export const logOutUserThunk = () => async (dispatch) => {
 
 
 export const fetchUserData = (id) => async (dispatch) => {
-    const fetchReq = await fetch(`/api/users/${id}`, {
+    const request = await fetch(`/api/users/${id}`, {
         method: 'GET'
     });
 
-    const fetchJSON = await fetchReq.json();
-    const userData = fetchJSON;
+    const response = await request.json();
 
-    dispatch(populateUserData(userData));
+    dispatch(populateUserData(response));
 };
 
+
 export const updateUserData = (id, points, words, longestWord, tilesCleared, bombardier, stoneCrusher, goldMiner, wordSmith, voidMaster) => async (dispatch) => {
-    const fetchReq = await fetch(`/api/users/${id}`, {
+    const request = await fetch(`/api/users/${id}`, {
         method: 'PUT',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
@@ -138,47 +137,72 @@ export const updateUserData = (id, points, words, longestWord, tilesCleared, bom
         })
     });
 
-    const fetchJSON = await fetchReq.json();
-    const userData = fetchJSON;
+    const response = await request.json();
 
-    dispatch(populateUserData(userData));
+    dispatch(populateUserData(response));
 };
 
+
+export const editUserAccountInfo = (id, userName, email, password) => async (dispatch) => {
+    const request = await fetch(`/api/users/edit/${id}`, {
+        method: 'PUT',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            user_name: userName,
+            user_email: email,
+            password: password
+        })
+    });
+
+    const response = await request.json();
+
+    if (!response.error) dispatch(populateUserData(response));
+};
+
+
+export const deleteUserData = (id) => async (dispatch) => {
+    await fetch(`/api/users/${id}`, {
+        method: 'DELETE'
+    });
+
+    dispatch(logOutUser());
+};
+
+
 export const placeUserLeague = (id) => async (dispatch) => {
-    const fetchReq = await fetch(`/api/users/place_league/${id}`, {
+    const request = await fetch(`/api/users/place_league/${id}`, {
         method: 'GET'
     });
 
-    const fetchJSON = await fetchReq.json();
-    const userData = fetchJSON;
+    const response = await request.json();
 
-    dispatch(populateUserData(userData));
+    dispatch(populateUserData(response));
 };
+
 
 export const buyLife = (id) => async (dispatch) => {
-    const fetchReq = await fetch(`/api/users/lives/${id}`, {
+    const request = await fetch(`/api/users/lives/${id}`, {
         method: 'PUT',
         headers: {'Content-Type': 'application/json'}
     });
 
-    const fetchJSON = await fetchReq.json();
-    const userData = fetchJSON;
+    const response = await request.json();
 
-    if (userData.status === 400) return;
+    if (response.status === 400) return;
 
-    dispatch(updateLives(userData.points_balance, userData.lives));
+    dispatch(updateLives(response.points_balance, response.lives));
 };
 
+
 export const spendLife = (id) => async (dispatch) => {
-    const fetchReq = await fetch(`/api/users/lives/use/${id}`, {
+    const request = await fetch(`/api/users/lives/use/${id}`, {
         method: 'PUT',
         headers: {'Content-Type': 'application/json'}
     });
 
-    const fetchJSON = await fetchReq.json();
-    const userData = fetchJSON;
+    const response = await request.json();
 
-    dispatch(updateLives(userData.points_balance, userData.lives));
+    dispatch(updateLives(response.points_balance, response.lives));
 };
 
 

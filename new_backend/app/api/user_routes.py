@@ -62,6 +62,44 @@ def update_user_data(id):
     return queried_user.to_dict()
 
 
+@user_routes.route('/<id>', methods=['DELETE'])
+def delete_user_data(id):
+    queried_user = User.query.get_or_404(id)
+
+    db.session.delete(queried_user)
+    db.session.commit()
+
+    return {'status': 200}, 200
+
+
+@user_routes.route('/edit/<id>', methods=['PUT'])
+def edit_account_info(id):
+    req_data = request.json
+
+    all_users = User.query.all()
+    queried_user = User.query.get_or_404(id)
+    
+    for user in all_users:
+        if user != queried_user:
+            for key, val in req_data.items():
+                if key != 'password':
+                    attr = getattr(user, key).lower()
+
+                    if key == 'user_name' and attr == val.lower():
+                        return {'error': 'Username already in use.'}, 400
+
+                    if key == 'user_email' and attr == val.lower():
+                        return {'error': 'Email already in use.'}, 400
+
+    for key, val in req_data.items():
+        if len(val) > 0:
+            setattr(queried_user, key, val)
+
+    db.session.commit()
+    
+    return queried_user.to_dict()
+
+
 @user_routes.route('/place_league/<id>', methods=['GET'])
 def place_user_league(id):
     queried_user = User.query.get_or_404(id)
