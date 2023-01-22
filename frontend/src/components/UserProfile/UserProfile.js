@@ -6,7 +6,7 @@ import Navigation from '../Navigation/Navigation.js';
 import UserStats from './UserStats.js';
 import UserLives from './UserLives.js';
 import UserBadges from './UserBadges.js';
-import Trophy from '../Trophy/Trophy.js';
+import TrophyComponent from '../TrophyComponent/TrophyComponent.js';
 import ChallengeHolder from '../Challenges/ChallengeHolder.js';
 
 import './styles.css'
@@ -46,7 +46,7 @@ const UserProfile = () => {
                                 <div
                                 style={{display: 'flex', justifyContent: 'center', minWidth: '16vw', maxWidth: '16vw', marginRight: '2vw', marginLeft: '2vw', marginBottom: '4vh'}}
                                 onClick={e => e.stopPropagation()}>
-                                    <Trophy trophyType={trophy.trophy_name} container={'userProfile'} key={i} />
+                                    <TrophyComponent trophyType={trophy.trophy_name} container={'userProfile'} key={i} />
                                 </div>
                             )) : 
                             <div style={{display: 'flex', justifyContent: 'center', flexWrap: 'wrap', width: '24vw', marginTop: '6vh', margin: 'auto', fontSize: '24px', lineHeight: '6vh'}}>

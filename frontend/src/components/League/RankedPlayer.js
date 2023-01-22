@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 import Badge from "../Badge/Badge.js";
-import Trophy from "../Trophy/Trophy.js";
+import TrophyComponent from "../TrophyComponent/TrophyComponent.js";
 import ChallengeTime from "./ChallengeTime.js";
 
 import './styles.css';
@@ -170,7 +170,7 @@ const RankedPlayer = ({ score, userName, index }) => {
                                 onClick={e => e.stopPropagation()}
                                 style={{display: 'flex', justifyContent: 'center', minWidth: '16vw', maxWidth: '16vw', marginBottom: '4vh'}}
                                 key={i}>
-                                    <Trophy trophyType={trophy.trophy_name} key={i} />
+                                    <TrophyComponent trophyType={trophy.trophy_name} key={i} />
                                 </div>
                             )
                         }

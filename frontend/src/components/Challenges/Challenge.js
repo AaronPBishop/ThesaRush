@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 
 import { fetchUserData } from '../../store/user.js';
 import { populateChallengeData, setInChallenge, redeemChallenge, deleteChallenge } from "../../store/challenge.js";
-import { setClickedProfile, setClickedChallenges } from  '../../store/menu.js';
+import { setClickedProfile, setClickedChallenges, setClaimedPoints } from  '../../store/menu.js';
 
 const Challenge = ({ id, type, sender, receiver, time, completed, redeemed }) => {
     const history = useHistory();
@@ -68,6 +68,7 @@ const Challenge = ({ id, type, sender, receiver, time, completed, redeemed }) =>
                     onClick={async () => {
                         await dispatch(redeemChallenge(id, user.user_id));
                         await dispatch(fetchUserData(user.user_id));
+                        await dispatch(setClaimedPoints(true));
                     }}
                     style={{
                         display: completed && sender.score > receiver.score && !redeemed ? 'block' : 'none',
@@ -161,6 +162,7 @@ const Challenge = ({ id, type, sender, receiver, time, completed, redeemed }) =>
                     onClick={async () => {
                         await dispatch(redeemChallenge(id, user.user_id));
                         await dispatch(fetchUserData(user.user_id));
+                        await dispatch(setClaimedPoints(true));
                     }}
                     style={{
                         display: completed && receiver.score > sender.score && !redeemed ? 'block' : 'none',

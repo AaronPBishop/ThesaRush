@@ -1,0 +1,9 @@
+#challenge-points {
+    animation: challenge-slide;
+    animation-duration: 0.4s;
+}
+
+@keyframes challenge-slide {
+    from {margin-top: 32vh}
+    to {margin-top: 0vh}
+}

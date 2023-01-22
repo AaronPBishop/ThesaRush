@@ -1,13 +1,28 @@
-import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+
+import { setClaimedPoints } from "../../store/menu.js";
 
 import Challenge from "./Challenge.js";
+import ChallengePoints from "./ChallengePoints.js";
 
 const ChallengeHolder = () => {
+    const dispatch = useDispatch();
     const user = useSelector(state => state.user);
+    const pointStatus = useSelector(state => state.menu.claimedPoints);
 
     const [clickedSent, setClickedSent] = useState(true);
     const [clickedReceived, setClickedReceived] = useState(false);
+
+    useEffect(() => {
+        if (pointStatus === true) {
+            const pointsTimer = setTimeout(() => {
+                dispatch(setClaimedPoints(false));
+            }, 2000);
+
+            return () => clearTimeout(pointsTimer);
+        };
+    }, [pointStatus]);
 
     return (
         <div
@@ -19,6 +34,12 @@ const ChallengeHolder = () => {
             boxShadow: 'blue 0px 0.1px 6px 1px',
             marginTop: '3vh'
         }}>
+            <div style={{display: 'flex', justifyContent: 'center', margin: 'auto'}}>
+                <div style={{position: 'absolute', height: '14vh'}}>
+                    <ChallengePoints hidden={pointStatus} numPoints={500} />
+                </div>
+            </div>
+
             <div style={{display: 'flex', justifyContent: 'space-between', marginBottom: '2vh'}}>
                 <div 
                 onClick={() => {

@@ -5,7 +5,8 @@ const initialState = {
     clickedProfile: false,
     clickedLeague: false,
     clickedChallenges: false,
-    clickedEditAccount: false
+    clickedEditAccount: false,
+    claimedPoints: false
 };
 
 export const setBackgroundColor = (color) => {
@@ -57,6 +58,14 @@ export const setClickedEditAccount = (boolean) => {
     };
 };
 
+export const setClaimedPoints = (boolean) => {
+    return {
+        type: 'SET_CLAIMED_POINTS',
+        payload: boolean
+    };
+};
+
+
 const menuReducer = (state = initialState, action) => {
     const currentState = { ...state };
 
@@ -99,6 +108,12 @@ const menuReducer = (state = initialState, action) => {
 
         case 'SET_CLICKED_EDIT_ACCOUNT': {
             currentState.clickedEditAccount = action.payload;
+
+            return currentState;
+        };
+
+        case 'SET_CLAIMED_POINTS': {
+            currentState.claimedPoints = action.payload;
 
             return currentState;
         };

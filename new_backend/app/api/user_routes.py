@@ -35,7 +35,8 @@ def update_user_data(id):
         'bombardier': 'Master Blaster',
         'stone_crusher': 'Obelisk Oracle',
         'gold_miner': 'King Midas',
-        'void_master': 'Antimatter Virtuoso'
+        'word_smith': 'Alphabet Architect',
+        'void_master': 'Antimatter Virtuoso',
     }
 
     for key, val in trophies.items():

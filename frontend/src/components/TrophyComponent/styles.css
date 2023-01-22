@@ -2,11 +2,8 @@
     display: flex;
     justify-content: center;
 
-    background-image: url('../../trophy-solid.svg');
-    background-position-x: center;
-    background-position-y: 3vh;
-    background-size: 18vh;
-    background-repeat: no-repeat;
+    margin: auto;
+    flex-wrap: wrap;
 
     border-radius: 24px;
 
