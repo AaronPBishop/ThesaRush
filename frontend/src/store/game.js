@@ -395,13 +395,14 @@ const gameReducer = (state = initialState, action) => {
         };
 
         case 'RESET_GAME': {
-            for (let key in currentState) {
-                if (currentState[key] !== 'board' && currentState[key] !== 'statuses' && currentState[key] !== 'stats') currentState[key] = initialState[key];
-            };
+            currentState.board = [];
+            currentState.finalTiles = {};
+            currentState.input = {};
+            currentState.order = 0;
+            currentState.removedChar = [];
+            currentState.tiles = {};
 
             for (let key in currentState.statuses) currentState.statuses[key] = false;
-
-            currentState.board = [];
             
             return currentState;
         };
