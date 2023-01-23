@@ -1,7 +1,12 @@
 import { useState } from 'react';
 
-import { Trophy } from '@styled-icons/fa-solid/Trophy';
 import { Tools } from '@styled-icons/entypo/Tools';
+import { BrainCircuit } from '@styled-icons/fluentui-system-filled/BrainCircuit';
+import { Sword } from '@styled-icons/remix-fill/Sword';
+import { Bomb } from '@styled-icons/fa-solid/Bomb';
+import { Mountains } from '@styled-icons/foundation/Mountains';
+import { Diamond } from '@styled-icons/ionicons-solid/Diamond';
+import { Connectdevelop } from '@styled-icons/fa-brands/Connectdevelop';
 
 import './styles.css';
 
@@ -25,7 +30,7 @@ const TrophyComponent = ({ trophyType, container }) => {
             border: '4px solid rgb(0, 40, 30)',
             trophyColor: 'black'
         },
-        KingMidas: {
+        TreasureTactician: {
             description: 'Earned 50 Gold Miner Badges',
             backgroundColor: 'rgb(210, 200, 30)',
             color: 'white',
@@ -41,13 +46,29 @@ const TrophyComponent = ({ trophyType, container }) => {
             border: '4px solid rgb(20, 0, 60)',
             trophyColor: 'black'
         },
-        AntimatterVirtuoso: {
+        AntimatterMaestro: {
             description: 'Earned 50 Void Master Badges',
             backgroundColor: 'black',
             color: 'white',
             boxShadow: '0px 0px 12px 4px white',
             border: '4px solid white',
             trophyColor: 'white'
+        },
+        VengeantVanquisher: {
+            description: 'Won 50 Challenges',
+            backgroundColor: 'rgb(128, 0, 32)',
+            color: 'white',
+            boxShadow: '0px 0px 12px 4px red',
+            border: '4px solid rgb(105, 0, 0)',
+            trophyColor: 'black'
+        },
+        AstralEntity: {
+            description: 'Reached Astral League',
+            backgroundColor: 'rgb(255, 37, 174)',
+            color: 'white',
+            boxShadow: '0px 0px 10px 4px purple',
+            border: '4px solid rgb(145, 20, 115)',
+            trophyColor: 'black'
         }
     };
 
@@ -55,7 +76,7 @@ const TrophyComponent = ({ trophyType, container }) => {
         <div 
         onClick={() => setClicked(clicked => !clicked)}
         style={mapStyles[trophyType.replace(/ /g, '')] && {
-            backgroundColor: mapStyles[trophyType.replace(/ /g, '')].backgroundColor,
+            background: mapStyles[trophyType.replace(/ /g, '')].backgroundColor,
             color: mapStyles[trophyType.replace(/ /g, '')].color,
             boxShadow: mapStyles[trophyType.replace(/ /g, '')].boxShadow,
             border: mapStyles[trophyType.replace(/ /g, '')].border,
@@ -65,15 +86,44 @@ const TrophyComponent = ({ trophyType, container }) => {
         id={!clicked ? 'animate-swivel' : 're-animate-swivel'}
         className='trophies'>
 
-            <Trophy 
+            <Bomb 
             style={{
-                display: !clicked && trophyType !== 'Alphabet Architect' ? 'block' : 'none',
+                display: !clicked && trophyType === 'Master Blaster' ? 'block' : 'none',
                 color: mapStyles[trophyType.replace(/ /g, '')].trophyColor,
-                marginTop: trophyType === 'Antimatter Virtuoso' ? '4vh' : '3vh',
-                width: trophyType === 'Antimatter Virtuoso' ? '7vw' : '8vw'
+                marginTop: '2.5vh',
+                width: '7vw'
             }}>
-            </Trophy>
+            </Bomb>
 
+            <Mountains 
+            style={{
+                display: !clicked && trophyType === 'Obelisk Oracle' ? 'block' : 'none',
+                color: mapStyles[trophyType.replace(/ /g, '')].trophyColor,
+                marginTop: '1.8vh',
+                marginBottom: '-2vh',
+                width: '8vw'
+            }}>
+            </Mountains>
+
+            <Diamond 
+            style={{
+                display: !clicked && trophyType === 'Treasure Tactician' ? 'block' : 'none',
+                color: mapStyles[trophyType.replace(/ /g, '')].trophyColor,
+                marginTop: '2.5vh',
+                width: '7vw'
+            }}>
+            </Diamond>
+
+            <Connectdevelop 
+            style={{
+                display: !clicked && trophyType === 'Antimatter Maestro' ? 'block' : 'none',
+                color: mapStyles[trophyType.replace(/ /g, '')].trophyColor,
+                marginTop: '3vh',
+                marginBottom: '1vh',
+                width: '7vw'
+            }}>
+            </Connectdevelop>
+            
             <Tools 
             style={{
                 display: !clicked && trophyType === 'Alphabet Architect' ? 'block' : 'none',
@@ -83,9 +133,36 @@ const TrophyComponent = ({ trophyType, container }) => {
             }}>
             </Tools>
 
+            <Sword 
+            style={{
+                display: !clicked && trophyType === 'Vengeant Vanquisher' ? 'block' : 'none',
+                color: mapStyles[trophyType.replace(/ /g, '')].trophyColor,
+                marginTop: '2.5vh',
+                width: '7vw'
+            }}>
+            </Sword>
+
+            <BrainCircuit 
+            style={{
+                display: !clicked && trophyType === 'Astral Entity' ? 'block' : 'none',
+                color: mapStyles[trophyType.replace(/ /g, '')].trophyColor,
+                marginTop: '2.5vh',
+                width: '7vw'
+            }}>
+            </BrainCircuit>
+
             {
                 !clicked ?
-                <p id='animate-text' style={{fontSize: '22px', width: '14vw'}}>{trophyType}</p> 
+                <p 
+                id='animate-text' 
+                style={{
+                    textShadow: '0px 3px 2px black',
+                    fontWeight: 'bold', 
+                    fontSize: '20px', 
+                    width: '14vw'
+                }}>
+                    {trophyType}
+                </p> 
                 :
                 <p style={{fontSize: '20px', marginTop: '8vh', width: '10vw'}}>{mapStyles[trophyType.replace(/ /g, '')].description}</p>
             }

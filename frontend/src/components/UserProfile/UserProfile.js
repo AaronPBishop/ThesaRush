@@ -19,11 +19,12 @@ const UserProfile = () => {
     const user = useSelector(state => state.user);
 
     const mapBackgroundColor = {
-        'Bronze': 'linear-gradient(to bottom, rgb(160, 75, 55), rgb(170, 45, 25))',
-        'Silver': 'linear-gradient(to bottom, rgb(174, 162, 162), rgb(117, 130, 131))',
-        'Gold': 'linear-gradient(to bottom, #FACC6B, #FABC3C)',
-        'Ethereal': 'linear-gradient(to bottom, #A4508B, #5F0A87)',
-        'Galaxy': 'linear-gradient(to bottom, rgb(40, 0, 100), rgb(0, 0, 10))'
+        'Bronze': ['linear-gradient(to bottom, rgb(160, 75, 55), rgb(170, 45, 25))', 'rgb(100, 35, 15)'],
+        'Silver': ['linear-gradient(to bottom, rgb(174, 162, 162), rgb(117, 130, 131))', 'rgb(87, 100, 101)'],
+        'Gold': ['linear-gradient(to bottom, #FACC6B, #FABC3C)', 'rgb(190, 158, 40)'],
+        'Ethereal': ['linear-gradient(to bottom, #A4508B, #5F0A87)', 'rgb(85, 10, 105)'],
+        'Galaxy': ['linear-gradient(to bottom, rgb(40, 0, 100), rgb(0, 0, 10))', 'rgb(30, 0, 50)'],
+        'Astral': ['linear-gradient(to bottom, rgba(250, 237, 56, 1) 10%, rgba(241, 147, 55, 1) 30%, rgba(255, 37, 174, 1)) 60%', 'rgba(185, 32, 144, 1)']
     };
 
     return (
@@ -79,8 +80,8 @@ const UserProfile = () => {
                                 lineHeight: '2vh',
                                 width: '10vw',
                                 height: '8vh',
-                                background: mapBackgroundColor[user.league],
-                                border: '2px solid yellow',
+                                background: mapBackgroundColor[user.league][0],
+                                border: `2px solid ${mapBackgroundColor[user.league][1]}`,
                                 borderRadius: '12px',
                                 cursor: 'pointer'
                             }}>

@@ -32,30 +32,32 @@ def update_user_data(id):
             setattr(queried_user, key, attr + val)
 
     trophies = {
-        'bombardier': 'Master Blaster',
-        'stone_crusher': 'Obelisk Oracle',
-        'gold_miner': 'King Midas',
-        'word_smith': 'Alphabet Architect',
-        'void_master': 'Antimatter Virtuoso',
+        'bombardier': ['Master Blaster', 4000],
+        'stone_crusher': ['Obelisk Oracle', 3000],
+        'gold_miner': ['Treasure Tactician', 3000],
+        'word_smith': ['Alphabet Architect', 8000],
+        'void_master': ['Antimatter Maestro', 4000],
+        'wins': ['Vengeant Vanquisher', 9000],
+        'level': ['Astral Entity', 10000]
     }
 
     for key, val in trophies.items():
         attr = getattr(queried_user, key)
 
-        if attr >= 50 and queried_user.has_trophy(val) == False:
+        if attr >= 50 and queried_user.has_trophy(val[0]) == False:
             new_trophy = Trophy(
-                trophy_name=val,
+                trophy_name=val[0],
                 user_id=queried_user.id
             )
 
-            queried_user.points += 5000
-            queried_user.points_balance += 5000
+            queried_user.points += val[1]
+            queried_user.points_balance += val[1]
     
             db.session.add(new_trophy)
 
-    queried_user.level = math.floor(queried_user.points / 1000)
-    if queried_user.level > 30:
-        queried_user.level = 30
+    queried_user.level = math.floor(queried_user.points / 2000)
+    if queried_user.level > 50:
+        queried_user.level = 50
 
     db.session.add(queried_user)
     db.session.commit()
@@ -106,11 +108,12 @@ def place_user_league(id):
     queried_user = User.query.get_or_404(id)
 
     leagues = {
-        'Bronze': [0, 1, 2, 3, 4],
-        'Silver': [5, 6, 7, 8, 9],
-        'Gold': [10, 11, 12, 13, 14],
-        'Ethereal': [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29],
-        'Galaxy': [30]
+        'Bronze': list(range(0, 5)),
+        'Silver': list(range(5, 10)),
+        'Gold': list(range(10, 15)),
+        'Ethereal': list(range(15, 30)),
+        'Galaxy': list(range(30, 50)),
+        'Astral': [50]
     }
 
     for key, val in leagues.items():

@@ -6,12 +6,14 @@ def seed_leagues():
     gold = League(league_name='Gold')
     ethereal = League(league_name='Ethereal')
     galaxy = League(league_name='Galaxy')
+    astral = League(league_name='Astral')
 
     db.session.add(bronze)
     db.session.add(silver)
     db.session.add(gold)
     db.session.add(ethereal)
     db.session.add(galaxy)
+    db.session.add(astral)
 
     db.session.commit()
 

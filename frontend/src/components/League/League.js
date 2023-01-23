@@ -19,11 +19,12 @@ const League = () => {
     const [clickedPlayer, setClickedPlayer] = useState(false);
 
     const mapBackgroundColor = {
-        'Bronze': 'linear-gradient(to bottom, rgb(160, 75, 55), rgb(170, 45, 25))',
-        'Silver': 'linear-gradient(to bottom, rgb(174, 162, 162), rgb(117, 130, 131))',
-        'Gold': 'linear-gradient(to bottom, #FACC6B, #FABC3C)',
-        'Ethereal': 'linear-gradient(to bottom, #A4508B, #5F0A87)',
-        'Galaxy': 'linear-gradient(to bottom, rgb(40, 0, 100), rgb(0, 0, 10))'
+        'Bronze': ['linear-gradient(to bottom, rgb(160, 75, 55), rgb(170, 45, 25))', 'rgb(100, 35, 15)'],
+        'Silver': ['linear-gradient(to bottom, rgb(174, 162, 162), rgb(117, 130, 131))', 'rgb(87, 100, 101)'],
+        'Gold': ['linear-gradient(to bottom, #FACC6B, #FABC3C)', 'rgb(190, 158, 40)'],
+        'Ethereal': ['linear-gradient(to bottom, #A4508B, #5F0A87)', 'rgb(85, 10, 105)'],
+        'Galaxy': ['linear-gradient(to bottom, rgb(40, 0, 100), rgb(0, 0, 10))', 'rgb(30, 0, 50)'],
+        'Astral': ['linear-gradient(to bottom, rgba(250, 237, 56, 1) 10%, rgba(241, 147, 55, 1) 30%, rgba(255, 37, 174, 1)) 60%', 'rgba(185, 32, 144, 1)']
     };
 
     useEffect(() => {
@@ -47,7 +48,7 @@ const League = () => {
             width: '30vw',
             height: '64vh',
             overflowY: 'auto',
-            background: user.user_name ? mapBackgroundColor[rankings.league] : backgroundColor,
+            background: user.user_name ? mapBackgroundColor[rankings.league] && mapBackgroundColor[rankings.league][0] : backgroundColor,
             border: '2px solid #FFD700',
             borderRadius: '12px',
             overflowX: 'hidden'
@@ -90,18 +91,18 @@ const League = () => {
                         display: 'flex', 
                         justifyContent: 'center', 
                         fontFamily: 'Roboto',
-                        border: '2px solid rgb(120, 120, 255)',
+                        border: `2px solid ${mapBackgroundColor[currLeague][1]}`,
                         borderRadius: '12px',
                         width: '20vw', 
                         height: '50vh',
                         backgroundColor: 'black',
                         flexWrap: 'wrap', 
                         margin: 'auto', 
-                        marginTop: '3vh',
+                        marginTop: '4vh',
                         overflowY: 'auto'
                     }}>
                     {
-                        ['Bronze', 'Silver', 'Gold', 'Ethereal', 'Galaxy'].map((league, i) => (
+                        ['Bronze', 'Silver', 'Gold', 'Ethereal', 'Galaxy', 'Astral'].map((league, i) => (
                         <div 
                         onClick={() => {
                             setCurrLeague(league);
@@ -109,7 +110,8 @@ const League = () => {
                         }}
                         className="theme-containers"
                         style={{
-                            background: mapBackgroundColor[league],
+                            background: mapBackgroundColor[league][0],
+                            border: `2px solid ${mapBackgroundColor[league][1]}`,
                             margin: 'auto',
                             marginTop: '1.5vh',
                             marginBottom: '1.5vh'
