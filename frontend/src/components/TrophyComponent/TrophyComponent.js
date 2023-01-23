@@ -42,9 +42,9 @@ const TrophyComponent = ({ trophyType, container }) => {
             description: 'Earned 50 Word Smith Badges',
             backgroundColor: 'rgb(40, 0, 80)',
             color: 'white',
-            boxShadow: '0px 0px 12px 4px rgb(160, 0, 190)',
+            boxShadow: '0px 0px 12px 4px rgb(100, 0, 190)',
             border: '4px solid rgb(20, 0, 60)',
-            trophyColor: 'black'
+            trophyColor: 'white'
         },
         AntimatterMaestro: {
             description: 'Earned 50 Void Master Badges',
@@ -62,17 +62,17 @@ const TrophyComponent = ({ trophyType, container }) => {
             border: '4px solid rgb(105, 0, 0)',
             trophyColor: 'black'
         },
-        AstralEntity: {
-            description: 'Reached Astral League',
-            backgroundColor: 'rgb(255, 37, 174)',
+        TypeIInstance: {
+            description: 'Attained Cosmic League Status',
+            backgroundColor: 'rgba(185, 10, 180, 1)',
             color: 'white',
-            boxShadow: '0px 0px 10px 4px purple',
-            border: '4px solid rgb(145, 20, 115)',
+            boxShadow: '0px 0px 12px 4px purple',
+            border: '4px solid rgba(125, 0, 120, 1)',
             trophyColor: 'black'
         }
     };
 
-    return (
+    if (Object.keys(mapStyles).length > 0) return (
         <div 
         onClick={() => setClicked(clicked => !clicked)}
         style={mapStyles[trophyType.replace(/ /g, '')] && {
@@ -144,7 +144,7 @@ const TrophyComponent = ({ trophyType, container }) => {
 
             <BrainCircuit 
             style={{
-                display: !clicked && trophyType === 'Astral Entity' ? 'block' : 'none',
+                display: !clicked && trophyType === 'Type I Instance' ? 'block' : 'none',
                 color: mapStyles[trophyType.replace(/ /g, '')].trophyColor,
                 marginTop: '2.5vh',
                 width: '7vw'

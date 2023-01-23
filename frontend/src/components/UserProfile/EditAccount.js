@@ -15,7 +15,7 @@ const EditAccount = () => {
 
     const [submitted, setSubmitted] = useState(false);
     const [errors, setErrors] = useState([]);
-    const [clickedDelete, setClickedDelete] = useState(false);
+    const [clickedDeleteCount, setClickedDeleteCount] = useState(0);
 
     useEffect(() => {
         const errorsArr = [];
@@ -59,7 +59,7 @@ const EditAccount = () => {
             borderRadius: '12px'
         }}>
             {
-                !clickedDelete ?
+                clickedDeleteCount < 1 ?
                 <div>
                     <div
                     style={{
@@ -72,7 +72,7 @@ const EditAccount = () => {
                     </div>
                 
                     <form>
-                        <div style={{display: 'flex', justifyContent: 'center', marginBottom: '2vh'}}>
+                        <div style={{display: 'flex', justifyContent: 'center', marginTop: '1vh', marginBottom: '3vh'}}>
                             <div
                             className='edit-account-btns'
                             onClick={() => dispatch(setClickedEditAccount(false))}
@@ -129,11 +129,10 @@ const EditAccount = () => {
                         
                             <div
                             className='edit-account-btns'
-                            onClick={() => setClickedDelete(true)}
+                            onClick={() => setClickedDeleteCount(1)}
                             style={{
                                 display: 'flex',
-                                justifyContent: 'center',
-                                marginTop: '3vh'
+                                justifyContent: 'center'
                             }}>
                                 Delete Account
                             </div>
@@ -144,32 +143,41 @@ const EditAccount = () => {
                 <div>
                     <div
                     className='edit-account-btns'
-                    onClick={() => setClickedDelete(false)}
+                    onClick={() => setClickedDeleteCount(0)}
                     style={{
                         display: 'flex',
                         justifyContent: 'center',
+                        marginTop: '4vh',
                         marginBottom: '6vh'
                     }}>
                         Take Me Back
                     </div>
 
-                    <p>Are you sure you want to delete?</p>
+                    <p>Are you <b>sure</b> you want to delete?</p>
                     <p>This will erase <b>all</b> progress.</p>
                     <p>Lost data <b>cannot</b> be recovered.</p>
 
                     <div
                     className='edit-account-btns'
                     onClick={async () => {
-                        await dispatch(setClickedEditAccount(false));
-                        await dispatch(setClickedProfile(false));
-                        await dispatch(deleteUserData(user.user_id));
+                        if (clickedDeleteCount < 2) {
+                            setClickedDeleteCount(2);
+                            return;
+                        };
+
+                        if (clickedDeleteCount > 1) {
+                            await dispatch(setClickedEditAccount(false));
+                            await dispatch(setClickedProfile(false));
+                            await dispatch(deleteUserData(user.user_id));
+                            await setClickedDeleteCount(0);
+                        };
                     }}
                     style={{
                         display: 'flex',
                         justifyContent: 'center',
                         marginTop: '6vh'
                     }}>
-                        Confirm Account Deletion
+                        {clickedDeleteCount < 2 ? 'Confirm Account Deletion' : clickedDeleteCount > 1 && 'Delete Forever'}
                     </div>
                 </div>
             }

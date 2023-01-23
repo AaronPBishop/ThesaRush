@@ -78,19 +78,19 @@ def seed_users():
         {"user_name": "Epitonic", "user_email": "epitonic@gmail.com", "password": "password", "level": "46", "high_score": "876", "points": "92754", "points_balance": "92754", "words": "14543", "longest_word": "INCREMENTALLY", "tiles_cleared": "31894", "lives": "1", "wins": "165", "losses": "88", "bombardier": "473", "stone_crusher": "566", "gold_miner": "438", "word_smith": "214", "void_master": "483", "league_name": "Galaxy"},
 
         #26
-        {"user_name": "Roctopi", "user_email": "roctopi@gmail.com", "password": "password", "level": "50", "high_score": "949", "points": "102343", "points_balance": "102343", "words": "18636", "longest_word": "ADMINISTRATIONS", "tiles_cleared": "36233", "lives": "1", "wins": "143", "losses": "127", "bombardier": "263", "stone_crusher": "288", "gold_miner": "290", "word_smith": "208", "void_master": "277", "league_name": "Astral"},
+        {"user_name": "Roctopi", "user_email": "roctopi@gmail.com", "password": "password", "level": "50", "high_score": "949", "points": "102343", "points_balance": "102343", "words": "18636", "longest_word": "ADMINISTRATIONS", "tiles_cleared": "36233", "lives": "1", "wins": "143", "losses": "127", "bombardier": "263", "stone_crusher": "288", "gold_miner": "290", "word_smith": "208", "void_master": "277", "league_name": "Cosmic"},
 
         #27
-        {"user_name": "Deadbot", "user_email": "deadbot@gmail.com", "password": "password", "level": "50", "high_score": "1128", "points": "110009", "points_balance": "110009", "words": "23166", "longest_word": "VINDICATION", "tiles_cleared": "52304", "lives": "1", "wins": "188", "losses": "100", "bombardier": "297", "stone_crusher": "304", "gold_miner": "283", "word_smith": "203", "void_master": "295", "league_name": "Astral"},
+        {"user_name": "Deadbot", "user_email": "deadbot@gmail.com", "password": "password", "level": "50", "high_score": "1128", "points": "110009", "points_balance": "110009", "words": "23166", "longest_word": "VINDICATION", "tiles_cleared": "52304", "lives": "1", "wins": "188", "losses": "100", "bombardier": "297", "stone_crusher": "304", "gold_miner": "283", "word_smith": "203", "void_master": "295", "league_name": "Cosmic"},
 
         #28
-        {"user_name": "Thesanaut", "user_email": "thesanaut@gmail.com", "password": "password", "level": "50", "high_score": "1033", "points": "118492", "points_balance": "118492", "words": "26166", "longest_word": "TRANSITIONAL", "tiles_cleared": "70484", "lives": "1", "wins": "239", "losses": "194", "bombardier": "340", "stone_crusher": "367", "gold_miner": "339", "word_smith": "248", "void_master": "303", "league_name": "Astral"},
+        {"user_name": "Thesanaut", "user_email": "thesanaut@gmail.com", "password": "password", "level": "50", "high_score": "1033", "points": "118492", "points_balance": "118492", "words": "26166", "longest_word": "TRANSITIONAL", "tiles_cleared": "70484", "lives": "1", "wins": "239", "losses": "194", "bombardier": "340", "stone_crusher": "367", "gold_miner": "339", "word_smith": "248", "void_master": "303", "league_name": "Cosmic"},
 
         #29
-        {"user_name": "Verona", "user_email": "verona@gmail.com", "password": "password", "level": "50", "high_score": "1287", "points": "133678", "points_balance": "133678", "words": "30912", "longest_word": "FLEXIBILITY", "tiles_cleared": "88399", "lives": "1", "wins": "397", "losses": "231", "bombardier": "383", "stone_crusher": "402", "gold_miner": "376", "word_smith": "234", "void_master": "372", "league_name": "Astral"},
+        {"user_name": "Verona", "user_email": "verona@gmail.com", "password": "password", "level": "50", "high_score": "1287", "points": "133678", "points_balance": "133678", "words": "30912", "longest_word": "FLEXIBILITY", "tiles_cleared": "88399", "lives": "1", "wins": "397", "losses": "231", "bombardier": "383", "stone_crusher": "402", "gold_miner": "376", "word_smith": "234", "void_master": "372", "league_name": "Cosmic"},
 
         #30
-        {"user_name": "Webula", "user_email": "webula@gmail.com", "password": "password", "level": "50", "high_score": "2487", "points": "159713", "points_balance": "159713", "words": "43219", "longest_word": "CRYPTOGRAPHICAL", "tiles_cleared": "138948", "lives": "1", "wins": "254", "losses": "88", "bombardier": "573", "stone_crusher": "689", "gold_miner": "538", "word_smith": "314", "void_master": "583", "league_name": "Astral"}
+        {"user_name": "Webula", "user_email": "webula@gmail.com", "password": "password", "level": "50", "high_score": "2487", "points": "159713", "points_balance": "159713", "words": "43219", "longest_word": "CRYPTOGRAPHICAL", "tiles_cleared": "138948", "lives": "1", "wins": "254", "losses": "88", "bombardier": "573", "stone_crusher": "689", "gold_miner": "538", "word_smith": "314", "void_master": "583", "league_name": "Cosmic"}
     ]
 
     db.session.add_all([User(**user) for user in users])

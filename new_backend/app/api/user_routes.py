@@ -38,7 +38,7 @@ def update_user_data(id):
         'word_smith': ['Alphabet Architect', 8000],
         'void_master': ['Antimatter Maestro', 4000],
         'wins': ['Vengeant Vanquisher', 9000],
-        'level': ['Astral Entity', 10000]
+        'level': ['Type I Instance', 10000]
     }
 
     for key, val in trophies.items():
@@ -113,7 +113,7 @@ def place_user_league(id):
         'Gold': list(range(10, 15)),
         'Ethereal': list(range(15, 30)),
         'Galaxy': list(range(30, 50)),
-        'Astral': [50]
+        'Cosmic': [50]
     }
 
     for key, val in leagues.items():

@@ -15,23 +15,16 @@ const UserLives = () => {
         style={{
             display: 'flex',
             justifyContent: 'center',
-            flexWrap: 'wrap',
-            marginTop: '6.5vh',
-            marginBottom: '1vh',
-            maxWidth: '10vw',
-            maxHeight: '10vh',
-            marginLeft: '0.2vw'
+            flexWrap: 'wrap'
         }}>
-            <p style={{marginBottom: '-1.5vh'}}>Lives Available: <b>{user.lives}</b></p>
-            <p style={{marginBottom: '1.5vh'}}>Points balance: <b>{user.points_balance}</b></p>
-
             <div
             style={{
                 backgroundColor: 'rgb(140, 0, 55)',
                 border: 'none',
                 borderBottom: '3.5px solid rgb(105, 0, 40)',
                 borderRadius: '12px',
-                width: '10vw',
+                width: '9vw',
+                height: '5vh',
                 padding: '1.5vh',
                 cursor: 'pointer'
             }}

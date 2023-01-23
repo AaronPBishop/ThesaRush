@@ -19,12 +19,13 @@ const League = () => {
     const [clickedPlayer, setClickedPlayer] = useState(false);
 
     const mapBackgroundColor = {
-        'Bronze': ['linear-gradient(to bottom, rgb(160, 75, 55), rgb(170, 45, 25))', 'rgb(100, 35, 15)'],
-        'Silver': ['linear-gradient(to bottom, rgb(174, 162, 162), rgb(117, 130, 131))', 'rgb(87, 100, 101)'],
-        'Gold': ['linear-gradient(to bottom, #FACC6B, #FABC3C)', 'rgb(190, 158, 40)'],
-        'Ethereal': ['linear-gradient(to bottom, #A4508B, #5F0A87)', 'rgb(85, 10, 105)'],
-        'Galaxy': ['linear-gradient(to bottom, rgb(40, 0, 100), rgb(0, 0, 10))', 'rgb(30, 0, 50)'],
-        'Astral': ['linear-gradient(to bottom, rgba(250, 237, 56, 1) 10%, rgba(241, 147, 55, 1) 30%, rgba(255, 37, 174, 1)) 60%', 'rgba(185, 32, 144, 1)']
+        'Bronze': ['linear-gradient(to bottom, rgb(160, 75, 55), rgb(170, 45, 25))', 'rgb(140, 35, 25)'],
+        'Silver': ['linear-gradient(to bottom, rgb(174, 162, 162), rgb(117, 130, 131))', 'rgb(80, 100, 110)'],
+        'Gold': ['linear-gradient(to bottom, #FACC6B, #FABC3C)', 'rgb(190, 160, 40)'],
+        'Ethereal': ['linear-gradient(to bottom, #A4508B, #5F0A87)', 'rgb(125, 10, 125)'],
+        'Galaxy': ['linear-gradient(to bottom, rgb(40, 0, 100), rgb(0, 0, 10))', 'rgb(80, 0, 110)'],
+        'Cosmic': ['linear-gradient(to bottom, rgba(185, 10, 180, 1) 5%, rgba(250, 35, 155, 1) 35%, rgba(255, 35, 100, 1) 95%', 'rgba(185, 0, 130, 1)'],
+        //'Cosmic':  ['linear-gradient(to bottom, rgba(252,37,103,1) 0%, rgba(250,38,151,1) 46.2%, rgba(186,8,181,1) 90.1%']
     };
 
     useEffect(() => {
@@ -91,7 +92,7 @@ const League = () => {
                         display: 'flex', 
                         justifyContent: 'center', 
                         fontFamily: 'Roboto',
-                        border: `2px solid ${mapBackgroundColor[currLeague][1]}`,
+                        border: `3px solid yellow`,
                         borderRadius: '12px',
                         width: '20vw', 
                         height: '50vh',
@@ -102,16 +103,18 @@ const League = () => {
                         overflowY: 'auto'
                     }}>
                     {
-                        ['Bronze', 'Silver', 'Gold', 'Ethereal', 'Galaxy', 'Astral'].map((league, i) => (
+                        ['Bronze', 'Silver', 'Gold', 'Ethereal', 'Galaxy', 'Cosmic'].map((league, i) => (
                         <div 
+                        className="theme-containers"
                         onClick={() => {
                             setCurrLeague(league);
                             setClickedBrowse(false);
                         }}
-                        className="theme-containers"
                         style={{
                             background: mapBackgroundColor[league][0],
-                            border: `2px solid ${mapBackgroundColor[league][1]}`,
+                            boxShadow: `0px 0px 6px 3px ${mapBackgroundColor[league][1]}`,
+                            border: 'none',
+                            borderRadius: '10px',
                             margin: 'auto',
                             marginTop: '1.5vh',
                             marginBottom: '1.5vh'
