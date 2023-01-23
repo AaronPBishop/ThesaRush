@@ -6,9 +6,12 @@ const initialState = {
     challengeId: null,
     senderId: null,
     receiverId: null,
-    time: null
+    time: null,
+    pointsRedeemed: 0
 };
 
+
+// ACTION CREATORS
 
 export const setInChallenge = (boolean, playerType) => {
     return {
@@ -35,11 +38,27 @@ export const setCompletedChallenge = (boolean) => {
     };
 };
 
+export const setPointsRedeemed = (points) => {
+    return {
+        type: 'SET_POINTS_REDEEMED',
+        payload: points
+    };
+};
+
+export const clearPointsRedeemed = () => {
+    return {
+        type: 'CLEAR_POINTS_REDEEMED'
+    };
+};
+
 export const resetChallengeState = () => {
     return {
         type: 'RESET_CHALLENGE_STATE'
     };
 };
+
+
+// THUNKS
 
 export const sendChallenge = (time, score, senderId, receiverId) => async () => {
     await fetch(`/api/challenges/new`, {
@@ -54,6 +73,7 @@ export const sendChallenge = (time, score, senderId, receiverId) => async () => 
     });
 };
 
+
 export const updateChallenge = (challengeId, score) => async () => {
     await fetch(`/api/challenges/${challengeId}`, {
         method: 'PUT',
@@ -64,8 +84,9 @@ export const updateChallenge = (challengeId, score) => async () => {
     });
 };
 
-export const redeemChallenge = (challengeId, playerId) => async () => {
-    await fetch(`/api/challenges/redeem`, {
+
+export const redeemChallenge = (challengeId, playerId) => async (dispatch) => {
+    const request = await fetch(`/api/challenges/redeem`, {
         method: 'PUT',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
@@ -73,6 +94,10 @@ export const redeemChallenge = (challengeId, playerId) => async () => {
             playerId: playerId
         })
     });
+
+    const response = await request.json();
+
+    dispatch(setPointsRedeemed(response.points));
 };
 
 
@@ -107,6 +132,18 @@ const challengeReducer = (state = initialState, action) => {
 
         case 'COMPLETED_CHALLENGE': {
             currentState.completedChallenge = action.payload;
+
+            return currentState;
+        };
+
+        case 'SET_POINTS_REDEEMED': {
+            currentState.pointsRedeemed = action.payload;
+
+            return currentState;
+        };
+
+        case 'CLEAR_POINTS_REDEEMED': {
+            currentState.pointsRedeemed = 0;
 
             return currentState;
         };

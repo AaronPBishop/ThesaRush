@@ -2,14 +2,17 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { setClaimedPoints } from "../../store/menu.js";
+import { clearPointsRedeemed } from "../../store/challenge.js";
 
 import Challenge from "./Challenge.js";
 import ChallengePoints from "./ChallengePoints.js";
 
 const ChallengeHolder = () => {
     const dispatch = useDispatch();
+
     const user = useSelector(state => state.user);
     const pointStatus = useSelector(state => state.menu.claimedPoints);
+    const pointsRedeemed = useSelector(state => state.challenge.pointsRedeemed);
 
     const [clickedSent, setClickedSent] = useState(true);
     const [clickedReceived, setClickedReceived] = useState(false);
@@ -18,6 +21,7 @@ const ChallengeHolder = () => {
         if (pointStatus === true) {
             const pointsTimer = setTimeout(() => {
                 dispatch(setClaimedPoints(false));
+                dispatch(clearPointsRedeemed());
             }, 2000);
 
             return () => clearTimeout(pointsTimer);
@@ -36,7 +40,7 @@ const ChallengeHolder = () => {
         }}>
             <div style={{display: 'flex', justifyContent: 'center', margin: 'auto'}}>
                 <div style={{position: 'absolute', height: '14vh'}}>
-                    <ChallengePoints hidden={pointStatus} numPoints={500} />
+                    <ChallengePoints hidden={pointStatus} numPoints={pointsRedeemed} />
                 </div>
             </div>
 

@@ -59,13 +59,19 @@ def redeem_challenge():
     queried_challenge = Challenge.query.get_or_404(req_data['challengeId'])
     queried_user = User.query.get_or_404(req_data['playerId'])
 
-    queried_user.points += 500
-    queried_user.points_balance += 500
+    points_dict = {
+        60000: 500,
+        120000: 650,
+        180000: 800
+    }
+
+    queried_user.points += points_dict[queried_challenge.time]
+    queried_user.points_balance += points_dict[queried_challenge.time]
     queried_challenge.redeemed = True
 
     db.session.commit()
 
-    return queried_user.to_dict()
+    return {'points': points_dict[queried_challenge.time]}
 
 
 @challenge_routes.route('/delete/<id>', methods=['DELETE'])
