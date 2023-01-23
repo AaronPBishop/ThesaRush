@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { setClickedLeague, setClickedProfile, setClickedChallenges, setClickedEditAccount } from '../../store/menu.js';
@@ -8,15 +9,26 @@ import UserLives from './UserLives.js';
 import UserBadges from './UserBadges.js';
 import TrophyComponent from '../TrophyComponent/TrophyComponent.js';
 import ChallengeHolder from '../Challenges/ChallengeHolder.js';
+import EditAccount from './EditAccount.js';
+
+import { StarEmphasis } from '@styled-icons/fluentui-system-filled/StarEmphasis';
 
 import './styles.css'
-import EditAccount from './EditAccount.js';
 
 const UserProfile = () => {
     const dispatch = useDispatch();
 
     const menu = useSelector(state => state.menu);
     const user = useSelector(state => state.user);
+
+    const [totalNotifications, setTotalNotifications] = useState(null);
+
+    useEffect(() => {
+        const totalSentNotifications = user.sent_challenges.filter(challenge => (challenge.sender.score > challenge.receiver.score) && (challenge.completed === true) && (challenge.redeemed === false));
+        const totalReceivedNotifications = user.received_challenges.filter(challenge => (challenge.receiver.score === null) && (challenge.completed === false));
+
+        setTotalNotifications(totalSentNotifications.length + totalReceivedNotifications.length);
+    }, [user]);
 
     const mapBackgroundColor = {
         'Bronze': ['linear-gradient(to bottom, rgb(160, 75, 55), rgb(170, 45, 25))', 'rgb(100, 35, 15)'],
@@ -25,6 +37,15 @@ const UserProfile = () => {
         'Ethereal': ['linear-gradient(to bottom, #A4508B, #5F0A87)', 'rgb(85, 10, 105)'],
         'Galaxy': ['linear-gradient(to bottom, rgb(40, 0, 100), rgb(0, 0, 10))', 'rgb(30, 0, 50)'],
         'Cosmic': ['linear-gradient(to bottom, rgba(185, 10, 180, 1) 5%, rgba(250, 35, 155, 1) 35%, rgba(255, 35, 100, 1) 95%', 'rgba(125, 0, 120, 1)']
+    };
+
+    const mapStarColor = {
+        'Bronze': 'white',
+        'Silver': 'blue',
+        'Gold': 'purple',
+        'Ethereal': 'red',
+        'Galaxy': 'orange',
+        'Cosmic': 'yellow'
     };
 
     return (
@@ -70,15 +91,25 @@ const UserProfile = () => {
                             <div 
                             style={{
                                 backgroundColor: 'rgb(20, 20, 20)',
-                                marginTop: '12vh',
-                                marginBottom: '-0.5vh', 
+                                marginTop: '8.2vh',
                                 width: '12vw', 
                                 border: '2px solid rgb(225, 225, 40)', 
                                 borderRadius: '12px'
                             }}>
-                                <p style={{marginTop: '2vh', marginBottom: '-1.5vh'}}>Rank: <b>{user.level}</b></p>
-                                <p style={{marginBottom: '-1.5vh'}}>Lives Available: <b>{user.lives}</b></p>
-                                <p>Points balance: <b>{user.points_balance}</b></p>
+                                <div style={{display: 'flex', justifyContent: 'center', marginBottom: '-3vh'}}>
+                                    <StarEmphasis
+                                    style={{
+                                        color: mapStarColor[user.league],
+                                        width: '1.4vw'
+                                    }}>
+                                    </StarEmphasis>
+
+                                    <p style={{marginLeft: '0.5vw', marginRight: '1vw'}}>Level: <b>{user.level}</b></p>
+                                </div>
+
+                                <p style={{marginBottom: '-1vh'}}>Lives Available: <b>{user.lives}</b></p>
+                                <p style={{marginBottom: '-1.5vh'}}>Points Balance</p>
+                                <p style={{marginBottom: '1.5vh'}}><b>{user.points_balance}</b></p>
                             </div>
 
                             <p style={{fontFamily: 'Bungee Spice', fontSize: '20px', marginBottom: '1vh'}}>League</p>
@@ -109,7 +140,6 @@ const UserProfile = () => {
                             onClick={() => dispatch(setClickedChallenges(true))}
                             style={{
                                 marginBottom: '-1vh',
-                                lineHeight: '5vh',
                                 backgroundColor: 'rgb(30, 0, 90)',
                                 border: 'none',
                                 borderBottom: '4px solid rgb(30, 0, 60)',
@@ -119,7 +149,21 @@ const UserProfile = () => {
                                 padding: '1.5vh',
                                 cursor: 'pointer'
                             }}>
-                                <b>Browse All</b>
+                                <div
+                                style={{
+                                    display: totalNotifications !== null && totalNotifications > 0 ? 'block' : 'none',
+                                    boxShadow: '0px 0px 4px 0.1px black',
+                                    backgroundColor: 'rgb(140, 0, 55)',
+                                    width: '1.2vw',
+                                    padding: '0.5vh',
+                                    borderRadius: '100px',
+                                    position: 'absolute',
+                                    marginTop: '-1.4vh',
+                                    marginLeft: '-0.7vw'
+                                }}>
+                                    <b style={{fontSize: '14px'}}>{totalNotifications}</b>
+                                </div>
+                                <b style={{lineHeight: '5vh'}}>Browse All</b>
                             </div>
 
                             <p style={{fontFamily: 'Bungee Spice', fontSize: '20px', marginBottom: '1vh'}}>Account</p>

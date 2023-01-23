@@ -5,6 +5,8 @@ import Badge from "../Badge/Badge.js";
 import TrophyComponent from "../TrophyComponent/TrophyComponent.js";
 import ChallengeTime from "./ChallengeTime.js";
 
+import { StarEmphasis } from '@styled-icons/fluentui-system-filled/StarEmphasis';
+
 import './styles.css';
 
 const RankedPlayer = ({ score, userName, index }) => {
@@ -38,6 +40,15 @@ const RankedPlayer = ({ score, userName, index }) => {
         gold_miner: 'goldMiner',
         word_smith: 'wordSmith',
         void_master: 'voidMaster'
+    };
+
+    const mapStarColor = {
+        'Bronze': 'white',
+        'Silver': 'rgb(0, 110, 255)',
+        'Gold': 'purple',
+        'Ethereal': 'red',
+        'Galaxy': 'rgb(255, 110, 0)',
+        'Cosmic': 'yellow'
     };
 
     const orderKeys = (keys) => {
@@ -80,16 +91,26 @@ const RankedPlayer = ({ score, userName, index }) => {
                 maxHeight: !clicked && '7vh',
                 cursor: 'pointer'
             }}>
-             
-                <p style={{
-                    textAlign: 'left',
-                    width: '4vw',
-                    marginLeft: '1vw',
-                    color: user.user_name === userName.toString() && 'rgb(255, 255, 60)',
-                    fontWeight: user.user_name === userName.toString() && 'bold'
+                <div style={{display: 'flex', justifyContent: 'center'}}>
+                    <StarEmphasis
+                    style={{
+                        marginLeft: '0.5vw',
+                        marginRight: '-0.5vw',
+                        color: mapStarColor[rankings.league],
+                        width: '1.4vw'
                     }}>
-                        {userName}
-                </p>
+                    </StarEmphasis>
+
+                    <p style={{
+                        textAlign: 'left',
+                        width: '4vw',
+                        marginLeft: '1vw',
+                        color: user.user_name === userName.toString() && 'rgb(255, 255, 60)',
+                        fontWeight: user.user_name === userName.toString() && 'bold'
+                        }}>
+                            {userName}
+                    </p>
+                </div>
 
                 <div 
                 onClick={e => {
@@ -106,7 +127,7 @@ const RankedPlayer = ({ score, userName, index }) => {
                     backgroundColor: 'rgb(140, 0, 55)',
                     borderBottom: '3px solid rgb(105, 0, 40)',
                     borderRadius: '8px',
-                    marginTop: '1.2vh',
+                    marginTop: '1.4vh',
                     cursor: 'pointer'
                 }}>
                     <p>Challenge</p>

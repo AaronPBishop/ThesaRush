@@ -27,12 +27,14 @@ class Challenge(db.Model):
             'sender': {
                 'id': self.sender.id,
                 'user_name': self.sender.user_name,
-                'score': self.sender_score
+                'score': self.sender_score,
+                'league': self.sender.league_name
             },
             'receiver': {
                 'id': self.receiver.id,
                 'user_name': self.receiver.user_name,
-                'score': self.receiver_score
+                'score': self.receiver_score,
+                'league': self.receiver.league_name
             },
             'time': self.time,
             'completed': self.completed,

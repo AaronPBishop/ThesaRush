@@ -14,8 +14,19 @@ const ChallengeHolder = () => {
     const pointStatus = useSelector(state => state.menu.claimedPoints);
     const pointsRedeemed = useSelector(state => state.challenge.pointsRedeemed);
 
+    const [sentNotifications, setSentNotifications] = useState(null);
+    const [receivedNotifications, setReceivedNotifications] = useState(null);
+
     const [clickedSent, setClickedSent] = useState(true);
     const [clickedReceived, setClickedReceived] = useState(false);
+
+    useEffect(() => {
+        const totalSentNotifications = user.sent_challenges.filter(challenge => (challenge.sender.score > challenge.receiver.score) && (challenge.completed === true) && (challenge.redeemed === false));
+        const totalReceivedNotifications = user.received_challenges.filter(challenge => (challenge.receiver.score === null) && (challenge.completed === false));
+
+        setSentNotifications(totalSentNotifications.length);
+        setReceivedNotifications(totalReceivedNotifications.length);
+    }, [user]);
 
     useEffect(() => {
         if (pointStatus === true) {
@@ -54,6 +65,21 @@ const ChallengeHolder = () => {
                 }}
                 style={{borderTopLeftRadius: '12px', width: '12vw', height: '4vh'}}
                 className="navigation-buttons">
+                    <div
+                    style={{
+                        display: sentNotifications !== null && sentNotifications > 0 ? 'block' : 'none',
+                        boxShadow: '0px 0px 4px 0.1px black',
+                        backgroundColor: 'rgb(30, 0, 90)',
+                        width: '1.5vw',
+                        padding: '0.5vh',
+                        borderRadius: '100px',
+                        position: 'absolute',
+                        marginTop: '-1.8vh',
+                        marginLeft: '-0.9vw'
+                    }}>
+                        <b style={{fontSize: '16px'}}>{sentNotifications}</b>
+                    </div>
+
                     <p style={{lineHeight: '0vh', color: clickedSent === true && 'rgb(255, 255, 60)'}}>Sent</p>
                 </div>
 
@@ -64,9 +90,24 @@ const ChallengeHolder = () => {
                         setClickedReceived(clicked => !clicked)
                     };
                 }}
-                style={{lineHeight: '0vh', borderTopRightRadius: '12px', width: '12vw', height: '4vh'}}
+                style={{borderTopRightRadius: '12px', width: '12vw', height: '4vh'}}
                 className="navigation-buttons">
-                    <p style={{color: clickedReceived === true && 'rgb(255, 255, 60)'}}>Received</p>
+                    <div
+                    style={{
+                        display: receivedNotifications !== null && receivedNotifications > 0 ? 'block' : 'none',
+                        boxShadow: '0px 0px 4px 0.1px black',
+                        backgroundColor: 'rgb(30, 0, 90)',
+                        width: '1.5vw',
+                        padding: '0.5vh',
+                        borderRadius: '100px',
+                        position: 'absolute',
+                        marginTop: '-1.8vh',
+                        marginLeft: '10.9vw'
+                    }}>
+                        <b style={{fontSize: '16px'}}>{receivedNotifications}</b>
+                    </div>
+
+                    <p style={{lineHeight: '0vh', color: clickedReceived === true && 'rgb(255, 255, 60)'}}>Received</p>
                 </div>
             </div>
 
