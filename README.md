@@ -33,7 +33,7 @@ Redux actions are utilized in order to perform various board operations, such as
 ![image](https://user-images.githubusercontent.com/95946808/204881946-808bf41a-54d9-4712-87a7-f7b0f5d14c60.png)
 
 ### _Viewing Leagues_
-![image](https://user-images.githubusercontent.com/95946808/213813175-3c03b9a0-da12-4ce5-94a1-a8ab0950c6af.png)
+![image](https://user-images.githubusercontent.com/95946808/214195355-af1ece4d-0fc3-4bd3-bd44-a9e352c2bb04.png)
 
 ### _Game over/score overview_
 ![image](https://user-images.githubusercontent.com/95946808/204883383-2984d39a-c755-4442-838c-647bddef4f56.png)
@@ -42,10 +42,10 @@ Redux actions are utilized in order to perform various board operations, such as
 ![image](https://user-images.githubusercontent.com/95946808/204886715-9ac9eddd-b0f2-4249-a776-6dae0f2675c1.png)
 
 ### _Viewing User Profile_
-![image](https://user-images.githubusercontent.com/95946808/213813028-ff81fffb-f104-4660-b536-88f144dbcd37.png)
+![image](https://user-images.githubusercontent.com/95946808/214195513-dd9ece79-81eb-44fe-b1ea-4cd898a58387.png)
 
 ### _Extending Gameplay_
 ![image](https://user-images.githubusercontent.com/95946808/208339904-372fdc26-5033-470b-8752-95e7e25f6d8e.png)
 
 ### _Viewing Challenges_
-![image](https://user-images.githubusercontent.com/95946808/213819327-6369b607-5a7c-4d9b-ac63-fa84908d5eeb.png)
+![image](https://user-images.githubusercontent.com/95946808/214195642-814112ab-6ac8-4671-bcac-7e3b0c6292e2.png)
