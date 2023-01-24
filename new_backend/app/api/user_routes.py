@@ -132,6 +132,19 @@ def place_user_league(id):
                 return queried_user.to_dict()
 
 
+@user_routes.route('/points/<id>', methods=['PUT'])
+def use_points(id):
+    req_data = request.json
+
+    queried_user = User.query.get_or_404(id)
+
+    queried_user.points_balance -= req_data['points']
+
+    db.session.commit()
+    
+    return queried_user.to_dict(), 201
+
+
 @user_routes.route('/lives/<id>', methods=['PUT'])
 def add_life(id):
     queried_user = User.query.get_or_404(id)

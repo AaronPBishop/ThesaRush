@@ -1,7 +1,8 @@
+import { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
-import { fetchUserData } from '../../store/user.js';
+import { fetchUserData, spendPoints } from '../../store/user.js';
 import { populateChallengeData, setInChallenge, redeemChallenge, deleteChallenge } from "../../store/challenge.js";
 import { setClickedProfile, setClickedChallenges, setClaimedPoints } from  '../../store/menu.js';
 
@@ -13,10 +14,24 @@ const Challenge = ({ id, type, sender, receiver, time, completed, redeemed }) =>
 
     const user = useSelector(state => state.user);
 
+    const [clickedAccept, setClickedAccept] = useState(false);
+
     const timeMap = {
         60000: '1 Minute',
         120000: '2 Minutes',
         180000: '3 Minutes'
+    };
+
+    const priceMap = {
+        60000: 50,
+        120000: 100,
+        180000: 150
+    };
+
+    const rewardMap = {
+        60000: 500,
+        120000: 650,
+        180000: 800
     };
 
     const mapStarColor = {
@@ -35,7 +50,9 @@ const Challenge = ({ id, type, sender, receiver, time, completed, redeemed }) =>
             height: '26vh',
             borderBottom: '4px solid rgb(20, 0, 50)',
             borderRadius: '12px',
-            background: 'linear-gradient(rgb(30, 0, 90), rgb(20, 0, 70))'
+            background: 'linear-gradient(rgb(30, 0, 90), rgb(20, 0, 70))',
+            overflowX: 'hidden',
+            overflowY: 'auto'
         }}>
             {
                 type === 'sent' ?
@@ -168,51 +185,84 @@ const Challenge = ({ id, type, sender, receiver, time, completed, redeemed }) =>
                         </div>
                     </div>
 
-                    <div style={{display: 'flex', justifyContent: 'space-evenly', width: 'inherit', marginBottom: '1vh'}}>
-                        <div 
-                        onClick={async () => {
-                            await dispatch(deleteChallenge(id));
-                            await dispatch(fetchUserData(user.user_id));
-                        }}
-                        style={{
-                            display: !completed ? 'block' : 'none',
-                            backgroundColor: 'rgb(140, 0, 55)',
-                            border: 'none',
-                            borderBottom: '3.5px solid rgb(105, 0, 40)',
-                            borderRadius: '12px',
-                            width: '5.5vw',
-                            height: '2vh',
-                            lineHeight: '2.3vh',
-                            padding: '1.5vh',
-                            cursor: 'pointer'
-                        }}>
-                            Decline
-                        </div>
+                    <div>
+                        {
+                            !clickedAccept ?
+                            <div style={{display: 'flex', justifyContent: 'space-evenly', width: 'inherit', marginBottom: '1vh', width: '16vw'}}>
+                                <div 
+                                onClick={async () => {
+                                    await dispatch(deleteChallenge(id));
+                                    await dispatch(fetchUserData(user.user_id));
+                                }}
+                                style={{
+                                    display: !completed ? 'block' : 'none',
+                                    backgroundColor: 'rgb(140, 0, 55)',
+                                    border: 'none',
+                                    borderBottom: '3.5px solid rgb(105, 0, 40)',
+                                    borderRadius: '12px',
+                                    width: '5.5vw',
+                                    height: '2vh',
+                                    lineHeight: '2.3vh',
+                                    padding: '1.5vh',
+                                    cursor: 'pointer'
+                                }}>
+                                    Decline
+                                </div>
+                            
+                                <div 
+                                onClick={() => setClickedAccept(true)}
+                                style={{
+                                    display: !completed ? 'block' : 'none',
+                                    backgroundColor: 'rgb(140, 0, 55)',
+                                    border: 'none',
+                                    borderBottom: '3.5px solid rgb(105, 0, 40)',
+                                    borderRadius: '12px',
+                                    width: '5.5vw',
+                                    height: '2vh',
+                                    lineHeight: '2.3vh',
+                                    padding: '1.5vh',
+                                    cursor: 'pointer'
+                                }}>
+                                    Accept
+                                </div>
+                            </div>
+                            :
+                            <div style={{
+                                display: 'flex', 
+                                justifyContent: 'space-evenly', 
+                                flexWrap: 'wrap',
+                                width: 'inherit'
+                            }}>
+                                <p style={{marginBottom: '0.5vh'}}>Cost Per Player: <b>{priceMap[time]} points</b></p>
+                                <p style={{marginBottom: '1vh'}}>Winner Receives: <b>{rewardMap[time]} points</b></p>
 
-                        <div 
-                        onClick={async () => {
-                            dispatch(setInChallenge(true, 'challengee'));
-                            dispatch(populateChallengeData(id, sender.id, receiver.id, time));
+                                <div style={{display: 'flex', justifyContent: 'space-evenly'}}>
+                                    <div 
+                                    className="challenge-times"
+                                    onClick={() => setClickedAccept(false)}
+                                    style={{cursor: 'pointer', width: '6vw', height: '5vh', lineHeight: '5vh'}}>
+                                        Cancel
+                                    </div>
 
-                            dispatch(setClickedProfile(false));
-                            dispatch(setClickedChallenges(false));
+                                    <div 
+                                    className="challenge-times"
+                                    onClick={async () => {
+                                        await dispatch(setInChallenge(true, 'challengee'));
+                                        await dispatch(populateChallengeData(id, sender.id, receiver.id, time));
 
-                            history.push('/game/rush');
-                        }}
-                        style={{
-                            display: !completed ? 'block' : 'none',
-                            backgroundColor: 'rgb(140, 0, 55)',
-                            border: 'none',
-                            borderBottom: '3.5px solid rgb(105, 0, 40)',
-                            borderRadius: '12px',
-                            width: '5.5vw',
-                            height: '2vh',
-                            lineHeight: '2.3vh',
-                            padding: '1.5vh',
-                            cursor: 'pointer'
-                        }}>
-                            Accept
-                        </div>
+                                        await dispatch(spendPoints(user.user_id, priceMap[time]));
+                                        
+                                        await history.push('/game/rush');
+
+                                        await dispatch(setClickedProfile(false));
+                                        await dispatch(setClickedChallenges(false));
+                                    }}
+                                    style={{cursor: 'pointer', width: '6vw', height: '5vh', lineHeight: '5vh'}}>
+                                        Start
+                                    </div>
+                                </div>
+                            </div>
+                        }
                     </div>
                     
                     <div 

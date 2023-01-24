@@ -180,6 +180,21 @@ export const placeUserLeague = (id) => async (dispatch) => {
 };
 
 
+export const spendPoints = (id, pointsToUse) => async (dispatch) => {
+    const request = await fetch(`/api/users/points/${id}`, {
+        method: 'PUT',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            points: pointsToUse
+        })
+    });
+
+    const response = await request.json();
+
+    dispatch(populateUserData(response));
+};
+
+
 export const buyLife = (id) => async (dispatch) => {
     const request = await fetch(`/api/users/lives/${id}`, {
         method: 'PUT',

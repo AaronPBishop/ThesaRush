@@ -59,13 +59,16 @@ const League = () => {
                 style={{
                     display: user.user_name && !clickedPlayer ? 'flex' : 'none',
                     justifyContent: 'center',
+                    margin: 'auto',
                     lineHeight: '5.5vh',
                     backgroundColor: 'rgb(140, 0, 55)',
                     borderBottom: '3.5px solid rgb(105, 0, 40)',
+                    borderBottomLeftRadius: '10px',
+                    borderBottomRightRadius: '10px',
                     fontSize: '16px',
                     boxShadow: '0px 1px 4px 1px black',
                     textShadow: 'black 0px 4px 2px',
-                    width: 'inherit',
+                    width: '26vw',
                     height: '5vh',
                     cursor: 'pointer'
                 }}>
