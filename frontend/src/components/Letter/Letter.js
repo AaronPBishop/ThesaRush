@@ -7,7 +7,7 @@ import { letterClass } from '../../functions/letterGenerator.js';
 
 import './styles.css';
 
-const Letter = ({ hidden, letter, colPos, rowPos, type, color, properties }) => {
+const Letter = ({ hidden, letter, colPos, rowPos, type, color, properties, hasAltered }) => {
     const dispatch = useDispatch();
     
     const order = useSelector(state => Number(state.game.order));
@@ -79,15 +79,15 @@ const Letter = ({ hidden, letter, colPos, rowPos, type, color, properties }) => 
 
     return (
       <div
-        className={
-          [
-            'letters',
-            type === 'new' ? 'new-letters'
-            : type === 'rearranged' ? 'rearranged-letters'
-            : type === 'unarranged' && 'unarranged-letters'
-          ]
-          .filter(Boolean)
-          .join(" ")
+      key={hasAltered}
+      className={
+        [
+          'letters',
+          type === 'new' ? 'new-letters'
+          : type === 'rearranged' && 'rearranged-letters'
+        ]
+        .filter(Boolean)
+        .join(" ")
         }
         style={{
           visibility: hidden ? 'hidden' : 'visible',

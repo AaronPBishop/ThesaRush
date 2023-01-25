@@ -13,7 +13,6 @@ const initialState = {
     statuses: {
         cleared: false,
         submitted: false,
-        tileDropped: false,
         earnedBomb: false,
         earnedVoid: false
     },
@@ -168,13 +167,6 @@ export const setSubmitted = (boolean) => {
     };
 };
 
-export const setTileDropped = (boolean) => {
-    return {
-        type: 'SET_TILE_DROPPED',
-        payload: boolean
-    };
-};
-
 
 // STATS ACTIONS
 export const incrementInvalidWords = () => {
@@ -258,20 +250,16 @@ const gameReducer = (state = initialState, action) => {
                     if (currColumn[currColumn.length - 1] !== null) {
                         currColumn[currColumn.length - 1] = null;
                         currentState.stats.tilesCleared += 1;
-
+                        
                         for (let j = currColumn.length - 1; j > 0; j--) {
                             if (currColumn[j] !== null && currColumn[j] !== undefined) {
-                                if (currColumn[j].type !== 'rearranged') {
+                                if (currColumn[j].type === 'initial' || currColumn[j].type === 'new') {
                                     currColumn[j].type = 'rearranged';
     
                                     continue;
                                 };
-                                
-                                if (currColumn[j].type === 'rearranged') {
-                                    currColumn[j].type = 'unarranged';
-    
-                                    continue;
-                                };
+
+                                currColumn[j].hasAltered = !currColumn[j].hasAltered;
                             };
                         };
                     };
@@ -294,17 +282,13 @@ const gameReducer = (state = initialState, action) => {
                             currentState.stats.tilesCleared += 1;
 
                             for (let j = currentState.board[neighborCol].length - 1; j > 0; j--) {
-                                if (currentState.board[neighborCol][neighborRow] !== null && currentState.board[neighborCol][neighborRow].type !== 'rearranged') {
+                                if (currentState.board[neighborCol][neighborRow] !== null && (currentState.board[neighborCol][neighborRow].type === 'initial' || currentState.board[neighborCol][neighborRow].type === 'new')) {
                                     currentState.board[neighborCol][neighborRow].type = 'rearranged';
     
                                     continue;
                                 };
-                                
-                                if (currentState.board[neighborCol][neighborRow] !== null && currentState.board[neighborCol][neighborRow].type === 'rearranged') {
-                                    currentState.board[neighborCol][neighborRow].type = 'unarranged';
-    
-                                    continue;
-                                };
+
+                                currentState.board[neighborCol][neighborRow].hasAltered = !currentState.board[neighborCol][neighborRow].hasAltered;
                             };
                         };
                     };
@@ -321,17 +305,13 @@ const gameReducer = (state = initialState, action) => {
                         for (let j = currentState.board[col].length; j > 0; j--) {
                             if (j < row) {
                                 if (currentState.board[col][j] !== null && currentState.board[col][j] !== undefined) {
-                                    if (currentState.board[col][j].type !== 'rearranged') {
+                                    if (currentState.board[col][j].type === 'initial' || currentState.board[col][j].type === 'new') {
                                         currentState.board[col][j].type = 'rearranged';
 
                                         continue;
                                     };
 
-                                    if (currentState.board[col][j].type === 'rearranged') {
-                                        currentState.board[col][j].type = 'unarranged';
-
-                                        continue;
-                                    };
+                                    currentState.board[col][j].hasAltered = !currentState.board[col][j].hasAltered;
                                 };
                             };
                         };
@@ -505,12 +485,6 @@ const gameReducer = (state = initialState, action) => {
         case 'SET_SUBMITTED': {
             currentState.statuses.submitted = action.payload;
             currentState.finalTiles = { ...currentState.tiles };
-
-            return currentState;
-        };
-
-        case 'SET_TILE_DROPPED': {
-            currentState.statuses.tileDropped = action.payload;
 
             return currentState;
         };

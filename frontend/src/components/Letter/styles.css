@@ -24,14 +24,8 @@
 
 .rearranged-letters {
     position: relative;
-
-    animation: redrop 0.4s forwards;
-}
-
-.unarranged-letters {
-    position: relative;
     
-    animation: undrop 0.4s forwards;
+    animation: redrop 0.4s forwards;
 }
 
 @keyframes drop {
@@ -41,10 +35,5 @@
 
 @keyframes redrop {
     from {bottom: 20vh}
-    to {bottom: 14vh}
-}
-
-@keyframes undrop {
-    from {bottom: 22vh}
     to {bottom: 14vh}
 }

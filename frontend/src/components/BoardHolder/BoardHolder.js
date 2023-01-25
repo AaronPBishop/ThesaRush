@@ -46,7 +46,6 @@ const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmit
     const [currBadge, setCurrBadge] = useState('');
 
     const submitted = useSelector(state => state.game.statuses.submitted);
-    const tileDropped = useSelector(state => state.game.statuses.tileDropped);
 
     const input = useSelector(state => state.game.input);
     const orderedInput = orderInput(Object.values(input));
@@ -65,12 +64,12 @@ const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmit
   
             if (dictionary[orderedInput.toLowerCase()]) {
                 setIsValid(true);
-                dispatch(clearTiles());
-                dispatch(rearrangeTiles());
+                await dispatch(clearTiles());
+                await dispatch(rearrangeTiles());
 
-                dispatch(determinePoints(orderedInput.length, orderedInput));
-                dispatch(incrementWords());
-                dispatch(setLongestWord(orderedInput));
+                await dispatch(determinePoints(orderedInput.length, orderedInput));
+                await dispatch(incrementWords());
+                await dispatch(setLongestWord(orderedInput));
             } else {
                 dispatch(incrementInvalidWords());
                 setInvalid(true);
@@ -82,9 +81,9 @@ const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmit
                 if (invalidWords > 1) dispatch(dropRow());
             };
 
-            dispatch(resetInput());
-            dispatch(resetOrder());
-            dispatch(resetTiles());
+            await dispatch(resetInput());
+            await dispatch(resetOrder());
+            await dispatch(resetTiles());
 
             return;
         };
@@ -101,34 +100,22 @@ const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmit
 
     }, [submitted]);
 
-    const handleSubmit = () => {
-        if (tileDropped === true) {
-            setTimeout(() => {
-                dispatch(setSubmitted((submitted) => !submitted));
-            }, 400)
-        };
-
-        if (tileDropped === false) dispatch(setSubmitted((submitted) => !submitted));
-    };
-
     useEffect(() => {
-        const keyDownHandler = e => {
+        const keyDownHandler = async e => {
             e.preventDefault();
 
     
-            if (e.code === 'Space') handleSubmit();
+            if (e.code === 'Space') dispatch(setSubmitted((submitted) => !submitted));
 
             if (e.code === 'Tab') {
-                dispatch(setCleared((cleared) => !cleared));
+                await dispatch(setCleared((cleared) => !cleared));
 
-                dispatch(resetInput());
-                dispatch(resetOrder());
-                dispatch(resetTiles());
+                await dispatch(resetInput());
+                await dispatch(resetOrder());
+                await dispatch(resetTiles());
             };
 
-            if (e.keyCode === 81) {
-                dispatch(removeLastChar());
-            };
+            if (e.keyCode === 81) dispatch(removeLastChar());
         };
     
         document.addEventListener('keydown', keyDownHandler);
@@ -286,7 +273,7 @@ const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmit
                     <form
                     onSubmit={e => {
                         e.preventDefault();
-                        handleSubmit();
+                        dispatch(setSubmitted((submitted) => !submitted));
                     }}
                     className='input-actions'>
                         <button type='reset' id='clear' onClick={() => {

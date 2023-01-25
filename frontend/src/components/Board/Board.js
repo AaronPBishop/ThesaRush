@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { initiateBoard, dropLettersAction, setTileDropped } from '../../store/game.js';
+import { initiateBoard, dropLettersAction } from '../../store/game.js';
 import { loadOffer } from '../../store/offerStatuses.js';
 
 import Column from '../Column/Column.js';
@@ -61,17 +61,11 @@ const Board = ({ difficulty }) => {
                 if (user.user_name) {
                     if (paused === false) {
                         setSwitched(switched => !switched);
-        
-                        dispatch(setTileDropped(true));
                     };
                 } else {
                     setSwitched(switched => !switched);
-        
-                    dispatch(setTileDropped(true));
                 };
             }, difficultyLevels[difficulty]);
-    
-            const resetDrop = setTimeout(() => {dispatch(setTileDropped(false))}, 400);
     
             if (board.length) dispatch(dropLettersAction());
     
@@ -95,10 +89,7 @@ const Board = ({ difficulty }) => {
                 }, 900);
             };
     
-            return () => {
-                clearInterval(interval);
-                clearTimeout(resetDrop);
-            };
+            return () => clearInterval(interval);
         };
 
         if (challengeState.inChallenge === true) {
@@ -106,17 +97,11 @@ const Board = ({ difficulty }) => {
                 if (user.user_name) {
                     if (paused === false) {
                         setSwitched(switched => !switched);
-        
-                        dispatch(setTileDropped(true));
                     };
                 } else {
                     setSwitched(switched => !switched);
-        
-                    dispatch(setTileDropped(true));
                 };
             }, difficultyLevels[difficulty]);
-    
-            const resetDrop = setTimeout(() => {dispatch(setTileDropped(false))}, 400);
     
             if (board.length) dispatch(dropLettersAction());
     
@@ -128,10 +113,7 @@ const Board = ({ difficulty }) => {
                 }, 900);
             };
     
-            return () => {
-                clearInterval(interval);
-                clearTimeout(resetDrop);
-            };
+            return () => clearInterval(interval);
         };
     }, [switched, paused]);
 
