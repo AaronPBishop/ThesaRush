@@ -89,7 +89,7 @@ def seed_trophies():
         {"trophy_name": "Antimatter Maestro", "user_id": 26},
         {"trophy_name": "Alphabet Architect", "user_id": 26},
         {"trophy_name": "Vengeant Vanquisher", "user_id": 26},
-        {"trophy_name": "Type I Instance", "user_id": 26},
+        {"trophy_name": "Cosmic Intellect", "user_id": 26},
 
         {"trophy_name": "Master Blaster", "user_id": 27},
         {"trophy_name": "Obelisk Oracle", "user_id": 27},
@@ -97,7 +97,7 @@ def seed_trophies():
         {"trophy_name": "Antimatter Maestro", "user_id": 27},
         {"trophy_name": "Alphabet Architect", "user_id": 27},
         {"trophy_name": "Vengeant Vanquisher", "user_id": 27},
-        {"trophy_name": "Type I Instance", "user_id": 27},
+        {"trophy_name": "Cosmic Intellect", "user_id": 27},
 
         {"trophy_name": "Master Blaster", "user_id": 28},
         {"trophy_name": "Obelisk Oracle", "user_id": 28},
@@ -105,7 +105,7 @@ def seed_trophies():
         {"trophy_name": "Antimatter Maestro", "user_id": 28},
         {"trophy_name": "Alphabet Architect", "user_id": 28},
         {"trophy_name": "Vengeant Vanquisher", "user_id": 28},
-        {"trophy_name": "Type I Instance", "user_id": 28},
+        {"trophy_name": "Cosmic Intellect", "user_id": 28},
 
         {"trophy_name": "Master Blaster", "user_id": 29},
         {"trophy_name": "Obelisk Oracle", "user_id": 29},
@@ -113,7 +113,7 @@ def seed_trophies():
         {"trophy_name": "Antimatter Maestro", "user_id": 29},
         {"trophy_name": "Alphabet Architect", "user_id": 29},
         {"trophy_name": "Vengeant Vanquisher", "user_id": 29},
-        {"trophy_name": "Type I Instance", "user_id": 29},
+        {"trophy_name": "Cosmic Intellect", "user_id": 29},
 
         {"trophy_name": "Master Blaster", "user_id": 30},
         {"trophy_name": "Obelisk Oracle", "user_id": 30},
@@ -121,7 +121,15 @@ def seed_trophies():
         {"trophy_name": "Antimatter Maestro", "user_id": 30},
         {"trophy_name": "Alphabet Architect", "user_id": 30},
         {"trophy_name": "Vengeant Vanquisher", "user_id": 30},
-        {"trophy_name": "Type I Instance", "user_id": 30}
+        {"trophy_name": "Cosmic Intellect", "user_id": 30},
+
+        # Testing Seeders
+        {"trophy_name": "Master Blaster", "user_id": 32},
+        {"trophy_name": "Obelisk Oracle", "user_id": 33},
+        {"trophy_name": "Treasure Tactician", "user_id": 34},
+        {"trophy_name": "Alphabet Architect", "user_id": 35},
+        {"trophy_name": "Antimatter Maestro", "user_id": 36},
+        {"trophy_name": "Vengeant Vanquisher", "user_id": 37}
     ]
 
     db.session.add_all([Trophy(**trophy) for trophy in trophies])

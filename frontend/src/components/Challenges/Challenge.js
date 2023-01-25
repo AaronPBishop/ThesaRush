@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
-import { fetchUserData, spendPoints } from '../../store/user.js';
+import { fetchUserData, spendPoints, copyTrophies } from '../../store/user.js';
 import { populateChallengeData, setInChallenge, redeemChallenge, deleteChallenge } from "../../store/challenge.js";
 import { setClickedProfile, setClickedChallenges, setClaimedPoints } from  '../../store/menu.js';
 
@@ -251,6 +251,7 @@ const Challenge = ({ id, type, sender, receiver, time, completed, redeemed }) =>
                                         await dispatch(populateChallengeData(id, sender.id, receiver.id, time));
 
                                         await dispatch(spendPoints(user.user_id, priceMap[time]));
+                                        await dispatch(copyTrophies());
                                         
                                         await history.push('/game/rush');
 

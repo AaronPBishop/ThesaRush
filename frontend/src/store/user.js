@@ -1,4 +1,6 @@
-const initialState = {};
+const initialState = {
+    trophiesCopy: []
+};
 
 export const logInUser = (id) => {
     return {
@@ -19,6 +21,12 @@ export const updateLives = (pointsBalance, lives) => {
         type: 'UPDATE_LIVES',
         payload1: pointsBalance,
         payload2: lives
+    };
+};
+
+export const copyTrophies = () => {
+    return {
+        type: 'COPY_TROPHIES'
     };
 };
 
@@ -233,6 +241,12 @@ const userReducer = (state = initialState, action) => {
 
         case 'POPULATE_USER_DATA': {
             for (let key in action.payload) currentState[key] = action.payload[key];
+            
+            return currentState;
+        };
+
+        case 'COPY_TROPHIES': {
+            currentState.trophiesCopy = currentState.trophies;
             
             return currentState;
         };

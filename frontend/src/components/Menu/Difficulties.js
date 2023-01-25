@@ -3,6 +3,8 @@ import { useDispatch } from 'react-redux';
 import { setDifficulty } from '../../store/game';
 import { useHistory } from 'react-router-dom';
 
+import { copyTrophies } from '../../store/user.js';
+
 import './styles.css';
 
 const Difficulties = ({ clickedBack }) => {
@@ -50,6 +52,7 @@ const Difficulties = ({ clickedBack }) => {
                         <li
                         className='play-difficulty'
                         onClick={() => {
+                            dispatch(copyTrophies());
                             dispatch(setDifficulty('easy'));
                             history.push('/game/easy');
                         }}
@@ -80,6 +83,7 @@ const Difficulties = ({ clickedBack }) => {
                         <li
                         className='play-difficulty'
                         onClick={() => {
+                            dispatch(copyTrophies());
                             dispatch(setDifficulty('medium'));
                             history.push('/game/medium');
                         }}
@@ -110,6 +114,7 @@ const Difficulties = ({ clickedBack }) => {
                         <li
                         className='play-difficulty'
                         onClick={() => {
+                            dispatch(copyTrophies());
                             dispatch(setDifficulty('hard'));
                             history.push('/game/hard');
                         }}
@@ -142,6 +147,7 @@ const Difficulties = ({ clickedBack }) => {
                         <li
                         className='play-difficulty'
                         onClick={() => {
+                            dispatch(copyTrophies());
                             dispatch(setDifficulty('rush'));
                             history.push('/game/rush');
                         }}

@@ -38,7 +38,7 @@ def update_user_data(id):
         'word_smith': ['Alphabet Architect', 8000],
         'void_master': ['Antimatter Maestro', 4000],
         'wins': ['Vengeant Vanquisher', 9000],
-        'level': ['Type I Instance', 10000]
+        'level': ['Cosmic Intellect', 10000]
     }
 
     for key, val in trophies.items():

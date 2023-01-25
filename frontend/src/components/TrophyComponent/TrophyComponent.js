@@ -62,7 +62,7 @@ const TrophyComponent = ({ trophyType, container }) => {
             border: '4px solid rgb(105, 0, 0)',
             trophyColor: 'black'
         },
-        TypeIInstance: {
+        CosmicIntellect: {
             description: 'Attained Cosmic League Status',
             backgroundColor: 'rgba(185, 10, 180, 1)',
             color: 'white',
@@ -144,7 +144,7 @@ const TrophyComponent = ({ trophyType, container }) => {
 
             <BrainCircuit 
             style={{
-                display: !clicked && trophyType === 'Type I Instance' ? 'block' : 'none',
+                display: !clicked && trophyType === 'Cosmic Intellect' ? 'block' : 'none',
                 color: mapStyles[trophyType.replace(/ /g, '')].trophyColor,
                 marginTop: '2.5vh',
                 width: '7vw'

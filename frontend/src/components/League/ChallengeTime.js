@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 
 import { setClickedLeague } from '../../store/menu.js';
 import { setInChallenge, populateChallengeData } from "../../store/challenge.js";
-import { spendPoints } from '../../store/user.js';
+import { spendPoints, copyTrophies } from '../../store/user.js';
 
 const ChallengeTime = ({ senderId, receiverId }) => {
     const dispatch = useDispatch();
@@ -84,15 +84,18 @@ const ChallengeTime = ({ senderId, receiverId }) => {
 
                         <div 
                         className="challenge-times"
-                        onClick={e => {
+                        onClick={async e => {
                             e.stopPropagation();
 
-                            dispatch(setClickedLeague(false));
-                            dispatch(setInChallenge(true, 'challenger'));
-                            dispatch(populateChallengeData(null, senderId, receiverId, timeSelected));
-                            dispatch(spendPoints(senderId, priceMap[timeSelected]));
+                            await dispatch(setInChallenge(true, 'challenger'));
+                            await dispatch(populateChallengeData(null, senderId, receiverId, timeSelected));
 
-                            history.push('/game/rush');
+                            await dispatch(spendPoints(senderId, priceMap[timeSelected]));
+                            await dispatch(copyTrophies());
+
+                            await history.push('/game/rush');
+
+                            await dispatch(setClickedLeague(false));
                         }}
                         style={{cursor: 'pointer', width: '6vw', height: '5vh', lineHeight: '5vh'}}>
                             Start

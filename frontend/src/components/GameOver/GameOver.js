@@ -10,6 +10,8 @@ import { resetChallengeState, sendChallenge, updateChallenge } from '../../store
 import Badge from '../Badge/Badge.js';
 import ChallengeStatus from './ChallengeStatus.js';
 
+import { Trophy } from '@styled-icons/entypo/Trophy';
+
 import './styles.css';
 
 const GameOver = ({ points, numWords, longestWord, tilesCleared, bombardier, stoneCrusher, goldMiner, wordSmith, voidMaster }) => {
@@ -20,6 +22,11 @@ const GameOver = ({ points, numWords, longestWord, tilesCleared, bombardier, sto
     const menu = useSelector(state => state.menu);
     const user = useSelector(state => state.user);
     const challenge = useSelector(state => state.challenge);
+
+    const [loaded, setLoaded] = useState(false);
+
+    const [earnedNewTrophy, setEarnedNewTrophy] = useState(false);
+    const [newTrophyName, setNewTrophyName] = useState('');
 
     const [playAgain, setPlayAgain] = useState(false);
     const [badges, setBadges] = useState(0);
@@ -54,13 +61,59 @@ const GameOver = ({ points, numWords, longestWord, tilesCleared, bombardier, sto
     }, []);
 
     useEffect(() => {
+        if (user.trophies.length > user.trophiesCopy.length) {
+            const trophyNames = user.trophiesCopy.map(trophy => trophy.trophy_name);
+            const newTrophy = user.trophies.filter(trophy => !trophyNames.includes(trophy.trophy_name));
+
+            setNewTrophyName(`${newTrophy[0].trophy_name}`);
+            setEarnedNewTrophy(true);
+        };
+    }, [user]);
+
+    useEffect(() => {
+        if (earnedNewTrophy === true) {
+            const trophyTimer = setTimeout(() => {
+                setEarnedNewTrophy(false);
+            }, 6000);
+
+            return () => clearTimeout(trophyTimer);
+        };
+    }, [earnedNewTrophy]);
+
+    useEffect(() => {
         if (playAgain === true) history.push(`/game/${difficulty}`);
     }, [playAgain])
     
     return (
-        <div 
-        style={{background: menu.backgroundColor}}
-        id='game-over'>
+        <div id='game-over' style={{background: menu.backgroundColor}}>
+            <div style={{display: 'flex', justifyContent: 'center', marginBottom: '-4.vh'}}>
+                <div
+                id='new-trophy-popup'
+                style={{
+                    display: earnedNewTrophy === true ? 'flex' : 'none',
+                    justifyContent: 'space-evenly',
+                    position: 'absolute',
+                    backgroundColor: 'rgb(20, 20, 20)',
+                    boxShadow: '0px 0px 10px 1px yellow',
+                    border: '2px solid rgb(255, 255, 60)',
+                    borderRadius: '8px',
+                    width: '36vw',
+                    marginTop: '-3vh'
+                }}>
+                    <Trophy style={{color: 'gold', width: '2vw'}}>
+                    </Trophy>
+
+                    <p style={{fontFamily: 'Bungee Spice'}}>
+                        You Earned a New Trophy: 
+                        &nbsp; 
+                        <b style={{fontFamily: 'Roboto', fontSize: '20px', lineHeight: '0vh'}}>{newTrophyName}</b>
+                    </p>
+
+                    <Trophy style={{color: 'gold', width: '2vw'}}>
+                    </Trophy>
+                </div>
+            </div>
+
             <p id='gameover-header'>Game Over!</p>
 
             <div

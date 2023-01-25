@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -15,8 +15,6 @@ import * as data from './dictionary/words_dictionary';
 const App = () => {
   const dispatch = useDispatch();
 
-  const [loaded, setLoaded] = useState(false);
-
   useEffect(() => {
     const background = window.localStorage.getItem('backgroundColor');
 
@@ -26,7 +24,6 @@ const App = () => {
   useEffect(() => {
     (async () => {
       await dispatch(authenticate());
-      setLoaded(true);
     })();
   }, [dispatch]);
 
