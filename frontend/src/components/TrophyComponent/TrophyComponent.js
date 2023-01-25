@@ -15,60 +15,74 @@ const TrophyComponent = ({ trophyType, container }) => {
 
     const mapStyles = {
         MasterBlaster: {
-            description: 'Earned 50 Bombardier Badges',
+            header: 'Earned 50 Bombardier Badges',
             backgroundColor: 'rgb(255,69,0)',
             color: 'yellow',
             boxShadow: '0px 0px 15px 5px rgb(255, 49, 49)',
             border: '4px solid rgb(160, 55, 0)',
-            trophyColor: 'black'
+            trophyColor: 'black',
+            description: '',
+            pointTotal: 4000
         },
         ObeliskOracle: {
-            description: 'Earned 50 Stone Crusher Badges',
+            header: 'Earned 50 Stone Crusher Badges',
             backgroundColor: 'rgb(30, 80, 60)',
             color: 'white',
             boxShadow: '0px 0px 14px 8px #383630',
             border: '4px solid rgb(0, 40, 30)',
-            trophyColor: 'black'
+            trophyColor: 'black',
+            description: '',
+            pointTotal: 3000
         },
         TreasureTactician: {
-            description: 'Earned 50 Gold Miner Badges',
+            header: 'Earned 50 Gold Miner Badges',
             backgroundColor: 'rgb(210, 200, 30)',
             color: 'white',
             boxShadow: '0px 0px 12px 4px #FFD700',
             border: '4px solid yellow',
-            trophyColor: 'black'
+            trophyColor: 'black',
+            description: '',
+            pointTotal: 3000
         },
         AlphabetArchitect: {
-            description: 'Earned 50 Word Smith Badges',
+            header: 'Earned 50 Word Smith Badges',
             backgroundColor: 'rgb(40, 0, 80)',
             color: 'white',
             boxShadow: '0px 0px 12px 4px rgb(100, 0, 190)',
             border: '4px solid rgb(20, 0, 60)',
-            trophyColor: 'white'
+            trophyColor: 'white',
+            description: '',
+            pointTotal: 8000
         },
         AntimatterMaestro: {
-            description: 'Earned 50 Void Master Badges',
+            header: 'Earned 50 Void Master Badges',
             backgroundColor: 'black',
             color: 'white',
             boxShadow: '0px 0px 12px 4px white',
             border: '4px solid white',
-            trophyColor: 'white'
+            trophyColor: 'white',
+            description: '',
+            pointTotal: 4000
         },
         VengeantVanquisher: {
-            description: 'Won 50 Challenges',
+            header: 'Won 50 Challenges',
             backgroundColor: 'rgb(128, 0, 32)',
             color: 'white',
             boxShadow: '0px 0px 12px 4px red',
             border: '4px solid rgb(105, 0, 0)',
-            trophyColor: 'black'
+            trophyColor: 'black',
+            description: '',
+            pointTotal: 9000
         },
         CosmicIntellect: {
-            description: 'Attained Cosmic League Status',
+            header: 'Attained Cosmic League Status',
             backgroundColor: 'rgba(185, 10, 180, 1)',
             color: 'white',
             boxShadow: '0px 0px 12px 4px purple',
             border: '4px solid rgba(125, 0, 120, 1)',
-            trophyColor: 'black'
+            trophyColor: 'black',
+            description: 'Those who attain this emblem are said to be imbued with an ancient intelligence known only to the cosmos itself.',
+            pointTotal: 10000
         }
     };
 
@@ -81,7 +95,8 @@ const TrophyComponent = ({ trophyType, container }) => {
             boxShadow: mapStyles[trophyType.replace(/ /g, '')].boxShadow,
             border: mapStyles[trophyType.replace(/ /g, '')].border,
             width: container && '14vw',
-            height: container && '27vh'
+            height: container && '27vh',
+            overflowY: 'auto'
         }}
         id={!clicked ? 'animate-swivel' : 're-animate-swivel'}
         className='trophies'>
@@ -164,7 +179,11 @@ const TrophyComponent = ({ trophyType, container }) => {
                     {trophyType}
                 </p> 
                 :
-                <p style={{fontSize: '20px', marginTop: '8vh', width: '10vw'}}>{mapStyles[trophyType.replace(/ /g, '')].description}</p>
+                <div style={{display: 'flex', justifyContent: 'center', margin: 'auto', flexWrap: 'wrap', maxWidth: '10vw', overflowY: 'auto', overflowX: 'hidden'}}>
+                    <p style={{fontSize: '20px', fontWeight: 'bold', marginTop: '2vh'}}>{mapStyles[trophyType.replace(/ /g, '')].header}</p>
+                    <b>+{mapStyles[trophyType.replace(/ /g, '')].pointTotal} points</b>
+                    <p style={{fontSize: '16px', color: 'white'}}>{mapStyles[trophyType.replace(/ /g, '')].description}</p>
+                </div>
             }
         </div>
     );

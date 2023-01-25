@@ -40,6 +40,11 @@ const GameOver = ({ points, numWords, longestWord, tilesCleared, bombardier, sto
     };
 
     useEffect(() => {
+        window.history.pushState(null, null, window.location.href);
+        window.onpopstate = () => {
+            window.history.go(1);
+        };
+        
         setBadges(bombardier + stoneCrusher + goldMiner + wordSmith + voidMaster);
         
         if (user.user_id) dispatch(updateUserData(user.user_id, points, numWords, longestWord, tilesCleared, bombardier, stoneCrusher, goldMiner, wordSmith, voidMaster));
