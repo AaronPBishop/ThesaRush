@@ -37,8 +37,7 @@ def update_user_data(id):
         'gold_miner': ['Treasure Tactician', 3000],
         'word_smith': ['Alphabet Architect', 8000],
         'void_master': ['Antimatter Maestro', 4000],
-        'wins': ['Vengeant Vanquisher', 9000],
-        'level': ['Cosmic Intellect', 10000]
+        'wins': ['Vengeant Vanquisher', 9000]
     }
 
     for key, val in trophies.items():
@@ -58,6 +57,17 @@ def update_user_data(id):
     queried_user.level = math.floor(queried_user.points / 2000)
     if queried_user.level > 50:
         queried_user.level = 50
+
+    if queried_user.level == 50 and queried_user.has_trophy('Cosmic Intellect') == False:
+        new_trophy = Trophy(
+            trophy_name='Cosmic Intellect',
+            user_id=queried_user.id
+        )
+
+        queried_user.points += 10000
+        queried_user.points_balance += 10000
+
+        db.session.add(new_trophy)
 
     db.session.add(queried_user)
     db.session.commit()

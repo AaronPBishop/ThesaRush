@@ -15,6 +15,7 @@ const Challenge = ({ id, type, sender, receiver, time, completed, redeemed }) =>
     const user = useSelector(state => state.user);
 
     const [clickedAccept, setClickedAccept] = useState(false);
+    const [insufficientPoints, setInsufficientPoints] = useState(false);
 
     const timeMap = {
         60000: '1 Minute',
@@ -230,11 +231,16 @@ const Challenge = ({ id, type, sender, receiver, time, completed, redeemed }) =>
                             <div style={{
                                 display: 'flex', 
                                 justifyContent: 'space-evenly', 
+                                margin: 'auto',
                                 flexWrap: 'wrap',
-                                width: 'inherit'
+                                width: '15vw',
+                                backgroundColor: 'black',
+                                border: '2px solid rgb(120, 120, 255)',
+                                borderRadius: '12px',
                             }}>
                                 <p style={{marginBottom: '0.5vh'}}>Cost Per Player: <b>{priceMap[time]} points</b></p>
                                 <p style={{marginBottom: '1vh'}}>Winner Receives: <b>{rewardMap[time]} points</b></p>
+                                <b style={{display: insufficientPoints ? 'block' : 'none', fontFamily: 'Bungee Spice', marginTop: '4vh'}}>Insufficient Points</b>
 
                                 <div style={{display: 'flex', justifyContent: 'space-evenly'}}>
                                     <div 
@@ -247,16 +253,23 @@ const Challenge = ({ id, type, sender, receiver, time, completed, redeemed }) =>
                                     <div 
                                     className="challenge-times"
                                     onClick={async () => {
-                                        await dispatch(setInChallenge(true, 'challengee'));
-                                        await dispatch(populateChallengeData(id, sender.id, receiver.id, time));
+                                        if (user.points_balance < priceMap[time]) {
+                                            setInsufficientPoints(true);
+                                            return;
+                                        };
 
-                                        await dispatch(spendPoints(user.user_id, priceMap[time]));
-                                        await dispatch(copyTrophies());
-                                        
-                                        await history.push('/game/rush');
+                                        if (user.points_balance >= priceMap[time]) {
+                                            await dispatch(setInChallenge(true, 'challengee'));
+                                            await dispatch(populateChallengeData(id, sender.id, receiver.id, time));
 
-                                        await dispatch(setClickedProfile(false));
-                                        await dispatch(setClickedChallenges(false));
+                                            await dispatch(spendPoints(user.user_id, priceMap[time]));
+                                            await dispatch(copyTrophies());
+                                            
+                                            await history.push('/game/rush');
+
+                                            await dispatch(setClickedProfile(false));
+                                            await dispatch(setClickedChallenges(false));
+                                        };
                                     }}
                                     style={{cursor: 'pointer', width: '6vw', height: '5vh', lineHeight: '5vh'}}>
                                         Start

@@ -123,7 +123,7 @@ def seed_trophies():
         {"trophy_name": "Vengeant Vanquisher", "user_id": 30},
         {"trophy_name": "Cosmic Intellect", "user_id": 30},
 
-        # Testing Seeders
+        # New Trophy Testing Seeders
         {"trophy_name": "Master Blaster", "user_id": 32},
         {"trophy_name": "Obelisk Oracle", "user_id": 33},
         {"trophy_name": "Treasure Tactician", "user_id": 34},

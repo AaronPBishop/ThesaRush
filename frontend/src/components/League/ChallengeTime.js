@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 import { setClickedLeague } from '../../store/menu.js';
@@ -10,8 +10,11 @@ const ChallengeTime = ({ senderId, receiverId }) => {
     const dispatch = useDispatch();
     const history = useHistory();
 
+    const user = useSelector(state => state.user);
+
     const [clickedTimeLimit, setClickedTimeLimit] = useState(false);
     const [timeSelected, setTimeSelected] = useState(0);
+    const [insufficientPoints, setInsufficientPoints] = useState(false);
 
     const priceMap = {
         60000: 50,
@@ -75,6 +78,8 @@ const ChallengeTime = ({ senderId, receiverId }) => {
                     <p style={{marginBottom: '-0.5vh'}}>Cost Per Player: <b>{priceMap[timeSelected]} points</b></p>
                     <p style={{marginBottom: '1vh'}}>Winner Receives: <b>{rewardMap[timeSelected]} points</b></p>
 
+                    <b style={{display: insufficientPoints ? 'block' : 'none', fontFamily: 'Bungee Spice', marginTop: '2vh'}}>Insufficient Points</b>
+
                     <div style={{display: 'flex', justifyContent: 'space-evenly'}}>
                         <div 
                         className="challenge-times"
@@ -87,15 +92,22 @@ const ChallengeTime = ({ senderId, receiverId }) => {
                         onClick={async e => {
                             e.stopPropagation();
 
-                            await dispatch(setInChallenge(true, 'challenger'));
-                            await dispatch(populateChallengeData(null, senderId, receiverId, timeSelected));
+                            if (user.points_balance < priceMap[timeSelected]) {
+                                setInsufficientPoints(true);
+                                return;
+                            };
 
-                            await dispatch(spendPoints(senderId, priceMap[timeSelected]));
-                            await dispatch(copyTrophies());
+                            if (user.points_balance >= priceMap[timeSelected]) {
+                                await dispatch(setInChallenge(true, 'challenger'));
+                                await dispatch(populateChallengeData(null, senderId, receiverId, timeSelected));
 
-                            await history.push('/game/rush');
+                                await dispatch(spendPoints(senderId, priceMap[timeSelected]));
+                                await dispatch(copyTrophies());
 
-                            await dispatch(setClickedLeague(false));
+                                await history.push('/game/rush');
+
+                                await dispatch(setClickedLeague(false));
+                            };
                         }}
                         style={{cursor: 'pointer', width: '6vw', height: '5vh', lineHeight: '5vh'}}>
                             Start

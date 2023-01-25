@@ -92,7 +92,7 @@ def seed_users():
         #30
         {"user_name": "Webula", "user_email": "webula@gmail.com", "password": "password", "level": "50", "high_score": "2487", "points": "159713", "points_balance": "159713", "words": "43219", "longest_word": "CRYPTOGRAPHICAL", "tiles_cleared": "138948", "lives": "1", "wins": "254", "losses": "88", "bombardier": "573", "stone_crusher": "689", "gold_miner": "538", "word_smith": "314", "void_master": "583", "league_name": "Cosmic"},
 
-        # Testing Seeders
+        # New Trophy Testing Seeders
         #31
         {"user_name": "TrophyTest1", "user_email": "trophytest1@gmail.com", "password": "password", "level": "1", "high_score": "0", "points": "0", "points_balance": "0", "words": "0", "longest_word": "", "tiles_cleared": "0", "lives": "1", "wins": "0", "losses": "0", "bombardier": "50", "stone_crusher": "0", "gold_miner": "0", "word_smith": "0", "void_master": "0", "league_name": "Bronze"},
         #32
