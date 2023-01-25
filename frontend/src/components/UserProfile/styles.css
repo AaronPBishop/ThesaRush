@@ -29,6 +29,7 @@
     height: 28vh;
 
     overflow-x: auto;
+    overflow-y: hidden;
 
     padding: 1vw;
     margin-left: 2vw;

@@ -6,6 +6,7 @@ import { resetGame, resetStats } from '../../store/game';
 import { resetStatuses } from '../../store/offerStatuses';
 import { fetchUserData, updateUserData } from '../../store/user.js';
 import { resetChallengeState, sendChallenge, updateChallenge } from '../../store/challenge';
+import { setClickedProfile } from '../../store/menu';
 
 import Badge from '../Badge/Badge.js';
 import ChallengeStatus from './ChallengeStatus.js';
@@ -94,6 +95,17 @@ const GameOver = ({ points, numWords, longestWord, tilesCleared, bombardier, sto
             <div style={{display: 'flex', justifyContent: 'center', marginBottom: '-4.vh'}}>
                 <div
                 id='new-trophy-popup'
+                onClick={e => {
+                    dispatch(resetGame());
+                    dispatch(resetStats());
+                    dispatch(resetStatuses());
+                    dispatch(resetChallengeState());
+
+                    history.push('/');
+                    dispatch(setClickedProfile(true));
+
+                    e.preventDefault();
+                }}
                 style={{
                     display: earnedNewTrophy === true ? 'flex' : 'none',
                     justifyContent: 'space-evenly',
@@ -103,7 +115,8 @@ const GameOver = ({ points, numWords, longestWord, tilesCleared, bombardier, sto
                     border: '2px solid rgb(255, 255, 60)',
                     borderRadius: '8px',
                     width: '36vw',
-                    marginTop: '-3vh'
+                    marginTop: '-3vh',
+                    cursor: 'pointer'
                 }}>
                     <Trophy style={{color: 'gold', width: '2vw'}}>
                     </Trophy>
