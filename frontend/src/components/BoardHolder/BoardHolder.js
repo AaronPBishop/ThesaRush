@@ -8,6 +8,9 @@ import InGameBadges from '../Scoring/InGameBadges';
 import orderInput from '../../functions/orderInput.js';
 import OfferLife from './OfferLife.js';
 
+import { CloseSquare } from '@styled-icons/evaicons-solid/CloseSquare';
+import { CheckmarkSquare } from '@styled-icons/fluentui-system-filled/CheckmarkSquare';
+
 import './styles.css';
 
 import { 
@@ -270,18 +273,22 @@ const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmit
                     <Board difficulty={params.difficulty} />
                     
                     <form
-                    onSubmit={e => {
-                        e.preventDefault();
-                        dispatch(setSubmitted((submitted) => !submitted));
-                    }}
                     className='input-actions'>
-                        <button type='reset' id='clear' onClick={() => {
+                        <div 
+                        id='clear'
+                        onClick={() =>{
                             dispatch(setCleared((cleared) => !cleared));
                             dispatch(resetInput());
                             dispatch(resetOrder());
                             dispatch(resetTiles());
                         }}>
-                        </button>
+                            <CloseSquare
+                            style={{
+                                color: 'rgb(120, 0, 20)',
+                                width: '1.8vw'
+                            }}>
+                            </CloseSquare>
+                        </div>
 
                         <input 
                         id='word-bar' 
@@ -290,7 +297,16 @@ const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmit
                         value={orderedInput}>
                         </input>
 
-                        <button id='send' type='submit'></button>
+                        <div 
+                        id='send'
+                        onClick={() => dispatch(setSubmitted((submitted) => !submitted))}>
+                            <CheckmarkSquare
+                            style={{
+                                color: 'rgb(0, 60, 20)',
+                                width: '1.8vw'
+                            }}>
+                            </CheckmarkSquare>
+                        </div>
                     </form>
 
                 </div>

@@ -9,9 +9,9 @@ import Column from '../Column/Column.js';
 
 import letterGenerator from '../../functions/letterGenerator.js';
 import checkGameOver from '../../functions/checkGameOver.js';
+import { setCompletedChallenge } from '../../store/challenge.js';
 
 import './styles.css';
-import { setCompletedChallenge } from '../../store/challenge.js';
 
 const Board = ({ difficulty }) => {
     const history = useHistory();
@@ -105,11 +105,11 @@ const Board = ({ difficulty }) => {
             if (board.length) dispatch(dropLettersAction());
     
             if (checkGameOver(board)) {
-                setTimeout(() => {
-                    if (checkGameOver(board)) {
-                       history.push('/gameover');
-                    };
+                const gracePeriod = setTimeout(() => {
+                    if (checkGameOver(board)) history.push('/gameover');
                 }, 900);
+
+                return () => clearTimeout(gracePeriod);
             };
     
             return () => clearInterval(interval);
@@ -127,7 +127,7 @@ const Board = ({ difficulty }) => {
     }, [endChallenge]);
 
     return (
-        <div className='main-board'>
+        <div>
             <center>
                 {board.map((col, i) => <Column letters={col} colPos={i} key={i} />)}
             </center>

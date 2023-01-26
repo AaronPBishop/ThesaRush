@@ -259,7 +259,11 @@ const gameReducer = (state = initialState, action) => {
                                     continue;
                                 };
 
-                                currColumn[j].hasAltered = !currColumn[j].hasAltered;
+                                if (currColumn[j].type === 'rearranged') {
+                                    currColumn[j].hasAltered = !currColumn[j].hasAltered;
+    
+                                    continue;
+                                };
                             };
                         };
                     };
@@ -315,7 +319,11 @@ const gameReducer = (state = initialState, action) => {
                                         continue;
                                     };
 
-                                    currentState.board[col][j].hasAltered = !currentState.board[col][j].hasAltered;
+                                    if (currentState.board[col][j].type === 'rearranged') {
+                                        currentState.board[col][j].hasAltered = !currentState.board[col][j].hasAltered;
+
+                                        continue;
+                                    };
                                 };
                             };
                         };

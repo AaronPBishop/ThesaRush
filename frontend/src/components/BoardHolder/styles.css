@@ -39,7 +39,7 @@
     margin: auto;
     
     position: relative;
-    bottom: 13.4vh;
+    bottom: 13vh;
 
     animation: input-drop 0.6s;
 }
@@ -69,62 +69,50 @@
 }
 
 #clear {
+    display: flex;
+    justify-content: center;
+
     margin-right: 0.2vw;
 
-    background-image: url('../../close_FILL0_wght400_GRAD0_opsz48.png');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 22px;
-
     background-color: #FF4742;
-    border: 1px solid #FF4742;
-    border-bottom: 3px solid#9f312d;
-    border-radius: 6px;
+    border-bottom: 3.5px solid rgb(170, 0, 35);
+    border-radius: 8px;
 
     min-width: 2.28vw;
     max-width: 2.28vw;
 
-    min-height: 5.8vh;
-    max-height: 5.8vh;
+    min-height: 6vh;
+    max-height: 6vh;
 
     box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
     box-sizing: border-box;
 
     touch-action: manipulation;
-    vertical-align: middle;
-    outline: 0;
-    padding: 12px 14px;
 
     cursor: pointer;
 }
 
 #send {
-    margin-left: 0.2vw;
+    display: flex;
+    justify-content: center;
 
-    background-image: url('../../done_outline_FILL0_wght400_GRAD0_opsz48 (1).png');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 20px;
+    margin-left: 0.2vw;
 
     min-width: 2.28vw;
     max-width: 2.28vw;
 
-    min-height: 5.8vh;
-    max-height: 5.8vh;
+    min-height: 6vh;
+    max-height: 6vh;
 
     background-color: #13aa52;
-    border: 1px solid #13aa52;
 
-    border-bottom: 3px solid #0a5c2c;
-    border-radius: 6px;
+    border-bottom: 3.5px solid rgb(0, 100, 20);
+    border-radius: 8px;
 
     box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
     box-sizing: border-box;
 
     touch-action: manipulation;
-    vertical-align: middle;
-    outline: 0;
-    padding: 12px 14px;
 
     cursor: pointer;
 }
