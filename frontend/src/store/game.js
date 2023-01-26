@@ -272,8 +272,6 @@ const gameReducer = (state = initialState, action) => {
                 if (currentState.board[col][row] !== null) {
                     if (currentState.board[col][row].properties === 'bomb') {
                         currentState.stats.bombardier += 1;
-                        
-                        currentState.board[col][row] = null;
 
                         const neighbors = getNeighbors(currentState.board, values[i]);
 
@@ -290,7 +288,11 @@ const gameReducer = (state = initialState, action) => {
                                     continue;
                                 };
 
-                                currentState.board[neighborCol][neighborRow].hasAltered = !currentState.board[neighborCol][neighborRow].hasAltered;
+                                if (currentState.board[neighborCol][neighborRow] !== null && (currentState.board[neighborCol][neighborRow].type === 'rearranged')) {
+                                    currentState.board[neighborCol][neighborRow].hasAltered = !currentState.board[neighborCol][neighborRow].hasAltered;
+
+                                    continue;
+                                };
                             };
                         };
                     };
