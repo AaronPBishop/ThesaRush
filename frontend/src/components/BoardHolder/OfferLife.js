@@ -18,7 +18,7 @@ const OfferLife = () => {
         <div
         id='offerlife-container'
         style={{display: offerState === true ? 'flex' : 'none', background: backgroundColor}}>
-            <div style={{display: 'flex', justifyContent: 'center', flexWrap: 'wrap', maxWidth: '10vw', margin: 'auto'}}>
+            <div style={{display: 'flex', justifyContent: 'center', flexWrap: 'wrap', maxWidth: '12vw', margin: 'auto', textAlign: 'center'}}>
                 <div 
                 onClick={() => {
                     if (user.lives > 0) {
@@ -51,8 +51,9 @@ const OfferLife = () => {
                     {user.lives > 0 ? 'USE LIFE' : 'BUY LIFE'}
                 </div>
                 
+
                 <p>{user.lives > 0 ? `${user.lives} lives available` : '-1000 points'}</p>
-                <b style={{visibility: user.lives < 1 ? 'visible' : 'hidden'}}>{`${user.points_balance} points available`}</b>
+                <b style={{visibility: user.lives < 1 ? 'visible' : 'hidden', width: '12vw'}}>{`${user.points_balance} points available`}</b>
             </div>
         </div>
     );

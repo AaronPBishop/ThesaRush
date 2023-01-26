@@ -41,6 +41,8 @@
     position: relative;
     bottom: 13vh;
 
+    height: 10vh;
+
     animation: input-drop 0.6s;
 }
 
