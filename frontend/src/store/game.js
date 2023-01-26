@@ -272,6 +272,8 @@ const gameReducer = (state = initialState, action) => {
                 if (currentState.board[col][row] !== null) {
                     if (currentState.board[col][row].properties === 'bomb') {
                         currentState.stats.bombardier += 1;
+                        
+                        currentState.board[col][row] = null;
 
                         const neighbors = getNeighbors(currentState.board, values[i]);
 
@@ -421,7 +423,7 @@ const gameReducer = (state = initialState, action) => {
 
                 if (currLetter[1] === highestChar) {
                     coordinates.push(Number(key.split('')[0]));
-                    coordinates.push(Number(key.split('')[1]));
+                    coordinates.push(Number(key.split('').slice(1, key.split('').length).join('')));
 
                     delete currentState.input[key];
                 };

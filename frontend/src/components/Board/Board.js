@@ -21,6 +21,7 @@ const Board = ({ difficulty }) => {
     const board = useSelector(state => state.game.board);
     const user = useSelector(state => state.user);
     const paused = useSelector(state => state.offerStatuses.paused);
+    const hasOffered = useSelector(state => state.offerStatuses.hasOffered);
     const challengeState = useSelector(state => state.challenge);
 
     const [switched, setSwitched] = useState(false);
@@ -47,9 +48,11 @@ const Board = ({ difficulty }) => {
 
     useEffect(() => {
         if (challengeState.inChallenge === true) {
-            setTimeout(() => {
+            const challengeTimer = setTimeout(() => {
                 setEndChallenge(true);
             }, [challengeState.time]);
+
+            return () => clearTimeout(challengeTimer);
         };
     }, []);
 
@@ -59,9 +62,7 @@ const Board = ({ difficulty }) => {
         if (challengeState.inChallenge === false) {
             const interval = setInterval(() => {
                 if (user.user_name) {
-                    if (paused === false) {
-                        setSwitched(switched => !switched);
-                    };
+                    if (paused === false) setSwitched(switched => !switched);
                 } else {
                     setSwitched(switched => !switched);
                 };
@@ -72,7 +73,7 @@ const Board = ({ difficulty }) => {
             if (checkGameOver(board)) {
                 const gracePeriod = setTimeout(() => {
                     if (checkGameOver(board)) {
-                        if (user.user_name && (user.points_balance >= 1000 || user.lives > 0)) {
+                        if (hasOffered < 2 && user.user_name && (user.points_balance >= 1000 || user.lives > 0)) {
                             dispatch(loadOffer(true));
     
                             const offerAllotment = setTimeout(() => {
@@ -95,9 +96,7 @@ const Board = ({ difficulty }) => {
         if (challengeState.inChallenge === true) {
             const interval = setInterval(() => {
                 if (user.user_name) {
-                    if (paused === false) {
-                        setSwitched(switched => !switched);
-                    };
+                    if (paused === false) setSwitched(switched => !switched);
                 } else {
                     setSwitched(switched => !switched);
                 };

@@ -104,7 +104,6 @@ const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmit
         const keyDownHandler = async e => {
             e.preventDefault();
 
-    
             if (e.code === 'Space') dispatch(setSubmitted((submitted) => !submitted));
 
             if (e.code === 'Tab') {

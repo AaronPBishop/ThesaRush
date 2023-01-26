@@ -17,7 +17,6 @@ const consonantColors = () => {
 const determineColor = (letterClass) => {
     if (letterClass === 'vowel') return vowelColors()
     if (letterClass === 'consonant') return consonantColors();
-    if (letterClass === 'rare') return 'rgb(210, 200, 30)';
 };
 
 export const letterClass = (letter) => {
@@ -39,7 +38,7 @@ const letterGenerator = (type, properties='normal') => {
     
     if (randomLetter > 1.5 && randomLetter < 38) return {letter: vowels[Math.floor((Math.random()*vowels.length))], type: type, color: determineColor('vowel'), properties: properties, hasAltered: false}
 
-    return {letter: rareConsonants[Math.floor((Math.random()*rareConsonants.length))], type: type, color: determineColor('rare'), properties: properties, hasAltered: false};
+    if (randomLetter <= 1.5) return {letter: rareConsonants[Math.floor((Math.random()*rareConsonants.length))], type: type, color: 'rgb(210, 200, 30)', properties: properties, hasAltered: false};
 };
 
 export default letterGenerator;

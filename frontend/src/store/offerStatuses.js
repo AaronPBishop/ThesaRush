@@ -1,6 +1,7 @@
 const initialState = {
     paused: false,
-    loadOffer: false
+    loadOffer: false,
+    hasOffered: 0
 };
 
 export const setPaused = (boolean) => {
@@ -35,6 +36,7 @@ const offerStatusesReducer = (state = initialState, action) => {
 
         case 'LOAD_OFFER': {
             currentState.loadOffer = action.payload;
+            currentState.hasOffered += 1;
 
             return currentState;
         };
