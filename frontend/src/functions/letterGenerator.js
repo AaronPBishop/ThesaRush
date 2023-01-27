@@ -9,10 +9,13 @@ const vowelColors = () => {
 };
 
 const consonantColors = () => {
-    const colors = ['rgb(10, 40, 110)', 'rgb(0, 15, 95)'];
+    // Previous Colors: rgb(10, 40, 110), rgb(0, 15, 95);
+    const colors = ['rgb(10, 30, 90)', 'rgb(0, 15, 70)'];
 
     return colors[Math.floor(Math.random() * colors.length)];
 };
+
+const textureRotation = () => Math.floor(Math.random() * 360);
 
 const determineColor = (letterClass) => {
     if (letterClass === 'vowel') return vowelColors()
@@ -26,7 +29,7 @@ export const letterClass = (letter) => {
 };
 
 const letterGenerator = (type, properties='normal') => {
-    if (typeof properties === 'object' && properties.void) return {letter: '', type: type, color: 'rgb(0, 0, 0)', properties: properties, hasAltered: false};
+    if (typeof properties === 'object' && properties.void) return {letter: '', type: type, color: 'rgb(0, 0, 0)', properties: properties, rotation: textureRotation(), hasAltered: false};
 
     const randomProperty = Math.floor(Math.random() * 100);
     const randomLetter = Math.floor(Math.random() * 100);
@@ -34,11 +37,11 @@ const letterGenerator = (type, properties='normal') => {
     if (properties === 'normal' && randomLetter > 1.5 && randomProperty <= 2.5) properties = {'stone': 2};
     if (properties === 'normal' && randomLetter <= 1.5 && randomProperty > 2.5) properties = 'gold';
 
-    if (randomLetter >= 38) return {letter: consonants[Math.floor((Math.random()*consonants.length))], type: type, color: determineColor('consonant'), properties: properties, hasAltered: false};
+    if (randomLetter >= 38) return {letter: consonants[Math.floor((Math.random()*consonants.length))], type: type, color: determineColor('consonant'), properties: properties, rotation: textureRotation(), hasAltered: false};
     
-    if (randomLetter > 1.5 && randomLetter < 38) return {letter: vowels[Math.floor((Math.random()*vowels.length))], type: type, color: determineColor('vowel'), properties: properties, hasAltered: false}
+    if (randomLetter > 1.5 && randomLetter < 38) return {letter: vowels[Math.floor((Math.random()*vowels.length))], type: type, color: determineColor('vowel'), properties: properties, rotation: textureRotation(), hasAltered: false}
 
-    if (randomLetter <= 1.5) return {letter: rareConsonants[Math.floor((Math.random()*rareConsonants.length))], type: type, color: 'rgb(210, 200, 30)', properties: properties, hasAltered: false};
+    if (randomLetter <= 1.5) return {letter: rareConsonants[Math.floor((Math.random()*rareConsonants.length))], type: type, color: 'rgb(210, 200, 30)', properties: properties, rotation: textureRotation(), hasAltered: false};
 };
 
 export default letterGenerator;

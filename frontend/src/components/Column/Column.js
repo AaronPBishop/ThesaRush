@@ -14,6 +14,7 @@ const Column = ({ letters, colPos }) => {
               type={typeof letter === 'object' && letter !== null && letter.type}
               color={typeof letter === 'object' && letter !== null && letter.color}
               properties={typeof letter === 'object' && letter !== null && letter.properties} 
+              rotation={letter !== null && letter.rotation}
               hasAltered={letter && letter.hasAltered}
               />
             ))

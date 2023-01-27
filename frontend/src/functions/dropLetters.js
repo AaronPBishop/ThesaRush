@@ -6,7 +6,7 @@ const checkEmpty = (board, randCol) => {
         if (board[randCol][i] === null) check++
     };
 
-    if (check === 11) return true;
+    if (check === 12) return true;
     return false;
 };
 

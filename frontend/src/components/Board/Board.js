@@ -38,8 +38,8 @@ const Board = ({ difficulty }) => {
     const randomColumn = () => {
         const column = [];
 
-        for (let i = 0; i < 11; i++) {
-            if (i > 7) column.push(letterGenerator('initial'));
+        for (let i = 0; i < 12; i++) {
+            if (i > 8) column.push(letterGenerator('initial'));
             else column.push(null);
         };
         

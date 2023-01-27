@@ -39,9 +39,7 @@
     margin: auto;
     
     position: relative;
-    bottom: 13vh;
-
-    height: 10vh;
+    bottom: 21vh;
 
     animation: input-drop 0.6s;
 }
@@ -136,7 +134,7 @@
 
 @keyframes input-drop {
     from {bottom: 100vh}
-    to {bottom: 13.4vh}
+    to {bottom: 21vh}
 }
 
 @keyframes offerlife-slide {

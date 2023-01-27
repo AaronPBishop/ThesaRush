@@ -3,11 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { setInput, removeInputVal, incrementOrder, setTiles, removeTile, setLetter } from '../../store/game';
 
+import { EarthEurope } from '@styled-icons/fa-solid/EarthEurope';
+import { Netlify } from '@styled-icons/boxicons-logos/Netlify';
+
 import { letterClass } from '../../functions/letterGenerator.js';
 
 import './styles.css';
 
-const Letter = ({ hidden, letter, colPos, rowPos, type, color, properties, hasAltered }) => {
+const Letter = ({ hidden, letter, colPos, rowPos, type, color, properties, rotation, hasAltered }) => {
     const dispatch = useDispatch();
     
     const order = useSelector(state => Number(state.game.order));
@@ -99,16 +102,16 @@ const Letter = ({ hidden, letter, colPos, rowPos, type, color, properties, hasAl
           backgroundColor: clicked === true && !properties.void ? 'rgb(30, 30, 30)' 
           : properties === 'normal' || properties === 'gold' || properties.void ? color 
           : properties === 'bomb' ? 'rgb(255,69,0)'
-          : (typeof properties === 'object') && (properties.stone) && (properties.stone === 2) ? '#383630'
-          : (typeof properties === 'object') && (properties.stone) && (properties.stone === 1) && 'rgb(40, 38, 30)',
+          : (typeof properties === 'object') && (properties.stone) && (properties.stone === 2) ? 'rgb(55, 65, 50)'
+          : (typeof properties === 'object') && (properties.stone) && (properties.stone === 1) && 'rgb(45, 55, 40)',
 
           boxShadow: properties === 'bomb' ? '0px 0px 15px 5px rgb(255, 49, 49)' 
-          : (typeof properties === 'object') && (properties.stone) ? '0px 0px 10px 4px #383630'
+          : (typeof properties === 'object') && (properties.stone) ? '0px 0px 10px 4px rgb(50, 60, 50)'
           : (typeof properties === 'object') && (properties.void) ? '0px 0px 10px 1px white' 
           : properties === 'gold' && '0px 0px 10px 1.5px #FFD700',
 
           border: clicked === true ? '2px solid yellow' 
-          : (typeof properties === 'object') && (properties.stone) ? '2px solid #787366'
+          : (typeof properties === 'object') && (properties.stone) ? '2px solid rgb(40, 105, 80)'
           : properties === 'bomb' ? '2px solid rgb(180, 65, 0)' 
           : (typeof properties === 'object') && (properties.void) ? '2px solid white'
           : (letterClass(letter) === 'consonant') ? '2px solid rgb(255, 255, 0)' 
@@ -123,9 +126,41 @@ const Letter = ({ hidden, letter, colPos, rowPos, type, color, properties, hasAl
         onClick={() => {
           if (!paused) setClicked((clicked) => !clicked);
         }}>
-        {letter}
+
+          <EarthEurope
+          style={{
+            visibility: properties === 'normal' ? 'visible' : 'hidden',
+            transform: `rotate(${rotation}deg)`,
+            width: '10vw',
+            position: 'absolute',
+            color: clicked === true ? 'rgb(30, 30, 30)' 
+            : letterClass(letter) === 'consonant' && color === 'rgb(10, 30, 90)' ? 'rgb(0, 20, 70)' 
+            : letterClass(letter) === 'consonant' && color === 'rgb(0, 15, 70)' ? 'rgb(0, 0, 50)'
+            : letterClass(letter) === 'vowel' && color === 'rgb(227, 11, 92)' ? 'rgb(197, 0, 72)' 
+            : letterClass(letter) === 'vowel' && color === 'rgb(215, 0, 64)' && 'rgb(185, 0, 44)'
+          }}>
+          </EarthEurope>
+
+          <Netlify
+          style={{
+            visibility: properties.stone && properties.stone === 1 ? 'visible' : 'hidden',
+            transform: 'rotate(45deg)',
+            width: '6vw',
+            position: 'absolute',
+            color: 'rgb(25, 35, 20)'
+          }}>
+          </Netlify>
+          
+          <div 
+          style={{
+            letterSpacing: '-0.14vw', 
+            textShadow: !clicked && properties === 'normal' && '0px 0px 2px white', 
+            zIndex: '100'
+          }}>
+              {letter}
+          </div>
       </div>
-  )
+  );
 };
 
 export default Letter;

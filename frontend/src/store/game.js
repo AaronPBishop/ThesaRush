@@ -376,7 +376,7 @@ const gameReducer = (state = initialState, action) => {
 
         case 'CLEAR_COLUMN': {
             for (let row = 0; row < currentState.board.length; row++) {
-                if (currentState.board[row][1] !== null || currentState.board[row][2] !== null) {
+                if (currentState.board[row][2] !== null || currentState.board[row][3] !== null) {
                     for (let col = 0; col < currentState.board[row].length; col++) {
                         currentState.board[row][col] = null;
                     };

@@ -1,9 +1,10 @@
 .letters {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     font-family: 'Roboto', sans-serif;
     font-size: 25px;
-
-    line-height: 7.2vh;
-    letter-spacing: -1.5px;
 
     min-width: 3.58vw;
     max-width: 3.58vw;
@@ -13,7 +14,9 @@
     margin: 2px;
 
     position: relative;
-    bottom: 14vh
+    bottom: 22vh;
+
+    overflow: hidden;
 }
 
 .new-letters {
@@ -30,10 +33,10 @@
 
 @keyframes drop {
     from {bottom: 100vh}
-    to {bottom: 14vh}
+    to {bottom: 22vh}
 }
 
 @keyframes redrop {
-    from {bottom: 20vh}
-    to {bottom: 14vh}
+    from {bottom: 30vh}
+    to {bottom: 22vh}
 }
