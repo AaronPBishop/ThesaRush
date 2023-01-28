@@ -24,8 +24,6 @@ const GameOver = ({ points, numWords, longestWord, tilesCleared, bombardier, sto
     const user = useSelector(state => state.user);
     const challenge = useSelector(state => state.challenge);
 
-    const [loaded, setLoaded] = useState(false);
-
     const [earnedNewTrophy, setEarnedNewTrophy] = useState(false);
     const [newTrophyName, setNewTrophyName] = useState('');
 
@@ -67,12 +65,14 @@ const GameOver = ({ points, numWords, longestWord, tilesCleared, bombardier, sto
     }, []);
 
     useEffect(() => {
-        if (user.trophies.length > user.trophiesCopy.length) {
-            const trophyNames = user.trophiesCopy.map(trophy => trophy.trophy_name);
-            const newTrophy = user.trophies.filter(trophy => !trophyNames.includes(trophy.trophy_name));
-
-            setNewTrophyName(`${newTrophy[0].trophy_name}`);
-            setEarnedNewTrophy(true);
+        if (user.user_id) {
+            if (user.trophies.length > user.trophiesCopy.length) {
+                const trophyNames = user.trophiesCopy.map(trophy => trophy.trophy_name);
+                const newTrophy = user.trophies.filter(trophy => !trophyNames.includes(trophy.trophy_name));
+    
+                setNewTrophyName(`${newTrophy[0].trophy_name}`);
+                setEarnedNewTrophy(true);
+            };
         };
     }, [user]);
 

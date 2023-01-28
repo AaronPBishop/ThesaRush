@@ -1,5 +1,6 @@
 import Letter from '../Letter/Letter.js';
 import ClearedLetter from '../ClearedLetter/ClearedLetter.js';
+
 import './styles.css';
 
 const Column = ({ letters, colPos }) => {
@@ -20,8 +21,13 @@ const Column = ({ letters, colPos }) => {
                 randKey={letter !== null && letter.randKey}
                 />
                 
-                <ClearedLetter colPos={colPos} rowPos={i}>
-                </ClearedLetter>
+                <ClearedLetter 
+                colPos={colPos} 
+                rowPos={i} 
+                color={typeof letter === 'object' && letter !== null && letter.color}
+                properties={typeof letter === 'object' && letter !== null && letter.properties} 
+                rotation={letter !== null && letter.rotation}
+                />
               </div>
             ))
           }

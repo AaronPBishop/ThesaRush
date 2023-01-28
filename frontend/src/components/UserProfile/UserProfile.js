@@ -104,7 +104,7 @@ const UserProfile = () => {
                                     }}>
                                     </StarEmphasis>
 
-                                    <p style={{marginLeft: '0.5vw', marginRight: '1vw'}}>Level: <b>{user.level}</b></p>
+                                    <p style={{marginLeft: '0.2vw', marginRight: '0.4vw'}}>Level: <b>{user.level}</b></p>
                                 </div>
 
                                 <p style={{marginBottom: '-1vh'}}>Lives Available: <b>{user.lives}</b></p>
