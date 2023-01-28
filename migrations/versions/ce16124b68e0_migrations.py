@@ -8,6 +8,10 @@ Create Date: 2023-01-21 14:08:08.053105
 from alembic import op
 import sqlalchemy as sa
 
+import os
+environment = os.getenv("FLASK_ENV")
+SCHEMA = os.environ.get("SCHEMA")
+
 
 # revision identifiers, used by Alembic.
 revision = 'ce16124b68e0'
@@ -23,6 +27,7 @@ def upgrade():
     sa.PrimaryKeyConstraint('league_name'),
     sa.UniqueConstraint('league_name')
     )
+
     op.create_table('users',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_name', sa.String(length=14), nullable=False),
@@ -47,6 +52,7 @@ def upgrade():
     sa.ForeignKeyConstraint(['league_name'], ['leagues.league_name'], ),
     sa.PrimaryKeyConstraint('id')
     )
+
     op.create_table('challenges',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('time', sa.Integer(), nullable=True),
@@ -60,6 +66,7 @@ def upgrade():
     sa.ForeignKeyConstraint(['sender_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+
     op.create_table('trophies',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('trophy_name', sa.String(length=100), nullable=True),
@@ -67,6 +74,13 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+
+    if environment == "production":
+        op.execute(f"ALTER TABLE leagues SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE challenges SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE trophies SET SCHEMA {SCHEMA};")
+        
     # ### end Alembic commands ###
 
 

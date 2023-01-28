@@ -1,4 +1,4 @@
-from .db import db
+from .db import db, environment, SCHEMA, add_prefix_for_prod
 from sqlalchemy.orm import relationship
 from sqlalchemy.schema import Column, ForeignKey
 from sqlalchemy.types import Integer, Boolean
@@ -6,6 +6,9 @@ from sqlalchemy.types import Integer, Boolean
 
 class Challenge(db.Model):
     __tablename__ = 'challenges'
+
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
 
     id = Column(Integer, primary_key=True)
     
@@ -15,8 +18,8 @@ class Challenge(db.Model):
     completed = Column(Boolean)
     redeemed = Column(Boolean)
 
-    sender_id = Column(Integer, ForeignKey('users.id'), nullable=False)
-    receiver_id = Column(Integer, ForeignKey('users.id'), nullable=False)
+    sender_id = Column(Integer, ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
+    receiver_id = Column(Integer, ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
 
     sender = relationship("User", primaryjoin="User.id==Challenge.sender_id", back_populates="sent_challenges")
     receiver = relationship("User", primaryjoin="User.id==Challenge.receiver_id", back_populates="received_challenges")

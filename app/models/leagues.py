@@ -1,10 +1,13 @@
-from .db import db
+from .db import db, environment, SCHEMA, add_prefix_for_prod
 from sqlalchemy.orm import relationship
 from sqlalchemy.schema import Column
 from sqlalchemy.types import String
 
 class League(db.Model):
     __tablename__ = 'leagues'
+
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
 
     league_name = Column(String, primary_key=True, nullable=False, unique=True)
 

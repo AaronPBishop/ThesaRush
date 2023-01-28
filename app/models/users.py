@@ -1,4 +1,4 @@
-from .db import db, environment
+from .db import db, environment, SCHEMA, add_prefix_for_prod
 from sqlalchemy.orm import relationship
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -34,7 +34,7 @@ class User(db.Model, UserMixin):
     word_smith = Column(Integer)
     void_master = Column(Integer)
 
-    league_name = Column(String, ForeignKey('leagues.league_name'))
+    league_name = Column(String, ForeignKey(add_prefix_for_prod('leagues.league_name')))
 
     league = relationship("League", back_populates="ranked_players")
     trophies = relationship("Trophy", back_populates="user", cascade="all, delete")
