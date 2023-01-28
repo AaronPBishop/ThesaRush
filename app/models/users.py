@@ -13,9 +13,9 @@ class User(db.Model, UserMixin):
 
     id = Column(Integer, primary_key=True)
     
-    user_name = Column(String(14), nullable=False)
+    user_name = Column(String(10), nullable=False)
     user_email = Column(String(250), nullable=False)
-    user_password = Column(String(20), nullable=False)
+    user_password = Column(String(250), nullable=False)
 
     level = Column(Integer)
     high_score = Column(Integer)

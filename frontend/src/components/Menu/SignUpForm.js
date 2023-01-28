@@ -27,13 +27,22 @@ const SignUpForm = () => {
 
         if (submitted === true) {
             if (!validateEmail(email)) {
-                errorsArr.push('Must use a valid email');
+                errorsArr.push('Must Use a Valid Email');
                 setErrors(errorsArr);
                 
                 setSubmitted(false);
-            } else {
-                handleSubmit();
+                return;
             };
+
+            if (userName.length > 10) {
+                errorsArr.push('Username Cannot Exceed 10 Characters');
+                setErrors(errorsArr);
+                
+                setSubmitted(false);
+                return;
+            };
+
+            handleSubmit();
         };
     }, [submitted]);
 
@@ -41,6 +50,11 @@ const SignUpForm = () => {
         dispatch(signUpUserThunk(userName, email.toLowerCase(), password));
 
         dispatch(setClickedSignUp(false));
+
+        setUserName('');
+        setEmail('');
+        setPassword('');
+        setErrors([]);
     };
 
     return (
@@ -60,7 +74,8 @@ const SignUpForm = () => {
             <div
             style={{
                 fontFamily: 'Roboto',
-                marginBottom: '2vh'
+                marginBottom: '2vh',
+                maxWidth: '12vw',
             }}>
                 {errors.length > 0 && errors}
             </div>
@@ -90,7 +105,7 @@ const SignUpForm = () => {
 
                 <label className='signup-inputs'>
                     <input
-                      type="text"
+                      type="password"
                       className="signup-form-inputs"
                       value={password}
                       placeholder='Password'

@@ -92,21 +92,21 @@ def seed_users():
         #30
         {"user_name": "Webula", "user_email": "webula@gmail.com", "password": "password", "level": "50", "high_score": "2487", "points": "159713", "points_balance": "159713", "words": "43219", "longest_word": "CRYPTOGRAPHICAL", "tiles_cleared": "138948", "lives": "1", "wins": "254", "losses": "88", "bombardier": "573", "stone_crusher": "689", "gold_miner": "538", "word_smith": "314", "void_master": "583", "league_name": "Cosmic"},
 
-        # New Trophy Testing Seeders
-        #31
-        {"user_name": "TrophyTest1", "user_email": "trophytest1@gmail.com", "password": "password", "level": "1", "high_score": "0", "points": "0", "points_balance": "0", "words": "0", "longest_word": "", "tiles_cleared": "0", "lives": "1", "wins": "0", "losses": "0", "bombardier": "50", "stone_crusher": "0", "gold_miner": "0", "word_smith": "0", "void_master": "0", "league_name": "Bronze"},
-        #32
-        {"user_name": "TrophyTest2", "user_email": "trophytest2@gmail.com", "password": "password", "level": "1", "high_score": "0", "points": "0", "points_balance": "0", "words": "0", "longest_word": "", "tiles_cleared": "0", "lives": "1", "wins": "0", "losses": "0", "bombardier": "0", "stone_crusher": "50", "gold_miner": "0", "word_smith": "0", "void_master": "0", "league_name": "Bronze"},
-        #33
-        {"user_name": "TrophyTest3", "user_email": "trophytest3@gmail.com", "password": "password", "level": "1", "high_score": "0", "points": "0", "points_balance": "0", "words": "0", "longest_word": "", "tiles_cleared": "0", "lives": "1", "wins": "0", "losses": "0", "bombardier": "0", "stone_crusher": "0", "gold_miner": "50", "word_smith": "0", "void_master": "0", "league_name": "Bronze"},
-        #34
-        {"user_name": "TrophyTest4", "user_email": "trophytest4@gmail.com", "password": "password", "level": "1", "high_score": "0", "points": "0", "points_balance": "0", "words": "0", "longest_word": "", "tiles_cleared": "0", "lives": "1", "wins": "0", "losses": "0", "bombardier": "0", "stone_crusher": "0", "gold_miner": "0", "word_smith": "50", "void_master": "0", "league_name": "Bronze"},
-        #35
-        {"user_name": "TrophyTest5", "user_email": "trophytest5@gmail.com", "password": "password", "level": "1", "high_score": "0", "points": "0", "points_balance": "0", "words": "0", "longest_word": "", "tiles_cleared": "0", "lives": "1", "wins": "0", "losses": "0", "bombardier": "0", "stone_crusher": "0", "gold_miner": "0", "word_smith": "0", "void_master": "50", "league_name": "Bronze"},
-        #36
-        {"user_name": "TrophyTest6", "user_email": "trophytest6@gmail.com", "password": "password", "level": "1", "high_score": "0", "points": "0", "points_balance": "0", "words": "0", "longest_word": "", "tiles_cleared": "0", "lives": "1", "wins": "50", "losses": "0", "bombardier": "0", "stone_crusher": "0", "gold_miner": "0", "word_smith": "0", "void_master": "0", "league_name": "Bronze"},
-        #37
-        {"user_name": "TrophyTest7", "user_email": "trophytest7@gmail.com", "password": "password", "level": "1", "high_score": "0", "points": "100000", "points_balance": "100000", "words": "0", "longest_word": "", "tiles_cleared": "0", "lives": "1", "wins": "0", "losses": "0", "bombardier": "0", "stone_crusher": "0", "gold_miner": "0", "word_smith": "0", "void_master": "0", "league_name": "Bronze"},
+        # # New Trophy Testing Seeders
+        # #31
+        # {"user_name": "TrophyTest1", "user_email": "trophytest1@gmail.com", "password": "password", "level": "1", "high_score": "0", "points": "0", "points_balance": "0", "words": "0", "longest_word": "", "tiles_cleared": "0", "lives": "1", "wins": "0", "losses": "0", "bombardier": "50", "stone_crusher": "0", "gold_miner": "0", "word_smith": "0", "void_master": "0", "league_name": "Bronze"},
+        # #32
+        # {"user_name": "TrophyTest2", "user_email": "trophytest2@gmail.com", "password": "password", "level": "1", "high_score": "0", "points": "0", "points_balance": "0", "words": "0", "longest_word": "", "tiles_cleared": "0", "lives": "1", "wins": "0", "losses": "0", "bombardier": "0", "stone_crusher": "50", "gold_miner": "0", "word_smith": "0", "void_master": "0", "league_name": "Bronze"},
+        # #33
+        # {"user_name": "TrophyTest3", "user_email": "trophytest3@gmail.com", "password": "password", "level": "1", "high_score": "0", "points": "0", "points_balance": "0", "words": "0", "longest_word": "", "tiles_cleared": "0", "lives": "1", "wins": "0", "losses": "0", "bombardier": "0", "stone_crusher": "0", "gold_miner": "50", "word_smith": "0", "void_master": "0", "league_name": "Bronze"},
+        # #34
+        # {"user_name": "TrophyTest4", "user_email": "trophytest4@gmail.com", "password": "password", "level": "1", "high_score": "0", "points": "0", "points_balance": "0", "words": "0", "longest_word": "", "tiles_cleared": "0", "lives": "1", "wins": "0", "losses": "0", "bombardier": "0", "stone_crusher": "0", "gold_miner": "0", "word_smith": "50", "void_master": "0", "league_name": "Bronze"},
+        # #35
+        # {"user_name": "TrophyTest5", "user_email": "trophytest5@gmail.com", "password": "password", "level": "1", "high_score": "0", "points": "0", "points_balance": "0", "words": "0", "longest_word": "", "tiles_cleared": "0", "lives": "1", "wins": "0", "losses": "0", "bombardier": "0", "stone_crusher": "0", "gold_miner": "0", "word_smith": "0", "void_master": "50", "league_name": "Bronze"},
+        # #36
+        # {"user_name": "TrophyTest6", "user_email": "trophytest6@gmail.com", "password": "password", "level": "1", "high_score": "0", "points": "0", "points_balance": "0", "words": "0", "longest_word": "", "tiles_cleared": "0", "lives": "1", "wins": "50", "losses": "0", "bombardier": "0", "stone_crusher": "0", "gold_miner": "0", "word_smith": "0", "void_master": "0", "league_name": "Bronze"},
+        # #37
+        # {"user_name": "TrophyTest7", "user_email": "trophytest7@gmail.com", "password": "password", "level": "1", "high_score": "0", "points": "100000", "points_balance": "100000", "words": "0", "longest_word": "", "tiles_cleared": "0", "lives": "1", "wins": "0", "losses": "0", "bombardier": "0", "stone_crusher": "0", "gold_miner": "0", "word_smith": "0", "void_master": "0", "league_name": "Bronze"},
     ]
 
     db.session.add_all([User(**user) for user in users])

@@ -11,3 +11,13 @@ body {
 
     user-select: none;
 }
+
+input:-webkit-autofill {
+    -webkit-text-fill-color: white;
+    -webkit-box-shadow: 0 0 0px 1000px rgb(60, 60, 60) inset;
+    border: 2px solid rgb(255, 215, 0);
+}
+
+input:focus {
+    outline: 2px solid rgb(255, 215, 0);;
+}

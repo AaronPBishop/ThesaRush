@@ -17,6 +17,9 @@ const LogInForm = () => {
 
         dispatch(loginUserThunk(email.toLowerCase(), password));
         dispatch(setClickedLogIn(false));
+
+        setEmail('');
+        setPassword('');
     };
 
     return (
@@ -46,7 +49,7 @@ const LogInForm = () => {
 
                 <label className='signup-inputs'>
                     <input
-                      type="text"
+                      type="password"
                       className="signup-form-inputs"
                       value={password}
                       placeholder='Password'

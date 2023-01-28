@@ -123,13 +123,13 @@ def seed_trophies():
         {"trophy_name": "Vengeant Vanquisher", "user_id": 30},
         {"trophy_name": "Cosmic Intellect", "user_id": 30},
 
-        # New Trophy Testing Seeders
-        {"trophy_name": "Master Blaster", "user_id": 32},
-        {"trophy_name": "Obelisk Oracle", "user_id": 33},
-        {"trophy_name": "Treasure Tactician", "user_id": 34},
-        {"trophy_name": "Alphabet Architect", "user_id": 35},
-        {"trophy_name": "Antimatter Maestro", "user_id": 36},
-        {"trophy_name": "Vengeant Vanquisher", "user_id": 37}
+        # # New Trophy Testing Seeders
+        # {"trophy_name": "Master Blaster", "user_id": 32},
+        # {"trophy_name": "Obelisk Oracle", "user_id": 33},
+        # {"trophy_name": "Treasure Tactician", "user_id": 34},
+        # {"trophy_name": "Alphabet Architect", "user_id": 35},
+        # {"trophy_name": "Antimatter Maestro", "user_id": 36},
+        # {"trophy_name": "Vengeant Vanquisher", "user_id": 37}
     ]
 
     db.session.add_all([Trophy(**trophy) for trophy in trophies])

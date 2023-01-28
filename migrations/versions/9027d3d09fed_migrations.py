@@ -1,8 +1,8 @@
 """migrations
 
-Revision ID: ce16124b68e0
+Revision ID: 9027d3d09fed
 Revises: 
-Create Date: 2023-01-21 14:08:08.053105
+Create Date: 2023-01-28 03:38:18.898276
 
 """
 from alembic import op
@@ -14,7 +14,7 @@ SCHEMA = os.environ.get("SCHEMA")
 
 
 # revision identifiers, used by Alembic.
-revision = 'ce16124b68e0'
+revision = '9027d3d09fed'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -30,9 +30,9 @@ def upgrade():
 
     op.create_table('users',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('user_name', sa.String(length=14), nullable=False),
+    sa.Column('user_name', sa.String(length=10), nullable=False),
     sa.Column('user_email', sa.String(length=250), nullable=False),
-    sa.Column('user_password', sa.String(length=20), nullable=False),
+    sa.Column('user_password', sa.String(length=250), nullable=False),
     sa.Column('level', sa.Integer(), nullable=True),
     sa.Column('high_score', sa.Integer(), nullable=True),
     sa.Column('points', sa.Integer(), nullable=True),
