@@ -58,7 +58,7 @@ const LogInForm = () => {
                     />
                 </label>
 
-                <button type='submit' id='signup-button'>
+                <button type='submit' className='signup-button'>
                     Log In
                 </button>
             </form>

@@ -119,7 +119,7 @@ const SignUpForm = () => {
                     e.preventDefault();
                     setSubmitted(true);
                 }}
-                id='signup-button'>
+                className='signup-button'>
                     Confirm
                 </button>
             </form>

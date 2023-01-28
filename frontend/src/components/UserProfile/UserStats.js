@@ -22,8 +22,8 @@ const UserStats = () => {
             <p>Player Stats</p>
             {
                 Object.keys(user).map((stat, i) => statsMap[stat] && 
-                <div style={{minHeight: '8vh', maxHeight: '8vh', marginBottom: '7vh'}}>
-                    <StatBox statName={statsMap[stat]} statTotal={user[stat]} key={i} />
+                <div style={{minHeight: '8vh', maxHeight: '8vh', marginBottom: '7vh'}} key={i}>
+                    <StatBox statName={statsMap[stat]} statTotal={user[stat]} />
                 </div>)
             }
         </div>

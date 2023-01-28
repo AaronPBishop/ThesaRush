@@ -18,7 +18,7 @@ const App = () => {
   useEffect(() => {
     const background = window.localStorage.getItem('backgroundColor');
 
-    if (background !== null) dispatch(setBackgroundColor(background));
+    if (background) dispatch(setBackgroundColor(background));
   }, []);
 
   useEffect(() => {

@@ -37,7 +37,7 @@ const League = () => {
     }, [clickedLeague]);
 
     useEffect(() => {
-        if (user.user_id) dispatch(fetchLeagueData(currLeague))}, 
+        if (user.user_id && currLeague !== undefined) dispatch(fetchLeagueData(currLeague))}, 
     [rerender, currLeague]);
 
     return (
@@ -51,7 +51,7 @@ const League = () => {
             width: '30vw',
             height: '64vh',
             overflowY: 'auto',
-            background: user.user_name ? mapBackgroundColor[rankings.league] && mapBackgroundColor[rankings.league][0] : backgroundColor,
+            background: user.user_id ? mapBackgroundColor[rankings.league] && mapBackgroundColor[rankings.league][0] : backgroundColor,
             border: '2px solid #FFD700',
             borderRadius: '12px',
             overflowX: 'hidden'
@@ -59,7 +59,7 @@ const League = () => {
                 <div 
                 onClick={() => setClickedBrowse(clicked => !clicked)}
                 style={{
-                    display: user.user_name && !clickedPlayer ? 'flex' : 'none',
+                    display: user.user_id && !clickedPlayer ? 'flex' : 'none',
                     justifyContent: 'center',
                     margin: 'auto',
                     lineHeight: '5.5vh',
@@ -78,7 +78,7 @@ const League = () => {
                 </div>
 
             {
-                user.user_name && clickedBrowse === false ?
+                user.user_id && clickedBrowse === false ?
                 <div>
                     <p style={{fontSize: '26px'}}>
                         {rankings.league} League
@@ -86,13 +86,13 @@ const League = () => {
 
                     {
                         rankings.players && rankings.players.map((player, i) => (
-                        <div style={{display: 'flex', justifyContent: 'center'}} onClick={() => setClickedPlayer(clicked => !clicked)}>
-                            <RankedPlayer score={player.points} userName={player.user_name} index={i} key={i} />
+                        <div style={{display: 'flex', justifyContent: 'center'}} onClick={() => setClickedPlayer(clicked => !clicked)} key={i}>
+                            <RankedPlayer score={player.points} userName={player.user_name} index={i} />
                         </div>))
                     }
                 </div> 
 
-                : user.user_name && clickedBrowse === true ?
+                : user.user_id && clickedBrowse === true ?
                 <div style={{
                         display: 'flex', 
                         justifyContent: 'center', 
@@ -130,7 +130,7 @@ const League = () => {
                     }
                 </div> 
 
-                : !user.user_name &&
+                : !user.user_id &&
                 <div style={{display: 'flex', justifyContent: 'center', marginTop: '16vh'}}>
                     <p style={{width: '14vw', fontSize: '26px'}}>Sign In to Access Leagues</p>
                 </div>

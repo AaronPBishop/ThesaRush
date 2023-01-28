@@ -177,7 +177,7 @@
     cursor: pointer;
 }
 
-#signup-button {
+.signup-button {
     font-family: 'Roboto', sans-serif;
 
     background-color: rgb(140, 0, 55);

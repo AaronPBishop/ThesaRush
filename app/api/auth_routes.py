@@ -23,7 +23,7 @@ def authenticate():
     if current_user.is_authenticated:
         return current_user.to_dict()
 
-    return {'errors': ['Unauthorized']}
+    return {'status': 'Not Logged In'}, 200
 
 
 # ? User login *********************************************************************

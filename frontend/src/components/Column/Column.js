@@ -8,7 +8,7 @@ const Column = ({ letters, colPos }) => {
         <div className='columns'>
           {
             letters.map((letter, i) => (
-              <div>
+              <div key={i}>
                 <Letter 
                 hidden={letter === null} 
                 letter={typeof letter === 'object' && letter !== null && letter.letter} 
