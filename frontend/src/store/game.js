@@ -295,6 +295,7 @@ const gameReducer = (state = initialState, action) => {
                             const [neighborCol, neighborRow] = neighbors[i];
 
                             currentState.board[neighborCol][neighborRow] = null;
+                            currentState.clearedTiles.push([neighborCol, neighborRow]);
                             currentState.stats.tilesCleared += 1;
 
                             for (let j = currentState.board[neighborCol].length - 1; j > 0; j--) {
