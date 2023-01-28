@@ -17,6 +17,8 @@
     bottom: 22vh;
 
     overflow: hidden;
+
+    z-index: 100;
 }
 
 .new-letters {

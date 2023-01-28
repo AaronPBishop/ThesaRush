@@ -12,6 +12,7 @@ const initialState = {
     finalTiles: {},
     removedChar: [],
     randKeys: [],
+    clearedTiles: [],
     statuses: {
         cleared: false,
         submitted: false,
@@ -240,6 +241,7 @@ const gameReducer = (state = initialState, action) => {
 
         case 'CLEAR_TILES': {
             const values = Object.values(currentState.finalTiles);
+            currentState.clearedTiles = values;
 
             if (values.length >= 6) currentState.statuses.earnedBomb = true;
 
@@ -420,6 +422,7 @@ const gameReducer = (state = initialState, action) => {
             currentState.removedChar = [];
             currentState.tiles = {};
             currentState.randKeys = [];
+            currentState.clearedTiles = [];
 
             for (let key in currentState.statuses) currentState.statuses[key] = false;
             
