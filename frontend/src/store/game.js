@@ -2,6 +2,7 @@ import performSplice from "../functions/performSplice.js";
 import { insertRow } from "../functions/dropLetters.js";
 import dropLetters from "../functions/dropLetters.js";
 import getNeighbors from "../functions/getNeighbors.js";
+import randKeyGen from "../functions/randKeyGen.js";
 
 const initialState = {
     board: [],
@@ -10,6 +11,7 @@ const initialState = {
     tiles: {},
     finalTiles: {},
     removedChar: [],
+    randKeys: [],
     statuses: {
         cleared: false,
         submitted: false,
@@ -255,12 +257,20 @@ const gameReducer = (state = initialState, action) => {
                             if (currColumn[j] !== null && currColumn[j] !== undefined) {
                                 if (currColumn[j].type === 'initial' || currColumn[j].type === 'new') {
                                     currColumn[j].type = 'rearranged';
+
+                                    const newRandKey = randKeyGen(currentState.randKeys);
+
+                                    currColumn[j].randKey = newRandKey;
+                                    currentState.randKeys.push(newRandKey);
     
                                     continue;
                                 };
 
                                 if (currColumn[j].type === 'rearranged') {
-                                    currColumn[j].hasAltered = !currColumn[j].hasAltered;
+                                    const newRandKey = randKeyGen(currentState.randKeys);
+
+                                    currColumn[j].randKey = newRandKey;
+                                    currentState.randKeys.push(newRandKey);
     
                                     continue;
                                 };
@@ -288,13 +298,21 @@ const gameReducer = (state = initialState, action) => {
                             for (let j = currentState.board[neighborCol].length - 1; j > 0; j--) {
                                 if (currentState.board[neighborCol][neighborRow] !== null && (currentState.board[neighborCol][neighborRow].type === 'initial' || currentState.board[neighborCol][neighborRow].type === 'new')) {
                                     currentState.board[neighborCol][neighborRow].type = 'rearranged';
+
+                                    const newRandKey = randKeyGen(currentState.randKeys);
+                                    
+                                    currentState.board[neighborCol][neighborRow].randKey = newRandKey;
+                                    currentState.randKeys.push(newRandKey);
     
                                     continue;
                                 };
 
                                 if (currentState.board[neighborCol][neighborRow] !== null && (currentState.board[neighborCol][neighborRow].type === 'rearranged')) {
-                                    currentState.board[neighborCol][neighborRow].hasAltered = !currentState.board[neighborCol][neighborRow].hasAltered;
-
+                                    const newRandKey = randKeyGen(currentState.randKeys);
+                                    
+                                    currentState.board[neighborCol][neighborRow].randKey = newRandKey;
+                                    currentState.randKeys.push(newRandKey);
+    
                                     continue;
                                 };
                             };
@@ -316,11 +334,19 @@ const gameReducer = (state = initialState, action) => {
                                     if (currentState.board[col][j].type === 'initial' || currentState.board[col][j].type === 'new') {
                                         currentState.board[col][j].type = 'rearranged';
 
+                                        const newRandKey = randKeyGen(currentState.randKeys);
+                                    
+                                        currentState.board[col][j].randKey = newRandKey;
+                                        currentState.randKeys.push(newRandKey);
+
                                         continue;
                                     };
 
                                     if (currentState.board[col][j].type === 'rearranged') {
-                                        currentState.board[col][j].hasAltered = !currentState.board[col][j].hasAltered;
+                                        const newRandKey = randKeyGen(currentState.randKeys);
+                                    
+                                        currentState.board[col][j].randKey = newRandKey;
+                                        currentState.randKeys.push(newRandKey);
 
                                         continue;
                                     };
@@ -393,6 +419,7 @@ const gameReducer = (state = initialState, action) => {
             currentState.order = 0;
             currentState.removedChar = [];
             currentState.tiles = {};
+            currentState.randKeys = [];
 
             for (let key in currentState.statuses) currentState.statuses[key] = false;
             

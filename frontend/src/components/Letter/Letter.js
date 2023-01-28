@@ -10,7 +10,7 @@ import { letterClass } from '../../functions/letterGenerator.js';
 
 import './styles.css';
 
-const Letter = ({ hidden, letter, colPos, rowPos, type, color, properties, rotation, hasAltered }) => {
+const Letter = ({ hidden, letter, colPos, rowPos, type, color, properties, rotation, randKey }) => {
     const dispatch = useDispatch();
     
     const order = useSelector(state => Number(state.game.order));
@@ -82,7 +82,7 @@ const Letter = ({ hidden, letter, colPos, rowPos, type, color, properties, rotat
 
     return (
       <div
-      key={hasAltered}
+      key={randKey}
       className={
         [
           'letters',

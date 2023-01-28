@@ -62,17 +62,17 @@ const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmit
     const challenge = useSelector(state => state.challenge);
  
     useEffect(() => {
-        const makeSearch = async () => {
+        const makeSearch = () => {
             if (orderedInput.length <= 2) return;
   
             if (dictionary[orderedInput.toLowerCase()]) {
                 setIsValid(true);
-                await dispatch(clearTiles());
-                await dispatch(rearrangeTiles());
+                dispatch(clearTiles());
+                dispatch(rearrangeTiles());
 
-                await dispatch(determinePoints(orderedInput.length, orderedInput));
-                await dispatch(incrementWords());
-                await dispatch(setLongestWord(orderedInput));
+                dispatch(determinePoints(orderedInput.length, orderedInput));
+                dispatch(incrementWords());
+                dispatch(setLongestWord(orderedInput));
             } else {
                 dispatch(incrementInvalidWords());
                 setInvalid(true);
@@ -84,9 +84,9 @@ const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmit
                 if (invalidWords > 1) dispatch(dropRow());
             };
 
-            await dispatch(resetInput());
-            await dispatch(resetOrder());
-            await dispatch(resetTiles());
+            dispatch(resetInput());
+            dispatch(resetOrder());
+            dispatch(resetTiles());
 
             return;
         };
@@ -104,17 +104,17 @@ const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmit
     }, [submitted]);
 
     useEffect(() => {
-        const keyDownHandler = async e => {
+        const keyDownHandler = e => {
             e.preventDefault();
 
             if (e.code === 'Space') dispatch(setSubmitted((submitted) => !submitted));
 
             if (e.code === 'Tab') {
-                await dispatch(setCleared((cleared) => !cleared));
+                dispatch(setCleared((cleared) => !cleared));
 
-                await dispatch(resetInput());
-                await dispatch(resetOrder());
-                await dispatch(resetTiles());
+                dispatch(resetInput());
+                dispatch(resetOrder());
+                dispatch(resetTiles());
             };
 
             if (e.keyCode === 81) dispatch(removeLastChar());
