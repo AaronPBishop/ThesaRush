@@ -39,7 +39,7 @@ app.register_blueprint(challenge_routes, url_prefix='/api/challenges')
 
 db.init_app(app)
 
-Migrate(app, db)
+Migrate(app, db, compare_type=True)
 
 CORS(app)
 

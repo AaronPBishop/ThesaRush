@@ -1,5 +1,5 @@
-const vowels = ['A', 'A', 'E', 'E', 'I', 'O', 'O', 'U', 'U', 'Y'];
-const consonants = ['B', 'B', 'C', 'C', 'D', 'D', 'F', 'F', 'G', 'G', 'H', 'H', 'J', 'K', 'K', 'L', 'L', 'M', 'M', 'N', 'N', 'P', 'P', 'R', 'R', 'S', 'S', 'T', 'T', 'V', 'W'];
+const vowels = ['A', 'A', 'E', 'E', 'E', 'I', 'O', 'O', 'U', 'U', 'Y'];
+const consonants = ['B', 'B', 'C', 'C', 'D', 'D', 'F', 'F', 'G', 'G', 'H', 'H', 'J', 'K', 'K', 'L', 'L', 'M', 'M', 'N', 'N', 'P', 'P', 'R', 'R', 'S', 'S', 'S', 'T', 'T', 'V', 'W'];
 const rareConsonants = ['X', 'Z', 'Q'];
 
 const vowelColors = () => {
