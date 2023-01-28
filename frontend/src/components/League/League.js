@@ -36,7 +36,9 @@ const League = () => {
         };
     }, [clickedLeague]);
 
-    useEffect(() => {dispatch(fetchLeagueData(currLeague))}, [rerender, currLeague]);
+    useEffect(() => {
+        if (user.user_id) dispatch(fetchLeagueData(currLeague))}, 
+    [rerender, currLeague]);
 
     return (
         <div
