@@ -80,7 +80,7 @@ const ChallengeHolder = () => {
                         <b style={{fontSize: '16px'}}>{sentNotifications}</b>
                     </div>
 
-                    <p style={{lineHeight: '0vh', color: clickedSent === true && 'rgb(255, 255, 60)'}}>Sent</p>
+                    <p style={{lineHeight: '0vh', color: clickedSent === true && 'rgb(60, 255, 140)'}}>Sent</p>
                 </div>
 
                 <div 
@@ -107,7 +107,7 @@ const ChallengeHolder = () => {
                         <b style={{fontSize: '16px'}}>{receivedNotifications}</b>
                     </div>
 
-                    <p style={{lineHeight: '0vh', color: clickedReceived === true && 'rgb(255, 255, 60)'}}>Received</p>
+                    <p style={{lineHeight: '0vh', color: clickedReceived === true && 'rgb(60, 255, 140)'}}>Received</p>
                 </div>
             </div>
 

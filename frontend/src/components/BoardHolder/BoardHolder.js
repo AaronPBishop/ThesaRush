@@ -244,7 +244,7 @@ const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmit
             id='game-box'
             style={{
                 boxShadow: invalid === false ? 
-                '0px 10px 20px rgb(0, 110, 0)' : 
+                '0px 10px 20px rgb(0, 160, 30)' : 
                 '0px 20px 40px 20px rgb(210, 4, 45)',
                 background: menu.backgroundColor
             }}>

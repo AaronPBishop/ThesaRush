@@ -114,7 +114,7 @@ const Letter = ({ hidden, letter, colPos, rowPos, type, color, properties, rotat
           : (typeof properties === 'object') && (properties.stone) ? '2px solid rgb(40, 105, 80)'
           : properties === 'bomb' ? '2px solid rgb(180, 65, 0)' 
           : (typeof properties === 'object') && (properties.void) ? '2px solid white'
-          : (letterClass(letter) === 'consonant') ? '2px solid rgb(255, 255, 0)' 
+          : (letterClass(letter) === 'consonant') ? '2px solid rgb(60, 255, 100)' 
           : (letterClass(letter) === 'vowel') ? '2px solid rgb(139, 0, 0)' 
           : '2px solid yellow',
 

@@ -14,13 +14,13 @@
     min-width: 43.6vw;
     max-width: 43.6vw;
     
-    box-shadow: 0px 10px 20px rgb(0, 110, 0);
+    box-shadow: 0px 10px 20px rgb(0, 160, 30);
 
     position: relative;
     top: 4vh;
 
     border-radius: 25px;
-    border: 2px solid rgb(255, 255, 60);
+    border: 2px solid rgb(60, 255, 140);
 
     overflow: hidden;
 }
@@ -64,7 +64,7 @@
     font-weight: bold;
     font-size: 24px;
     position: relative;
-    color: rgb(255, 255, 0);
+    color: rgb(95, 255, 0);
     background-color: transparent;
     border: none;
     cursor: pointer;

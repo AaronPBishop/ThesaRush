@@ -13,7 +13,7 @@ const Audio = () => {
             display: 'flex',
             justifyContent: 'center',
             position: 'absolute',
-            border: '2px solid rgb(255, 255, 60)',
+            border: '2px solid rgb(60, 255, 140)',
             borderRadius: '30vw',
             boxShadow: '0px 5px 15px rgb(0 110 0)',
             background: menu.backgroundColor,

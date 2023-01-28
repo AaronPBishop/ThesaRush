@@ -2,7 +2,8 @@
     font-family: 'Bungee Spice', cursive;
 
     position: relative;
-    bottom: 6.5vh;
+    
+    margin-top: -2vh;
 
     font-size: 60px;
 
@@ -11,8 +12,8 @@
 
 #score-tab {
     position: absolute;
-    top: 3.4vh;
 
+    margin-top: 1.5vh;
     margin-right: 33vw;
 
     font-family: 'Roboto'; 

@@ -105,7 +105,7 @@ const RankedPlayer = ({ score, userName, index }) => {
                         textAlign: 'left',
                         width: '4vw',
                         marginLeft: '1vw',
-                        color: user.user_name === userName.toString() && 'rgb(255, 255, 60)',
+                        color: user.user_name === userName.toString() && 'rgb(60, 255, 140)',
                         fontWeight: user.user_name === userName.toString() && 'bold'
                         }}>
                             {userName}

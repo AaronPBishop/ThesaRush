@@ -4,14 +4,14 @@
     min-width: 43.6vw;
     max-width: 43.6vw;
     
-    box-shadow: 0px 10px 20px rgb(0, 110, 0);
+    box-shadow: 0px 10px 20px rgb(0, 160, 30);
 
     position: relative;
     top: 3vh;
     margin: auto;
 
     border-radius: 25px;
-    border: 2px solid rgb(255, 255, 60);
+    border: 2px solid rgb(60, 255, 140);
 }
 
 #gameover-header {
@@ -39,7 +39,7 @@
     min-width: 20vw;
     max-width: 20vw;
     
-    box-shadow: 0px 10px 20px rgb(0, 110, 0);
+    box-shadow: 0px 2px 20px rgb(0, 160, 30);
 
     position: relative;
     bottom: 8vh;
@@ -49,12 +49,12 @@
     overflow-y: auto;
     overflow-x: hidden;
 
-    border: 2px solid rgb(255, 255, 60);
+    border: 2px solid rgb(60, 255, 140);
     border-radius: 24px;
 }
 
 b {
-    color: rgb(255, 255, 60);
+    color: rgb(60, 255, 140);
 }
 
 #play-again {
@@ -74,7 +74,7 @@ b {
     padding-bottom: 10px;
 
     border: 2px solid transparent;
-    border-bottom: 2px solid rgb(255, 255, 60);
+    border-bottom: 2px solid rgb(60, 255, 140);
 
     font-size: 40px;
 
@@ -82,8 +82,8 @@ b {
 }
 
 #play-again:hover {
-    box-shadow: 0px 5px 15px rgb(0, 110, 0);
-    border: 2px solid rgb(255, 255, 60);
+    box-shadow: 0px 5px 15px rgb(0, 160, 30);
+    border: 2px solid rgb(60, 255, 140);
     border-radius: 15px;
 }
 
@@ -134,5 +134,5 @@ b {
 
 ::-webkit-scrollbar-thumb {
     border-radius: 44px;
-	background-color: rgb(255, 255, 60);
+	background-color: rgb(60, 255, 140);
 }
