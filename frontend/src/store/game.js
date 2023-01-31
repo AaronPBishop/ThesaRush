@@ -394,6 +394,11 @@ const gameReducer = (state = initialState, action) => {
         case 'SET_LETTER': {
             currentState.board[action.payload1][action.payload2].letter = action.payload3;
 
+            const coord = Number([action.payload1, action.payload2].join(''));
+
+            currentState.input[coord] = [action.payload3, currentState.order];
+            currentState.order += 1;
+
             return currentState;
         };
 

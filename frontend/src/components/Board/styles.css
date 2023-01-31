@@ -3,15 +3,14 @@
     justify-items: center;
     align-items: center;
 
-    min-height: 89.4vh;
-    max-height: 89.4vh;
-    min-width: 43.6vw;
-    max-width: 43.6vw;
+    min-height: 90vh;
+    max-height: 90vh;
+    min-width: 44vw;
+    max-width: 44vw;
 
     position: relative;
 
     margin: auto;
-    margin-top: -7vh;
 
     border-radius: 25px;
     border: 2px solid rgb(60, 255, 140);

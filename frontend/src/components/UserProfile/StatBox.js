@@ -13,7 +13,7 @@ const StatBox = ({ statName, statTotal }) => {
                     clicked &&
                     <p style={{
                         marginTop: '-1vh', 
-                        color: 'rgb(223, 255, 0)', 
+                        color: 'rgb(95, 255, 0)', 
                         fontWeight: 'bold', 
                         textShadow: '0px 1px 2px black',
                         letterSpacing: '1px'

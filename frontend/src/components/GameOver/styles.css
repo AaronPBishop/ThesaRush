@@ -1,8 +1,8 @@
 #game-over {
     min-height: 89.4vh;
     max-height: 89.4vh;
-    min-width: 43.6vw;
-    max-width: 43.6vw;
+    min-width: 44vw;
+    max-width: 44vw;
     
     box-shadow: 0px 10px 20px rgb(0, 160, 30);
 
@@ -34,8 +34,7 @@
 
     background-color: rgb(10, 10, 10);
 
-    min-height: 30vh;
-    max-height: 30vh;
+    height: 30vh;
     min-width: 20vw;
     max-width: 20vw;
     
@@ -54,7 +53,7 @@
 }
 
 b {
-    color: rgb(60, 255, 140);
+    color: rgb(95, 255, 0);
 }
 
 #play-again {
@@ -63,15 +62,13 @@ b {
 
     font-family: 'Bungee Spice', cursive;
 
-    position: relative;
-    top: 4vh;
+    margin: auto;
+    margin-top: 0.5vh;
 
     background-color: transparent;
 
-    margin-left: 170px;
-    margin-right: 170px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
 
     border: 2px solid transparent;
     border-bottom: 2px solid rgb(60, 255, 140);
@@ -82,7 +79,7 @@ b {
 }
 
 #play-again:hover {
-    box-shadow: 0px 5px 15px rgb(0, 160, 30);
+    box-shadow: 0px 2px 15px rgb(0, 160, 30);
     border: 2px solid rgb(60, 255, 140);
     border-radius: 15px;
 }

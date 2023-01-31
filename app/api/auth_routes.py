@@ -7,23 +7,13 @@ from flask_login import current_user, login_user, logout_user
 auth_routes = Blueprint('auth', __name__)
 
 
-def validation_errors_to_error_messages(validation_errors):
-    errorMessages = []
-
-    for field in validation_errors:
-        for error in validation_errors[field]:
-            errorMessages.append(f'{field} : {error}')
-
-    return errorMessages
-
-
 # ? User authentication ************************************************************
 @auth_routes.route('/')
 def authenticate():
     if current_user.is_authenticated:
         return current_user.to_dict()
 
-    return {'status': 'Not Logged In'}, 200
+    return {'status': 200}, 200
 
 
 # ? User login *********************************************************************
@@ -31,14 +21,19 @@ def authenticate():
 def login():
     form = LoginForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+    email = form.data['user_email']
+    password = form.data['password']
 
-    if form.validate_on_submit():
-        user = User.query.filter(User.user_email == form.data['email']).first()
-        login_user(user)
+    user = User.query.filter(User.user_email == email).first()
 
-        return {'id': user.id, 'status': 200}, 200
+    if not user:
+        return {'errors': 'No Such User Exists'}, 401
+    if not user.check_password(password):
+        return {'errors': 'Password Entered was Incorrect'}, 401
 
-    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+    login_user(user)
+
+    return {'id': user.id}, 200
 
 
 # ? User logout ********************************************************************
@@ -46,7 +41,7 @@ def login():
 def logout():
     logout_user()
 
-    return {'message': 'User logged out'}
+    return {'status': 200}, 200
 
 
 # ? User signup ********************************************************************
@@ -54,38 +49,48 @@ def logout():
 def create_new_user():
     form = SignUpForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+    username = form.data['user_name']
+    email = form.data['user_email']
 
-    if form.validate_on_submit():
-        new_user = User(
-            user_name = form.data['user_name'],
-            user_email = form.data['email'],
-            password = form.data['password'],
-            level = 0,
-            high_score = 0,
-            points = 0,
-            points_balance = 0,
-            words = 0,
-            longest_word = '',
-            tiles_cleared = 0,
-            lives = 1,
-            bombardier = 0,
-            stone_crusher = 0,
-            gold_miner = 0,
-            word_smith = 0,
-            void_master = 0,
-            league_name = 'Bronze',
-            wins=0,
-            losses=0
-        )
+    all_users = User.query.all()
 
-        db.session.add(new_user)
-        db.session.commit()
+    for user in all_users:
+        attr = getattr(user, 'user_name')
+        if attr.lower() == username.lower():
+            return {'errors': 'This Username is Already Taken'}, 400
 
-        login_user(new_user)
+    email_exists = User.query.filter(User.user_email == email).first()
 
-        return {'id': new_user.id, 'status': 200}, 200
+    if email_exists:
+        return {'errors': 'This Email is Already Taken'}, 401
 
-    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+    new_user = User(
+        user_name = form.data['user_name'],
+        user_email = form.data['user_email'],
+        password = form.data['password'],
+        level = 0,
+        high_score = 0,
+        points = 0,
+        points_balance = 0,
+        words = 0,
+        longest_word = '',
+        tiles_cleared = 0,
+        lives = 1,
+        bombardier = 0,
+        stone_crusher = 0,
+        gold_miner = 0,
+        word_smith = 0,
+        void_master = 0,
+        league_name = 'Bronze',
+        wins=0,
+        losses=0
+    )
+
+    db.session.add(new_user)
+    db.session.commit()
+    login_user(new_user)
+
+    return {'id': new_user.id, 'status': 200}, 200
 
 
 # ? User unauthorized ****************************************************************

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { setClickedLeague, setClickedProfile, setClickedChallenges, setClickedEditAccount } from '../../store/menu.js';
+import { fetchUserData } from '../../store/user.js';
 
 import Navigation from '../Navigation/Navigation.js';
 import UserStats from './UserStats.js';
@@ -137,7 +138,10 @@ const UserProfile = () => {
                         
                             <p style={{fontFamily: 'Bungee Spice', fontSize: '20px', marginBottom: '1vh'}}>Challenges</p>
                             <div
-                            onClick={() => dispatch(setClickedChallenges(true))}
+                            onClick={async () => {
+                                await dispatch(fetchUserData(user.user_id));
+                                await dispatch(setClickedChallenges(true));
+                            }}
                             style={{
                                 marginBottom: '-1vh',
                                 backgroundColor: 'rgb(30, 0, 90)',

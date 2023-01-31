@@ -99,10 +99,10 @@ def edit_account_info(id):
                     attr = getattr(user, key).lower()
 
                     if key == 'user_name' and attr == val.lower():
-                        return {'error': 'Username already in use.'}, 400
+                        return {'errors': 'This Username is Already Taken'}, 400
 
                     if key == 'user_email' and attr == val.lower():
-                        return {'error': 'Email already in use.'}, 400
+                        return {'errors': 'This Email is Already Taken'}, 400
 
     for key, val in req_data.items():
         if len(val) > 0:
@@ -159,11 +159,11 @@ def use_points(id):
 def add_life(id):
     queried_user = User.query.get_or_404(id)
 
-    if queried_user.points_balance < 1000:
+    if queried_user.points_balance < 500:
         return {'error': 'Not enough points', 'status': 400}, 400
 
-    if queried_user.points_balance >= 1000:
-        queried_user.points_balance -= 1000
+    if queried_user.points_balance >= 500:
+        queried_user.points_balance -= 500
         queried_user.lives += 1
 
     db.session.commit()

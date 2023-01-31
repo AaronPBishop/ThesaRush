@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { loginUserThunk } from '../../store/user.js';
 import { setClickedLogIn } from '../../store/menu.js';
@@ -9,24 +9,39 @@ import './styles.css'
 const LogInForm = () => {
     const dispatch = useDispatch();
 
+    const errorState = useSelector(state => state.user.errors);
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [submitted, setSubmitted] = useState(false);
+    const [errors, setErrors] = useState([]);
 
-    const handleSubmit = e => {
-        e.preventDefault();
+    useEffect(() => {
+        if (submitted === true) {
+            dispatch(loginUserThunk(email.toLowerCase(), password));
+        };
 
-        dispatch(loginUserThunk(email.toLowerCase(), password));
-        dispatch(setClickedLogIn(false));
+    }, [submitted]);
 
-        setEmail('');
-        setPassword('');
-    };
+    useEffect(() => {
+        if (errorState.length) {
+            setErrors(errorState);
+            setSubmitted(false);
+        } else {
+            dispatch(setClickedLogIn(false));
+
+            setEmail('');
+            setPassword('');
+            setErrors([]);
+        };
+    }, [dispatch, errorState]);
 
     return (
         <div
         style={{
             display: 'flex',
             justifyContent: 'center',
+            textAlign: 'center',
             margin: 'auto',
             marginTop: '18vh',
             padding: '2vw',
@@ -35,7 +50,19 @@ const LogInForm = () => {
             border: '2px solid #FFD700',
             borderRadius: '12px'
         }}>
-            <form onSubmit={handleSubmit}>
+            <div>
+                <div
+                style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    textAlign: 'center',
+                    fontFamily: 'Roboto',
+                    margin: 'auto',
+                    marginBottom: '2vh',
+                    maxWidth: '12vw'
+                }}>
+                    {errors.length > 0 && errors}
+                </div>
                 <label className='signup-inputs'>
                     <input
                       type="text"
@@ -58,10 +85,12 @@ const LogInForm = () => {
                     />
                 </label>
 
-                <button type='submit' className='signup-button'>
+                <div 
+                onClick={() => setSubmitted(true)}
+                className='signup-button'>
                     Log In
-                </button>
-            </form>
+                </div>
+            </div>
         </div>
     );
 };

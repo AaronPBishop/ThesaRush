@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useTransition } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { setClaimedPoints } from "../../store/menu.js";
@@ -80,7 +80,7 @@ const ChallengeHolder = () => {
                         <b style={{fontSize: '16px'}}>{sentNotifications}</b>
                     </div>
 
-                    <p style={{lineHeight: '0vh', color: clickedSent === true && 'rgb(60, 255, 140)'}}>Sent</p>
+                    <p style={{lineHeight: '0vh', color: clickedSent === true && 'rgb(95, 255, 0)'}}>Sent</p>
                 </div>
 
                 <div 
@@ -107,7 +107,7 @@ const ChallengeHolder = () => {
                         <b style={{fontSize: '16px'}}>{receivedNotifications}</b>
                     </div>
 
-                    <p style={{lineHeight: '0vh', color: clickedReceived === true && 'rgb(60, 255, 140)'}}>Received</p>
+                    <p style={{lineHeight: '0vh', color: clickedReceived === true && 'rgb(95, 255, 0)'}}>Received</p>
                 </div>
             </div>
 
@@ -116,15 +116,31 @@ const ChallengeHolder = () => {
                 <div>
                     <p style={{fontFamily: 'Bungee Spice'}}>Pending</p>
                     <div style={{display: 'flex', justifyContent: 'center', backgroundColor: 'black', flexWrap: 'wrap', border: '2.5px solid rgb(120, 120, 255)', borderRadius: '12px', width: '19vw', height: '60vh', overflowY: 'auto'}}>
-                    {
-                        user.sent_challenges.map((challenge, i) => {
-                            if (challenge.completed === false) return (
-                                <div style={{marginTop: '2vh', marginBottom: '2vh'}} key={i}>
-                                    <Challenge id={challenge.challenge_id} type={'sent'} sender={challenge.sender} receiver={challenge.receiver} time={challenge.time} completed={challenge.completed} redeemed={challenge.redeemed} />
-                                </div>
-                            )
-                        })
-                    }
+                        {
+                            user.sent_challenges.map((challenge, i) => {
+                                if (challenge.completed === false) return (
+                                    <div style={{marginTop: '2vh', marginBottom: '2vh'}} key={i}>
+                                        <Challenge id={challenge.challenge_id} type={'sent'} sender={challenge.sender} receiver={challenge.receiver} time={challenge.time} completed={challenge.completed} redeemed={challenge.redeemed} />
+                                    </div>
+                                )
+                            })
+                        }
+                    
+                        <div
+                        style={{
+                            display: user.sent_challenges.filter(challenge => challenge.completed === false && challenge.redeemed === false).length < 1 ? 'block' : 'none',
+                            marginTop: '2vh',
+                            fontFamily: 'Bungee Spice',
+                            width: '16vw',
+                            height: '26vh',
+                            borderBottom: '4px solid rgb(20, 0, 50)',
+                            borderRadius: '12px',
+                            background: 'linear-gradient(rgb(30, 0, 90), rgb(20, 0, 70))',
+                            overflowX: 'hidden',
+                            overflowY: 'auto'
+                        }}>
+                            <p style={{marginTop: '10vh'}}>Nothing Pending!</p>
+                        </div>
                     </div>
                 </div>
                 
@@ -132,6 +148,7 @@ const ChallengeHolder = () => {
                     <p style={{fontFamily: 'Bungee Spice'}}>Completed</p>
                     <div style={{display: 'flex', justifyContent: 'center', backgroundColor: 'black', flexWrap: 'wrap', border: '2.5px solid rgb(120, 120, 255)', borderRadius: '12px', width: '19vw', height: '60vh', overflowY: 'auto'}}>
                         {
+                            user.sent_challenges.filter(challenge => challenge.completed).length > 0 ?
                             user.sent_challenges.map((challenge, i) => {
                                 if (challenge.completed === true) return (
                                     <div style={{marginTop: '2vh', marginBottom: '2vh'}} key={i}>
@@ -139,6 +156,21 @@ const ChallengeHolder = () => {
                                     </div>
                                 )
                             })
+                            :
+                            <div
+                            style={{
+                                marginTop: '2vh',
+                                fontFamily: 'Bungee Spice',
+                                width: '16vw',
+                                height: '26vh',
+                                borderBottom: '4px solid rgb(20, 0, 50)',
+                                borderRadius: '12px',
+                                background: 'linear-gradient(rgb(30, 0, 90), rgb(20, 0, 70))',
+                                overflowX: 'hidden',
+                                overflowY: 'auto'
+                            }}>
+                            <p style={{marginTop: '10vh'}}>Nothing Completed!</p>
+                        </div>
                         }
                     </div>
                 </div>
@@ -149,15 +181,31 @@ const ChallengeHolder = () => {
                 <div>
                     <p style={{fontFamily: 'Bungee Spice'}}>Pending</p>
                     <div style={{display: 'flex', justifyContent: 'center', backgroundColor: 'black', flexWrap: 'wrap', border: '2.5px solid rgb(120, 120, 255)', borderRadius: '12px', width: '19vw', height: '60vh', overflowY: 'auto'}}>
-                    {
-                        user.received_challenges.map((challenge, i) => {
-                            if (challenge.completed === false) return (
-                                <div style={{marginTop: '2vh', marginBottom: '2vh'}} key={i}>
-                                    <Challenge id={challenge.challenge_id} type={'received'} sender={challenge.sender} receiver={challenge.receiver} time={challenge.time} completed={challenge.completed} redeemed={challenge.redeemed} />
-                                </div>
-                            )
-                        })
-                    }
+                        {
+                            user.received_challenges.map((challenge, i) => {
+                                if (challenge.completed === false) return (
+                                    <div style={{marginTop: '2vh', marginBottom: '2vh'}} key={i}>
+                                        <Challenge id={challenge.challenge_id} type={'received'} sender={challenge.sender} receiver={challenge.receiver} time={challenge.time} completed={challenge.completed} redeemed={challenge.redeemed} />
+                                    </div>
+                                )
+                            })
+                        }
+
+                        <div
+                        style={{
+                            display: user.received_challenges.filter(challenge => challenge.completed === false && challenge.redeemed === false).length < 1 ? 'block' : 'none',
+                            marginTop: '2vh',
+                            fontFamily: 'Bungee Spice',
+                            width: '16vw',
+                            height: '26vh',
+                            borderBottom: '4px solid rgb(20, 0, 50)',
+                            borderRadius: '12px',
+                            background: 'linear-gradient(rgb(30, 0, 90), rgb(20, 0, 70))',
+                            overflowX: 'hidden',
+                            overflowY: 'auto'
+                        }}>
+                            <p style={{marginTop: '10vh'}}>Nothing Pending!</p>
+                        </div>
                     </div>
                 </div>
                 
@@ -165,6 +213,7 @@ const ChallengeHolder = () => {
                     <p style={{fontFamily: 'Bungee Spice'}}>Completed</p>
                     <div style={{display: 'flex', justifyContent: 'center', backgroundColor: 'black', flexWrap: 'wrap', border: '2.5px solid rgb(120, 120, 255)', borderRadius: '12px', width: '19vw', height: '60vh', overflowY: 'auto'}}>
                         {
+                            user.received_challenges.filter(challenge => challenge.completed).length > 0 ?
                             user.received_challenges.map((challenge, i) => {
                                 if (challenge.completed === true) return (
                                     <div style={{marginTop: '2vh', marginBottom: '2vh'}} key={i}>
@@ -172,6 +221,21 @@ const ChallengeHolder = () => {
                                     </div>
                                 )
                             })
+                            :
+                            <div
+                            style={{
+                                marginTop: '2vh',
+                                fontFamily: 'Bungee Spice',
+                                width: '16vw',
+                                height: '26vh',
+                                borderBottom: '4px solid rgb(20, 0, 50)',
+                                borderRadius: '12px',
+                                background: 'linear-gradient(rgb(30, 0, 90), rgb(20, 0, 70))',
+                                overflowX: 'hidden',
+                                overflowY: 'auto'
+                            }}>
+                            <p style={{marginTop: '10vh'}}>Nothing Completed!</p>
+                        </div>
                         }
                     </div>
                 </div>

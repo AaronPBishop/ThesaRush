@@ -60,6 +60,13 @@ const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmit
     const menu = useSelector(state => state.menu);
 
     const challenge = useSelector(state => state.challenge);
+
+    useEffect(() => {
+        window.history.pushState(null, null, window.location.href);
+        window.onpopstate = () => {
+            window.history.go(1);
+        };
+    }, []);
  
     useEffect(() => {
         const makeSearch = () => {
@@ -216,35 +223,42 @@ const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmit
     
     return (
         <div id='main-content'>
-            <div style={{
+            <div 
+            onClick={e => {
+                dispatch(resetGame());
+                dispatch(resetStats());
+                dispatch(resetStatuses());
+                dispatch(resetChallengeState());
+
+                history.push('/');
+
+                e.preventDefault();
+            }}
+            style={{
                 display: 'flex',
                 justifyContent: 'center',
+                height: '6vh',
+                width: '26vw',
+                margin: 'auto',
+                fontFamily: 'Bungee Spice, cursive',
+                fontSize: '60px',
+                lineHeight: '5vh',
+                cursor: 'pointer'
             }}>
-                <div id='score-tab'>
+                <div 
+                onClick={e => e.stopPropagation()}
+                id='score-tab'>
                     Score: <b>{score}</b>
                 </div>
 
-                <h1 
-                onClick={e => { 
-                    dispatch(resetGame());
-                    dispatch(resetStats());
-                    dispatch(resetStatuses());
-                    dispatch(resetChallengeState());
-
-                    history.push('/');
-
-                    e.preventDefault();
-                }}
-                id='header'>
-                    ThesaRush
-                </h1>
+                ThesaRush
             </div>
             
             <div 
             id='game-box'
             style={{
                 boxShadow: invalid === false ? 
-                '0px 10px 20px rgb(0, 160, 30)' : 
+                '0px 8px 20px rgb(0, 160, 30)' : 
                 '0px 20px 40px 20px rgb(210, 4, 45)',
                 background: menu.backgroundColor
             }}>
@@ -269,7 +283,6 @@ const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmit
                 <OfferLife />
 
                 <div id='board'>
-                    
                     <Board difficulty={params.difficulty} />
                     
                     <form

@@ -1,5 +1,6 @@
 const initialState = {
-    trophiesCopy: []
+    trophiesCopy: [],
+    errors: []
 };
 
 export const logInUser = (id) => {
@@ -36,6 +37,20 @@ export const logOutUser = () => {
     };
 };
 
+export const populateErrors = (errors) => {
+    return {
+        type: 'POPULATE_ERRORS',
+        payload: errors
+    };
+};
+
+export const clearErrors = () => {
+    return {
+        type: 'CLEAR_ERRORS'
+    };
+};
+
+
 // THUNKS
 export const authenticate = () => async (dispatch) => {
     const request = await fetch('/api/auth/', {
@@ -57,24 +72,24 @@ export const loginUserThunk = (email, password) => async (dispatch) => {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
-            email: email, 
+            user_email: email, 
             password: password
         })
     });
 
-    if (request.ok) {
-        const response = await request.json();
+    const response = await request.json();
 
+    if (response.errors) {
+        dispatch(populateErrors(response.errors));
+        return;
+    };
+
+    if (request.ok) {
+        dispatch(clearErrors());
         dispatch(logInUser(response.id, email));
         dispatch(fetchUserData(response.id));
 
         return null;
-    } else if (request.status < 500) {
-        const response = await request.json();
-    
-        if (response.errors) return response.errors;
-    } else {
-        return ['An error occurred. Please try again.']
     };
 };
 
@@ -85,25 +100,24 @@ export const signUpUserThunk = (userName, email, password) => async (dispatch) =
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
             user_name: userName, 
-            email: email, 
+            user_email: email, 
             password: password
         })
     });
 
-    if (request.ok) {
-        const response = await request.json();
-        const data = response;
+    const response = await request.json();
 
-        dispatch(logInUser(data.id, email))
-        dispatch(fetchUserData(data.id));
+    if (response.errors) {
+        dispatch(populateErrors(response.errors));
+        return;
+    };
+
+    if (request.ok) {
+        dispatch(clearErrors());
+        dispatch(logInUser(response.id, email))
+        dispatch(fetchUserData(response.id));
 
         return null;
-    } else if (request.status < 500) {
-        const data = await request.json();
-    
-        if (data.errors) return data.errors;
-    } else {
-        return ['An error occurred. Please try again.']
     };
 };
 
@@ -164,7 +178,15 @@ export const editUserAccountInfo = (id, userName, email, password) => async (dis
 
     const response = await request.json();
 
-    if (!response.error) dispatch(populateUserData(response));
+    if (response.errors) {
+        dispatch(populateErrors(response.errors));
+        return;
+    };
+
+    if (response.ok) {
+        dispatch(clearErrors());
+        dispatch(populateUserData(response));
+    };
 };
 
 
@@ -254,6 +276,19 @@ const userReducer = (state = initialState, action) => {
         case 'UPDATE_LIVES': {
             currentState.points_balance = action.payload1;
             currentState.lives = action.payload2;
+            
+            return currentState;
+        };
+
+        case 'POPULATE_ERRORS': {
+            currentState.errors = [];
+            currentState.errors.push(action.payload);
+            
+            return currentState;
+        };
+
+        case 'CLEAR_ERRORS': {
+            currentState.errors = [];
             
             return currentState;
         };

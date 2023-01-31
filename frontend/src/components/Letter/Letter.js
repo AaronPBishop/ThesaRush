@@ -65,7 +65,6 @@ const Letter = ({ hidden, letter, colPos, rowPos, type, color, properties, rotat
         e.preventDefault();
 
         if (String.fromCharCode(e.keyCode).match(/[A-Za-z]/) && colPos === clickedVoid.colPos && rowPos === clickedVoid.rowPos) setNewLetter(String.fromCharCode(e.keyCode));
-        if (properties.void) setClicked(false);
       };
 
       document.addEventListener('keydown', keyDownHandler);
@@ -74,10 +73,7 @@ const Letter = ({ hidden, letter, colPos, rowPos, type, color, properties, rotat
     }, [clickedVoid]);
 
     useEffect(() => {
-      if (letter === '' && colPos === clickedVoid.colPos && rowPos === clickedVoid.rowPos) {
-        dispatch(setLetter(colPos, rowPos, newLetter));
-        setNewLetter('');
-      };
+        if (letter === '' && colPos === clickedVoid.colPos && rowPos === clickedVoid.rowPos && newLetter.length > 0) dispatch(setLetter(colPos, rowPos, newLetter));
     }, [newLetter]);
 
     return (
@@ -99,22 +95,23 @@ const Letter = ({ hidden, letter, colPos, rowPos, type, color, properties, rotat
 
           textShadow: letterClass(letter) === 'rare' && properties !== 'bomb' && '2px 2px black',
 
-          backgroundColor: clicked === true && !properties.void ? 'rgb(30, 30, 30)' 
+          backgroundColor: clicked === true && !properties.void ? 'rgb(40, 40, 40)' 
           : properties === 'normal' || properties === 'gold' || properties.void ? color 
           : properties === 'bomb' ? 'rgb(255,69,0)'
           : (typeof properties === 'object') && (properties.stone) && (properties.stone === 2) ? 'rgb(55, 65, 50)'
           : (typeof properties === 'object') && (properties.stone) && (properties.stone === 1) && 'rgb(45, 55, 40)',
 
-          boxShadow: properties === 'bomb' ? '0px 0px 15px 5px rgb(255, 49, 49)' 
+          boxShadow: clicked === true ? '0px 0px 6px 1px rgb(95, 255, 0)' :
+          properties === 'bomb' ? '0px 0px 15px 5px rgb(255, 49, 49)' 
           : (typeof properties === 'object') && (properties.stone) ? '0px 0px 10px 4px rgb(50, 60, 50)'
           : (typeof properties === 'object') && (properties.void) ? '0px 0px 10px 1px white' 
           : properties === 'gold' && '0px 0px 10px 1.5px #FFD700',
 
-          border: clicked === true ? '2px solid yellow' 
+          border: clicked === true ? '2px solid rgb(95, 255, 0)' 
           : (typeof properties === 'object') && (properties.stone) ? '2px solid rgb(40, 105, 80)'
           : properties === 'bomb' ? '2px solid rgb(180, 65, 0)' 
           : (typeof properties === 'object') && (properties.void) ? '2px solid white'
-          : (letterClass(letter) === 'consonant') ? '2px solid rgb(60, 255, 100)' 
+          : (letterClass(letter) === 'consonant') ? '2px solid rgb(40, 0, 65)' 
           : (letterClass(letter) === 'vowel') ? '2px solid rgb(139, 0, 0)' 
           : '2px solid yellow',
 
@@ -133,9 +130,9 @@ const Letter = ({ hidden, letter, colPos, rowPos, type, color, properties, rotat
             transform: `rotate(${rotation}deg)`,
             width: '10vw',
             position: 'absolute',
-            color: clicked === true ? 'rgb(30, 30, 30)' 
-            : letterClass(letter) === 'consonant' && color === 'rgb(10, 30, 90)' ? 'rgb(0, 20, 70)' 
-            : letterClass(letter) === 'consonant' && color === 'rgb(0, 15, 70)' ? 'rgb(0, 0, 50)'
+            color: clicked === true ? 'rgb(40, 40, 40)' 
+            : letterClass(letter) === 'consonant' && color === 'rgb(10, 30, 95)' ? 'rgb(0, 20, 70)' 
+            : letterClass(letter) === 'consonant' && color === 'rgb(5, 15, 80)' ? 'rgb(0, 0, 60)'
             : letterClass(letter) === 'vowel' && color === 'rgb(227, 11, 92)' ? 'rgb(197, 0, 72)' 
             : letterClass(letter) === 'vowel' && color === 'rgb(215, 0, 64)' && 'rgb(185, 0, 44)'
           }}>
@@ -154,7 +151,7 @@ const Letter = ({ hidden, letter, colPos, rowPos, type, color, properties, rotat
           <div 
           style={{
             letterSpacing: '-0.14vw', 
-            textShadow: !clicked && properties === 'normal' && '0px 0px 2px white', 
+            textShadow: !clicked && properties === 'normal' && '0px 0px 2.5px white', 
             zIndex: '100'
           }}>
               {letter}

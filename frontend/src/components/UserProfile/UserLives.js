@@ -29,7 +29,7 @@ const UserLives = () => {
                 cursor: 'pointer'
             }}
             onClick={() => {
-                if (user.points_balance < 1000) {
+                if (user.points_balance < 500) {
                     setError('Not enough points');
                     return;
                 };
@@ -41,7 +41,7 @@ const UserLives = () => {
                     <div>
                         Buy Life
                         <br/>
-                        -1,000 points
+                        -500 points
                     </div>
                 }
             </div>

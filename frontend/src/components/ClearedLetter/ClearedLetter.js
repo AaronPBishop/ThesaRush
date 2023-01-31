@@ -10,8 +10,13 @@ const ClearedLetter = ({ colPos, rowPos, color, properties, rotation }) => {
 
     const [wasCleared, setWasCleared] = useState(false);
     const [rgbaVal, setRgbaVal] = useState('');
+    const [bombTile, setBombTile] = useState(false);
 
     const toRGBA = (rgb) => rgb.split('').map(el => el === 'b' ? el = 'ba' : el === ')' ? el = ', 0.6)' : el = el).join('');
+
+    useEffect(() => {
+        if (properties === 'bomb') setBombTile(true);
+    }, [properties]);
 
     useEffect(() => {
         if (color) setRgbaVal(toRGBA(color));
@@ -37,9 +42,9 @@ const ClearedLetter = ({ colPos, rowPos, color, properties, rotation }) => {
         className='cleared-letters'
         style={{
             transform: `rotate(${rotation}deg)`,
-            color: `${color}`,
-            backgroundColor: `${rgbaVal}`,
-            boxShadow: `0px 0px 40px 10px ${color}`
+            color: bombTile ? 'red' : color.toString(),
+            backgroundColor: bombTile ? 'rgb(255,69,0)' : rgbaVal.toString(),
+            boxShadow: bombTile ? '0px 0px 100px 100px rgb(255,69,0)' : `0px 0px 40px 10px ${color}`
         }}>
         </Stars>
       </div>

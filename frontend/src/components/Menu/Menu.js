@@ -17,6 +17,7 @@ import './styles.css';
 const Menu = () => {
     const dispatch = useDispatch();
 
+    const [shouldDisplay, setShouldDisplay] = useState(true);
     const [clickedPlay, setClickedPlay] = useState(false);
     const [clickedInstructions, setClickedInstructions] = useState(false);
     const [clickedTheme, setClickedTheme] = useState(false);
@@ -25,7 +26,27 @@ const Menu = () => {
     const menu = useSelector(state => state.menu);
     const user = useSelector(state => state.user)
 
-    useEffect(() => {if (user.user_name) dispatch(placeUserLeague(user.user_id))}, []);
+    useEffect(() => {
+        if (document.documentElement.clientWidth < 950) setShouldDisplay(false);
+
+        window.history.pushState(null, null, window.location.href);
+        window.onpopstate = () => {
+            window.history.go(1);
+        };
+        
+        if (user.user_name) dispatch(placeUserLeague(user.user_id))
+    }, []);
+
+    if (shouldDisplay === false) return (
+        <div id='phone-display'>
+            <p style={{width: '60vw', marginTop: '10vh', marginBottom: '-10vh', padding: '2vw', lineHeight: '6vh'}}>
+                ThesaRush is not designed to play on a phone
+            </p>
+            <p style={{width: '60vw', padding: '2vw'}}>
+                Please return on a desktop!
+            </p>
+        </div>
+    );
 
     return (
         menu.clickedProfile === true ? <UserProfile /> :

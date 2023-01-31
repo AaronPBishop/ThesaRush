@@ -15,7 +15,7 @@ const Audio = () => {
             position: 'absolute',
             border: '2px solid rgb(60, 255, 140)',
             borderRadius: '30vw',
-            boxShadow: '0px 5px 15px rgb(0 110 0)',
+            boxShadow: '0px 2px 15px rgb(0, 110, 0)',
             background: menu.backgroundColor,
             width: '6vw',
             height: '4vh'

@@ -1,20 +1,22 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { editUserAccountInfo, deleteUserData } from '../../store/user.js';
+import { editUserAccountInfo, deleteUserData, fetchUserData, clearErrors } from '../../store/user.js';
 import { setClickedEditAccount, setClickedProfile } from '../../store/menu.js';
 
 const EditAccount = () => {
     const dispatch = useDispatch();
 
     const user = useSelector(state => state.user);
-    
+    const errorState = useSelector(state => state.user.errors);
+
     const [userName, setUserName] = useState(user.user_name);
     const [email, setEmail] = useState(user.email);
     const [password, setPassword] = useState('');
 
-    const [submitted, setSubmitted] = useState(false);
     const [errors, setErrors] = useState([]);
+    const [submitted, setSubmitted] = useState(false);
+    const [valid, setValid] = useState(false);
     const [clickedDeleteCount, setClickedDeleteCount] = useState(0);
 
     useEffect(() => {
@@ -28,20 +30,39 @@ const EditAccount = () => {
 
         if (submitted === true) {
             if (!validateEmail(email)) {
-                errorsArr.push('Must use a valid email');
+                errorsArr.push('Must Use a Valid Email');
                 setErrors(errorsArr);
-                
                 setSubmitted(false);
-            } else {
-                handleSubmit();
+
+                return;
+            };
+
+            if (userName.length > 10) {
+                errorsArr.push('Username Cannot Exceed 10 Characters');
+                setErrors(errorsArr);
+                setSubmitted(false);
+                
+                return;
+            };
+
+            if (errorState.length > 0) {
+                setErrors(errorState);
+                setSubmitted(false);
+                dispatch(setClickedEditAccount(true));
+
+                return;
+            };
+
+            if (errorState.length < 1) {
+                setErrors([]);
+
+                dispatch(fetchUserData(user.user_id));
+                setValid(true);
             };
         };
     }, [submitted]);
 
-    const handleSubmit = () => {
-        dispatch(editUserAccountInfo(user.user_id, userName, email, password));
-        dispatch(setClickedEditAccount(false));
-    };
+    useEffect(() => {if (valid === true) dispatch(setClickedEditAccount(false))}, [valid]);
 
     return (
         <div
@@ -53,7 +74,7 @@ const EditAccount = () => {
             marginTop: '18vh',
             padding: '2vw',
             width: '16vw',
-            height: '46vh',
+            height: '48vh',
             backgroundColor: 'rgb(20, 20, 20)',
             border: '2px solid #FFD700',
             borderRadius: '12px'
@@ -123,7 +144,11 @@ const EditAccount = () => {
                         <div style={{display: 'flex', justifyContent: 'center', flexWrap: 'wrap'}}>
                             <div
                             className='edit-account-btns'
-                            onClick={() => setSubmitted(true)}>
+                            onClick={async () => {
+                                await dispatch(clearErrors());
+                                await dispatch(editUserAccountInfo(user.user_id, userName, email.toLowerCase(), password));
+                                await setSubmitted(true);
+                            }}>
                                 Confirm Changes
                             </div>
                         

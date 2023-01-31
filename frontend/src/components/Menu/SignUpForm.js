@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { signUpUserThunk } from '../../store/user.js';
 import { setClickedSignUp } from '../../store/menu.js';
@@ -8,6 +8,8 @@ import './styles.css'
 
 const SignUpForm = () => {
     const dispatch = useDispatch();
+
+    const errorState = useSelector(state => state.user.errors);
     
     const [userName, setUserName] = useState('');
     const [email, setEmail] = useState('');
@@ -42,20 +44,31 @@ const SignUpForm = () => {
                 return;
             };
 
-            handleSubmit();
+            if (password.length < 4) {
+                errorsArr.push('Password Too Short');
+                setErrors(errorsArr);
+                
+                setSubmitted(false);
+                return;
+            };
+
+            dispatch(signUpUserThunk(userName, email.toLowerCase(), password));
         };
     }, [submitted]);
 
-    const handleSubmit = () => {
-        dispatch(signUpUserThunk(userName, email.toLowerCase(), password));
+    useEffect(() => {
+        if (errorState.length) {
+            setErrors(errorState);
+            setSubmitted(false);
+        } else {
+            dispatch(setClickedSignUp(false));
 
-        dispatch(setClickedSignUp(false));
-
-        setUserName('');
-        setEmail('');
-        setPassword('');
-        setErrors([]);
-    };
+            setUserName('');
+            setEmail('');
+            setPassword('');
+            setErrors([]);
+        };
+    }, [dispatch, errorState]);
 
     return (
         <div
@@ -79,50 +92,45 @@ const SignUpForm = () => {
             }}>
                 {errors.length > 0 && errors}
             </div>
+            
+            <label className='signup-inputs'>
+                <input
+                  type="text"
+                  className="signup-form-inputs"
+                  value={userName}
+                  placeholder='User Name'
+                  onChange={(e) => setUserName(e.target.value)}
+                  required
+                />
+            </label>
 
-            <form>
-                <label className='signup-inputs'>
-                    <input
-                      type="text"
-                      className="signup-form-inputs"
-                      value={userName}
-                      placeholder='User Name'
-                      onChange={(e) => setUserName(e.target.value)}
-                      required
-                    />
-                </label>
+            <label className='signup-inputs'>
+                <input
+                  type="text"
+                  className="signup-form-inputs"
+                  value={email}
+                  placeholder='Email'
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+            </label>
 
-                <label className='signup-inputs'>
-                    <input
-                      type="text"
-                      className="signup-form-inputs"
-                      value={email}
-                      placeholder='Email'
-                      onChange={(e) => setEmail(e.target.value)}
-                      required
-                    />
-                </label>
+            <label className='signup-inputs'>
+                <input
+                  type="password"
+                  className="signup-form-inputs"
+                  value={password}
+                  placeholder='Password'
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
+            </label>
 
-                <label className='signup-inputs'>
-                    <input
-                      type="password"
-                      className="signup-form-inputs"
-                      value={password}
-                      placeholder='Password'
-                      onChange={(e) => setPassword(e.target.value)}
-                      required
-                    />
-                </label>
-
-                <button
-                onClick={e => {
-                    e.preventDefault();
-                    setSubmitted(true);
-                }}
-                className='signup-button'>
-                    Confirm
-                </button>
-            </form>
+            <div 
+            onClick={() => setSubmitted(true)}
+            className='signup-button'>
+                Confirm
+            </div>
         </div>
     );
 };

@@ -22,20 +22,26 @@ const Instructions = ({ clickedBack }) => {
     }, [clickedBack]);
 
     return (
-        <ul
+        <div
         style={{
+            display: 'flex',
+            justifyContent: 'center',
+            margin: 'auto',
+            marginTop: '4vh',
+            flexWrap: 'wrap',
             fontFamily: 'Roboto',
             color: 'white',
             listStyle: 'none',
-            lineHeight: '30px',
-            textAlign: 'center'
+            textAlign: 'center',
+            lineHeight: '4vh'
         }}>
             <div
             className='instructions-containers'
             style={{
                 backgroundColor: 'rgb(10, 50, 100)', 
                 borderBottom: '4px solid rgb(0, 35, 80)',
-                fontSize: clickedGamePlay === false ? '24px' : '18px'
+                fontSize: clickedGamePlay === false ? '24px' : '18px',
+                padding: clickedGamePlay === true && '1vw'
             }}
             onClick={() => setClickedGamePlay(clicked => !clicked)}
             >
@@ -60,7 +66,11 @@ const Instructions = ({ clickedBack }) => {
                         </li>
 
                         <li style={{marginTop: '4vh'}}>
-                            Lives cost 1k points and are offered upon `Game Over` to signed-in users if adequate points or lives are available. Upon using, all columns stacked to the height of the board will be cleared and you may continue playing!
+                            Lives cost 500 points and are offered upon `Game Over` to logged-in users if adequate points or lives are available. Upon use, all columns stacked to the height of the board will clear and you may continue playing!
+                        </li>
+
+                        <li style={{marginTop: '2vh', fontStyle: 'italic'}}>
+                            Lives are not available during challenges and may only be used once per game.
                         </li>
                     </div>
                 }
@@ -72,7 +82,7 @@ const Instructions = ({ clickedBack }) => {
                 backgroundColor: 'rgb(140, 0, 55)', 
                 borderBottom: '4px solid rgb(105, 0, 40)',
                 fontSize: clickedControls === false ? '24px' : '18px',
-                padding: clickedControls === true && '0.6vw'
+                padding: clickedControls === true && '1vw'
             }}
             onClick={() => setClickedControls(clicked => !clicked)}
             >
@@ -100,7 +110,8 @@ const Instructions = ({ clickedBack }) => {
             style={{
                 backgroundColor: 'rgb(255, 140, 0)', 
                 borderBottom: '4px solid rgb(205, 90, 0)',
-                fontSize: clickedSpecialTiles === false ? '24px' : '18px'
+                fontSize: clickedSpecialTiles === false ? '24px' : '18px',
+                padding: clickedSpecialTiles === true && '1vw'
             }}
             onClick={() => setClickedSpecialTiles(clicked => !clicked)}
             >
@@ -117,7 +128,7 @@ const Instructions = ({ clickedBack }) => {
                         </li>
                             
                         <li style={{marginTop: '4vh'}}>
-                            Gold tiles are always 'X', 'Q', or 'Z'. Use gold tiles to multiply your score x2 for each gold tile used in your word.
+                            Gold tiles are always 'X', 'Q', or 'Z'. Use gold tiles to mdivtiply your score x2 for each gold tile used in your word.
                         </li>
 
                         <li style={{marginTop: '4vh'}}>
@@ -127,6 +138,7 @@ const Instructions = ({ clickedBack }) => {
                         <div style={{
                             display: 'flex', 
                             justifyContent: 'space-evenly', 
+                            margin: 'auto',
                             marginTop: '4vh', 
                             background: menu.backgroundColor,
                             height: '12vh',
@@ -136,8 +148,9 @@ const Instructions = ({ clickedBack }) => {
                             }}>
                             <div style={{
                                 display: 'flex', 
-                                justifyContent: 'center', 
-                                marginTop: '15.5vh'}}>
+                                justifyContent: 'center',
+                                marginTop: '23.5vh'
+                            }}>
                                 <Letter hidden={false} letter='B' colPos={0} rowPos={0} color={null} properties='bomb' />
                                 <Letter hidden={false} letter='S' colPos={0} rowPos={0} color={null} properties={{stone: 2}} />
                                 <Letter hidden={false} letter='G' colPos={0} rowPos={0} color='rgb(210, 200, 30)' properties='gold' />
@@ -153,7 +166,8 @@ const Instructions = ({ clickedBack }) => {
             style={{
                 backgroundColor: 'rgb(0, 100, 60)', 
                 borderBottom: '4px solid rgb(0, 70, 30)',
-                fontSize: clickedBadges === false ? '24px' : '18px'
+                fontSize: clickedBadges === false ? '24px' : '18px',
+                padding: clickedBadges === true && '1vw'
             }}
             onClick={() => setClickedBadges(clicked => !clicked)}
             >
@@ -165,7 +179,7 @@ const Instructions = ({ clickedBack }) => {
                             Earn badges and rack up points by submitting longer words and using special tiles! Badges stack, which means you can earn several of the same badge type and earn tons of points. 
                         </li>
 
-                        <div style={{marginLeft: '0.5vw', marginTop: '4vh'}}>
+                        <div style={{display: 'flex', justifyContent: 'center', margin: 'auto', flexWrap: 'wrap', marginTop: '4vh'}}>
                             <div onClick={e => e.stopPropagation()}>
                                 <Badge badgeType='bombardier' numBadges={0} type='instructional' />
                             </div>
@@ -190,7 +204,7 @@ const Instructions = ({ clickedBack }) => {
                 }
             </div>
 
-        </ul>
+        </div>
     );
 };
 

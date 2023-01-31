@@ -225,8 +225,10 @@ const GameOver = ({ points, numWords, longestWord, tilesCleared, bombardier, sto
                     style={{
                         fontFamily: 'Roboto',
                         fontWeight: 'bold',
+                        width: '42vw',
                         fontSize: '20px',
-                        marginTop: challenge.inChallenge === true ? '4vh' : '8vh',
+                        margin: 'auto',
+                        marginTop: challenge.inChallenge === true ? '2vh' : '6vh',
                         color: 'rgb(95, 255, 0)',
                         backgroundColor: 'transparent',
                         border: 'none',

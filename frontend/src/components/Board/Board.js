@@ -29,7 +29,7 @@ const Board = ({ difficulty }) => {
     const [endChallenge, setEndChallenge] = useState(false);
 
     const difficultyLevels = {
-        easy: 2000,
+        easy: 3000,
         medium: 1500,
         hard: 1200,
         rush: 1000
@@ -73,7 +73,7 @@ const Board = ({ difficulty }) => {
             if (checkGameOver(board)) {
                 const gracePeriod = setTimeout(() => {
                     if (checkGameOver(board)) {
-                        if (hasOffered < 2 && user.user_name && (user.points_balance >= 1000 || user.lives > 0)) {
+                        if (hasOffered < 2 && user.user_name && (user.points_balance >= 500 || user.lives > 0)) {
                             dispatch(loadOffer(true));
     
                             const offerAllotment = setTimeout(() => {

@@ -47,7 +47,7 @@ const Difficulties = ({ clickedBack }) => {
                     clickedEasy === false ?
                     <li>Easy</li> :
                     <div>
-                        <p className='difficulty-desc'>Tiles drop every 2 seconds</p>
+                        <p className='difficulty-desc'>Tiles drop every 3 seconds</p>
                         <p className='difficulty-desc'>Great for practice!</p>
                         <li
                         className='play-difficulty'
