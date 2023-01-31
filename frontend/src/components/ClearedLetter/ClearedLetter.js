@@ -11,11 +11,13 @@ const ClearedLetter = ({ colPos, rowPos, color, properties, rotation }) => {
     const [wasCleared, setWasCleared] = useState(false);
     const [rgbaVal, setRgbaVal] = useState('');
     const [bombTile, setBombTile] = useState(false);
+    const [voidTile, setVoidTile] = useState(false);
 
     const toRGBA = (rgb) => rgb.split('').map(el => el === 'b' ? el = 'ba' : el === ')' ? el = ', 0.6)' : el = el).join('');
 
     useEffect(() => {
         if (properties === 'bomb') setBombTile(true);
+        if (properties.void) setVoidTile(true);
     }, [properties]);
 
     useEffect(() => {
@@ -42,9 +44,9 @@ const ClearedLetter = ({ colPos, rowPos, color, properties, rotation }) => {
         className='cleared-letters'
         style={{
             transform: `rotate(${rotation}deg)`,
-            color: bombTile ? 'red' : color.toString(),
-            backgroundColor: bombTile ? 'rgb(255,69,0)' : rgbaVal.toString(),
-            boxShadow: bombTile ? '0px 0px 100px 100px rgb(255,69,0)' : `0px 0px 40px 10px ${color}`
+            color: bombTile ? 'red' : voidTile ? 'black' : color.toString(),
+            backgroundColor: bombTile ? 'rgba(255, 69, 0, 0.6)' : voidTile ? 'rgba(255, 255, 255, 0.6)' : rgbaVal.toString(),
+            boxShadow: bombTile ? '0px 0px 100px 100px rgb(255,69,0)' : voidTile ? '0px 0px 100px 100px rgb(255, 255, 255)' : `0px 0px 40px 10px ${color}`
         }}>
         </Stars>
       </div>

@@ -254,6 +254,8 @@ const gameReducer = (state = initialState, action) => {
                     if (currColumn[currColumn.length - 1] !== null) {
                         currColumn[currColumn.length - 1] = null;
                         currentState.stats.tilesCleared += 1;
+
+                        currentState.clearedTiles.push([i, currColumn.length - 1]);
                         
                         for (let j = currColumn.length - 1; j > 0; j--) {
                             if (currColumn[j] !== null && currColumn[j] !== undefined) {
@@ -409,10 +411,13 @@ const gameReducer = (state = initialState, action) => {
         };
 
         case 'CLEAR_COLUMN': {
+            currentState.clearedTiles = [];
             for (let row = 0; row < currentState.board.length; row++) {
                 if (currentState.board[row][2] !== null || currentState.board[row][3] !== null) {
                     for (let col = 0; col < currentState.board[row].length; col++) {
                         currentState.board[row][col] = null;
+
+                        currentState.clearedTiles.push([row, col])
                     };
                 };
             };
