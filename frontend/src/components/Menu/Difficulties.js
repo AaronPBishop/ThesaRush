@@ -18,6 +18,7 @@ const Difficulties = ({ clickedBack }) => {
     const [clickedRush, setClickedRush] = useState(false);
 
     useEffect(() => {
+        setClickedTraining(false);
         setClickedEasy(false);
         setClickedMedium(false);
         setClickedHard(false);
@@ -80,8 +81,9 @@ const Difficulties = ({ clickedBack }) => {
                     clickedEasy === false ?
                     <li>Easy</li> :
                     <div>
-                        <p className='difficulty-desc'>Tiles drop every 2 seconds</p>
-                        <p className='difficulty-desc'>Great for practice!</p>
+                        <p className='difficulty-desc'>Tiles drop every 2.5 seconds</p>
+                        <p className='difficulty-desc'>Practice up for the big leagues!</p>
+                        <p className='difficulty-desc' style={{position: 'relative', top: '2.5vh', fontStyle: 'normal', color: 'rgb(95, 255, 0)'}}>Score data not saved on easy!</p>
                         <li
                         className='play-difficulty'
                         onClick={() => {

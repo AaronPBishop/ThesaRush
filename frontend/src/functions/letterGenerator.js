@@ -35,9 +35,9 @@ const letterGenerator = (type, properties='normal') => {
 
     if (properties === 'normal' && randomLetter > 1.5 && randomProperty <= 2.5) properties = {'stone': 2};
 
-    if (randomLetter >= 45) return {letter: consonants[Math.floor((Math.random()*consonants.length))], type: type, color: determineColor('consonant'), properties: properties, rotation: textureRotation(), randKey: 0};
+    if (randomLetter >= 43) return {letter: consonants[Math.floor((Math.random()*consonants.length))], type: type, color: determineColor('consonant'), properties: properties, rotation: textureRotation(), randKey: 0};
     
-    if (randomLetter > 1.5 && randomLetter < 45) return {letter: vowels[Math.floor((Math.random()*vowels.length))], type: type, color: determineColor('vowel'), properties: properties, rotation: textureRotation(), randKey: 0}
+    if (randomLetter > 1.5 && randomLetter < 43) return {letter: vowels[Math.floor((Math.random()*vowels.length))], type: type, color: determineColor('vowel'), properties: properties, rotation: textureRotation(), randKey: 0}
 
     if (randomLetter <= 1.5) return {letter: rareConsonants[Math.floor((Math.random()*rareConsonants.length))], type: type, color: 'rgb(210, 200, 30)', properties: 'gold', rotation: textureRotation(), randKey: 0};
 };
