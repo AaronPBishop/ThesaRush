@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 import { setClickedLeague } from '../../store/menu.js';
 import { setInChallenge, populateChallengeData } from "../../store/challenge.js";
 import { spendPoints, copyTrophies } from '../../store/user.js';
+import { setDifficulty } from "../../store/game.js";
 
 const ChallengeTime = ({ senderId, receiverId }) => {
     const dispatch = useDispatch();
@@ -103,6 +104,7 @@ const ChallengeTime = ({ senderId, receiverId }) => {
 
                                 await dispatch(spendPoints(senderId, priceMap[timeSelected]));
                                 await dispatch(copyTrophies());
+                                await dispatch(setDifficulty('rush'));
 
                                 await history.push('/game/rush');
 

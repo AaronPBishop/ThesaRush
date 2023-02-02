@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 import { fetchUserData, spendPoints, copyTrophies } from '../../store/user.js';
 import { populateChallengeData, setInChallenge, redeemChallenge, deleteChallenge } from "../../store/challenge.js";
 import { setClickedProfile, setClickedChallenges, setClaimedPoints } from  '../../store/menu.js';
+import { setDifficulty } from '../../store/game.js';
 
 import { StarEmphasis } from '@styled-icons/fluentui-system-filled/StarEmphasis';
 
@@ -264,6 +265,8 @@ const Challenge = ({ id, type, sender, receiver, time, completed, redeemed }) =>
 
                                             await dispatch(spendPoints(user.user_id, priceMap[time]));
                                             await dispatch(copyTrophies());
+                                            await dispatch(setDifficulty('rush'));
+
                                             
                                             await history.push('/game/rush');
 

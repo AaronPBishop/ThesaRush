@@ -18,6 +18,8 @@ const SignUpForm = () => {
     const [submitted, setSubmitted] = useState(false);
     const [errors, setErrors] = useState([]);
 
+    const handleKeyDown = e => {if (e.key === "Enter") setSubmitted(true)};
+
     useEffect(() => {
         const errorsArr = [];
 
@@ -103,6 +105,7 @@ const SignUpForm = () => {
             
             <label className='signup-inputs'>
                 <input
+                  onKeyDown={handleKeyDown}
                   type="text"
                   className="signup-form-inputs"
                   value={userName}
@@ -114,6 +117,7 @@ const SignUpForm = () => {
 
             <label className='signup-inputs'>
                 <input
+                  onKeyDown={handleKeyDown}
                   type="text"
                   className="signup-form-inputs"
                   value={email}
@@ -125,6 +129,7 @@ const SignUpForm = () => {
 
             <label className='signup-inputs'>
                 <input
+                  onKeyDown={handleKeyDown}
                   type="password"
                   className="signup-form-inputs"
                   value={password}

@@ -16,11 +16,12 @@ const LogInForm = () => {
     const [submitted, setSubmitted] = useState(false);
     const [errors, setErrors] = useState([]);
 
+    const handleKeyDown = e => {if (e.key === "Enter") setSubmitted(true)};
+
     useEffect(() => {
         if (submitted === true) {
             dispatch(loginUserThunk(email.toLowerCase(), password));
         };
-
     }, [submitted]);
 
     useEffect(() => {
@@ -65,6 +66,7 @@ const LogInForm = () => {
                 </div>
                 <label className='signup-inputs'>
                     <input
+                      onKeyDown={handleKeyDown}
                       type="text"
                       className="signup-form-inputs"
                       value={email}
@@ -76,6 +78,7 @@ const LogInForm = () => {
 
                 <label className='signup-inputs'>
                     <input
+                      onKeyDown={handleKeyDown}
                       type="password"
                       className="signup-form-inputs"
                       value={password}
