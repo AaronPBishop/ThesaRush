@@ -22,7 +22,7 @@ const ClearedLetter = ({ colPos, rowPos, color, properties, rotation }) => {
     const toRGBA = (rgb) => rgb.split('').map(el => el === 'b' ? el = 'ba' : el === ')' ? el = ', 0.6)' : el = el).join('');
 
     useEffect(() => {
-        if (color && currColor === '') {
+        if (color !== null && color !== undefined && properties === 'normal' && currColor === '') {
             setCurrColor(color);
             setCurrRgba(toRGBA(color));
         };
@@ -37,7 +37,7 @@ const ClearedLetter = ({ colPos, rowPos, color, properties, rotation }) => {
     }, [color]);
 
     useEffect(() => {
-        if (colorTimeUp === true) {
+        if (colorTimeUp === true && color !== null && color !== undefined && properties === 'normal') {
             setCurrColor(color);
             setCurrRgba(toRGBA(color));
             setColorTimeUp(false);
