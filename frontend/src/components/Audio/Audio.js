@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux'; 
 
 import audio from "../../Station-X.webm";
@@ -7,10 +8,21 @@ import './styles.css';
 const Audio = () => {
     const menu = useSelector(state => state.menu);
 
+    const [shouldDisplay, setShouldDisplay] = useState(true);
+
+    useEffect(() => {
+        if (document.documentElement.clientWidth < 950) setShouldDisplay(false);
+
+        window.history.pushState(null, null, window.location.href);
+        window.onpopstate = () => {
+            window.history.go(1);
+        };
+    }, []);
+
     return (
         <div
         style={{
-            display: 'flex',
+            display: shouldDisplay === true ? 'flex' : 'none',
             justifyContent: 'center',
             position: 'absolute',
             border: '2px solid rgb(60, 255, 140)',

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 import Navigation from '../Navigation/Navigation.js';
 import LogInForm from './LogInForm.js';
@@ -39,7 +40,7 @@ const Menu = () => {
 
     if (shouldDisplay === false) return (
         <div id='phone-display'>
-            <p style={{width: '60vw', marginTop: '10vh', marginBottom: '-10vh', padding: '2vw', lineHeight: '6vh'}}>
+            <p style={{width: '60vw', marginTop: '20vh', marginBottom: '-24vh', padding: '2vw', lineHeight: '6vh'}}>
                 ThesaRush is not designed to play on a phone
             </p>
             <p style={{width: '60vw', padding: '2vw'}}>
@@ -129,6 +130,24 @@ const Menu = () => {
                     >
                         Theme
                     </button>
+                </div>
+
+                <div 
+                className='menu-button-divs'
+                style={{
+                    position: 'relative', 
+                    display: (clickedPlay === false) && (clickedInstructions === false) && (clickedTheme === false) ? 'flex' : 'none',
+                    backgroundColor: 'rgb(140, 0, 55)', 
+                    borderBottom: '4px solid rgb(105, 0, 40)'
+                }}>
+                    <a
+                    className='menu-buttons'
+                    style={{lineHeight: '10vh', width: 'inherit', height: 'inherit'}}
+                    href='https://github.com/AaronPBishop/ThesaRush'
+                    target="_blank"
+                    rel="noopener noreferrer">
+                        Wiki
+                    </a>
                 </div>
             </div>
 

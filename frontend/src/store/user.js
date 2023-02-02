@@ -3,13 +3,6 @@ const initialState = {
     errors: []
 };
 
-export const logInUser = (id) => {
-    return {
-        type: 'LOG_IN_USER',
-        payload: id
-    };
-};
-
 export const populateUserData = (userData) => {
     return {
         type: 'POPULATE_USER_DATA',
@@ -86,7 +79,6 @@ export const loginUserThunk = (email, password) => async (dispatch) => {
 
     if (request.ok) {
         dispatch(clearErrors());
-        dispatch(logInUser(response.id, email));
         dispatch(fetchUserData(response.id));
 
         return null;
@@ -114,7 +106,6 @@ export const signUpUserThunk = (userName, email, password) => async (dispatch) =
 
     if (request.ok) {
         dispatch(clearErrors());
-        dispatch(logInUser(response.id, email))
         dispatch(fetchUserData(response.id));
 
         return null;
@@ -255,12 +246,6 @@ const userReducer = (state = initialState, action) => {
     const currentState = { ...state };
 
     switch (action.type) {
-        case 'LOG_IN_USER': {
-            currentState['user_id'] = action.payload1;
-            
-            return currentState;
-        };
-
         case 'POPULATE_USER_DATA': {
             for (let key in action.payload) currentState[key] = action.payload[key];
             

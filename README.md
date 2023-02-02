@@ -1,5 +1,7 @@
 ## _Thesarush_ is a word game that integrates Tetris-like gameplay mechanics in order to force players to create and submit words, before letter tiles can reach the top of the screen. The board starts with three rows of letters, and new letters are dropped in intervals according to the chosen level of difficulty.
 
+### Live Link: https://thesarush.onrender.com/
+
 New random letter components (weighted in favor of consonants, then vowels, and finally 'XZQ') are rendered in timed-intervals with animation, and player-built words are validated by indexing a JSON file containing 370,000+ English words upon submission. If the submitted word is valid, all corresponding letters are cleared from the board. If the word is invalid, a new letter is dropped immediately as penalty. Three invalid word submissions in a row will cause an entire row of letters to drop immediately. 
 
 Players are awarded points based off of the length of a submitted word, and points are multiplied upon the same premise. Gold tiles multiply word score x2 for each gold letter used in a word. A word that is less than 3 characters long will not be submitted. However, a valid 6+ letter word will cause the next tile that is spawned to be a bomb tile, which clears all tiles surrounding it in a 1 tile vicinity when used. A valid 8+ letter word will clear the entire bottom row of letters and also spawn a bomb tile.
@@ -11,7 +13,7 @@ Redux actions are utilized in order to perform various board operations, such as
 
 ## What's new in the latest build:
 * Challenges - You can now send and receive challenges from other players! Choose a time limit and rack up as many points as you can to send a challenge to another player. Await their response and compare your results! Winners may claim up to 800 points for a win.
-* Trophies - Earn 50 of any badge type, win 50 challenges, or reach level 50 and receive a Trophy to show off on your scorecard plus up to 1,000 points!
+* Trophies - Earn 50 of any badge type, win 50 challenges, or reach level 50 and receive a Trophy to show off on your scorecard plus up to 10,000 points!
 * Leagues - See where you rank in your league and view other player's stats by clicking on their score cards!
 * Lives (500 points each, can be bought within user profile or upon game-over when signed in) - Circumvent a `Game Over` and get that high score you always wanted! 
 * User accounts - You can now create a user account and all of your score data will be saved from session to session.

@@ -29,7 +29,8 @@ const Board = ({ difficulty }) => {
     const [endChallenge, setEndChallenge] = useState(false);
 
     const difficultyLevels = {
-        easy: 3000,
+        training: 4000,
+        easy: 2000,
         medium: 1500,
         hard: 1200,
         rush: 1000

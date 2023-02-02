@@ -46,12 +46,11 @@ const GameOver = ({ points, numWords, longestWord, tilesCleared, bombardier, sto
         
         setBadges(bombardier + stoneCrusher + goldMiner + wordSmith + voidMaster);
         
-        if (user.user_id) dispatch(updateUserData(user.user_id, points, numWords, longestWord, tilesCleared, bombardier, stoneCrusher, goldMiner, wordSmith, voidMaster));
+        if (user.user_id && difficulty !== 'training') dispatch(updateUserData(user.user_id, points, numWords, longestWord, tilesCleared, bombardier, stoneCrusher, goldMiner, wordSmith, voidMaster));
 
         if (challenge.inChallenge && challenge.isChallengee && challenge.completedChallenge === false) dispatch(updateChallenge(challenge.challengeId, 0));
 
         if (challenge.inChallenge && challenge.completedChallenge === true) {
-
             if (challenge.isChallenger) {
                 dispatch(sendChallenge(challenge.time, points, challenge.senderId, challenge.receiverId));
                 dispatch(fetchUserData(user.user_id));
@@ -65,7 +64,7 @@ const GameOver = ({ points, numWords, longestWord, tilesCleared, bombardier, sto
     }, []);
 
     useEffect(() => {
-        if (user.user_id) {
+        if (user.user_id && difficulty !== 'training') {
             if (user.trophies.length > user.trophiesCopy.length) {
                 const trophyNames = user.trophiesCopy.map(trophy => trophy.trophy_name);
                 const newTrophy = user.trophies.filter(trophy => !trophyNames.includes(trophy.trophy_name));

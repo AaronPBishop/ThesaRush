@@ -36,6 +36,14 @@ const SignUpForm = () => {
                 return;
             };
 
+            if (userName.length < 3) {
+                errorsArr.push('Username Must Be 3 Characters or Longer');
+                setErrors(errorsArr);
+                
+                setSubmitted(false);
+                return;
+            };
+
             if (userName.length > 10) {
                 errorsArr.push('Username Cannot Exceed 10 Characters');
                 setErrors(errorsArr);

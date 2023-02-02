@@ -1,5 +1,5 @@
 const vowels = ['A', 'A', 'E', 'E', 'E', 'I', 'O', 'O', 'U', 'U', 'Y'];
-const consonants = ['B', 'B', 'C', 'C', 'D', 'D', 'F', 'F', 'G', 'G', 'H', 'H', 'J', 'K', 'K', 'L', 'L', 'M', 'M', 'N', 'N', 'P', 'P', 'R', 'R', 'S', 'S', 'S', 'T', 'T', 'V', 'W'];
+const consonants = ['B', 'B', 'C', 'C', 'D', 'D', 'D', 'F', 'F', 'G', 'G', 'G', 'H', 'H', 'J', 'K', 'K', 'L', 'L', 'M', 'M', 'N', 'N', 'N', 'P', 'P', 'R', 'R', 'R', 'S', 'S', 'S', 'T', 'T', 'T', 'V', 'W'];
 const rareConsonants = ['X', 'Z', 'Q'];
 
 const vowelColors = () => {
@@ -9,7 +9,6 @@ const vowelColors = () => {
 };
 
 const consonantColors = () => {
-    // Previous Colors: rgb(10, 40, 110), rgb(0, 15, 95);
     const colors = ['rgb(10, 30, 95)', 'rgb(5, 15, 80)'];
 
     return colors[Math.floor(Math.random() * colors.length)];
@@ -36,9 +35,9 @@ const letterGenerator = (type, properties='normal') => {
 
     if (properties === 'normal' && randomLetter > 1.5 && randomProperty <= 2.5) properties = {'stone': 2};
 
-    if (randomLetter >= 40) return {letter: consonants[Math.floor((Math.random()*consonants.length))], type: type, color: determineColor('consonant'), properties: properties, rotation: textureRotation(), randKey: 0};
+    if (randomLetter >= 45) return {letter: consonants[Math.floor((Math.random()*consonants.length))], type: type, color: determineColor('consonant'), properties: properties, rotation: textureRotation(), randKey: 0};
     
-    if (randomLetter > 1.5 && randomLetter < 40) return {letter: vowels[Math.floor((Math.random()*vowels.length))], type: type, color: determineColor('vowel'), properties: properties, rotation: textureRotation(), randKey: 0}
+    if (randomLetter > 1.5 && randomLetter < 45) return {letter: vowels[Math.floor((Math.random()*vowels.length))], type: type, color: determineColor('vowel'), properties: properties, rotation: textureRotation(), randKey: 0}
 
     if (randomLetter <= 1.5) return {letter: rareConsonants[Math.floor((Math.random()*rareConsonants.length))], type: type, color: 'rgb(210, 200, 30)', properties: 'gold', rotation: textureRotation(), randKey: 0};
 };

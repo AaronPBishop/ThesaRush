@@ -43,12 +43,12 @@
 .menu-button-divs {
     justify-content: center;
 
-    top: 22vh;
+    top: 18vh;
 
     height: 10vh;
-    width: 14vw;
+    width: 16vw;
 
-    border: 4px solid transparent;
+    border: none;
     border-radius: 6px;
 
     background-color: rgb(20, 20, 20);
@@ -129,12 +129,12 @@
     line-height: 6vh;
 
     padding: 1vw;
-    margin-bottom: 4vh;
+    margin-bottom: 3vh;
 
     min-width: 16vw;
     max-width: 16vw;
 
-    border: 4px solid transparent;
+    border: none;
 
     border-radius: 6px;
 
@@ -214,7 +214,7 @@
     text-align: center;
     
     font-family: 'Bungee Spice', cursive;
-    font-size: 20px;
+    font-size: 18px;
 
     background-color: black;
 
@@ -223,15 +223,15 @@
 
     margin: auto;
 
-    min-height: 92vh;
-    max-height: 92vh;
+    min-height: 85vh;
+    max-height: 85vh;
     min-width: 94vw;
     max-width: 94vw;
     
     box-shadow: 0px 8px 20px rgb(0, 160, 30);
 
     position: relative;
-    top: 3vh;
+    top: 5vh;
 
     border-radius: 25px;
     border: 2px solid rgb(60, 255, 140);

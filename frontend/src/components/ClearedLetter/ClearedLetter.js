@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import { Stars } from '@styled-icons/bootstrap/Stars';
+import { Atom } from '@styled-icons/boxicons-regular/Atom';
+import { Connectdevelop } from '@styled-icons/fa-brands/Connectdevelop'
 
 import './styles.css';
 
@@ -9,25 +11,67 @@ const ClearedLetter = ({ colPos, rowPos, color, properties, rotation }) => {
     const clearedTiles = useSelector(state => state.game.clearedTiles);
 
     const [wasCleared, setWasCleared] = useState(false);
-    const [rgbaVal, setRgbaVal] = useState('');
-    const [bombTile, setBombTile] = useState(false);
-    const [voidTile, setVoidTile] = useState(false);
+
+    const [currColor, setCurrColor] = useState('');
+    const [currRgba, setCurrRgba] = useState('');
+    const [colorTimeUp, setColorTimeUp] = useState(false);
+
+    const [currProperties, setCurrProperties] = useState('');
+    const [propertyTimeUp, setPropertyTimeUp] = useState('');
 
     const toRGBA = (rgb) => rgb.split('').map(el => el === 'b' ? el = 'ba' : el === ')' ? el = ', 0.6)' : el = el).join('');
 
     useEffect(() => {
-        if (properties === 'bomb') setBombTile(true);
-        if (properties.void) setVoidTile(true);
+        if (color && currColor === '') {
+            setCurrColor(color);
+            setCurrRgba(toRGBA(color));
+        };
+
+        if (color && currColor.length && (color !== currColor)) {
+            const colorTimer = setTimeout(() => {
+                setColorTimeUp(true);
+            }, 1600);
+
+            return () => clearTimeout(colorTimer);
+        };
+    }, [color]);
+
+    useEffect(() => {
+        if (colorTimeUp === true) {
+            setCurrColor(color);
+            setCurrRgba(toRGBA(color));
+            setColorTimeUp(false);
+        };
+    }, [colorTimeUp]);
+
+    useEffect(() => {
+        if (properties && currProperties === '') {
+            if (properties !== 'bomb' && !properties.void) setCurrProperties('normal');
+            if (properties === 'bomb') setCurrProperties('bomb');
+            if (properties.void) setCurrProperties('void');
+        };
+
+        if (properties && currProperties.length && (properties !== currProperties)) {
+            const propertyTimer = setTimeout(() => {
+                setPropertyTimeUp(true);
+            }, 1600);
+
+            return () => clearTimeout(propertyTimer);
+        };
     }, [properties]);
 
     useEffect(() => {
-        if (color) setRgbaVal(toRGBA(color));
+        if (propertyTimeUp === true) {
+            if (properties !== 'bomb' && !properties.void) setCurrProperties('normal');
+            if (properties === 'bomb') setCurrProperties('bomb');
+            if (properties.void) setCurrProperties('void');
+            setPropertyTimeUp(false);
+        };
+    }, [propertyTimeUp]);
 
-        for (let tile of clearedTiles) if (Number([colPos, rowPos].join('')) === Number(tile.join(''))) setWasCleared(true);
-    }, [clearedTiles]);
+    useEffect(() => {for (let tile of clearedTiles) if (Number([colPos, rowPos].join('')) === Number(tile.join(''))) setWasCleared(true)}, [clearedTiles]);
 
     useEffect(() => {
-        if (rgbaVal.length < 1 && color) setRgbaVal(toRGBA(color));
         if (wasCleared === true) {
             const displayTime = setTimeout(() => {
                 setWasCleared(false);
@@ -37,18 +81,43 @@ const ClearedLetter = ({ colPos, rowPos, color, properties, rotation }) => {
         };
     }, [wasCleared]);
 
-    if (rgbaVal.length < 1) if (color) setRgbaVal(toRGBA(color));
-    if (rgbaVal.length > 0) return (
-      <div style={{display: wasCleared === true ? 'flex' : 'none', position: 'absolute'}}>
+    return (
+      <div style={{display: wasCleared === true ? 'flex' : 'none', position: 'absolute', border: 'none'}}>
         <Stars
         className='cleared-letters'
         style={{
+            display: currProperties === 'normal' ? 'block' : 'none',
             transform: `rotate(${rotation}deg)`,
-            color: bombTile ? 'red' : voidTile ? 'black' : color.toString(),
-            backgroundColor: bombTile ? 'rgba(255, 69, 0, 0.6)' : voidTile ? 'rgba(255, 255, 255, 0.6)' : rgbaVal.toString(),
-            boxShadow: bombTile ? '0px 0px 100px 100px rgb(255,69,0)' : voidTile ? '0px 0px 100px 100px rgb(255, 255, 255)' : `0px 0px 40px 10px ${color}`
+            color: currColor,
+            backgroundColor: currRgba,
+            boxShadow: `0px 0px 40px 10px ${currColor}`,
+            border: 'none'
         }}>
         </Stars>
+
+        <Atom
+        className='cleared-letters'
+        style={{
+            display: currProperties === 'bomb' ? 'block' : 'none',
+            transform: `rotate(${rotation}deg)`,
+            color: 'rgb(255, 69, 0)',
+            backgroundColor: 'rgba(255, 69, 0, 0.6)',
+            boxShadow: '0px 0px 100px 100px rgb(255, 69, 0)',
+            border: 'none'
+        }}>
+        </Atom>
+
+        <Connectdevelop
+        className='cleared-letters'
+        style={{
+            display: currProperties === 'void' ? 'block' : 'none',
+            transform: `rotate(${rotation}deg)`,
+            color: 'white',
+            backgroundColor: 'rgba(255, 255, 255, 0.6)',
+            boxShadow: '0px 0px 100px 100px rgb(255, 255, 255)',
+            border: 'none'
+        }}>
+        </Connectdevelop>
       </div>
   );
 };

@@ -37,11 +37,27 @@ const EditAccount = () => {
                 return;
             };
 
+            if (userName.length < 3) {
+                errorsArr.push('Username Must Be 3 Characters or Longer');
+                setErrors(errorsArr);
+                setSubmitted(false);
+
+                return;
+            };
+
             if (userName.length > 10) {
                 errorsArr.push('Username Cannot Exceed 10 Characters');
                 setErrors(errorsArr);
                 setSubmitted(false);
                 
+                return;
+            };
+
+            if (password.length > 0 && password.length < 4) {
+                errorsArr.push('Password Too Short');
+                setErrors(errorsArr);
+                
+                setSubmitted(false);
                 return;
             };
 

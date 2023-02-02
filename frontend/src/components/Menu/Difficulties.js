@@ -11,6 +11,7 @@ const Difficulties = ({ clickedBack }) => {
     const history = useHistory();
     const dispatch = useDispatch();
 
+    const [clickedTraining, setClickedTraining] = useState(false);
     const [clickedEasy, setClickedEasy] = useState(false);
     const [clickedMedium, setClickedMedium] = useState(false);
     const [clickedHard, setClickedHard] = useState(false);
@@ -35,6 +36,38 @@ const Difficulties = ({ clickedBack }) => {
             <div
             className='difficulty-containers'
             style={{
+                marginTop: '-2vh',
+                backgroundColor: 'rgb(140, 0, 55)', 
+                borderBottom: '4px solid rgb(105, 0, 40)',
+                fontSize: clickedTraining === false ? '24px' : '16px'
+            }}
+            onClick={() => {
+                setClickedTraining(clicked => !clicked);
+            }}
+            >
+                {
+                    clickedTraining === false ?
+                    <li>Training</li> :
+                    <div>
+                        <p className='difficulty-desc'>Tiles drop every 4 seconds</p>
+                        <p className='difficulty-desc'>Find your rythm, sweat-free</p>
+                        <p className='difficulty-desc' style={{position: 'relative', top: '2.5vh', fontStyle: 'normal', color: 'rgb(95, 255, 0)'}}>Score data not saved in training!</p>
+                        <li
+                        className='play-difficulty'
+                        onClick={() => {
+                            dispatch(setDifficulty('training'));
+                            history.push('/game/training');
+                        }}
+                        >
+                            Play
+                        </li>
+                    </div>
+                }
+            </div>
+
+            <div
+            className='difficulty-containers'
+            style={{
                 backgroundColor: 'rgb(10, 50, 100)', 
                 borderBottom: '4px solid rgb(0, 35, 80)',
                 fontSize: clickedEasy === false ? '24px' : '16px'
@@ -47,7 +80,7 @@ const Difficulties = ({ clickedBack }) => {
                     clickedEasy === false ?
                     <li>Easy</li> :
                     <div>
-                        <p className='difficulty-desc'>Tiles drop every 3 seconds</p>
+                        <p className='difficulty-desc'>Tiles drop every 2 seconds</p>
                         <p className='difficulty-desc'>Great for practice!</p>
                         <li
                         className='play-difficulty'

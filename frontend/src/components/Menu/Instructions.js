@@ -128,7 +128,7 @@ const Instructions = ({ clickedBack }) => {
                         </li>
                             
                         <li style={{marginTop: '4vh'}}>
-                            Gold tiles are always 'X', 'Q', or 'Z'. Use gold tiles to mdivtiply your score x2 for each gold tile used in your word.
+                            Gold tiles are always 'X', 'Q', or 'Z'. Use gold tiles to multiply your score x2 for each gold tile used in your word.
                         </li>
 
                         <li style={{marginTop: '4vh'}}>
@@ -153,7 +153,7 @@ const Instructions = ({ clickedBack }) => {
                             }}>
                                 <Letter hidden={false} letter='B' colPos={0} rowPos={0} color={null} properties='bomb' />
                                 <Letter hidden={false} letter='S' colPos={0} rowPos={0} color={null} properties={{stone: 2}} />
-                                <Letter hidden={false} letter='G' colPos={0} rowPos={0} color='rgb(210, 200, 30)' properties='gold' />
+                                <Letter hidden={false} letter='Q' colPos={0} rowPos={0} color='rgb(210, 200, 30)' properties='gold' />
                                 <Letter hidden={false} letter='' colPos={0} rowPos={0} color='black' properties={{void: true}} />
                             </div>
                         </div>
