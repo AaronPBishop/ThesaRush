@@ -111,7 +111,7 @@ const GameOver = ({ points, numWords, longestWord, tilesCleared, bombardier, sto
                     position: 'absolute',
                     backgroundColor: 'rgb(20, 20, 20)',
                     boxShadow: '0px 0px 10px 1px yellow',
-                    border: '2px solid rgb(60, 255, 140)',
+                    border: '2px solid rgb(10, 255, 100)',
                     borderRadius: '8px',
                     width: '36vw',
                     marginTop: '-3vh',

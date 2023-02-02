@@ -44,11 +44,11 @@ const Themes = () => {
 
             <div
             onClick={() => {
-                dispatch(setBackgroundColor('linear-gradient(rgb(0, 25, 25), rgb(0, 15, 15)'));
+                dispatch(setBackgroundColor('linear-gradient(rgb(0, 20, 30), rgb(0, 15, 25)'));
 
-                window.localStorage.setItem("backgroundColor", "linear-gradient(rgb(0, 25, 25), rgb(0, 15, 15)");
+                window.localStorage.setItem("backgroundColor", "linear-gradient(rgb(0, 20, 30), rgb(0, 15, 25)");
             }}
-            style={{background: 'linear-gradient(rgb(0, 25, 25), rgb(0, 15, 15)'}}
+            style={{background: 'linear-gradient(rgb(0, 20, 30), rgb(0, 15, 25)'}}
             className='theme-containers'
             >
                 <li>Meadow</li>

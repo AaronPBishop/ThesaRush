@@ -11,7 +11,7 @@
     margin: auto;
 
     border-radius: 25px;
-    border: 2px solid rgb(60, 255, 140);
+    border: 2px solid rgb(10, 255, 100);
 }
 
 #gameover-header {
@@ -48,7 +48,7 @@
     overflow-y: auto;
     overflow-x: hidden;
 
-    border: 2px solid rgb(60, 255, 140);
+    border: 2px solid rgb(10, 255, 100);
     border-radius: 24px;
 }
 
@@ -71,7 +71,7 @@ b {
     padding-bottom: 1vh;
 
     border: 2px solid transparent;
-    border-bottom: 2px solid rgb(60, 255, 140);
+    border-bottom: 2px solid rgb(10, 255, 100);
 
     font-size: 40px;
 
@@ -80,7 +80,7 @@ b {
 
 #play-again:hover {
     box-shadow: 0px 2px 15px rgb(0, 160, 30);
-    border: 2px solid rgb(60, 255, 140);
+    border: 2px solid rgb(10, 255, 100);
     border-radius: 15px;
 }
 
@@ -131,5 +131,5 @@ b {
 
 ::-webkit-scrollbar-thumb {
     border-radius: 44px;
-	background-color: rgb(60, 255, 140);
+	background-color: rgb(10, 255, 100);
 }

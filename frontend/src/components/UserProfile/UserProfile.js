@@ -128,7 +128,7 @@ const UserProfile = () => {
                                 width: '10vw',
                                 height: '8vh',
                                 background: mapBackgroundColor[user.league][0],
-                                boxShadow: `0px 0px 6px 3px ${mapBackgroundColor[user.league][1]}`,
+                                boxShadow: `0px 0px 4px 2px ${mapBackgroundColor[user.league][1]}`,
                                 border: 'none',
                                 borderRadius: '10px',
                                 cursor: 'pointer'

@@ -59,7 +59,7 @@ const App = () => {
           stoneCrusher={Math.trunc(stoneCrusher / 3)}
           goldMiner={Math.trunc(goldMiner / 3)}
           wordSmith={wordSmith}
-          voidMaster={Math.trunc(voidMaster / 2)}
+          voidMaster={Math.trunc(voidMaster / 3)}
           />
         </Route>
 
@@ -70,7 +70,7 @@ const App = () => {
           stoneCrusher={Math.trunc(stoneCrusher / 3)}
           goldMiner={Math.trunc(goldMiner / 3)}
           wordSmith={wordSmith}
-          voidMaster={Math.trunc(voidMaster / 2)}
+          voidMaster={Math.trunc(voidMaster / 3)}
           />
         </Route>
 

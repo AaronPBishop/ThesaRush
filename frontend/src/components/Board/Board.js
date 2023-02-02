@@ -7,7 +7,6 @@ import { loadOffer } from '../../store/offerStatuses.js';
 
 import Column from '../Column/Column.js';
 
-import letterGenerator from '../../functions/letterGenerator.js';
 import checkGameOver from '../../functions/checkGameOver.js';
 import { setCompletedChallenge } from '../../store/challenge.js';
 
@@ -23,6 +22,7 @@ const Board = ({ difficulty }) => {
     const paused = useSelector(state => state.offerStatuses.paused);
     const hasOffered = useSelector(state => state.offerStatuses.hasOffered);
     const challengeState = useSelector(state => state.challenge);
+    const difficultyState = useSelector(state => state.game.stats.difficulty);
 
     const [switched, setSwitched] = useState(false);
     const [tripped, setTripped] = useState(false);
@@ -36,16 +36,9 @@ const Board = ({ difficulty }) => {
         rush: 1000
     };
 
-    const randomColumn = () => {
-        const column = [];
+    useEffect(() => {dispatch(initiateBoard())}, []);
 
-        for (let i = 0; i < 12; i++) {
-            if (i > 8) column.push(letterGenerator('initial'));
-            else column.push(null);
-        };
-        
-        return column;
-    };
+    useEffect(() => {if (difficultyState === undefined) history.push('/')}, []);
 
     useEffect(() => {
         if (challengeState.inChallenge === true) {
@@ -56,8 +49,6 @@ const Board = ({ difficulty }) => {
             return () => clearTimeout(challengeTimer);
         };
     }, []);
-
-    useEffect(() => {dispatch(initiateBoard(randomColumn))}, []);
 
     useEffect(() => {
         if (challengeState.inChallenge === false) {

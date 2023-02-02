@@ -40,12 +40,31 @@ const Menu = () => {
 
     if (shouldDisplay === false) return (
         <div id='phone-display'>
-            <p style={{width: '60vw', marginTop: '20vh', marginBottom: '-24vh', padding: '2vw', lineHeight: '6vh'}}>
+            <p style={{width: '60vw', marginTop: '14vh', marginBottom: '-8vh', padding: '2vw', lineHeight: '6vh'}}>
                 ThesaRush is not designed to play on a phone
             </p>
-            <p style={{width: '60vw', padding: '2vw'}}>
+            <p style={{width: '100vw', padding: '2vw'}}>
                 Please return on a desktop!
             </p>
+
+            <div 
+            className='menu-button-divs'
+            style={{
+                width: '60vw',
+                backgroundColor: 'rgb(140, 0, 55)', 
+                borderBottom: '4px solid rgb(105, 0, 40)',
+                marginTop: '-6vh',
+                height: '8vh'
+            }}>
+                <a
+                className='menu-buttons'
+                style={{fontSize: '20px', lineHeight: '8vh', width: 'inherit', height: 'inherit'}}
+                href='https://github.com/AaronPBishop/ThesaRush'
+                target="_blank"
+                rel="noopener noreferrer">
+                    Wiki
+                </a>
+            </div>
         </div>
     );
 

@@ -25,7 +25,7 @@ const Audio = () => {
             display: shouldDisplay === true ? 'flex' : 'none',
             justifyContent: 'center',
             position: 'absolute',
-            border: '2px solid rgb(60, 255, 140)',
+            border: '2px solid rgb(10, 255, 100)',
             borderRadius: '30vw',
             boxShadow: '0px 2px 15px rgb(0, 110, 0)',
             background: menu.backgroundColor,

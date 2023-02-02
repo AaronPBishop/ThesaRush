@@ -20,13 +20,13 @@
     top: 3vh;
 
     border-radius: 25px;
-    border: 2px solid rgb(60, 255, 140);
+    border: 2px solid rgb(10, 255, 100);
 
     overflow: hidden;
 }
 
 .menu-buttons {
-    border: 2px solid transparent;
+    border: none;
     font-family: 'Roboto';
     font-weight: bold;
     font-size: 24px;
@@ -50,8 +50,6 @@
 
     border: none;
     border-radius: 6px;
-
-    background-color: rgb(20, 20, 20);
 
     margin: auto;
     margin-bottom: 4vh;
@@ -116,7 +114,7 @@
     min-height: 6vh;
     max-height: 6vh;
 
-    border: 2px solid rgb(60, 255, 140);
+    border: 2px solid rgb(10, 255, 100);
     border-radius: 12px;
 
     cursor: pointer;
@@ -230,11 +228,8 @@
     
     box-shadow: 0px 8px 20px rgb(0, 160, 30);
 
-    position: relative;
-    top: 5vh;
-
     border-radius: 25px;
-    border: 2px solid rgb(60, 255, 140);
+    border: 2px solid rgb(10, 255, 100);
 
     overflow: hidden;
 }

@@ -1,5 +1,6 @@
 import performSplice from "../functions/performSplice.js";
 import { insertRow } from "../functions/dropLetters.js";
+import buildValidBoard from "../functions/buildValidBoard.js";
 import dropLetters from "../functions/dropLetters.js";
 import getNeighbors from "../functions/getNeighbors.js";
 import randKeyGen from "../functions/randKeyGen.js";
@@ -37,10 +38,9 @@ const initialState = {
 };
 
 // BOARD ACTIONS
-export const initiateBoard = (columnGenerator) => {
+export const initiateBoard = () => {
     return {
-        type: 'INITIATE_BOARD',
-        payload: columnGenerator
+        type: 'INITIATE_BOARD'
     };
 };
 
@@ -232,9 +232,7 @@ const gameReducer = (state = initialState, action) => {
     switch (action.type) {
         // BOARD REDUCERS
         case 'INITIATE_BOARD': {
-            for (let i = 0; i < 8; i++) {
-                currentState.board.push(action.payload());
-            };
+            currentState.board = buildValidBoard();
 
             return currentState;
         };
