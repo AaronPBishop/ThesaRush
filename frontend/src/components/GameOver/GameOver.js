@@ -38,6 +38,13 @@ const GameOver = ({ points, numWords, longestWord, tilesCleared, bombardier, sto
         voidMaster: voidMaster
     };
 
+    const mapPoints = {
+        easy: 1,
+        medium: 1.5,
+        hard: 2,
+        rush: 3
+    };
+
     useEffect(() => {
         window.history.pushState(null, null, window.location.href);
         window.onpopstate = () => {
@@ -46,7 +53,15 @@ const GameOver = ({ points, numWords, longestWord, tilesCleared, bombardier, sto
         
         setBadges(bombardier + stoneCrusher + goldMiner + wordSmith + voidMaster);
         
-        if (user.user_id && difficulty !== 'training' && difficulty !== 'easy') dispatch(updateUserData(user.user_id, points, numWords, longestWord, tilesCleared, bombardier, stoneCrusher, goldMiner, wordSmith, voidMaster));
+        if (user.user_id && difficulty !== 'training') {
+            if (difficulty === 'easy') dispatch(updateUserData(user.user_id, 0, points, numWords, longestWord, tilesCleared, bombardier, stoneCrusher, goldMiner, wordSmith, voidMaster));
+
+            if (difficulty === 'medium') dispatch(updateUserData(user.user_id, points, (points * 1.5), numWords, longestWord, tilesCleared, bombardier, stoneCrusher, goldMiner, wordSmith, voidMaster));
+
+            if (difficulty === 'hard') dispatch(updateUserData(user.user_id, points, (points * 2), numWords, longestWord, tilesCleared, bombardier, stoneCrusher, goldMiner, wordSmith, voidMaster));
+
+            if (difficulty === 'rush') dispatch(updateUserData(user.user_id, points, (points * 3), numWords, longestWord, tilesCleared, bombardier, stoneCrusher, goldMiner, wordSmith, voidMaster));
+        };
 
         if (challenge.inChallenge && challenge.isChallengee && challenge.completedChallenge === false) dispatch(updateChallenge(challenge.challengeId, 0));
 
@@ -64,7 +79,7 @@ const GameOver = ({ points, numWords, longestWord, tilesCleared, bombardier, sto
     }, []);
 
     useEffect(() => {
-        if (user.user_id && difficulty !== 'training' && difficulty !== 'easy') {
+        if (user.user_id && difficulty !== 'training') {
             if (user.trophies.length > user.trophiesCopy.length) {
                 const trophyNames = user.trophiesCopy.map(trophy => trophy.trophy_name);
                 const newTrophy = user.trophies.filter(trophy => !trophyNames.includes(trophy.trophy_name));
@@ -151,12 +166,20 @@ const GameOver = ({ points, numWords, longestWord, tilesCleared, bombardier, sto
                     Final Score: <b>{points}</b>
                 </p>
 
-                <p>
-                    Total Words: <b>{numWords}</b>
+                <p style={{display: Object.keys(mapPoints).includes(difficulty) && difficulty !== 'easy' ? 'block' : 'none'}}>
+                    Point Multiplier: <b>{mapPoints[difficulty]}</b>
+                </p>
+
+                <p style={{display: Object.keys(mapPoints).includes(difficulty) ? 'block' : 'none'}}>
+                    Total Points Earned: <b>{points * mapPoints[difficulty]}</b>
                 </p>
                 
                 <p>
                     Longest Word: <b>{longestWord}</b>
+                </p>
+
+                <p>
+                    Words Cleared: <b>{numWords}</b>
                 </p>
 
                 <p>

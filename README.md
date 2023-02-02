@@ -12,6 +12,7 @@ Redux actions are utilized in order to perform various board operations, such as
 > From your terminal, `cd` into `/frontend`, run `npm install`, then run `npm start`. Next, create a `.env` file based on the example `.env.example` file provided (within the same directory). In a separate terminal, from the root '/ThesaRush' directory, run `pipenv shell` to start your virtual environment, then run `pipenv install -r requirements.txt`. Next, run `flask db upgrade`, followed by `flask seed all`, and finally `flask run`. Have fun!
 
 ## What's new in the latest build:
+* More difficult levels now award greater points! Rank up faster and knock out the competition by taking on more challenging game-modes.
 * Challenges - You can now send and receive challenges from other players! Choose a time limit and rack up as many points as you can to send a challenge to another player. Await their response and compare your results! Winners may claim up to 800 points for a win.
 * Trophies - Earn 50 of any badge type, win 50 challenges, or reach level 50 and receive a Trophy to show off on your scorecard plus up to 10,000 points!
 * Leagues - See where you rank in your league and view other player's stats by clicking on their score cards!

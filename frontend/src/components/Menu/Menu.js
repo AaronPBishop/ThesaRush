@@ -185,7 +185,7 @@ const Menu = () => {
                     setClickedBack(true);
                     setClickedPlay(false);
                 }}
-                style={{marginTop: '6vh', marginBottom: '6vh'}}
+                style={{marginTop: '4vh', marginBottom: '6vh'}}
                 className='menu-back-buttons'>
                     Back
                 </button>

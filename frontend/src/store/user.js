@@ -133,11 +133,12 @@ export const fetchUserData = (id) => async (dispatch) => {
 };
 
 
-export const updateUserData = (id, points, words, longestWord, tilesCleared, bombardier, stoneCrusher, goldMiner, wordSmith, voidMaster) => async (dispatch) => {
+export const updateUserData = (id, highScore, points, words, longestWord, tilesCleared, bombardier, stoneCrusher, goldMiner, wordSmith, voidMaster) => async (dispatch) => {
     const request = await fetch(`/api/users/${id}`, {
         method: 'PUT',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
+            high_score: highScore,
             points: points,
             words: words,
             longest_word: longestWord,

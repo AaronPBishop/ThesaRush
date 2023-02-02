@@ -18,8 +18,8 @@ def update_user_data(id):
     req_data = request.json
     queried_user = User.query.get_or_404(id)
 
-    if queried_user.high_score < req_data['points']:
-        queried_user.high_score = req_data['points']
+    if queried_user.high_score < req_data['high_score']:
+        queried_user.high_score = req_data['high_score']
 
     queried_user.points_balance += req_data['points']
 
@@ -27,7 +27,7 @@ def update_user_data(id):
         queried_user.longest_word = req_data['longest_word']
 
     for key, val in req_data.items():
-        if key != 'longest_word':
+        if key != 'longest_word' and key != 'high_score':
             attr = getattr(queried_user, key)
             setattr(queried_user, key, attr + val)
 

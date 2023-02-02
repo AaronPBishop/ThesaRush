@@ -55,7 +55,7 @@ const App = () => {
           numWords={totalWords} 
           longestWord={longestWord} 
           tilesCleared={tilesCleared}
-          bombardier={Math.trunc(bombardier / 2)} 
+          bombardier={Math.trunc(bombardier / 3)} 
           stoneCrusher={Math.trunc(stoneCrusher / 3)}
           goldMiner={Math.trunc(goldMiner / 3)}
           wordSmith={wordSmith}
@@ -66,7 +66,7 @@ const App = () => {
         <Route path='/game/:difficulty'>
           <BoardHolder 
           dictionary={data}
-          bombardier={Math.trunc(bombardier / 2)} 
+          bombardier={Math.trunc(bombardier / 3)} 
           stoneCrusher={Math.trunc(stoneCrusher / 3)}
           goldMiner={Math.trunc(goldMiner / 3)}
           wordSmith={wordSmith}

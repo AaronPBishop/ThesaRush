@@ -52,7 +52,7 @@ const Difficulties = ({ clickedBack }) => {
                     <div>
                         <p className='difficulty-desc'>Tiles drop every 4 seconds</p>
                         <p className='difficulty-desc'>Find your rythm, sweat-free</p>
-                        <p className='difficulty-desc' style={{position: 'relative', top: '2.5vh', fontStyle: 'normal', color: 'rgb(95, 255, 0)'}}>Score data not saved in training!</p>
+                        <p className='difficulty-desc' style={{position: 'relative', top: '2vh', fontStyle: 'normal', color: 'rgb(95, 255, 0)'}}>Score data not saved in training!</p>
                         <li
                         className='play-difficulty'
                         onClick={() => {
@@ -83,7 +83,7 @@ const Difficulties = ({ clickedBack }) => {
                     <div>
                         <p className='difficulty-desc'>Tiles drop every 2.5 seconds</p>
                         <p className='difficulty-desc'>Practice up for the big leagues!</p>
-                        <p className='difficulty-desc' style={{position: 'relative', top: '2.5vh', fontStyle: 'normal', color: 'rgb(95, 255, 0)'}}>Score data not saved on easy!</p>
+                        <p className='difficulty-desc' style={{position: 'relative', top: '2vh', fontStyle: 'normal', color: 'rgb(95, 255, 0)'}}>High scores not saved on easy!</p>
                         <li
                         className='play-difficulty'
                         onClick={() => {
@@ -114,7 +114,8 @@ const Difficulties = ({ clickedBack }) => {
                     <li>Medium</li> :
                     <div>
                         <p className='difficulty-desc'>Tiles drop every 1.5 seconds</p>
-                        <p className='difficulty-desc'>Go ahead, relax</p>
+                        <p className='difficulty-desc'>Don't get too comfortable</p>
+                        <p className='difficulty-desc' style={{position: 'relative', top: '2vh', fontStyle: 'normal', color: 'rgb(95, 255, 0)'}}>Point multiplier: 1.5</p>
                         <li
                         className='play-difficulty'
                         onClick={() => {
@@ -146,6 +147,7 @@ const Difficulties = ({ clickedBack }) => {
                     <div>
                         <p className='difficulty-desc'>Tiles drop every 1.2 seconds</p>
                         <p className='difficulty-desc'>Not so easy any more!</p>
+                        <p className='difficulty-desc' style={{position: 'relative', top: '2vh', fontStyle: 'normal', color: 'rgb(95, 255, 0)', textShadow: '0px 2px 4px black'}}>Point multiplier: 2</p>
                         <li
                         className='play-difficulty'
                         onClick={() => {
@@ -179,6 +181,7 @@ const Difficulties = ({ clickedBack }) => {
                     <div>
                         <p className='difficulty-desc'>Tiles drop every second!</p>
                         <p className='difficulty-desc'>Official game-mode of ThesaRush</p>
+                        <p className='difficulty-desc' style={{position: 'relative', top: '2vh', fontStyle: 'normal', color: 'rgb(95, 255, 0)'}}>Point multiplier: 3</p>
                         <li
                         className='play-difficulty'
                         onClick={() => {
