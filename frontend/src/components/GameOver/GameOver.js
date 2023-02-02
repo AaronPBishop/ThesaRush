@@ -56,7 +56,7 @@ const GameOver = ({ points, numWords, longestWord, tilesCleared, bombardier, sto
         if (user.user_id && difficulty !== 'training') {
             if (difficulty === 'easy') dispatch(updateUserData(user.user_id, 0, points, numWords, longestWord, tilesCleared, bombardier, stoneCrusher, goldMiner, wordSmith, voidMaster));
 
-            if (difficulty === 'medium') dispatch(updateUserData(user.user_id, points, (points * 1.5), numWords, longestWord, tilesCleared, bombardier, stoneCrusher, goldMiner, wordSmith, voidMaster));
+            if (difficulty === 'medium') dispatch(updateUserData(user.user_id, points, Math.round(points * 1.5), numWords, longestWord, tilesCleared, bombardier, stoneCrusher, goldMiner, wordSmith, voidMaster));
 
             if (difficulty === 'hard') dispatch(updateUserData(user.user_id, points, (points * 2), numWords, longestWord, tilesCleared, bombardier, stoneCrusher, goldMiner, wordSmith, voidMaster));
 
@@ -171,7 +171,7 @@ const GameOver = ({ points, numWords, longestWord, tilesCleared, bombardier, sto
                 </p>
 
                 <p style={{display: Object.keys(mapPoints).includes(difficulty) ? 'block' : 'none'}}>
-                    Total Points Earned: <b>{points * mapPoints[difficulty]}</b>
+                    Total Points Earned: <b>{Math.round(points * mapPoints[difficulty])}</b>
                 </p>
                 
                 <p>

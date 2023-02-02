@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { initiateBoard, dropLettersAction } from '../../store/game.js';
+import { initiateBoard, dropLettersAction, setCleared, resetInput, resetOrder, resetTiles } from '../../store/game.js';
 import { loadOffer } from '../../store/offerStatuses.js';
 
 import Column from '../Column/Column.js';
@@ -66,6 +66,10 @@ const Board = ({ difficulty }) => {
                 const gracePeriod = setTimeout(() => {
                     if (checkGameOver(board)) {
                         if (hasOffered < 2 && user.user_name && (user.points_balance >= 500 || user.lives > 0)) {
+                            dispatch(setCleared((cleared) => !cleared));
+                            dispatch(resetInput());
+                            dispatch(resetOrder());
+                            dispatch(resetTiles());
                             dispatch(loadOffer(true));
     
                             const offerAllotment = setTimeout(() => {
