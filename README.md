@@ -33,22 +33,22 @@ Redux actions are utilized in order to perform various board operations, such as
 ## _Preview Images_
 
 ### _Main gameplay_
-![image](https://user-images.githubusercontent.com/95946808/214997284-88f2b41c-8626-4fff-8cf7-1113ec58cdb9.png)
+![image](https://user-images.githubusercontent.com/95946808/216496861-8799c37b-be87-4db2-ae90-b3711c5af175.png)
 
 ### _Viewing Leagues_
-![image](https://user-images.githubusercontent.com/95946808/214195355-af1ece4d-0fc3-4bd3-bd44-a9e352c2bb04.png)
+![image](https://user-images.githubusercontent.com/95946808/216497775-fb985cf1-9a83-4a3a-b4a6-40fb492f9468.png)
 
 ### _Game Over/Score Overview/Earning Trophies_
-![image](https://user-images.githubusercontent.com/95946808/214998478-cdadbc65-4392-4438-a9f9-84705383ca48.png)
+![image](https://user-images.githubusercontent.com/95946808/216501512-d4f64474-7619-425e-962b-adfde9328e83.png)
 
-### _Scoring Points_
-![image](https://user-images.githubusercontent.com/95946808/215000861-e4d362fc-ae53-4c88-a4ed-2c35171bb171.png)
+### _Scoring Points/Clearing Letters_
+![image](https://user-images.githubusercontent.com/95946808/216504394-e0d3bc31-ef13-4939-baca-c5b04651c4b3.png)
 
 ### _Viewing User Profile_
-![image](https://user-images.githubusercontent.com/95946808/215001172-0d0bc4ed-cbad-402b-a41d-01b07e088182.png)
+![image](https://user-images.githubusercontent.com/95946808/216501929-be4cba1e-e57a-4de5-8527-01e03f6a368a.png)
 
 ### _Extending Gameplay_
-![image](https://user-images.githubusercontent.com/95946808/215002043-3620272c-6767-49d2-b8db-4d8d4f99278a.png)
+![image](https://user-images.githubusercontent.com/95946808/216502870-cbcde7d6-4bba-4da2-a0df-12286373fe99.png)
 
 ### _Viewing Challenges_
-![image](https://user-images.githubusercontent.com/95946808/214195642-814112ab-6ac8-4671-bcac-7e3b0c6292e2.png)
+![image](https://user-images.githubusercontent.com/95946808/216502206-6b599402-4a2a-4976-902b-fc49388ad4f5.png)
