@@ -35,7 +35,8 @@ import {
 } from '../../store/game';
 
 import { resetStatuses } from '../../store/offerStatuses';
-import { resetChallengeState } from '../../store/challenge';
+import { resetChallengeState, updateChallenge } from '../../store/challenge';
+import { incurrLoss } from '../../store/user.js';
 
 const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmith, voidMaster }) => {
     const history = useHistory();
@@ -57,6 +58,7 @@ const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmit
     const points = useSelector(state => state.game.stats.points);
     const score = useSelector(state => state.game.stats.score);
 
+    const user = useSelector(state => state.user);
     const menu = useSelector(state => state.menu);
 
     const challenge = useSelector(state => state.challenge);
@@ -225,6 +227,11 @@ const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmit
         <div id='main-content'>
             <div 
             onClick={e => {
+                if (challenge.inChallenge === true) {
+                    if (challenge.isChallenger === true) dispatch(incurrLoss(user.user_id));
+                    if (challenge.isChallengee === true) dispatch(updateChallenge(challenge.challengeId, 0));
+                };
+
                 dispatch(resetGame());
                 dispatch(resetStats());
                 dispatch(resetStatuses());

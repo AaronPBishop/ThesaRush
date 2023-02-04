@@ -155,6 +155,17 @@ def use_points(id):
     return queried_user.to_dict(), 201
 
 
+@user_routes.route('/loss/<id>', methods=['PUT'])
+def incurr_loss(id):
+    queried_user = User.query.get_or_404(id)
+
+    queried_user.losses += 1
+
+    db.session.commit()
+    
+    return queried_user.to_dict(), 201
+
+
 @user_routes.route('/lives/<id>', methods=['PUT'])
 def add_life(id):
     queried_user = User.query.get_or_404(id)

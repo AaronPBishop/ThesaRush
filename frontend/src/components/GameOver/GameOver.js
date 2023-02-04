@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { resetGame, resetStats } from '../../store/game';
 import { resetStatuses } from '../../store/offerStatuses';
-import { fetchUserData, updateUserData } from '../../store/user.js';
+import { fetchUserData, updateUserData, incurrLoss } from '../../store/user.js';
 import { resetChallengeState, sendChallenge, updateChallenge } from '../../store/challenge';
 import { setClickedProfile } from '../../store/menu';
 
@@ -64,6 +64,8 @@ const GameOver = ({ points, numWords, longestWord, tilesCleared, bombardier, sto
         };
 
         if (challenge.inChallenge && challenge.isChallengee && challenge.completedChallenge === false) dispatch(updateChallenge(challenge.challengeId, 0));
+
+        if (challenge.inChallenge && challenge.isChallenger && challenge.completedChallenge === false) dispatch(incurrLoss(user.user_id));
 
         if (challenge.inChallenge && challenge.completedChallenge === true) {
             if (challenge.isChallenger) {

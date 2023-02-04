@@ -217,6 +217,18 @@ export const spendPoints = (id, pointsToUse) => async (dispatch) => {
 };
 
 
+export const incurrLoss = (id) => async (dispatch) => {
+    const request = await fetch(`/api/users/loss/${id}`, {
+        method: 'PUT',
+        headers: {'Content-Type': 'application/json'}
+    });
+
+    const response = await request.json();
+
+    dispatch(populateUserData(response));
+};
+
+
 export const buyLife = (id) => async (dispatch) => {
     const request = await fetch(`/api/users/lives/${id}`, {
         method: 'PUT',

@@ -51,65 +51,41 @@ const Board = ({ difficulty }) => {
     }, []);
 
     useEffect(() => {
-        if (challengeState.inChallenge === false) {
-            const interval = setInterval(() => {
-                if (user.user_name) {
-                    if (paused === false) setSwitched(switched => !switched);
-                } else {
-                    setSwitched(switched => !switched);
-                };
-            }, difficultyLevels[difficulty]);
+        const interval = setInterval(() => {
+            if (user.user_name) {
+                if (paused === false) setSwitched(switched => !switched);
+            } else {
+                setSwitched(switched => !switched);
+            };
+        }, difficultyLevels[difficulty]);
     
-            if (board.length) dispatch(dropLettersAction());
+        if (board.length && paused === false) dispatch(dropLettersAction());
     
-            if (checkGameOver(board)) {
-                const gracePeriod = setTimeout(() => {
-                    if (checkGameOver(board)) {
-                        if (hasOffered < 2 && user.user_name && (user.points_balance >= 500 || user.lives > 0)) {
-                            dispatch(setCleared((cleared) => !cleared));
-                            dispatch(resetInput());
-                            dispatch(resetOrder());
-                            dispatch(resetTiles());
-                            dispatch(loadOffer(true));
-    
-                            const offerAllotment = setTimeout(() => {
-                                setTripped(tripped => !tripped);
-    
-                                clearTimeout(gracePeriod);
-                                clearTimeout(offerAllotment);
-                            }, 6000);
-                        } else {
+        if (checkGameOver(board)) {
+            const gracePeriod = setTimeout(() => {
+                if (checkGameOver(board)) {
+                    if (hasOffered < 2 && user.user_name && (user.points_balance >= 500 || user.lives > 0)) {
+                        dispatch(setCleared((cleared) => !cleared));
+                        dispatch(resetInput());
+                        dispatch(resetOrder());
+                        dispatch(resetTiles());
+                        dispatch(loadOffer(true));
+
+                        const offerAllotment = setTimeout(() => {
+                            setTripped(tripped => !tripped);
+
                             clearTimeout(gracePeriod);
-                            history.push('/gameover');
-                        };
+                            clearTimeout(offerAllotment);
+                        }, 6000);
+                    } else {
+                        clearTimeout(gracePeriod);
+                        history.push('/gameover');
                     };
-                }, 900);
-            };
-    
-            return () => clearInterval(interval);
-        };
-
-        if (challengeState.inChallenge === true) {
-            const interval = setInterval(() => {
-                if (user.user_name) {
-                    if (paused === false) setSwitched(switched => !switched);
-                } else {
-                    setSwitched(switched => !switched);
                 };
-            }, difficultyLevels[difficulty]);
-    
-            if (board.length) dispatch(dropLettersAction());
-    
-            if (checkGameOver(board)) {
-                const gracePeriod = setTimeout(() => {
-                    if (checkGameOver(board)) history.push('/gameover');
-                }, 900);
-
-                return () => clearTimeout(gracePeriod);
-            };
-    
-            return () => clearInterval(interval);
+            }, 900);
         };
+    
+        return () => clearInterval(interval);
     }, [switched, paused]);
 
     useEffect(() => {if (paused === true) history.push('/gameover')}, [tripped]);
