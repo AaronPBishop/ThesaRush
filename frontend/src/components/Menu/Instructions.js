@@ -70,7 +70,7 @@ const Instructions = ({ clickedBack }) => {
                         </li>
 
                         <li style={{marginTop: '2vh', fontStyle: 'italic'}}>
-                            Lives are not available during challenges and may only be used once per game.
+                            Lives may only be used once per game.
                         </li>
                     </div>
                 }
