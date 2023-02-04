@@ -18,11 +18,8 @@ const RankedPlayer = ({ score, userName, index }) => {
     const clickedLeague = useSelector(state => state.menu.clickedLeague);
 
     const [clicked, setClicked] = useState(false);
+    const [hasBadges, setHasBadges] = useState(false);
     const [clickedChallenge, setClickedChallenge] = useState(false);
-
-    useEffect(() => {
-        if (clickedLeague === false) setClicked(false);
-    }, [clickedLeague]);
 
     const [statsMap] = useState({
         high_score: 'High Score',
@@ -62,6 +59,16 @@ const RankedPlayer = ({ score, userName, index }) => {
         return order;
     };
 
+    useEffect(() => {
+        const totalBadges = Object.keys(rankings.players[index]).filter(badge => Object.keys(mapPlayerBadges).includes(badge) && rankings.players[index][badge] > 0);
+
+        if (totalBadges.length > 0) setHasBadges(true);
+    }, []);
+
+    useEffect(() => {
+        if (clickedLeague === false) setClicked(false);
+    }, [clickedLeague]);
+
     if (clickedChallenge) return (
         <div
         onClick={e => {
@@ -74,7 +81,7 @@ const RankedPlayer = ({ score, userName, index }) => {
     );
 
     if (!clickedChallenge) return (
-            <div 
+            <div
             onClick={() => setClicked(clicked => !clicked)}
             style={{
                 display: 'flex',
@@ -88,6 +95,7 @@ const RankedPlayer = ({ score, userName, index }) => {
                 borderRadius: '12px',
                 minWidth: '24vw',
                 maxWidth: '24vw',
+                maxHeight: '6vh',
                 maxHeight: !clicked && '7vh',
                 cursor: 'pointer'
             }}>
@@ -118,7 +126,7 @@ const RankedPlayer = ({ score, userName, index }) => {
                     setClickedChallenge(clicked => !clicked);
                 }}
                 style={{
-                    display: user.user_name === userName.toString() || clicked ? 'none' : 'block',
+                    display: !user.user_id || user.user_name === userName.toString() || clicked ? 'none' : 'block',
                     fontFamily: 'Roboto',
                     fontSize: '12px',
                     lineHeight: '8px',
@@ -143,7 +151,7 @@ const RankedPlayer = ({ score, userName, index }) => {
                 </div>
     
                 
-               <div style={{display: clicked ? 'block' : 'none', marginTop: '2vh'}}>
+               <div style={{display: clicked ? 'block' : 'none', marginTop: '2vh', maxHeight: '50vh', overflowY: 'auto', overflowX: 'hidden'}}>
 
                     <div style={{display: 'flex', justifyContent: 'center', marginBottom: '1vh'}}>
                         <div className='player-headings'>Stats</div>
@@ -159,11 +167,15 @@ const RankedPlayer = ({ score, userName, index }) => {
                         ))          
                     }
 
-                    <div style={{display: 'flex', justifyContent: 'center', marginTop: '4vh'}}>
+                    <div style={{
+                        display: hasBadges ? 'flex' : 'none', 
+                        justifyContent: 'center', 
+                        marginTop: '4vh'
+                    }}>
                         <div className='player-headings'>Badges</div>
                     </div>
 
-                    <div style={{display: 'flex', justifyContent: 'center', flexWrap: 'wrap', marginTop: '2.5vh'}}>
+                    <div style={{display: hasBadges ? 'flex' : 'none', justifyContent: 'center', flexWrap: 'wrap', marginTop: '2.5vh'}}>
                         {
                             rankings.players[index] &&
                             Object.keys(rankings.players[index]).map((stat, i) => (
@@ -196,7 +208,7 @@ const RankedPlayer = ({ score, userName, index }) => {
                         }
                     </div>
 
-                    <div style={{display: 'flex', justifyContent: 'center', marginBottom: '2vh'}}>
+                    <div style={{display: user.user_id ? 'flex' : 'none', justifyContent: 'center', marginBottom: '2vh'}}>
                         <div 
                         onClick={e => {
                             e.stopPropagation();

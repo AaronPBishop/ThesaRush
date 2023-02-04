@@ -71,7 +71,7 @@ const Menu = () => {
     return (
         menu.clickedProfile === true ? <UserProfile /> :
         <div
-        style={{background: menu.backgroundColor, overflowY: clickedInstructions ? 'auto' : clickedPlay && 'auto'}} 
+        style={{background: menu.backgroundColor, minHeight: clickedInstructions && '97vh', top: clickedInstructions && '0vh', overflowY: clickedInstructions ? 'auto' : clickedPlay && 'auto'}} 
         id='menu-box'>
             <div 
             style={{
@@ -128,7 +128,7 @@ const Menu = () => {
                     <button
                     className='menu-buttons'
                     >
-                        Instructions
+                        Guidebook
                     </button>
                 </div>
 

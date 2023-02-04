@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { clearLeagueData, fetchLeagueData } from "../../store/league.js";
@@ -6,6 +6,7 @@ import { clearLeagueData, fetchLeagueData } from "../../store/league.js";
 import RankedPlayer from "./RankedPlayer.js";
 
 const League = () => {
+    const playerRef = useRef();
     const dispatch = useDispatch();
 
     const user = useSelector(state => state.user);
@@ -24,6 +25,10 @@ const League = () => {
         'Galaxy': ['linear-gradient(to bottom, rgb(40, 0, 100), rgb(0, 0, 10))', 'rgb(80, 0, 110)'],
         'Cosmic': ['linear-gradient(to bottom, rgba(185, 10, 180, 1) 5%, rgba(250, 35, 155, 1) 35%, rgba(255, 35, 100, 1) 95%', 'rgba(185, 0, 130, 1)']
     };
+
+    useEffect(() => {
+        if (playerRef.current !== null && rankings.players && rankings.players.length > 0 && user.user_name && rankings.players.map(player => player.user_name).includes(user.user_name)) playerRef.current.scrollIntoView();
+    }, [rankings]);
 
     useEffect(() => {
         if (clickedLeague === true && !user.user_name) {
@@ -94,7 +99,7 @@ const League = () => {
 
                     {
                         rankings.players && rankings.players.map((player, i) => (
-                        <div style={{display: 'flex', justifyContent: 'center'}} key={i}>
+                        <div ref={user.user_name === player.user_name ? playerRef : null} style={{display: 'flex', justifyContent: 'center'}} key={i}>
                             <RankedPlayer score={player.points} userName={player.user_name} index={i} />
                         </div>))
                     }
@@ -137,11 +142,6 @@ const League = () => {
                         </div>))
                     }
                 </div> 
-
-                // : !user.user_id &&
-                // <div style={{display: 'flex', justifyContent: 'center', marginTop: '16vh'}}>
-                //     <p style={{width: '14vw', fontSize: '26px'}}>Sign In to Access Leagues</p>
-                // </div>
             }
         </div>
     );

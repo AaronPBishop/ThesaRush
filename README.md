@@ -17,8 +17,6 @@ Redux actions are utilized in order to perform various board operations, such as
 * Trophies - Earn 50 of any badge type, win 50 challenges, or reach level 50 and receive a Trophy to show off on your scorecard plus up to 10,000 points!
 * Leagues - See where you rank in your league and view other player's stats by clicking on their score cards!
 * Lives (500 points each, can be bought within user profile or upon game-over when signed in) - Circumvent a `Game Over` and get that high score you always wanted! 
-* User accounts - You can now create a user account and all of your score data will be saved from session to session.
-* Void tiles (spawned each time 50 points are accrued in total score, can be turned into any letter you wish!)
 
 ## Technologies used:
 * ![Flask Badge](https://img.shields.io/badge/Flask-000?logo=flask&logoColor=fff&style=flat)

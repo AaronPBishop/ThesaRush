@@ -117,7 +117,7 @@ const ChallengeHolder = () => {
                     <p style={{fontFamily: 'Bungee Spice'}}>Pending</p>
                     <div style={{display: 'flex', justifyContent: 'center', backgroundColor: 'black', flexWrap: 'wrap', border: '2.5px solid rgb(120, 120, 255)', borderRadius: '12px', width: '19vw', height: '60vh', overflowY: 'auto'}}>
                         {
-                            user.sent_challenges.map((challenge, i) => {
+                            user.sent_challenges.sort((a, b) => b.challenge_id - a.challenge_id).map((challenge, i) => {
                                 if (challenge.completed === false) return (
                                     <div style={{marginTop: '2vh', marginBottom: '2vh'}} key={i}>
                                         <Challenge id={challenge.challenge_id} type={'sent'} sender={challenge.sender} receiver={challenge.receiver} time={challenge.time} completed={challenge.completed} redeemed={challenge.redeemed} />
@@ -149,7 +149,7 @@ const ChallengeHolder = () => {
                     <div style={{display: 'flex', justifyContent: 'center', backgroundColor: 'black', flexWrap: 'wrap', border: '2.5px solid rgb(120, 120, 255)', borderRadius: '12px', width: '19vw', height: '60vh', overflowY: 'auto'}}>
                         {
                             user.sent_challenges.filter(challenge => challenge.completed).length > 0 ?
-                            user.sent_challenges.map((challenge, i) => {
+                            user.sent_challenges.sort((a, b) => b.challenge_id - a.challenge_id).map((challenge, i) => {
                                 if (challenge.completed === true) return (
                                     <div style={{marginTop: '2vh', marginBottom: '2vh'}} key={i}>
                                         <Challenge id={challenge.challenge_id} type={'sent'} sender={challenge.sender} receiver={challenge.receiver} time={challenge.time} completed={challenge.completed} redeemed={challenge.redeemed} />
@@ -182,7 +182,7 @@ const ChallengeHolder = () => {
                     <p style={{fontFamily: 'Bungee Spice'}}>Pending</p>
                     <div style={{display: 'flex', justifyContent: 'center', backgroundColor: 'black', flexWrap: 'wrap', border: '2.5px solid rgb(120, 120, 255)', borderRadius: '12px', width: '19vw', height: '60vh', overflowY: 'auto'}}>
                         {
-                            user.received_challenges.map((challenge, i) => {
+                            user.received_challenges.sort((a, b) => b.challenge_id - a.challenge_id).map((challenge, i) => {
                                 if (challenge.completed === false) return (
                                     <div style={{marginTop: '2vh', marginBottom: '2vh'}} key={i}>
                                         <Challenge id={challenge.challenge_id} type={'received'} sender={challenge.sender} receiver={challenge.receiver} time={challenge.time} completed={challenge.completed} redeemed={challenge.redeemed} />
@@ -214,7 +214,7 @@ const ChallengeHolder = () => {
                     <div style={{display: 'flex', justifyContent: 'center', backgroundColor: 'black', flexWrap: 'wrap', border: '2.5px solid rgb(120, 120, 255)', borderRadius: '12px', width: '19vw', height: '60vh', overflowY: 'auto'}}>
                         {
                             user.received_challenges.filter(challenge => challenge.completed).length > 0 ?
-                            user.received_challenges.map((challenge, i) => {
+                            user.received_challenges.sort((a, b) => b.challenge_id - a.challenge_id).map((challenge, i) => {
                                 if (challenge.completed === true) return (
                                     <div style={{marginTop: '2vh', marginBottom: '2vh'}} key={i}>
                                         <Challenge id={challenge.challenge_id} type={'received'} sender={challenge.sender} receiver={challenge.receiver} time={challenge.time} completed={challenge.completed} redeemed={challenge.redeemed} />
