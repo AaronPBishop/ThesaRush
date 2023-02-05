@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 import { fetchUserData, spendPoints, copyTrophies } from '../../store/user.js';
-import { populateChallengeData, setInChallenge, redeemChallenge, deleteChallenge } from "../../store/challenge.js";
+import { populateChallengeData, setInChallenge, redeemChallenge, deleteChallenge, editChallengeRecipient } from "../../store/challenge.js";
 import { setClickedProfile, setClickedChallenges, setClaimedPoints } from  '../../store/menu.js';
 import { setDifficulty } from '../../store/game.js';
 
@@ -14,8 +14,11 @@ const Challenge = ({ id, type, sender, receiver, time, completed, redeemed }) =>
     const dispatch = useDispatch();
 
     const user = useSelector(state => state.user);
+    const challengeState = useSelector(state => state.challenge);
 
     const [clickedAccept, setClickedAccept] = useState(false);
+    const [clickedModify, setClickedModify] = useState(false);
+    const [recipientInput, setRecipientInput] = useState('');
     const [insufficientPoints, setInsufficientPoints] = useState(false);
 
     const timeMap = {
@@ -75,6 +78,7 @@ const Challenge = ({ id, type, sender, receiver, time, completed, redeemed }) =>
                             <p>Challengee:</p>
                             <StarEmphasis
                             style={{
+                                display: !clickedModify ? 'block' : 'none',
                                 marginLeft: '0.4vw',
                                 marginRight: '0.2vw',
                                 color: mapStarColor[receiver.league],
@@ -82,7 +86,14 @@ const Challenge = ({ id, type, sender, receiver, time, completed, redeemed }) =>
                                 maxWidth: '1.4vw'
                             }}>
                             </StarEmphasis>
-                            <p><b>{receiver.user_name}</b></p>
+
+                            <p style={{display: !clickedModify ? 'block' : 'none'}}><b>{receiver.user_name}</b></p>
+                            <input 
+                            id='recipient-input' 
+                            placeholder='Recipient Username'
+                            onChange={e => setRecipientInput(e.target.value)}
+                            style={{display: clickedModify ? 'block' : 'none'}}>
+                            </input>
                         </div>
 
                         <div style={{display: completed ? 'flex' : 'none', justifyContent: 'center', marginTop: '-2.5vh', padding: '1px'}}>
@@ -98,7 +109,20 @@ const Challenge = ({ id, type, sender, receiver, time, completed, redeemed }) =>
                         </div>
                     </div>
 
-                    <div style={{display: 'flex', justifyContent: 'center', width: '10vw'}}>
+                    <div style={{
+                        display: !completed && challengeState.error && challengeState.challengeId === id ? 'block' : 'none',
+                        fontSize: '12px', 
+                        fontStyle: 'italic', 
+                        color: 'rgb(95, 255, 0)', 
+                        width: '16vw', 
+                        height: '2.5vh', 
+                        lineHeight: '4vh',
+                        marginTop: '-3vh'
+                    }}>
+                            {challengeState.error}
+                    </div>
+
+                    <div style={{display: 'flex', justifyContent: 'space-evenly', width: '16vw'}}>
                         <div
                         onClick={async () => {
                             await dispatch(deleteChallenge(id));
@@ -110,13 +134,44 @@ const Challenge = ({ id, type, sender, receiver, time, completed, redeemed }) =>
                             border: 'none',
                             borderBottom: '3.5px solid rgb(105, 0, 40)',
                             borderRadius: '12px',
-                            width: '6vw',
-                            height: '1.5vh',
-                            lineHeight: '1.6vh',
+                            width: '5.5vw',
+                            height: '2vh',
+                            lineHeight: '2.3vh',
                             padding: '1.5vh',
                             cursor: 'pointer'
                         }}>
                             Unsend
+                        </div>
+
+                        <div
+                        onClick={async () => {
+                            if (!clickedModify) {
+                                setClickedModify(true);
+                                return;
+                            };
+
+                            if (clickedModify) {
+                                if (recipientInput.length > 0) {
+                                    await dispatch(editChallengeRecipient(id, recipientInput));
+                                    await dispatch(fetchUserData(user.user_id));
+                                };
+
+                                setClickedModify(false);
+                            };
+                        }}
+                        style={{
+                            display: !completed ? 'block' : 'none',
+                            backgroundColor: 'rgb(140, 0, 55)',
+                            border: 'none',
+                            borderBottom: '3.5px solid rgb(105, 0, 40)',
+                            borderRadius: '12px',
+                            width: '5.5vw',
+                            height: '2vh',
+                            lineHeight: '2.3vh',
+                            padding: '1.5vh',
+                            cursor: 'pointer'
+                        }}>
+                            {!clickedModify ? 'Modify' : 'Save'}
                         </div>
                     </div>
                     

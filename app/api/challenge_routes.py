@@ -74,6 +74,30 @@ def redeem_challenge():
     return {'points': points_dict[queried_challenge.time]}
 
 
+@challenge_routes.route('/edit/<id>', methods=['PUT'])
+def edit_recipient(id):
+    req_data = request.json
+
+    all_users = User.query.all()
+    queried_challenge = Challenge.query.get_or_404(id)
+
+    new_receiver = None
+
+    for user in all_users:
+        attr = getattr(user, 'user_name')
+        if attr.lower() == req_data['new_recipient'].lower():
+            new_receiver = user.id
+
+    if new_receiver == None:
+        return {'errors': 'User does not exist.'}
+
+    queried_challenge.receiver_id = new_receiver
+
+    db.session.commit()
+
+    return queried_challenge.to_dict()
+
+
 @challenge_routes.route('/delete/<id>', methods=['DELETE'])
 def delete_challenge(id):
     queried_challenge = Challenge.query.get_or_404(id)

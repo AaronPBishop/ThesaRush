@@ -3,6 +3,46 @@
     animation-duration: 0.2s;
 }
 
+#recipient-input {
+    font-family: 'Roboto';
+    font-size: 10px;
+    letter-spacing: 0.5px;
+    text-align: center;
+
+    margin: auto;
+    margin-left: 0.2vw;
+    margin-right: -0.4vw;
+
+    height: 3.5vh;
+
+    color: white;
+    background-color: rgb(20, 0, 50);
+
+    border: none;
+    border-radius: 6px;
+
+    cursor: pointer;
+}
+
+#recipient-input:focus {
+    outline: none;
+}
+
+#recipient-input::placeholder {
+    font-family: 'Roboto';
+    font-size: 9px;
+    text-align: center;
+    font-style: italic;
+
+    color: white;
+}
+
+#recipient-input:-webkit-autofill {
+    -webkit-text-fill-color: white;
+    -webkit-box-shadow: 0 0 0px 1000px rgb(20, 0, 50) inset;
+    border: none;
+}
+
 @keyframes challenge-slide {
     from {margin-top: 12vh}
     to {margin-top: 0vh}

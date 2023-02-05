@@ -7,7 +7,8 @@ const initialState = {
     senderId: null,
     receiverId: null,
     time: null,
-    pointsRedeemed: 0
+    pointsRedeemed: 0,
+    error: ''
 };
 
 
@@ -48,6 +49,19 @@ export const setPointsRedeemed = (points) => {
 export const clearPointsRedeemed = () => {
     return {
         type: 'CLEAR_POINTS_REDEEMED'
+    };
+};
+
+export const setChallengeError = (error) => {
+    return {
+        type: 'SET_CHALLENGE_ERROR',
+        payload: error
+    };
+};
+
+export const clearChallengeError = () => {
+    return {
+        type: 'CLEAR_CHALLENGE_ERROR'
     };
 };
 
@@ -101,6 +115,32 @@ export const redeemChallenge = (challengeId, playerId) => async (dispatch) => {
 };
 
 
+export const editChallengeRecipient = (challengeId, newRecipient) => async (dispatch) => {
+    dispatch(clearChallengeError());
+    
+    const request = await fetch(`/api/challenges/edit/${challengeId}`, {
+        method: 'PUT',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            new_recipient: newRecipient
+        })
+    });
+
+    const response = await request.json();
+
+    if (response.errors) {
+        dispatch(populateChallengeData(challengeId));
+        dispatch(setChallengeError(response.errors));
+        return;
+    };
+
+    if (response.ok) {
+        dispatch(clearChallengeError());
+        return;
+    };
+};
+
+
 export const deleteChallenge = (challengeId) => async () => {
     await fetch(`/api/challenges/delete/${challengeId}`, {
         method: 'DELETE'
@@ -144,6 +184,19 @@ const challengeReducer = (state = initialState, action) => {
 
         case 'CLEAR_POINTS_REDEEMED': {
             currentState.pointsRedeemed = 0;
+
+            return currentState;
+        };
+
+        case 'SET_CHALLENGE_ERROR': {
+            currentState.error = action.payload;
+
+            return currentState;
+        };
+
+        case 'CLEAR_CHALLENGE_ERROR': {
+            currentState.challengeId = null;
+            currentState.error = '';
 
             return currentState;
         };
