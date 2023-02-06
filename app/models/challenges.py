@@ -1,7 +1,7 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from sqlalchemy.orm import relationship
 from sqlalchemy.schema import Column, ForeignKey
-from sqlalchemy.types import Integer, Boolean
+from sqlalchemy.types import Integer, Boolean, String
 
 
 class Challenge(db.Model):
@@ -13,6 +13,7 @@ class Challenge(db.Model):
     id = Column(Integer, primary_key=True)
     
     time = Column(Integer)
+    difficulty = Column(String)
     sender_score = Column(Integer, nullable=True)
     receiver_score = Column(Integer, nullable=True)
     completed = Column(Boolean)
@@ -40,6 +41,7 @@ class Challenge(db.Model):
                 'league': self.receiver.league_name
             },
             'time': self.time,
+            'difficulty': self.difficulty,
             'completed': self.completed,
             'redeemed': self.redeemed
         }

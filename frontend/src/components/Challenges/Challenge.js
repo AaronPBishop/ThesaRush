@@ -9,7 +9,7 @@ import { setDifficulty } from '../../store/game.js';
 
 import { StarEmphasis } from '@styled-icons/fluentui-system-filled/StarEmphasis';
 
-const Challenge = ({ id, type, sender, receiver, time, completed, redeemed }) => {
+const Challenge = ({ id, type, sender, receiver, time, difficulty, completed, redeemed }) => {
     const history = useHistory();
     const dispatch = useDispatch();
 
@@ -52,7 +52,7 @@ const Challenge = ({ id, type, sender, receiver, time, completed, redeemed }) =>
         <div
         style={{
             width: '16vw',
-            height: '26vh',
+            height: '30vh',
             borderBottom: '4px solid rgb(20, 0, 50)',
             borderRadius: '12px',
             background: 'linear-gradient(rgb(30, 0, 90), rgb(20, 0, 70))',
@@ -72,6 +72,7 @@ const Challenge = ({ id, type, sender, receiver, time, completed, redeemed }) =>
                 }}>
                     <div style={{lineHeight: '2.5vh'}}>
                         <p>Time: <b>{timeMap[time]}</b></p>
+                        <p>Difficulty: <b>{difficulty ? difficulty.split('').map((el, i) => i === 0 ? el = el.toUpperCase() : el = el).join('') : 'Rush'}</b></p>
                         <p>Your Score: <b>{sender.score}</b></p>
 
                         <div style={{display: !completed ? 'flex' : 'none', justifyContent: 'center', marginTop: '-2.5vh', padding: '1px'}}>
@@ -204,7 +205,7 @@ const Challenge = ({ id, type, sender, receiver, time, completed, redeemed }) =>
                         fontSize: '20px',
                         width: '7vw',
                         height: '2vh',
-                        lineHeight: '2vh',
+                        lineHeight: '1vh',
                         marginBottom: '2vh',
                         padding: '1.5vh',
                     }}>
@@ -215,6 +216,7 @@ const Challenge = ({ id, type, sender, receiver, time, completed, redeemed }) =>
                 <div style={{display: 'flex', justifyContent: 'center', margin: 'auto', width: 'inherit', height: 'inherit', flexWrap: 'wrap', lineHeight: '1vh'}}>
                     <div style={{lineHeight: '2.5vh'}}>
                         <p>Time: <b>{timeMap[time]}</b></p>
+                        <p>Difficulty: <b>{difficulty ? difficulty.split('').map((el, i) => i === 0 ? el = el.toUpperCase() : el = el).join('') : 'Rush'}</b></p>
                         <p>Your Score: <b>{completed ? receiver.score : 'Pending'}</b></p>
 
                         <div style={{display: !completed ? 'flex' : 'none', justifyContent: 'center', marginTop: '-2.5vh', padding: '1px'}}>
@@ -316,14 +318,14 @@ const Challenge = ({ id, type, sender, receiver, time, completed, redeemed }) =>
 
                                         if (user.points_balance >= priceMap[time]) {
                                             await dispatch(setInChallenge(true, 'challengee'));
-                                            await dispatch(populateChallengeData(id, sender.id, receiver.id, time));
+                                            await dispatch(populateChallengeData(id, sender.id, receiver.id, time, difficulty));
 
                                             await dispatch(spendPoints(user.user_id, priceMap[time]));
                                             await dispatch(copyTrophies());
-                                            await dispatch(setDifficulty('rush'));
+                                            await dispatch(setDifficulty(difficulty));
 
                                             
-                                            await history.push('/game/rush');
+                                            await history.push(`/game/${difficulty}`);
 
                                             await dispatch(setClickedProfile(false));
                                             await dispatch(setClickedChallenges(false));
@@ -350,7 +352,7 @@ const Challenge = ({ id, type, sender, receiver, time, completed, redeemed }) =>
                         border: 'none',
                         borderBottom: '3.5px solid rgb(105, 0, 40)',
                         borderRadius: '12px',
-                        width: '7vw',
+                        width: '8vw',
                         height: '2vh',
                         lineHeight: '2vh',
                         padding: '1.5vh',
@@ -367,7 +369,7 @@ const Challenge = ({ id, type, sender, receiver, time, completed, redeemed }) =>
                         fontSize: '20px',
                         width: '7vw',
                         height: '2vh',
-                        lineHeight: '2vh',
+                        lineHeight: '1vh',
                         padding: '1.5vh',
                     }}>
                         {receiver.score > sender.score ? '+1 Win' : receiver.score === sender.score ? 'Tied' : '+1 Loss'}

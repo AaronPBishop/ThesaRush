@@ -36,6 +36,7 @@ def create_new_challenge():
 
     new_challenge = Challenge(
         time=req_data['time'],
+        difficulty=req_data['difficulty'],
         sender_score=req_data['score'],
         completed=False,
         redeemed=False,

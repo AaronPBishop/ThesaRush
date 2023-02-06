@@ -69,7 +69,7 @@ const GameOver = ({ points, numWords, longestWord, tilesCleared, bombardier, sto
 
         if (challenge.inChallenge && challenge.completedChallenge === true) {
             if (challenge.isChallenger) {
-                dispatch(sendChallenge(challenge.time, points, challenge.senderId, challenge.receiverId));
+                dispatch(sendChallenge(challenge.time, challenge.difficulty, points, challenge.senderId, challenge.receiverId));
                 dispatch(fetchUserData(user.user_id));
             };
 

@@ -14,7 +14,9 @@ const ChallengeTime = ({ senderId, receiverId }) => {
     const user = useSelector(state => state.user);
 
     const [clickedTimeLimit, setClickedTimeLimit] = useState(false);
+    const [clickedDifficulty, setClickedDifficulty] = useState(false);
     const [timeSelected, setTimeSelected] = useState(0);
+    const [difficultySelected, setDifficultySelected] = useState('');
     const [insufficientPoints, setInsufficientPoints] = useState(false);
 
     const priceMap = {
@@ -51,7 +53,7 @@ const ChallengeTime = ({ senderId, receiverId }) => {
                     <p>Choose a Time</p>
 
                     <div 
-                    className='challenge-times'
+                    className='challenge-selections'
                     onClick={e => {
                         e.stopPropagation();
                         setClickedTimeLimit(true);
@@ -59,7 +61,7 @@ const ChallengeTime = ({ senderId, receiverId }) => {
                     }}>One Minute</div>
 
                     <div
-                    className='challenge-times' 
+                    className='challenge-selections' 
                     onClick={e => { 
                         e.stopPropagation();
                         setClickedTimeLimit(true);
@@ -67,14 +69,45 @@ const ChallengeTime = ({ senderId, receiverId }) => {
                     }}>Two Minutes</div>
 
                     <div 
-                    className='challenge-times'
+                    className='challenge-selections'
                     onClick={e => {
                         e.stopPropagation();
                         setClickedTimeLimit(true);
                         setTimeSelected(180000);
                     }}>Three Minutes</div>
                 </div>
-                :
+                : clickedTimeLimit && !clickedDifficulty ?
+                <div>
+                    <p>Choose a Difficulty</p>
+
+                    <div 
+                    className='challenge-selections'
+                    style={{backgroundColor: 'rgb(0, 100, 60)', borderBottom: '3px solid rgb(0, 70, 30)'}}
+                    onClick={e => {
+                        e.stopPropagation();
+                        setClickedDifficulty(true);
+                        setDifficultySelected('medium');
+                    }}>Medium</div>
+
+                    <div
+                    className='challenge-selections' 
+                    style={{backgroundColor: 'rgb(255, 140, 0)', borderBottom: '3px solid rgb(205, 90, 0)'}}
+                    onClick={e => { 
+                        e.stopPropagation();
+                        setClickedDifficulty(true);
+                        setDifficultySelected('hard');
+                    }}>Hard</div>
+
+                    <div 
+                    className='challenge-selections'
+                    style={{fontFamily: 'Bungee Spice', textShadow: 'black 0px 2px 4px'}}
+                    onClick={e => {
+                        e.stopPropagation();
+                        setClickedDifficulty(true);
+                        setDifficultySelected('rush');
+                    }}>Rush</div>
+                </div>
+                : clickedTimeLimit && clickedDifficulty &&
                 <div style={{display: 'flex', justifyContent: 'center', margin: 'auto', width: '16vw', flexWrap: 'wrap', cursor: 'default'}}>
                     <p style={{marginBottom: '-0.5vh'}}>Cost Per Player: <b>{priceMap[timeSelected]} points</b></p>
                     <p style={{marginBottom: '1vh'}}>Winner Receives: <b>{rewardMap[timeSelected]} points</b></p>
@@ -83,13 +116,13 @@ const ChallengeTime = ({ senderId, receiverId }) => {
 
                     <div style={{display: 'flex', justifyContent: 'space-evenly'}}>
                         <div 
-                        className="challenge-times"
+                        className="challenge-selections"
                         style={{cursor: 'pointer', width: '6vw', height: '5vh', lineHeight: '5vh'}}>
                             Cancel
                         </div>
 
                         <div 
-                        className="challenge-times"
+                        className="challenge-selections"
                         onClick={async e => {
                             e.stopPropagation();
 
@@ -100,13 +133,13 @@ const ChallengeTime = ({ senderId, receiverId }) => {
 
                             if (user.points_balance >= priceMap[timeSelected]) {
                                 await dispatch(setInChallenge(true, 'challenger'));
-                                await dispatch(populateChallengeData(null, senderId, receiverId, timeSelected));
+                                await dispatch(populateChallengeData(null, senderId, receiverId, timeSelected, difficultySelected));
 
                                 await dispatch(spendPoints(senderId, priceMap[timeSelected]));
                                 await dispatch(copyTrophies());
-                                await dispatch(setDifficulty('rush'));
+                                await dispatch(setDifficulty(difficultySelected));
 
-                                await history.push('/game/rush');
+                                await history.push(`/game/${difficultySelected}`);
 
                                 await dispatch(setClickedLeague(false));
                             };

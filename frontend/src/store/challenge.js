@@ -7,6 +7,7 @@ const initialState = {
     senderId: null,
     receiverId: null,
     time: null,
+    difficulty: null,
     pointsRedeemed: 0,
     error: ''
 };
@@ -22,13 +23,14 @@ export const setInChallenge = (boolean, playerType) => {
     };
 };
 
-export const populateChallengeData = (challengeId, senderId, receiverId, time) => {
+export const populateChallengeData = (challengeId, senderId, receiverId, time, difficulty) => {
     return {
         type: 'POPULATE_CHALLENGE_DATA',
         payload1: challengeId,
         payload2: senderId,
         payload3: receiverId,
-        payload4: time
+        payload4: time,
+        payload5: difficulty
     };
 };
 
@@ -74,12 +76,13 @@ export const resetChallengeState = () => {
 
 // THUNKS
 
-export const sendChallenge = (time, score, senderId, receiverId) => async () => {
+export const sendChallenge = (time, difficulty, score, senderId, receiverId) => async () => {
     await fetch(`/api/challenges/new`, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
             time: time,
+            difficulty: difficulty,
             score: score,
             senderId: senderId, 
             receiverId: receiverId,
@@ -166,6 +169,7 @@ const challengeReducer = (state = initialState, action) => {
             currentState.senderId = action.payload2;
             currentState.receiverId = action.payload3;
             currentState.time = action.payload4;
+            currentState.difficulty = action.payload5;
 
             return currentState;
         };

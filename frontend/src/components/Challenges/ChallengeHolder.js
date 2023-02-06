@@ -120,7 +120,7 @@ const ChallengeHolder = () => {
                             user.sent_challenges.sort((a, b) => b.challenge_id - a.challenge_id).map((challenge, i) => {
                                 if (challenge.completed === false) return (
                                     <div style={{marginTop: '2vh', marginBottom: '2vh'}} key={i}>
-                                        <Challenge id={challenge.challenge_id} type={'sent'} sender={challenge.sender} receiver={challenge.receiver} time={challenge.time} completed={challenge.completed} redeemed={challenge.redeemed} />
+                                        <Challenge id={challenge.challenge_id} type={'sent'} sender={challenge.sender} receiver={challenge.receiver} time={challenge.time} difficulty={challenge.difficulty} completed={challenge.completed} redeemed={challenge.redeemed} />
                                     </div>
                                 )
                             })
@@ -152,7 +152,7 @@ const ChallengeHolder = () => {
                             user.sent_challenges.sort((a, b) => b.challenge_id - a.challenge_id).map((challenge, i) => {
                                 if (challenge.completed === true) return (
                                     <div style={{marginTop: '2vh', marginBottom: '2vh'}} key={i}>
-                                        <Challenge id={challenge.challenge_id} type={'sent'} sender={challenge.sender} receiver={challenge.receiver} time={challenge.time} completed={challenge.completed} redeemed={challenge.redeemed} />
+                                        <Challenge id={challenge.challenge_id} type={'sent'} sender={challenge.sender} receiver={challenge.receiver} time={challenge.time} difficulty={challenge.difficulty} completed={challenge.completed} redeemed={challenge.redeemed} />
                                     </div>
                                 )
                             })
@@ -185,7 +185,7 @@ const ChallengeHolder = () => {
                             user.received_challenges.sort((a, b) => b.challenge_id - a.challenge_id).map((challenge, i) => {
                                 if (challenge.completed === false) return (
                                     <div style={{marginTop: '2vh', marginBottom: '2vh'}} key={i}>
-                                        <Challenge id={challenge.challenge_id} type={'received'} sender={challenge.sender} receiver={challenge.receiver} time={challenge.time} completed={challenge.completed} redeemed={challenge.redeemed} />
+                                        <Challenge id={challenge.challenge_id} type={'received'} sender={challenge.sender} receiver={challenge.receiver} time={challenge.time} difficulty={challenge.difficulty} completed={challenge.completed} redeemed={challenge.redeemed} />
                                     </div>
                                 )
                             })
@@ -217,7 +217,7 @@ const ChallengeHolder = () => {
                             user.received_challenges.sort((a, b) => b.challenge_id - a.challenge_id).map((challenge, i) => {
                                 if (challenge.completed === true) return (
                                     <div style={{marginTop: '2vh', marginBottom: '2vh'}} key={i}>
-                                        <Challenge id={challenge.challenge_id} type={'received'} sender={challenge.sender} receiver={challenge.receiver} time={challenge.time} completed={challenge.completed} redeemed={challenge.redeemed} />
+                                        <Challenge id={challenge.challenge_id} type={'received'} sender={challenge.sender} receiver={challenge.receiver} time={challenge.time} difficulty={challenge.difficulty} completed={challenge.completed} redeemed={challenge.redeemed} />
                                     </div>
                                 )
                             })
