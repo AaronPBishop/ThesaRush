@@ -302,14 +302,14 @@ const Challenge = ({ id, type, sender, receiver, time, difficulty, completed, re
 
                                 <div style={{display: 'flex', justifyContent: 'space-evenly'}}>
                                     <div 
-                                    className="challenge-times"
+                                    className="challenge-selections"
                                     onClick={() => setClickedAccept(false)}
                                     style={{cursor: 'pointer', width: '6vw', height: '5vh', lineHeight: '5vh'}}>
                                         Cancel
                                     </div>
 
                                     <div 
-                                    className="challenge-times"
+                                    className="challenge-selections"
                                     onClick={async () => {
                                         if (user.points_balance < priceMap[time]) {
                                             setInsufficientPoints(true);
@@ -322,10 +322,12 @@ const Challenge = ({ id, type, sender, receiver, time, difficulty, completed, re
 
                                             await dispatch(spendPoints(user.user_id, priceMap[time]));
                                             await dispatch(copyTrophies());
-                                            await dispatch(setDifficulty(difficulty));
+
+                                            if (difficulty === null) await dispatch(setDifficulty('rush'));
+                                            if (difficulty !== null) await dispatch(setDifficulty(difficulty));
 
                                             
-                                            await history.push(`/game/${difficulty}`);
+                                            await history.push(`/game/${difficulty === null ? 'rush' : difficulty}`);
 
                                             await dispatch(setClickedProfile(false));
                                             await dispatch(setClickedChallenges(false));
