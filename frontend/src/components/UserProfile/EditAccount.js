@@ -227,6 +227,11 @@ const EditAccount = () => {
                         };
 
                         if (clickedDeleteCount > 1) {
+                            if (user.email.toLowerCase() === localStorage.getItem('email').toLowerCase()) {
+                                localStorage.removeItem('email');
+                                localStorage.removeItem('password');
+                            };
+
                             await dispatch(setClickedEditAccount(false));
                             await dispatch(setClickedProfile(false));
                             await dispatch(deleteUserData(user.user_id));

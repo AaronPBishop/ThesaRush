@@ -38,7 +38,11 @@ const SignUp = ({ loggedIn }) => {
 
             <div 
             style={{position: 'absolute', minWidth: '8vw', maxWidth: '8vw', borderTopRightRadius: '6px'}}
-            onClick={() => {
+            onClick={async () => {
+                await dispatch(setClickedLogIn(false));
+                await dispatch(setClickedLeague(false));
+                await dispatch(setClickedSignUp(false));
+
                 if (localStorage.getItem('email')) dispatch(loginUserThunk(localStorage.getItem('email').toLowerCase(), localStorage.getItem('password')));
 
                 if (!localStorage.getItem('email')) dispatch(createRandomUser());
