@@ -102,7 +102,7 @@ const SignUpForm = () => {
             style={{
                 fontFamily: 'Roboto',
                 marginBottom: '2vh',
-                width: '16vw',
+                width: '16vw'
             }}>
                 {errors.length > 0 && errors}
             </div>

@@ -94,7 +94,7 @@ const EditAccount = () => {
             paddingTop: '2vw',
             paddingBottom: '2vw',
             width: '20vw',
-            height: '48vh',
+            height: '50vh',
             backgroundColor: 'rgb(20, 20, 20)',
             border: '2px solid #FFD700',
             borderRadius: '12px'
@@ -106,14 +106,15 @@ const EditAccount = () => {
                     display: 'flex',
                     justifyContent: 'center',
                     flexWrap: 'wrap',
-                    margin: 'auto',
+                    margin: 'auto'
                 }}>
                     <div
                     style={{
                         display: errors.length > 0 ? 'block' : 'none',
                         fontFamily: 'Roboto',
                         marginTop: '-2vh',
-                        marginBottom: '1.5vh'
+                        marginBottom: '3vh',
+                        width: '16vw'
                     }}>
                         {errors.length > 0 && errors}
                     </div>
@@ -124,7 +125,7 @@ const EditAccount = () => {
                             onClick={() => dispatch(setClickedEditAccount(false))}
                             style={{
                                 lineHeight: '1.6vh',
-                                marginTop: '0vh',
+                                marginTop: '-1.5vh',
                                 height: '2vh',
                                 minWidth: '6vw',
                                 maxWidth: '6vw'
@@ -207,7 +208,7 @@ const EditAccount = () => {
                     style={{
                         display: 'flex',
                         justifyContent: 'center',
-                        marginTop: '4vh',
+                        marginTop: '4.5vh',
                         marginBottom: '6vh'
                     }}>
                         Take Me Back
