@@ -21,12 +21,17 @@
     font-family: 'Bungee Spice', cursive;
 
     position: relative;
-    bottom: 5vh;
+    bottom: 2vh;
 
     font-size: 80px;
 }
 
 #stats-box {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    align-items: center;
     text-align: center;
     font-size: 18px;
 

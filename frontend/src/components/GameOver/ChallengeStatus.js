@@ -20,7 +20,7 @@ const ChallengeStatus = () => {
             flexWrap: 'wrap',
             backgroundColor: 'rgb(140, 0, 55)',
             width: '24vw',
-            height: '14vh',
+            height: '12vh',
             borderBottom: '4px solid rgb(105, 0, 40)',
             borderRadius: '12px',
             lineHeight: '6vh',
@@ -39,8 +39,11 @@ const ChallengeStatus = () => {
                 <div
                 style={{
                     fontFamily: 'Bungee Spice',
+                    lineHeight: '5.5vh',
                     backgroundColor: 'rgb(95, 0, 30)',
                     width: '16vw',
+                    height: '5vh',
+                    marginTop: '-0.5vh',
                     borderRadius: '8px',
                     borderBottom: '4px solid rgb(75, 0, 10)',
                     cursor: 'pointer'

@@ -148,7 +148,7 @@ const GameOver = ({ points, numWords, longestWord, tilesCleared, bombardier, sto
                 </div>
             </div>
 
-            <p id='gameover-header' style={{marginTop: challenge.inChallenge ? '6vh' : '8vh', marginBottom: !challenge.inChallenge && '12vh'}}>Game Over!</p>
+            <p id='gameover-header' style={{marginTop: challenge.inChallenge ? '6vh' : '8vh', marginBottom: !challenge.inChallenge ? '14vh' : '13vh'}}>Game Over!</p>
 
             <div
             style={{
@@ -170,33 +170,35 @@ const GameOver = ({ points, numWords, longestWord, tilesCleared, bombardier, sto
                 marginTop: difficulty === 'training' || difficulty === 'easy' ? '-12vh' : '-14vh',
                 marginBottom: challenge.inChallenge ? '2vh' : '4vh'
             }}>
-                <p>
-                    Final Score: <b>{points}</b>
-                </p>
-
-                <p style={{display: Object.keys(mapPoints).includes(difficulty) && difficulty !== 'easy' ? 'block' : 'none'}}>
-                    Point Multiplier: <b>{mapPoints[difficulty]}</b>
-                </p>
-
-                <p style={{display: Object.keys(mapPoints).includes(difficulty) ? 'block' : 'none'}}>
-                    Total Points Earned: <b>{Math.round(points * mapPoints[difficulty])}</b>
-                </p>
-                
-                <p>
-                    Longest Word: <b>{longestWord}</b>
-                </p>
-
-                <p>
-                    Words Cleared: <b>{numWords}</b>
-                </p>
-
-                <p>
-                    Tiles Cleared: <b>{tilesCleared}</b>
-                </p>
-
-                <p>
-                    Badges: <b>{badges}</b>
-                </p>
+                <div>
+                    <p>
+                        Final Score: <b>{points}</b>
+                    </p>
+            
+                    <p style={{display: Object.keys(mapPoints).includes(difficulty) && difficulty !== 'easy' ? 'block' : 'none'}}>
+                        Point Multiplier: <b>{mapPoints[difficulty]}</b>
+                    </p>
+            
+                    <p style={{display: Object.keys(mapPoints).includes(difficulty) ? 'block' : 'none'}}>
+                        Total Points Earned: <b>{Math.round(points * mapPoints[difficulty])}</b>
+                    </p>
+                    
+                    <p>
+                        Longest Word: <b>{longestWord}</b>
+                    </p>
+            
+                    <p>
+                        Words Cleared: <b>{numWords}</b>
+                    </p>
+            
+                    <p>
+                        Tiles Cleared: <b>{tilesCleared}</b>
+                    </p>
+            
+                    <p>
+                        Badges: <b>{badges}</b>
+                    </p>
+                </div>
 
                 {
                     badges > 0 &&

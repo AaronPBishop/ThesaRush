@@ -135,7 +135,7 @@ const RankedPlayer = ({ score, userName, index }) => {
                     backgroundColor: 'rgb(140, 0, 55)',
                     borderBottom: '3px solid rgb(105, 0, 40)',
                     borderRadius: '8px',
-                    marginTop: '1.4vh',
+                    margin: 'auto',
                     cursor: 'pointer'
                 }}>
                     <p>Challenge</p>
