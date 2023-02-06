@@ -84,7 +84,7 @@ def seed_users():
         {"user_name": "Deadbot", "user_email": "deadbot@gmail.com", "password": "password", "level": "50", "high_score": "1128", "points": "110009", "points_balance": "110009", "words": "23166", "longest_word": "VINDICATION", "tiles_cleared": "52304", "lives": "1", "wins": "188", "losses": "100", "bombardier": "297", "stone_crusher": "304", "gold_miner": "283", "word_smith": "203", "void_master": "295", "league_name": "Cosmic"},
 
         #28
-        {"user_name": "Thesanaut", "user_email": "thesanaut@gmail.com", "password": "password", "level": "50", "high_score": "1033", "points": "118492", "points_balance": "118492", "words": "26166", "longest_word": "TRANSITIONAL", "tiles_cleared": "70484", "lives": "1", "wins": "239", "losses": "194", "bombardier": "340", "stone_crusher": "367", "gold_miner": "339", "word_smith": "248", "void_master": "303", "league_name": "Cosmic"},
+        {"user_name": "Thesanater", "user_email": "thesanater@gmail.com", "password": "password", "level": "50", "high_score": "1033", "points": "118492", "points_balance": "118492", "words": "26166", "longest_word": "TRANSITIONAL", "tiles_cleared": "70484", "lives": "1", "wins": "239", "losses": "194", "bombardier": "340", "stone_crusher": "367", "gold_miner": "339", "word_smith": "248", "void_master": "303", "league_name": "Cosmic"},
 
         #29
         {"user_name": "Verona", "user_email": "verona@gmail.com", "password": "password", "level": "50", "high_score": "1287", "points": "133678", "points_balance": "133678", "words": "30912", "longest_word": "FLEXIBILITY", "tiles_cleared": "88399", "lives": "1", "wins": "397", "losses": "231", "bombardier": "383", "stone_crusher": "402", "gold_miner": "376", "word_smith": "234", "void_master": "372", "league_name": "Cosmic"},
@@ -92,8 +92,8 @@ def seed_users():
         #30
         {"user_name": "Webula", "user_email": "webula@gmail.com", "password": "password", "level": "50", "high_score": "2487", "points": "159713", "points_balance": "159713", "words": "43219", "longest_word": "CRYPTOGRAPHICAL", "tiles_cleared": "138948", "lives": "1", "wins": "254", "losses": "88", "bombardier": "573", "stone_crusher": "689", "gold_miner": "538", "word_smith": "314", "void_master": "583", "league_name": "Cosmic"},
 
-        # # New Trophy Testing Seeders
-        # #31
+        # New Trophy Testing Seeders
+        # 31
         # {"user_name": "TrophyTest1", "user_email": "trophytest1@gmail.com", "password": "password", "level": "1", "high_score": "0", "points": "0", "points_balance": "0", "words": "0", "longest_word": "", "tiles_cleared": "0", "lives": "1", "wins": "0", "losses": "0", "bombardier": "50", "stone_crusher": "0", "gold_miner": "0", "word_smith": "0", "void_master": "0", "league_name": "Bronze"},
         # #32
         # {"user_name": "TrophyTest2", "user_email": "trophytest2@gmail.com", "password": "password", "level": "1", "high_score": "0", "points": "0", "points_balance": "0", "words": "0", "longest_word": "", "tiles_cleared": "0", "lives": "1", "wins": "0", "losses": "0", "bombardier": "0", "stone_crusher": "50", "gold_miner": "0", "word_smith": "0", "void_master": "0", "league_name": "Bronze"},

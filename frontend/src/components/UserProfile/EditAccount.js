@@ -182,6 +182,11 @@ const EditAccount = () => {
                             <div
                             className='edit-account-btns'
                             onClick={async () => {
+                                if (localStorage.getItem('email') && (user.email.toLowerCase() === localStorage.getItem('email').toLowerCase())) {
+                                    localStorage.removeItem('email');
+                                    localStorage.removeItem('password');
+                                };
+
                                 await dispatch(clearErrors());
                                 await dispatch(editUserAccountInfo(user.user_id, userName, email.toLowerCase(), password));
                                 await setSubmitted(true);
@@ -227,7 +232,7 @@ const EditAccount = () => {
                         };
 
                         if (clickedDeleteCount > 1) {
-                            if (user.email.toLowerCase() === localStorage.getItem('email').toLowerCase()) {
+                            if (localStorage.getItem('email') && (user.email.toLowerCase() === localStorage.getItem('email').toLowerCase())) {
                                 localStorage.removeItem('email');
                                 localStorage.removeItem('password');
                             };

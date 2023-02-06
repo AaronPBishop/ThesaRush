@@ -103,8 +103,8 @@ def unauthorized():
 # ? Random Account Creation ********************************************************************
 def create_random_username(usernames):
     rand_username = ''
-    rand_len = random.randint(3, 10)
-    chars = ['A', 'E', 'I', 'O', 'U', 'Y', 'B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'R', 'S', 'T', 'V', 'W', 'X', 'Z', 'Q', 0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    rand_len = random.randint(6, 10)
+    chars = ['A', 'E', 'I', 'O', 'U', 'Y', 'B', 'C', 'D', 'H', 'J', 'K', 'L', 'M', 'P', 'R', 'T', 'V', 'W', 'X', 'Z', 'Q', 0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
     for i in range (0, rand_len):
         random_index = random.randint(0, len(chars)-1)
@@ -119,7 +119,7 @@ def create_random_username(usernames):
 def create_random_password():
     rand_password = ''
     rand_len = random.randint(8, 12)
-    chars = ['A', 'E', 'I', 'O', 'U', 'Y', 'B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'R', 'S', 'T', 'V', 'W', 'X', 'Z', 'Q', 0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    chars = ['A', 'E', 'I', 'O', 'U', 'Y', 'B', 'C', 'D', 'H', 'J', 'K', 'L', 'M', 'P', 'R', 'T', 'V', 'W', 'X', 'Z', 'Q', 0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
     for i in range (0, rand_len):
         random_index = random.randint(0, len(chars)-1)

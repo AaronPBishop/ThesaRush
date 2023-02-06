@@ -131,7 +131,7 @@ const GameOver = ({ points, numWords, longestWord, tilesCleared, bombardier, sto
                     border: '2px solid rgb(10, 255, 100)',
                     borderRadius: '8px',
                     width: '36vw',
-                    marginTop: '-3vh',
+                    marginTop: '-4vh',
                     cursor: 'pointer'
                 }}>
                     <Trophy style={{color: 'gold', width: '2vw'}}>
@@ -148,7 +148,7 @@ const GameOver = ({ points, numWords, longestWord, tilesCleared, bombardier, sto
                 </div>
             </div>
 
-            <p id='gameover-header'>Game Over!</p>
+            <p id='gameover-header' style={{marginTop: challenge.inChallenge ? '6vh' : '8vh', marginBottom: !challenge.inChallenge && '12vh'}}>Game Over!</p>
 
             <div
             style={{
@@ -163,7 +163,13 @@ const GameOver = ({ points, numWords, longestWord, tilesCleared, bombardier, sto
                 <ChallengeStatus />
             </div>
 
-            <div id='stats-box'>
+            <div 
+            id='stats-box'
+            style={{
+                height: difficulty === 'training' || difficulty === 'easy' ? '35.5vh' : '41vh',
+                marginTop: difficulty === 'training' || difficulty === 'easy' ? '-12vh' : '-14vh',
+                marginBottom: challenge.inChallenge ? '2vh' : '4vh'
+            }}>
                 <p>
                     Final Score: <b>{points}</b>
                 </p>

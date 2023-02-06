@@ -23,7 +23,8 @@ const ChallengeStatus = () => {
             height: '14vh',
             borderBottom: '4px solid rgb(105, 0, 40)',
             borderRadius: '12px',
-            lineHeight: '6vh'
+            lineHeight: '6vh',
+            marginBottom: '4vh'
         }}>
             <div style={{textAlign: 'center'}}>
                 <b>

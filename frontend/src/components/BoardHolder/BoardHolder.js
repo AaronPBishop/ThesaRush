@@ -134,12 +134,12 @@ const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmit
         return () => document.removeEventListener('keydown', keyDownHandler);
     }, []);
 
-    useEffect(() => {
-        if (bombardier > 0) {
+    const dispatchBadgeActions = (badgeType, badgeName) => {
+        if (badgeType > 0) {
             dispatch(addToScore(30));
             setIsValid(true);
             setEarnedBadge(true);
-            setCurrBadge('bombardier');
+            setCurrBadge(badgeName);
 
             const timer = setTimeout(() => {
                 dispatch(resetPoints());
@@ -149,79 +149,13 @@ const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmit
 
             return () => clearTimeout(timer);
         };
-    }, [bombardier]);
+    };
 
-    useEffect(() => {
-        if (stoneCrusher > 0) {
-            dispatch(addToScore(30));
-            setIsValid(true);
-            setEarnedBadge(true);
-            setCurrBadge('stoneCrusher');
-            
-            const timer = setTimeout(() => {
-                dispatch(resetPoints());
-                setIsValid(false);
-                setEarnedBadge(false);
-                setCurrBadge('');
-            }, 1000);
-        
-            return () => clearTimeout(timer);
-        };
-    }, [stoneCrusher]);
-
-    useEffect(() => {
-        if (goldMiner > 0) {
-            dispatch(addToScore(30));
-            setIsValid(true);
-            setEarnedBadge(true);
-            setCurrBadge('goldMiner');
-            
-            const timer = setTimeout(() => {
-                dispatch(resetPoints());
-                setIsValid(false);
-                setEarnedBadge(false);
-                setCurrBadge('');
-            }, 1000);
-        
-            return () => clearTimeout(timer);
-        };
-    }, [goldMiner]);
-
-    useEffect(() => {
-        if (wordSmith > 0) {
-            dispatch(addToScore(30));
-            setIsValid(true);
-            setEarnedBadge(true);
-            setCurrBadge('wordSmith');
-            
-            const timer = setTimeout(() => {
-                dispatch(resetPoints());
-                setIsValid(false);
-                setEarnedBadge(false);
-                setCurrBadge('');
-            }, 1000);
-        
-            return () => clearTimeout(timer);
-        };
-    }, [wordSmith]);
-
-    useEffect(() => {
-        if (voidMaster > 0) {
-            dispatch(addToScore(30));
-            setIsValid(true);
-            setEarnedBadge(true);
-            setCurrBadge('voidMaster');
-            
-            const timer = setTimeout(() => {
-                dispatch(resetPoints());
-                setIsValid(false);
-                setEarnedBadge(false);
-                setCurrBadge('');
-            }, 1000);
-        
-            return () => clearTimeout(timer);
-        };
-    }, [voidMaster]);
+    useEffect(() => {dispatchBadgeActions(bombardier, 'bombardier')}, [bombardier]);
+    useEffect(() => {dispatchBadgeActions(stoneCrusher, 'stoneCrusher')}, [stoneCrusher]);
+    useEffect(() => {dispatchBadgeActions(goldMiner, 'goldMiner')}, [goldMiner]);
+    useEffect(() => {dispatchBadgeActions(wordSmith, 'wordSmith')}, [wordSmith]);
+    useEffect(() => {dispatchBadgeActions(voidMaster, 'voidMaster')}, [voidMaster]);
     
     return (
         <div id='main-content'>
