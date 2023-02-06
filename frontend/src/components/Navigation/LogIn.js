@@ -19,12 +19,12 @@ const LogIn = ({ loggedIn }) => {
     return (
         <div 
         style={{minWidth: '8vw', maxWidth: '8vw'}}
-        onClick={() => {
+        onClick={async () => {
             if (menu.clickedSignUp === true || menu.clickedLeague === true) {
-                if (errors.length) dispatch(clearErrors());
-                dispatch(setClickedSignUp(false));
-                dispatch(setClickedLeague(false));
-                dispatch(setClickedLogIn(true));
+                await dispatch(clearErrors());
+                await dispatch(setClickedSignUp(false));
+                await dispatch(setClickedLeague(false));
+                await dispatch(setClickedLogIn(true));
 
                 return;
             };
