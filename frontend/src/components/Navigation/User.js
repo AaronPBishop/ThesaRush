@@ -24,7 +24,7 @@ const User = ({ userName }) => {
 
     return (
         <div 
-        style={{minWidth: '6vw', maxWidth: '14vw'}}
+        style={{minWidth: '8vw', maxWidth: '8vw'}}
         onClick={() => {
             dispatch(setClickedLeague(false));
             menu.clickedProfile === false ? dispatch(setClickedProfile(true)) : dispatch(setClickedProfile(false));

@@ -18,7 +18,7 @@ const LogIn = ({ loggedIn }) => {
 
     return (
         <div 
-        style={{minWidth: '6vw', maxWidth: '6vw'}}
+        style={{minWidth: '8vw', maxWidth: '8vw'}}
         onClick={() => {
             if (menu.clickedSignUp === true || menu.clickedLeague === true) {
                 if (errors.length) dispatch(clearErrors());

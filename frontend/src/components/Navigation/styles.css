@@ -4,10 +4,14 @@
     background-color: rgb(140, 0, 55);
     font-size: 18px;
 
+    height: 3.5vh;
+
     padding: 0.5vw;
 
-    border: 4px solid transparent;
+    border: none;
     border-bottom: 3px solid rgb(105, 0, 40);
+
+    line-height: 3.8vh;
 
     border-radius: 0px;
     border-bottom-left-radius: 6px;

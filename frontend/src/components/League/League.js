@@ -45,7 +45,7 @@ const League = () => {
     }, [clickedLeague]);
 
     useEffect(() => {
-        if (!user.user_id) dispatch(fetchLeagueData(currLeague));
+        if (!user.user_id && currLeague !== undefined) dispatch(fetchLeagueData(currLeague));
         if (user.user_id && currLeague !== undefined) dispatch(fetchLeagueData(currLeague));
     }, [rerender, currLeague]);
 

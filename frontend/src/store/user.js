@@ -113,6 +113,23 @@ export const signUpUserThunk = (userName, email, password) => async (dispatch) =
 };
 
 
+export const createRandomUser = () => async (dispatch) => {
+    const request = await fetch(`/api/auth/signup/random`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({})
+    });
+
+    const response = await request.json();
+
+    if (request.ok) {
+        dispatch(fetchUserData(response.id));
+
+        return null;
+    };
+};
+
+
 export const logOutUserThunk = () => async (dispatch) => {
     await fetch(`/api/auth/logout`, {
         method: 'GET'

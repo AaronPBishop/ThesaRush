@@ -11,7 +11,7 @@ const LogOut = ({ hidden }) => {
 
     return (
         <div 
-        style={{display: menu.clickedChallenges === true ? 'none' : 'block', visibility: hidden ? 'hidden' : 'visible', minWidth: '6vw', maxWidth: '6vw'}}
+        style={{display: menu.clickedChallenges === true ? 'none' : 'block', visibility: hidden ? 'hidden' : 'visible', minWidth: '8vw', maxWidth: '8vw'}}
         onClick={() => dispatch(logOutUserThunk())}
         className="navigation-buttons">
             Log Out

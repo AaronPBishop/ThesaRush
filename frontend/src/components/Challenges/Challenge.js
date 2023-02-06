@@ -326,7 +326,6 @@ const Challenge = ({ id, type, sender, receiver, time, difficulty, completed, re
                                             if (difficulty === null) await dispatch(setDifficulty('rush'));
                                             if (difficulty !== null) await dispatch(setDifficulty(difficulty));
 
-                                            
                                             await history.push(`/game/${difficulty === null ? 'rush' : difficulty}`);
 
                                             await dispatch(setClickedProfile(false));
