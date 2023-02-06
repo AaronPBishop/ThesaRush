@@ -149,7 +149,7 @@ def create_random_user():
 
     new_user = User(
         user_name = random_username,
-        user_email = random_email,
+        user_email = random_email.lower(),
         password = random_password,
         level = 0,
         high_score = 0,
@@ -173,4 +173,4 @@ def create_random_user():
     db.session.commit()
     login_user(new_user)
 
-    return {'id': new_user.id, 'status': 200}, 200
+    return {'id': new_user.id, 'email': random_email.lower(), 'password': random_password, 'status': 200}, 200

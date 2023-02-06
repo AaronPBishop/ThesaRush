@@ -61,18 +61,33 @@ def redeem_challenge():
     queried_user = User.query.get_or_404(req_data['playerId'])
 
     points_dict = {
-        60000: 500,
-        120000: 650,
-        180000: 800
+        60000: {
+            'medium': 400,
+            'hard': 500,
+            'rush': 600
+        },
+        120000: {
+            'medium': 600,
+            'hard': 700,
+            'rush': 800
+        },
+        180000: {
+            'medium': 800,
+            'hard': 900,
+            'rush': 1000
+        }
     }
 
-    queried_user.points += points_dict[queried_challenge.time]
-    queried_user.points_balance += points_dict[queried_challenge.time]
+    if not queried_challenge.difficulty:
+        queried_challenge.difficulty = 'rush'
+
+    queried_user.points += points_dict[queried_challenge.time][queried_challenge.difficulty]
+    queried_user.points_balance += points_dict[queried_challenge.time][queried_challenge.difficulty]
     queried_challenge.redeemed = True
 
     db.session.commit()
 
-    return {'points': points_dict[queried_challenge.time]}
+    return {'points': points_dict[queried_challenge.time][queried_challenge.difficulty]}
 
 
 @challenge_routes.route('/edit/<id>', methods=['PUT'])

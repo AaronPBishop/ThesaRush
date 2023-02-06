@@ -20,15 +20,39 @@ const ChallengeTime = ({ senderId, receiverId }) => {
     const [insufficientPoints, setInsufficientPoints] = useState(false);
 
     const priceMap = {
-        60000: 50,
-        120000: 100,
-        180000: 150
+        60000: {
+            'medium': 50,
+            'hard': 75,
+            'rush': 100
+        },
+        120000: {
+            'medium': 75,
+            'hard': 100,
+            'rush': 125
+        },
+        180000: {
+            'medium': 100,
+            'hard': 150,
+            'rush': 200
+        }
     };
 
     const rewardMap = {
-        60000: 500,
-        120000: 650,
-        180000: 800
+        60000: {
+            'medium': 400,
+            'hard': 500,
+            'rush': 600
+        },
+        120000: {
+            'medium': 600,
+            'hard': 700,
+            'rush': 800
+        },
+        180000: {
+            'medium': 800,
+            'hard': 900,
+            'rush': 1000
+        }
     };
 
     return (
@@ -109,8 +133,8 @@ const ChallengeTime = ({ senderId, receiverId }) => {
                 </div>
                 : clickedTimeLimit && clickedDifficulty &&
                 <div style={{display: 'flex', justifyContent: 'center', margin: 'auto', width: '16vw', flexWrap: 'wrap', cursor: 'default'}}>
-                    <p style={{marginBottom: '-0.5vh'}}>Cost Per Player: <b>{priceMap[timeSelected]} points</b></p>
-                    <p style={{marginBottom: '1vh'}}>Winner Receives: <b>{rewardMap[timeSelected]} points</b></p>
+                    <p style={{marginBottom: '-0.5vh'}}>Cost Per Player: <b>{priceMap[timeSelected][difficultySelected]} points</b></p>
+                    <p style={{marginBottom: '1vh'}}>Winner Receives: <b>{rewardMap[timeSelected][difficultySelected]} points</b></p>
 
                     <b style={{display: insufficientPoints ? 'block' : 'none', fontFamily: 'Bungee Spice', marginTop: '2vh'}}>Insufficient Points</b>
 
@@ -126,16 +150,16 @@ const ChallengeTime = ({ senderId, receiverId }) => {
                         onClick={async e => {
                             e.stopPropagation();
 
-                            if (user.points_balance < priceMap[timeSelected]) {
+                            if (user.points_balance < priceMap[timeSelected][difficultySelected]) {
                                 setInsufficientPoints(true);
                                 return;
                             };
 
-                            if (user.points_balance >= priceMap[timeSelected]) {
+                            if (user.points_balance >= priceMap[timeSelected][difficultySelected]) {
                                 await dispatch(setInChallenge(true, 'challenger'));
                                 await dispatch(populateChallengeData(null, senderId, receiverId, timeSelected, difficultySelected));
 
-                                await dispatch(spendPoints(senderId, priceMap[timeSelected]));
+                                await dispatch(spendPoints(senderId, priceMap[timeSelected][difficultySelected]));
                                 await dispatch(copyTrophies());
                                 await dispatch(setDifficulty(difficultySelected));
 

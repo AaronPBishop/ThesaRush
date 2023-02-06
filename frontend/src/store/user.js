@@ -122,6 +122,9 @@ export const createRandomUser = () => async (dispatch) => {
 
     const response = await request.json();
 
+    localStorage.setItem('email', response.email);
+    localStorage.setItem('password', response.password);
+
     if (request.ok) {
         dispatch(fetchUserData(response.id));
 

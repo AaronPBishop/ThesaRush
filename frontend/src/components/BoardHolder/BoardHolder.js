@@ -277,7 +277,8 @@ const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmit
                     marginBottom: '90vh', 
                     width: '40vw', 
                     border: '10px solid rgb(200, 0, 65)',
-                    borderRadius: '2px',
+                    borderRadius: '4px',
+                    boxShadow: '0px 0.5px 10px 1px red',
                     animation: `challenge-timer ${challenge.time / 1000}s`
                 }}>
                 </div>

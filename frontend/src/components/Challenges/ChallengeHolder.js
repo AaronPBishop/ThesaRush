@@ -70,12 +70,14 @@ const ChallengeHolder = () => {
                         display: sentNotifications !== null && sentNotifications > 0 ? 'block' : 'none',
                         boxShadow: '0px 0px 4px 0.1px black',
                         backgroundColor: 'rgb(30, 0, 90)',
+                        lineHeight: '3.4vh',
                         width: '1.5vw',
+                        height: '1.5vw',
                         padding: '0.5vh',
                         borderRadius: '100px',
                         position: 'absolute',
-                        marginTop: '-1.8vh',
-                        marginLeft: '-0.9vw'
+                        marginTop: '-1.3vh',
+                        marginLeft: '-0.7vw'
                     }}>
                         <b style={{fontSize: '16px'}}>{sentNotifications}</b>
                     </div>
@@ -97,12 +99,14 @@ const ChallengeHolder = () => {
                         display: receivedNotifications !== null && receivedNotifications > 0 ? 'block' : 'none',
                         boxShadow: '0px 0px 4px 0.1px black',
                         backgroundColor: 'rgb(30, 0, 90)',
+                        lineHeight: '3.4vh',
                         width: '1.5vw',
+                        height: '1.5vw',
                         padding: '0.5vh',
                         borderRadius: '100px',
                         position: 'absolute',
-                        marginTop: '-1.8vh',
-                        marginLeft: '10.9vw'
+                        marginTop: '-1.3vh',
+                        marginLeft: '10.7vw'
                     }}>
                         <b style={{fontSize: '16px'}}>{receivedNotifications}</b>
                     </div>

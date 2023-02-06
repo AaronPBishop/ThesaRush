@@ -252,7 +252,7 @@ const GameOver = ({ points, numWords, longestWord, tilesCleared, bombardier, sto
                         width: '42vw',
                         fontSize: '20px',
                         margin: 'auto',
-                        marginTop: challenge.inChallenge === true ? '2vh' : '6vh',
+                        marginTop: challenge.inChallenge === true ? '2vh' : '4vh',
                         color: 'rgb(95, 255, 0)',
                         backgroundColor: 'transparent',
                         border: 'none',

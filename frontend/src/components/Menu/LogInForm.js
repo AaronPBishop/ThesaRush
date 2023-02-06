@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { loginUserThunk } from '../../store/user.js';
 import { setClickedLogIn } from '../../store/menu.js';
 
+import { Eye } from '@styled-icons/heroicons-solid/Eye';
+
 import './styles.css'
 
 const LogInForm = () => {
@@ -13,6 +15,7 @@ const LogInForm = () => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [clickedViewPass, setClickedViewPass] = useState(false);
     const [submitted, setSubmitted] = useState(false);
     const [errors, setErrors] = useState([]);
 
@@ -42,57 +45,70 @@ const LogInForm = () => {
         style={{
             display: 'flex',
             justifyContent: 'center',
+            flexWrap: 'wrap',
             textAlign: 'center',
             margin: 'auto',
             marginTop: '18vh',
-            padding: '2vw',
-            width: '16vw',
+            paddingTop: '2vw',
+            paddingBottom: '2vw',
+            width: '20vw',
             backgroundColor: 'rgb(20, 20, 20)',
             border: '2px solid #FFD700',
             borderRadius: '12px'
         }}>
-            <div>
-                <div
+            <div
+            style={{
+                display: 'flex',
+                justifyContent: 'center',
+                flexWrap: 'wrap',
+                textAlign: 'center',
+                fontFamily: 'Roboto',
+                margin: 'auto',
+                marginBottom: '2vh',
+                width: '16vw'
+            }}>
+                {errors.length > 0 && errors}
+            </div>
+
+            <label className='signup-inputs' style={{width: '18vw'}}>
+                <input
+                  onKeyDown={handleKeyDown}
+                  type="text"
+                  className="signup-form-inputs"
+                  value={email}
+                  placeholder='Email'
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+            </label>
+
+            <label className='signup-inputs' style={{width: '18vw'}}>
+                <Eye
+                onClick={() => setClickedViewPass(clicked => !clicked)}
                 style={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    textAlign: 'center',
-                    fontFamily: 'Roboto',
-                    margin: 'auto',
-                    marginBottom: '2vh',
-                    maxWidth: '12vw'
+                    width: '1.2vw',
+                    marginRight: '0.4vw',
+                    color: 'rgb(225, 225, 225)',
+                    cursor: 'pointer'
                 }}>
-                    {errors.length > 0 && errors}
-                </div>
-                <label className='signup-inputs'>
-                    <input
-                      onKeyDown={handleKeyDown}
-                      type="text"
-                      className="signup-form-inputs"
-                      value={email}
-                      placeholder='Email'
-                      onChange={(e) => setEmail(e.target.value)}
-                      required
-                    />
-                </label>
+                </Eye>
 
-                <label className='signup-inputs'>
-                    <input
-                      onKeyDown={handleKeyDown}
-                      type="password"
-                      className="signup-form-inputs"
-                      value={password}
-                      placeholder='Password'
-                      onChange={(e) => setPassword(e.target.value)}
-                      required
-                    />
-                </label>
+                <input
+                  onKeyDown={handleKeyDown}
+                  type={!clickedViewPass && 'password'}
+                  className="signup-form-inputs"
+                  value={password}
+                  placeholder='Password'
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  style={{marginRight: '1.6vw'}}
+                />
+            </label>
 
-                <div 
-                onClick={() => setSubmitted(true)}
-                className='signup-button'>
-                    Log In
-                </div>
+            <div 
+            onClick={() => setSubmitted(true)}
+            className='signup-button'>
+                Log In
             </div>
         </div>
     );

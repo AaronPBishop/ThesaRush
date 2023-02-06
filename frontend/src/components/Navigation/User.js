@@ -36,12 +36,14 @@ const User = ({ userName }) => {
                 display: totalNotifications !== null && totalNotifications > 0 ? 'block' : 'none',
                 boxShadow: '0px 0px 4px 0.1px black',
                 backgroundColor: 'rgb(30, 0, 90)',
-                width: '1.2vw',
+                lineHeight: '3.4vh',
+                width: '1.6vw',
+                height: '1.6vw',
                 padding: '0.2vh',
                 borderRadius: '100px',
                 position: 'absolute',
-                marginTop: '-1.4vh',
-                marginLeft: '-0.8vw'
+                marginTop: '-1.1vh',
+                marginLeft: '-0.9vw'
             }}>
                 <b style={{fontSize: '14px'}}>{totalNotifications}</b>
             </div>

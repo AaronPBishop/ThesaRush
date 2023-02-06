@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { signUpUserThunk } from '../../store/user.js';
 import { setClickedSignUp } from '../../store/menu.js';
 
+import { Eye } from '@styled-icons/heroicons-solid/Eye';
+
 import './styles.css'
 
 const SignUpForm = () => {
@@ -14,6 +16,7 @@ const SignUpForm = () => {
     const [userName, setUserName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [clickedViewPass, setClickedViewPass] = useState(false);
 
     const [submitted, setSubmitted] = useState(false);
     const [errors, setErrors] = useState([]);
@@ -88,8 +91,9 @@ const SignUpForm = () => {
             flexWrap: 'wrap',
             margin: 'auto',
             marginTop: '18vh',
-            padding: '2vw',
-            width: '16vw',
+            paddingTop: '2vw',
+            paddingBottom: '2vw',
+            width: '20vw',
             backgroundColor: 'rgb(20, 20, 20)',
             border: '2px solid #FFD700',
             borderRadius: '12px'
@@ -98,7 +102,7 @@ const SignUpForm = () => {
             style={{
                 fontFamily: 'Roboto',
                 marginBottom: '2vh',
-                maxWidth: '12vw',
+                width: '16vw',
             }}>
                 {errors.length > 0 && errors}
             </div>
@@ -127,15 +131,26 @@ const SignUpForm = () => {
                 />
             </label>
 
-            <label className='signup-inputs'>
+            <label className='signup-inputs' style={{width: '18vw'}}>
+                <Eye
+                onClick={() => setClickedViewPass(clicked => !clicked)}
+                style={{
+                    width: '1.2vw',
+                    marginRight: '0.4vw',
+                    color: 'rgb(225, 225, 225)',
+                    cursor: 'pointer'
+                }}>
+                </Eye>
+
                 <input
                   onKeyDown={handleKeyDown}
-                  type="password"
+                  type={!clickedViewPass && 'password'}
                   className="signup-form-inputs"
                   value={password}
                   placeholder='Password'
                   onChange={(e) => setPassword(e.target.value)}
                   required
+                  style={{marginRight: '1.6vw'}}
                 />
             </label>
 

@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { setClickedSignUp, setClickedLogIn, setClickedLeague } from '../../store/menu.js';
-import { clearErrors, createRandomUser } from '../../store/user.js';
+import { clearErrors, createRandomUser, loginUserThunk } from '../../store/user.js';
 
 import './styles.css'
 
@@ -38,7 +38,11 @@ const SignUp = ({ loggedIn }) => {
 
             <div 
             style={{position: 'absolute', minWidth: '8vw', maxWidth: '8vw', borderTopRightRadius: '6px'}}
-            onClick={() => {dispatch(createRandomUser())}}
+            onClick={() => {
+                if (localStorage.getItem('email')) dispatch(loginUserThunk(localStorage.getItem('email').toLowerCase(), localStorage.getItem('password')));
+
+                if (!localStorage.getItem('email')) dispatch(createRandomUser());
+            }}
             className="navigation-buttons">
                 Anonymize
             </div>

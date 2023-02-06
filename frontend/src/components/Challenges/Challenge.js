@@ -28,15 +28,39 @@ const Challenge = ({ id, type, sender, receiver, time, difficulty, completed, re
     };
 
     const priceMap = {
-        60000: 50,
-        120000: 100,
-        180000: 150
+        60000: {
+            'medium': 50,
+            'hard': 75,
+            'rush': 100
+        },
+        120000: {
+            'medium': 75,
+            'hard': 100,
+            'rush': 125
+        },
+        180000: {
+            'medium': 100,
+            'hard': 150,
+            'rush': 200
+        }
     };
 
     const rewardMap = {
-        60000: 500,
-        120000: 650,
-        180000: 800
+        60000: {
+            'medium': 400,
+            'hard': 500,
+            'rush': 600
+        },
+        120000: {
+            'medium': 600,
+            'hard': 700,
+            'rush': 800
+        },
+        180000: {
+            'medium': 800,
+            'hard': 900,
+            'rush': 1000
+        }
     };
 
     const mapStarColor = {
@@ -296,8 +320,8 @@ const Challenge = ({ id, type, sender, receiver, time, difficulty, completed, re
                                 border: '2px solid rgb(120, 120, 255)',
                                 borderRadius: '12px',
                             }}>
-                                <p style={{marginBottom: '0.5vh'}}>Cost Per Player: <b>{priceMap[time]} points</b></p>
-                                <p style={{marginBottom: '1vh'}}>Winner Receives: <b>{rewardMap[time]} points</b></p>
+                                <p style={{marginBottom: '0.5vh'}}>Cost Per Player: <b>{priceMap[time][difficulty]} points</b></p>
+                                <p style={{marginBottom: '1vh'}}>Winner Receives: <b>{rewardMap[time][difficulty]} points</b></p>
                                 <b style={{display: insufficientPoints ? 'block' : 'none', fontFamily: 'Bungee Spice', marginTop: '4vh'}}>Insufficient Points</b>
 
                                 <div style={{display: 'flex', justifyContent: 'space-evenly'}}>
@@ -311,16 +335,16 @@ const Challenge = ({ id, type, sender, receiver, time, difficulty, completed, re
                                     <div 
                                     className="challenge-selections"
                                     onClick={async () => {
-                                        if (user.points_balance < priceMap[time]) {
+                                        if (user.points_balance < priceMap[time][difficulty]) {
                                             setInsufficientPoints(true);
                                             return;
                                         };
 
-                                        if (user.points_balance >= priceMap[time]) {
+                                        if (user.points_balance >= priceMap[time][difficulty]) {
                                             await dispatch(setInChallenge(true, 'challengee'));
                                             await dispatch(populateChallengeData(id, sender.id, receiver.id, time, difficulty));
 
-                                            await dispatch(spendPoints(user.user_id, priceMap[time]));
+                                            await dispatch(spendPoints(user.user_id, priceMap[time][difficulty]));
                                             await dispatch(copyTrophies());
 
                                             if (difficulty === null) await dispatch(setDifficulty('rush'));

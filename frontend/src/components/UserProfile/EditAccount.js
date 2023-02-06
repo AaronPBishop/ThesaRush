@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { editUserAccountInfo, deleteUserData, fetchUserData, clearErrors } from '../../store/user.js';
 import { setClickedEditAccount, setClickedProfile } from '../../store/menu.js';
 
+import { Eye } from '@styled-icons/heroicons-solid/Eye';
+
 const EditAccount = () => {
     const dispatch = useDispatch();
 
@@ -13,6 +15,7 @@ const EditAccount = () => {
     const [userName, setUserName] = useState(user.user_name);
     const [email, setEmail] = useState(user.email);
     const [password, setPassword] = useState('');
+    const [clickedViewPass, setClickedViewPass] = useState(false);
 
     const [errors, setErrors] = useState([]);
     const [submitted, setSubmitted] = useState(false);
@@ -88,8 +91,9 @@ const EditAccount = () => {
             flexWrap: 'wrap',
             margin: 'auto',
             marginTop: '18vh',
-            padding: '2vw',
-            width: '16vw',
+            paddingTop: '2vw',
+            paddingBottom: '2vw',
+            width: '20vw',
             height: '48vh',
             backgroundColor: 'rgb(20, 20, 20)',
             border: '2px solid #FFD700',
@@ -97,7 +101,13 @@ const EditAccount = () => {
         }}>
             {
                 clickedDeleteCount < 1 ?
-                <div>
+                <div
+                style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    flexWrap: 'wrap',
+                    margin: 'auto',
+                }}>
                     <div
                     style={{
                         display: errors.length > 0 ? 'block' : 'none',
@@ -108,7 +118,6 @@ const EditAccount = () => {
                         {errors.length > 0 && errors}
                     </div>
                 
-                    <form>
                         <div style={{display: 'flex', justifyContent: 'center', marginTop: '1vh', marginBottom: '3vh'}}>
                             <div
                             className='edit-account-btns'
@@ -146,14 +155,25 @@ const EditAccount = () => {
                             />
                         </label>
                 
-                        <label className='signup-inputs'>
+                        <label className='signup-inputs' style={{width: '18vw'}}>
+                            <Eye
+                            onClick={() => setClickedViewPass(clicked => !clicked)}
+                            style={{
+                                width: '1.2vw',
+                                marginRight: '0.4vw',
+                                color: 'rgb(225, 225, 225)',
+                                cursor: 'pointer'
+                            }}>
+                            </Eye>
+
                             <input
-                              type="text"
+                              type={!clickedViewPass && 'password'}
                               className="signup-form-inputs"
                               value={password}
                               placeholder='Password'
                               onChange={(e) => setPassword(e.target.value)}
                               required
+                              style={{marginRight: '1.6vw'}}
                             />
                         </label>
                 
@@ -178,7 +198,6 @@ const EditAccount = () => {
                                 Delete Account
                             </div>
                         </div>
-                    </form>
                 </div>
                 :
                 <div>
