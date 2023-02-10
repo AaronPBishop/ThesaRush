@@ -36,6 +36,7 @@ const Audio = () => {
             style={{
                 cursor: 'pointer',
                 border: 'none',
+                borderRadius: '30vw',
                 background: menu.backgroundColor,
                 color: 'white'
             }}
@@ -53,6 +54,7 @@ const Audio = () => {
             style={{
                 cursor: 'pointer',
                 border: 'none',
+                borderRadius: '30vw',
                 background: menu.backgroundColor,
                 color: 'white'
             }}

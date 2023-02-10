@@ -187,7 +187,7 @@ const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmit
                 width: '26vw',
                 margin: 'auto',
                 fontFamily: 'Bungee Spice, cursive',
-                fontSize: '60px',
+                fontSize: '8vh',
                 lineHeight: '5vh',
                 cursor: 'pointer',
                 textShadow: isHovering ? 'rgb(90, 90, 210) 0px 1px 8px' : 'black 0px 1px 8px'
