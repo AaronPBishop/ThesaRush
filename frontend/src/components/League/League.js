@@ -22,7 +22,7 @@ const League = () => {
         'Silver': ['linear-gradient(to bottom, rgb(174, 162, 162), rgb(117, 130, 131))', 'rgb(80, 100, 110)'],
         'Gold': ['linear-gradient(to bottom, #FACC6B, #FABC3C)', 'rgb(190, 160, 40)'],
         'Ethereal': ['linear-gradient(to bottom, #A4508B, #5F0A87)', 'rgb(125, 10, 125)'],
-        'Galaxy': ['linear-gradient(to bottom, rgb(40, 0, 100), rgb(0, 0, 10))', 'rgb(80, 0, 110)'],
+        'Galaxy': ['linear-gradient(to bottom, rgb(40, 0, 100), rgb(0, 0, 10))', 'rgb(20, 0, 120)'],
         'Cosmic': ['linear-gradient(to bottom, rgba(185, 10, 180, 1) 5%, rgba(250, 35, 155, 1) 35%, rgba(255, 35, 100, 1) 95%', 'rgba(185, 0, 130, 1)']
     };
 
@@ -56,9 +56,9 @@ const League = () => {
             fontFamily: 'Bungee Spice',
             textShadow: '0px 3px 2px black',
             margin: 'auto',
-            marginTop: '14vh',
-            width: '30vw',
-            height: '64vh',
+            marginTop: '12vh',
+            width: '38vw',
+            height: '74vh',
             overflowY: 'auto',
             background: mapBackgroundColor[rankings.league] && mapBackgroundColor[rankings.league][0],
             border: '2px solid #FFD700',
@@ -79,7 +79,7 @@ const League = () => {
                     fontSize: '16px',
                     boxShadow: '0px 1px 4px 1px black',
                     textShadow: 'black 0px 4px 2px',
-                    width: '26vw',
+                    width: '30vw',
                     height: '5vh',
                     cursor: 'pointer'
                 }}>
@@ -110,10 +110,10 @@ const League = () => {
                         display: 'flex', 
                         justifyContent: 'center', 
                         fontFamily: 'Roboto',
-                        border: `3px solid yellow`,
+                        border: `3px solid rgb(120, 120, 255)`,
                         borderRadius: '12px',
-                        width: '20vw', 
-                        height: '50vh',
+                        width: '26vw', 
+                        height: '58vh',
                         backgroundColor: 'black',
                         flexWrap: 'wrap', 
                         margin: 'auto', 
@@ -133,6 +133,7 @@ const League = () => {
                             boxShadow: `0px 0px 4px 2px ${mapBackgroundColor[league][1]}`,
                             border: 'none',
                             borderRadius: '10px',
+                            minWidth: '16vw',
                             margin: 'auto',
                             marginTop: '1.5vh',
                             marginBottom: '1.5vh'

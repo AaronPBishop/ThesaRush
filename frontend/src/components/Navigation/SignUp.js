@@ -19,7 +19,7 @@ const SignUp = ({ loggedIn }) => {
     return (
         <div>
             <div 
-            style={{minWidth: '8vw', maxWidth: '8vw'}}
+            style={{minWidth: '9vw', maxWidth: '9vw'}}
             onClick={async () => {
                 if (menu.clickedLogIn === true || menu.clickedLeague === true) {
                     await dispatch(clearErrors());
@@ -37,7 +37,7 @@ const SignUp = ({ loggedIn }) => {
             </div>
 
             <div 
-            style={{position: 'absolute', minWidth: '8vw', maxWidth: '8vw', borderTopRightRadius: '6px'}}
+            style={{position: 'absolute', minWidth: '9vw', maxWidth: '9vw', borderTopRightRadius: '6px'}}
             onClick={async () => {
                 await dispatch(setClickedLogIn(false));
                 await dispatch(setClickedLeague(false));

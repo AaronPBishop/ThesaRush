@@ -9,15 +9,12 @@
 
     color: white;
 
-    min-height: 89.4vh;
-    max-height: 89.4vh;
-    min-width: 44vw;
-    max-width: 44vw;
+    min-height: 97vh;
+    max-height: 97vh;
+    min-width: 55vw;
+    max-width: 55vw;
     
     box-shadow: 0px 8px 20px rgb(0, 160, 30);
-
-    position: relative;
-    top: 3vh;
 
     border-radius: 25px;
     border: 2px solid rgb(10, 255, 100);
@@ -27,10 +24,13 @@
 
 .menu-buttons {
     border: none;
+
     font-family: 'Roboto';
     font-weight: bold;
     font-size: 24px;
+
     color: white;
+
     background-color: transparent;
     cursor: pointer;
 }
@@ -43,16 +43,16 @@
 .menu-button-divs {
     justify-content: center;
 
-    top: 18vh;
+    top: 20vh;
 
     height: 10vh;
-    width: 16vw;
+    width: 20vw;
 
     border: none;
     border-radius: 6px;
 
     margin: auto;
-    margin-bottom: 4vh;
+    margin-bottom: 5vh;
 
     cursor: pointer;
 }
@@ -99,22 +99,20 @@
     font-family: 'Roboto', sans-serif;
     font-size: 24px;
 
-    line-height: 6vh;
+    line-height: 8vh;
 
     color: white;
 
     list-style: none;
 
     padding: 0.6vw;
-    margin-bottom: 6vh;
-    margin-right: 2.5vw;
+    margin-bottom: 5vh;
 
-    min-width: 12vw;
-    max-width: 12vw;
-    min-height: 6vh;
-    max-height: 6vh;
+    min-width: 16vw;
+    max-width: 16vw;
+    min-height: 8vh;
+    max-height: 8vh;
 
-    border: 2px solid rgb(10, 255, 100);
     border-radius: 12px;
 
     cursor: pointer;
@@ -127,10 +125,10 @@
     line-height: 6vh;
 
     padding: 1vw;
-    margin-bottom: 3vh;
+    margin-bottom: 4vh;
 
-    min-width: 16vw;
-    max-width: 16vw;
+    min-width: 20vw;
+    max-width: 20vw;
 
     border: none;
 
@@ -165,8 +163,8 @@
 
     background-color: rgb(60, 60, 60);
 
-    height: 5vh;
-    width: 14vw;
+    height: 6vh;
+    width: 16vw;
 
     border: none;
     border-radius: 4px;
@@ -181,22 +179,23 @@
     justify-content: center;
 
     font-family: 'Roboto', sans-serif;
+    line-height: 6vh;
 
     background-color: rgb(140, 0, 55);
     font-size: 16px;
 
     margin: auto;
-    margin-top: 2vh;
 
     color: white;
 
-    padding: 0.3vw;
+    min-width: 12vw;
+    max-width: 12vw;
 
-    min-width: 6vw;
-    max-width: 6vw;
+    min-height: 6vh;
+    max-height: 6vh;
 
-    border: 4px solid transparent;
-    border-bottom: 3px solid rgb(105, 0, 40);
+    border: none;
+    border-bottom: 3.5px solid rgb(105, 0, 40);
 
     border-radius: 6px;
     border-bottom-left-radius: 6px;

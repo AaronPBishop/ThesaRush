@@ -93,8 +93,8 @@ const RankedPlayer = ({ score, userName, index }) => {
                 marginBottom: '2vh',
                 border: '2px solid rgb(120, 120, 255)',
                 borderRadius: '12px',
-                minWidth: '24vw',
-                maxWidth: '24vw',
+                minWidth: '32vw',
+                maxWidth: '32vw',
                 maxHeight: '6vh',
                 maxHeight: !clicked && '7vh',
                 cursor: 'pointer'
@@ -151,7 +151,7 @@ const RankedPlayer = ({ score, userName, index }) => {
                 </div>
     
                 
-               <div style={{display: clicked ? 'block' : 'none', marginTop: '2vh', maxHeight: '50vh', overflowY: 'auto', overflowX: 'hidden'}}>
+               <div style={{display: clicked ? 'block' : 'none', marginTop: '2vh', maxHeight: '56vh', overflowY: 'auto', overflowX: 'hidden'}}>
 
                     <div style={{display: 'flex', justifyContent: 'center', marginBottom: '1vh'}}>
                         <div className='player-headings'>Stats</div>
@@ -160,7 +160,7 @@ const RankedPlayer = ({ score, userName, index }) => {
                         rankings.players[index] &&
                         orderKeys(Object.keys(rankings.players[index])).map((stat, i) => (
                             (!ignore.includes(stat) && !badges.includes(stat)) &&
-                            <div style={{display: 'flex', justifyContent: 'space-between', width: '24vw', margin: 'auto', flexWrap: 'wrap'}} key={i}>
+                            <div style={{display: 'flex', justifyContent: 'space-between', width: '32vw', margin: 'auto', flexWrap: 'wrap'}} key={i}>
                                 <p style={{margin: '1vw'}}>{statsMap[stat]}:</p>
                                 <b style={{margin: '1vw'}}>{rankings.players[index][stat]}</b>
                             </div>
@@ -175,7 +175,7 @@ const RankedPlayer = ({ score, userName, index }) => {
                         <div className='player-headings'>Badges</div>
                     </div>
 
-                    <div style={{display: hasBadges ? 'flex' : 'none', justifyContent: 'center', flexWrap: 'wrap', marginTop: '2.5vh'}}>
+                    <div style={{display: hasBadges ? 'flex' : 'none', justifyContent: 'space-evenly', flexWrap: 'wrap', marginTop: '2.5vh'}}>
                         {
                             rankings.players[index] &&
                             Object.keys(rankings.players[index]).map((stat, i) => (

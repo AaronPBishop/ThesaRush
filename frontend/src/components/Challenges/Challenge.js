@@ -117,7 +117,7 @@ const Challenge = ({ id, type, sender, receiver, time, difficulty, completed, re
                             id='recipient-input' 
                             placeholder='Recipient Username'
                             onChange={e => setRecipientInput(e.target.value)}
-                            style={{display: clickedModify ? 'block' : 'none'}}>
+                            style={{display: clickedModify ? 'block' : 'none', marginLeft: '0.2vw', marginRight: '-0.4vw'}}>
                             </input>
                         </div>
 

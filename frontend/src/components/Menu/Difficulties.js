@@ -37,7 +37,6 @@ const Difficulties = ({ clickedBack }) => {
             <div
             className='difficulty-containers'
             style={{
-                marginTop: '-2vh',
                 backgroundColor: 'rgb(140, 0, 55)', 
                 borderBottom: '4px solid rgb(105, 0, 40)',
                 fontSize: clickedTraining === false ? '24px' : '16px'

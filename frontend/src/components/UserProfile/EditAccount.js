@@ -93,8 +93,8 @@ const EditAccount = () => {
             marginTop: '18vh',
             paddingTop: '2vw',
             paddingBottom: '2vw',
-            width: '20vw',
-            height: '50vh',
+            width: '22vw',
+            height: '52vh',
             backgroundColor: 'rgb(20, 20, 20)',
             border: '2px solid #FFD700',
             borderRadius: '12px'
@@ -156,7 +156,7 @@ const EditAccount = () => {
                             />
                         </label>
                 
-                        <label className='signup-inputs' style={{width: '18vw'}}>
+                        <label className='signup-inputs' style={{width: '20vw'}}>
                             <Eye
                             onClick={() => setClickedViewPass(clicked => !clicked)}
                             style={{
@@ -213,7 +213,7 @@ const EditAccount = () => {
                     style={{
                         display: 'flex',
                         justifyContent: 'center',
-                        marginTop: '4.5vh',
+                        marginTop: '6vh',
                         marginBottom: '6vh'
                     }}>
                         Take Me Back

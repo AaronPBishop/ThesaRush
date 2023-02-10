@@ -93,7 +93,8 @@ const SignUpForm = () => {
             marginTop: '18vh',
             paddingTop: '2vw',
             paddingBottom: '2vw',
-            width: '20vw',
+            width: '24vw',
+            height: '40vh',
             backgroundColor: 'rgb(20, 20, 20)',
             border: '2px solid #FFD700',
             borderRadius: '12px'
@@ -131,7 +132,7 @@ const SignUpForm = () => {
                 />
             </label>
 
-            <label className='signup-inputs' style={{width: '18vw'}}>
+            <label className='signup-inputs' style={{width: '20vw'}}>
                 <Eye
                 onClick={() => setClickedViewPass(clicked => !clicked)}
                 style={{

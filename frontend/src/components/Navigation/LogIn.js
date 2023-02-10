@@ -18,7 +18,7 @@ const LogIn = ({ loggedIn }) => {
 
     return (
         <div 
-        style={{minWidth: '8vw', maxWidth: '8vw'}}
+        style={{minWidth: '9vw', maxWidth: '9vw'}}
         onClick={async () => {
             if (menu.clickedSignUp === true || menu.clickedLeague === true) {
                 await dispatch(clearErrors());

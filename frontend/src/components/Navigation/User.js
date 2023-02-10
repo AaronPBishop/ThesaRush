@@ -25,7 +25,7 @@ const User = ({ userName }) => {
 
     return (
         <div 
-        style={{minWidth: '8vw', maxWidth: '8vw'}}
+        style={{minWidth: '9vw', maxWidth: '9vw'}}
         onClick={() => {
             dispatch(setClickedLeague(false));
             dispatch(clearChallengeRecipient());

@@ -51,7 +51,8 @@ const LogInForm = () => {
             marginTop: '18vh',
             paddingTop: '2vw',
             paddingBottom: '2vw',
-            width: '20vw',
+            width: '24vw',
+            height: '34vh',
             backgroundColor: 'rgb(20, 20, 20)',
             border: '2px solid #FFD700',
             borderRadius: '12px'
@@ -82,7 +83,7 @@ const LogInForm = () => {
                 />
             </label>
 
-            <label className='signup-inputs' style={{width: '18vw'}}>
+            <label className='signup-inputs' style={{width: '20vw', marginTop: '-2vh'}}>
                 <Eye
                 onClick={() => setClickedViewPass(clicked => !clicked)}
                 style={{
