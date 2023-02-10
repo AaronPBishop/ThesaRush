@@ -28,7 +28,7 @@ const Menu = () => {
     const user = useSelector(state => state.user)
 
     useEffect(() => {
-        if (document.documentElement.clientWidth < 950) setShouldDisplay(false);
+        if (document.documentElement.clientWidth < 1100) setShouldDisplay(false);
 
         window.history.pushState(null, null, window.location.href);
         window.onpopstate = () => {

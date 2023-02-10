@@ -6,11 +6,11 @@ const Badge = ({ badgeType, numBadges, type='' }) => {
     const [clickedBadge, setClickedBadge] = useState(false);
 
     const badgeMap = {
-        bombardier: ['💣', 'Bombardier', 'Used 3 bomb tiles'],
-        stoneCrusher: ['🪨', 'Stone Crusher', 'Destroyed 3 stone tiles'],
-        goldMiner: ['🪙', 'Gold Miner', 'Cleared 3 gold tiles'],
+        bombardier: ['💣', 'Bombardier', 'Use 3 bomb tiles'],
+        stoneCrusher: ['🪨', 'Stone Crusher', 'Destroy 3 stone tiles'],
+        goldMiner: ['🪙', 'Gold Miner', 'Clear 3 gold tiles'],
         wordSmith: ['🛠️', 'Word Smith', 'Submit 8+ letter word'],
-        voidMaster: ['🪄', 'Void Master', 'Used 3 void tiles']
+        voidMaster: ['🪄', 'Void Master', 'Use 3 void tiles']
     };
 
     return (

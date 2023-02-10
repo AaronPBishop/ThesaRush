@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const StatBox = ({ statName, statTotal }) => {
-    const [clicked, setClicked] = useState(false);
+    const [clicked, setClicked] = useState(true);
 
     return (
          <div 

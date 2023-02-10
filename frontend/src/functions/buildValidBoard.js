@@ -22,15 +22,15 @@ const checkBoard = (board) => {
         };
     };
 
-    if (vowels < 11 || vowels > 12) return false;
-    if (rares > 1) return false;
+    if (vowels < 14 || vowels > 15) return false;
+    if (rares > 2) return false;
     return true;
 };
 
 const buildValidBoard = () => {
     const board = [];
 
-    for (let i = 0; i < 8; i++) board.push(randomColumn());
+    for (let i = 0; i < 10; i++) board.push(randomColumn());
 
     if (!checkBoard(board)) return buildValidBoard();
     if (checkBoard(board)) return board;

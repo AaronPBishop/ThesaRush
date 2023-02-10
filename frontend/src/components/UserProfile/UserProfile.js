@@ -87,17 +87,18 @@ const UserProfile = () => {
                             display: 'flex',
                             justifyContent: 'center',
                             margin: 'auto',
+                            marginTop: '5vh',
                             flexWrap: 'wrap'
                         }}>
                             <div 
                             style={{
                                 backgroundColor: 'rgb(20, 20, 20)',
-                                marginTop: '8.2vh',
                                 width: '12vw', 
+                                height: '23vh',
                                 border: '2px solid rgb(225, 225, 40)', 
                                 borderRadius: '12px'
                             }}>
-                                <div style={{display: 'flex', justifyContent: 'center', marginBottom: '-3vh'}}>
+                                <div style={{display: 'flex', justifyContent: 'center', marginTop: '1.2vh'}}>
                                     <StarEmphasis
                                     style={{
                                         color: mapStarColor[user.league],
@@ -108,9 +109,11 @@ const UserProfile = () => {
                                     <p style={{marginLeft: '0.2vw', marginRight: '0.4vw'}}>Level: <b>{user.level}</b></p>
                                 </div>
 
-                                <p style={{marginBottom: '-1vh'}}>Lives Available: <b>{user.lives}</b></p>
-                                <p style={{marginBottom: '-1.5vh'}}>Points Balance</p>
-                                <p style={{marginBottom: '1.5vh'}}><b>{user.points_balance}</b></p>
+                                <div style={{marginTop: '-2vh'}}>
+                                    <p>Lives Available: <b>{user.lives}</b></p>
+                                    <p>Points Balance</p>
+                                    <p style={{marginTop: '-1vh'}}><b>{user.points_balance}</b></p>
+                                </div>
                             </div>
 
                             <p style={{fontFamily: 'Bungee Spice', fontSize: '20px', marginBottom: '1vh'}}>League</p>

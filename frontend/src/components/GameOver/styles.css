@@ -1,6 +1,6 @@
 #game-over {
-    min-height: 89.4vh;
-    max-height: 89.4vh;
+    min-height: 89vh;
+    max-height: 89vh;
     min-width: 44vw;
     max-width: 44vw;
     
@@ -23,7 +23,7 @@
     position: relative;
     bottom: 2vh;
 
-    font-size: 80px;
+    font-size: 78px;
 }
 
 #stats-box {

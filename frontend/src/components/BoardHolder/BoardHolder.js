@@ -49,6 +49,8 @@ const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmit
     const [earnedBadge, setEarnedBadge] = useState(false);
     const [currBadge, setCurrBadge] = useState('');
 
+    const [isHovering, setIsHovering] = useState(false);
+
     const submitted = useSelector(state => state.game.statuses.submitted);
 
     const input = useSelector(state => state.game.input);
@@ -160,6 +162,9 @@ const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmit
     return (
         <div id='main-content'>
             <div 
+            id='header-container'
+            onMouseOver={() => setIsHovering(true)}
+            onMouseLeave={() => setIsHovering(false)}
             onClick={e => {
                 if (challenge.inChallenge === true) {
                     if (challenge.isChallenger === true) dispatch(incurrLoss(user.user_id));
@@ -184,7 +189,8 @@ const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmit
                 fontFamily: 'Bungee Spice, cursive',
                 fontSize: '60px',
                 lineHeight: '5vh',
-                cursor: 'pointer'
+                cursor: 'pointer',
+                textShadow: isHovering ? 'rgb(90, 90, 210) 0px 1px 8px' : 'black 0px 1px 8px'
             }}>
                 <div 
                 onClick={e => e.stopPropagation()}
@@ -240,7 +246,7 @@ const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmit
                             <CloseSquare
                             style={{
                                 color: 'rgb(120, 0, 20)',
-                                width: '1.8vw'
+                                width: '2vw'
                             }}>
                             </CloseSquare>
                         </div>
@@ -258,7 +264,7 @@ const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmit
                             <CheckmarkSquare
                             style={{
                                 color: 'rgb(0, 60, 20)',
-                                width: '1.8vw'
+                                width: '2vw'
                             }}>
                             </CheckmarkSquare>
                         </div>
