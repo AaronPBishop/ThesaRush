@@ -1,11 +1,13 @@
-import { useEffect, useState, useTransition } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { setClaimedPoints } from "../../store/menu.js";
 import { clearPointsRedeemed } from "../../store/challenge.js";
+import { findPlayerByCredential } from "../../store/user.js";
 
 import Challenge from "./Challenge.js";
 import ChallengePoints from "./ChallengePoints.js";
+import ChallengeTime from "../League/ChallengeTime.js";
 
 const ChallengeHolder = () => {
     const dispatch = useDispatch();
@@ -19,6 +21,8 @@ const ChallengeHolder = () => {
 
     const [clickedSent, setClickedSent] = useState(true);
     const [clickedReceived, setClickedReceived] = useState(false);
+    const [clickedSendChallenge, setClickedSendChallenge] = useState(false);
+    const [recipientInput, setRecipientInput] = useState('');
 
     useEffect(() => {
         const totalSentNotifications = user.sent_challenges.filter(challenge => (challenge.sender.score > challenge.receiver.score) && (challenge.completed === true) && (challenge.redeemed === false));
@@ -119,7 +123,73 @@ const ChallengeHolder = () => {
             style={{display: clickedSent ? 'flex' : 'none', justifyContent: 'space-between', margin: 'auto', width: '42vw', flexWrap: 'wrap'}}>
                 <div>
                     <p style={{fontFamily: 'Bungee Spice'}}>Pending</p>
-                    <div style={{display: 'flex', justifyContent: 'center', backgroundColor: 'black', flexWrap: 'wrap', border: '2.5px solid rgb(120, 120, 255)', borderRadius: '12px', width: '19vw', height: '60vh', overflowY: 'auto'}}>
+                    <div 
+                    style={{display: 'flex', justifyContent: 'center', backgroundColor: 'black', flexWrap: 'wrap', border: '2.5px solid rgb(120, 120, 255)', borderRadius: '12px', width: '19vw', height: '60vh', overflowY: 'auto'}}>
+                        <input 
+                        id='recipient-input' 
+                        placeholder='Username or Email'
+                        onChange={e => setRecipientInput(e.target.value)}
+                        style={{
+                            display: clickedSendChallenge ? 'block' : 'none',
+                            marginTop: '2vh',
+                            marginLeft: '0vw',
+                            marginRight: '0vw',
+                            width: '12vw',
+                            height: '5vh'
+                        }}>
+                        </input>
+
+                        <div
+                        onClick={async () => {
+                            if (!clickedSendChallenge) {
+                                setClickedSendChallenge(true);
+                                return;
+                            };
+
+                            if (clickedSendChallenge) {
+                                if (recipientInput.length > 0) {
+                                    dispatch(findPlayerByCredential(recipientInput));
+                                };
+
+                                setClickedSendChallenge(false);
+                            };
+                        }}
+                        style={{
+                            display: user.newChallenge.recipientId === null ? 'block' : 'none',
+                            lineHeight: '5vh',
+                            marginTop: clickedSendChallenge ? '1vh' : '2vh',
+                            width: '12vw',
+                            height: '5vh',
+                            backgroundColor: 'rgb(140, 0, 55)',
+                            borderBottom: '3px solid rgb(105, 0, 40)',
+                            borderRadius: '8px',
+                            cursor: 'pointer'
+                        }}>
+                            {!clickedSendChallenge ? 'Send Challenge' : 'Start Challenge'}
+                        </div>
+
+                        <div
+                        style={{
+                            display: user.newChallenge.recipientId === null ? 'none' : 'flex',
+                            position: 'relative',
+                            marginTop: '2vh',
+                            width: '17vw'
+                        }}>
+                            <ChallengeTime senderId={user.user_id} receiverId={user.newChallenge.recipientId} />
+                        </div>
+                        
+                        <div style={{
+                            display: user.newChallenge.errors.length ? 'block' : 'none',
+                            fontSize: '12px', 
+                            fontStyle: 'italic', 
+                            color: 'rgb(95, 255, 0)', 
+                            width: '16vw', 
+                            height: '2.5vh', 
+                            lineHeight: '4vh',
+                        }}>
+                                {user.newChallenge.errors}
+                        </div>
+
                         {
                             user.sent_challenges.sort((a, b) => b.challenge_id - a.challenge_id).map((challenge, i) => {
                                 if (challenge.completed === false) return (

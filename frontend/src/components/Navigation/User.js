@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { setClickedChallenges, setClickedLeague, setClickedProfile } from '../../store/menu.js';
+import { clearChallengeRecipient, clearNewChallengeErrors } from '../../store/user.js';
 
 import './styles.css';
 
@@ -27,6 +28,9 @@ const User = ({ userName }) => {
         style={{minWidth: '8vw', maxWidth: '8vw'}}
         onClick={() => {
             dispatch(setClickedLeague(false));
+            dispatch(clearChallengeRecipient());
+            dispatch(clearNewChallengeErrors());
+            
             menu.clickedProfile === false ? dispatch(setClickedProfile(true)) : dispatch(setClickedProfile(false));
             menu.clickedChallenges === true && dispatch(setClickedChallenges(false));
         }}

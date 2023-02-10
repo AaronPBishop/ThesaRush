@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 
 import { setClickedLeague } from '../../store/menu.js';
 import { setInChallenge, populateChallengeData } from "../../store/challenge.js";
-import { spendPoints, copyTrophies } from '../../store/user.js';
+import { spendPoints, copyTrophies, clearChallengeRecipient } from '../../store/user.js';
 import { setDifficulty } from "../../store/game.js";
 
 const ChallengeTime = ({ senderId, receiverId }) => {
@@ -140,6 +140,7 @@ const ChallengeTime = ({ senderId, receiverId }) => {
 
                     <div style={{display: 'flex', justifyContent: 'space-evenly'}}>
                         <div 
+                        onClick={() => dispatch(clearChallengeRecipient())}
                         className="challenge-selections"
                         style={{cursor: 'pointer', width: '6vw', height: '5vh', lineHeight: '5vh'}}>
                             Cancel
@@ -156,6 +157,8 @@ const ChallengeTime = ({ senderId, receiverId }) => {
                             };
 
                             if (user.points_balance >= priceMap[timeSelected][difficultySelected]) {
+                                if (user.newChallenge.receiverId !== null) dispatch(clearChallengeRecipient());
+
                                 await dispatch(setInChallenge(true, 'challenger'));
                                 await dispatch(populateChallengeData(null, senderId, receiverId, timeSelected, difficultySelected));
 

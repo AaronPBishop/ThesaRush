@@ -85,6 +85,23 @@ def delete_user_data(id):
     return {'status': 200}, 200
 
 
+@user_routes.route('/find_player/<credential>', methods=['GET'])
+def find_player(credential):
+    all_users = User.query.all()
+
+    for user in all_users:
+        username = getattr(user, 'user_name')
+        email = getattr(user, 'user_email')
+
+        if username.lower() == credential.lower():
+            return {'recipient_id': user.id}, 200
+
+        if email.lower() == credential.lower():
+            return {'recipient_id': user.id}, 200
+    
+    return {'errors': 'User does not exist.'}, 401
+
+
 @user_routes.route('/edit/<id>', methods=['PUT'])
 def edit_account_info(id):
     req_data = request.json

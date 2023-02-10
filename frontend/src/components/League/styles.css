@@ -24,4 +24,6 @@
     background-color: rgb(140, 0, 55);
     border-bottom: 3px solid rgb(105, 0, 40);
     border-radius: 8px;
+
+    cursor: pointer;
 }

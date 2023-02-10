@@ -1,6 +1,10 @@
 const initialState = {
     trophiesCopy: [],
-    errors: []
+    errors: [],
+    newChallenge: {
+        recipientId: null,
+        errors: []
+    }
 };
 
 export const populateUserData = (userData) => {
@@ -40,6 +44,32 @@ export const populateErrors = (errors) => {
 export const clearErrors = () => {
     return {
         type: 'CLEAR_ERRORS'
+    };
+};
+
+export const setNewChallengeRecipient = (recipientId) => {
+    return {
+        type: 'SET_NEW_CHALLENGE_RECIPIENT',
+        payload: recipientId
+    };
+};
+
+export const clearChallengeRecipient = () => {
+    return {
+        type: 'CLEAR_CHALLENGE_RECIPIENT'
+    };
+};
+
+export const populateNewChallengeErrors = (errors) => {
+    return {
+        type: 'POPULATE_NEW_CHALLENGE_ERRORS',
+        payload: errors
+    };
+};
+
+export const clearNewChallengeErrors = () => {
+    return {
+        type: 'CLEAR_NEW_CHALLENGE_ERRORS'
     };
 };
 
@@ -150,6 +180,27 @@ export const fetchUserData = (id) => async (dispatch) => {
     const response = await request.json();
 
     dispatch(populateUserData(response));
+};
+
+
+export const findPlayerByCredential = (credential) => async (dispatch) => {
+    const request = await fetch(`/api/users/find_player/${credential}`, {
+        method: 'GET'
+    });
+
+    const response = await request.json();
+
+    if (response.errors) {
+        dispatch(populateNewChallengeErrors(response.errors));
+        return;
+    };
+
+    if (response.recipient_id) {
+        dispatch(clearNewChallengeErrors());
+        dispatch(setNewChallengeRecipient(response.recipient_id));
+
+        return;
+    };
 };
 
 
@@ -308,6 +359,31 @@ const userReducer = (state = initialState, action) => {
         case 'CLEAR_ERRORS': {
             currentState.errors = [];
             
+            return currentState;
+        };
+
+        case 'SET_NEW_CHALLENGE_RECIPIENT': {
+            currentState.newChallenge.recipientId = action.payload;
+
+            return currentState;
+        };
+
+        case 'CLEAR_CHALLENGE_RECIPIENT': {
+            currentState.newChallenge.recipientId = null;
+
+            return currentState;
+        };
+
+        case 'POPULATE_NEW_CHALLENGE_ERRORS': {
+            currentState.newChallenge.errors = [];
+            currentState.newChallenge.errors.push(action.payload);
+
+            return currentState;
+        };
+
+        case 'CLEAR_NEW_CHALLENGE_ERRORS': {
+            currentState.newChallenge.errors = [];
+
             return currentState;
         };
 
