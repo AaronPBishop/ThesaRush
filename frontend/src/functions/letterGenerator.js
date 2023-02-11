@@ -27,8 +27,17 @@ export const letterClass = (letter) => {
     if (rareConsonants.includes(letter)) return 'rare';
 };
 
-export const consonantCounter = (prevLetters) => prevLetters.filter(ltr => ltr !== null && (letterClass(ltr.letter) === 'consonant' || letterClass(ltr.letter) === 'rare')).length;
-export const vowelCounter = (prevLetters) => prevLetters.filter(ltr => ltr !== null && letterClass(ltr.letter) === 'vowel').length;
+export const consonantCounter = (prevLetters) => {
+    if (!prevLetters.length) return Math.floor(Math.random() * 3);
+
+    return prevLetters.filter(ltr => ltr !== null && (letterClass(ltr.letter) === 'consonant' || letterClass(ltr.letter) === 'rare')).length;
+};
+
+export const vowelCounter = (prevLetters) => {
+    if (!prevLetters.length) return Math.floor(Math.random() * 2);
+
+    return prevLetters.filter(ltr => ltr !== null && letterClass(ltr.letter) === 'vowel').length;
+};
 
 const letterGenerator = (type, prevLetters, properties='normal') => {
     if (typeof properties === 'object' && properties.void) {
