@@ -14,7 +14,7 @@ const initialState = {
     removedChar: [],
     randKeys: [],
     clearedTiles: [],
-    prevColumns: [null, null],
+    prevColumns: [null, null, null],
     statuses: {
         cleared: false,
         submitted: false,
@@ -456,7 +456,7 @@ const gameReducer = (state = initialState, action) => {
             currentState.tiles = {};
             currentState.randKeys = [];
             currentState.clearedTiles = [];
-            currentState.prevColumns = [null, null];
+            currentState.prevColumns = [null, null, null];
 
             for (let key in currentState.statuses) currentState.statuses[key] = false;
             

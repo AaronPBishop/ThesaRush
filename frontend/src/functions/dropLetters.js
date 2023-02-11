@@ -57,9 +57,9 @@ const dropLetters = (board, prevColumns, properties='normal') => {
     const newLetter = letterGenerator('new', properties);
     const randomColumns = randColumnGenerator(board.length, prevColumns);
 
-    const insertPoint = findInsertPoint(board, randomColumns[1]);
+    const insertPoint = findInsertPoint(board, randomColumns[2]);
 
-    board[randomColumns[1]].splice(insertPoint, 1, newLetter);
+    board[randomColumns[2]].splice(insertPoint, 1, newLetter);
    
     return [board, randomColumns];
 };

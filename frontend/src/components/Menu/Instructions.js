@@ -102,7 +102,7 @@ const Instructions = ({ clickedBack }) => {
                         </li>
 
                         <li style={{marginTop: '4vh'}}>
-                            Lives cost 500 points and are offered upon `Game Over` to logged-in users if adequate points or lives are available. Upon use, all columns stacked to the height of the board will clear and you may continue playing!
+                            Lives cost 500 points and are offered upon `Game Over` to logged-in users if adequate points or lives are available. Upon use, all columns stacked to the height of the board will be cleared (along with 3 tiles out of every other column) and you may continue playing!
                         </li>
 
                         <li style={{marginTop: '2vh', fontStyle: 'italic', color: 'rgb(95, 255, 0)'}}>
@@ -110,7 +110,7 @@ const Instructions = ({ clickedBack }) => {
                         </li>
 
                         <li style={{marginTop: '4vh'}}>
-                            You can send a challenge to another player within any league if you have at least 50 points. Select a time limit, then rack up as many points as you can. Await their response and compare your results! A challenge will be considered an automatic loss and/or not be sent if the tiles stack to the top of the board before the time limit is up. <b>Winners may claim up to 800 points!</b>
+                            You can send a challenge to another player within any league if you have at least 50 points. Select a time limit, then rack up as many points as you can. Await their response and compare your results! A challenge will be considered an automatic loss and/or not be sent if the tiles stack to the top of the board before the time limit is up. <b>Winners may claim up to 1,000 points!</b>
                         </li>
                     </div>
                 }
