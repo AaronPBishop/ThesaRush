@@ -40,15 +40,28 @@ export const insertRow = (board) => {
     return board;
 };
 
-const dropLetters = (board, properties='normal') => {
+export const randColumnGenerator = (boardLen, prevColumns) => {
+    const randomColumn = Math.floor((Math.random() * boardLen));
+
+    if (prevColumns.includes(randomColumn)) return randColumnGenerator(boardLen, prevColumns);
+
+    const spreadColumns = [...prevColumns];
+
+    spreadColumns.shift();
+    spreadColumns.push(randomColumn);
+
+    return spreadColumns;
+};
+
+const dropLetters = (board, prevColumns, properties='normal') => {
     const newLetter = letterGenerator('new', properties);
-    const randomColumn = Math.floor((Math.random() * board.length));
+    const randomColumns = randColumnGenerator(board.length, prevColumns);
 
-    const insertPoint = findInsertPoint(board, randomColumn);
+    const insertPoint = findInsertPoint(board, randomColumns[1]);
 
-    board[randomColumn].splice(insertPoint, 1, newLetter);
+    board[randomColumns[1]].splice(insertPoint, 1, newLetter);
    
-    return board;
+    return [board, randomColumns];
 };
 
 export default dropLetters;
