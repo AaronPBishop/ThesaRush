@@ -15,6 +15,7 @@ const initialState = {
     randKeys: [],
     clearedTiles: [],
     prevColumns: [null, null, null],
+    prevLetters: [null, null],
     statuses: {
         cleared: false,
         submitted: false,
@@ -373,29 +374,32 @@ const gameReducer = (state = initialState, action) => {
 
         case 'DROP_LETTERS': {
             if (currentState.statuses.earnedBomb === true) {
-                const newBoard = dropLetters(currentState.board, currentState.prevColumns, 'bomb');
+                const newBoard = dropLetters(currentState.board, currentState.prevLetters, currentState.prevColumns, 'bomb');
 
                 currentState.board = newBoard[0];
-                currentState.prevColumns = newBoard[1];
+                currentState.prevLetters = newBoard[1];
+                currentState.prevColumns = newBoard[2];
                 currentState.statuses.earnedBomb = false;
 
                 return currentState;
             };
 
             if (currentState.statuses.earnedVoid === true) {
-                const newBoard = dropLetters(currentState.board, currentState.prevColumns, {void: true});
+                const newBoard = dropLetters(currentState.board, currentState.prevLetters, currentState.prevColumns, {void: true});
 
                 currentState.board = newBoard[0];
-                currentState.prevColumns = newBoard[1];
+                currentState.prevLetters = newBoard[1];
+                currentState.prevColumns = newBoard[2];
                 currentState.statuses.earnedVoid = false;
                 currentState.stats.trackScore = 0;
 
                 return currentState;
             };
 
-            const newBoard = dropLetters(currentState.board, currentState.prevColumns);
+            const newBoard = dropLetters(currentState.board, currentState.prevLetters, currentState.prevColumns);
             currentState.board = newBoard[0];
-            currentState.prevColumns = newBoard[1];
+            currentState.prevLetters = newBoard[1];
+            currentState.prevColumns = newBoard[2];
 
             return currentState;
         };
@@ -457,6 +461,7 @@ const gameReducer = (state = initialState, action) => {
             currentState.randKeys = [];
             currentState.clearedTiles = [];
             currentState.prevColumns = [null, null, null];
+            currentState.prevLetters = [null, null];
 
             for (let key in currentState.statuses) currentState.statuses[key] = false;
             

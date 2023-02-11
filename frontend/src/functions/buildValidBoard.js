@@ -22,7 +22,7 @@ const checkBoard = (board) => {
         };
     };
 
-    if (vowels < 14 || vowels > 15) return false;
+    if (vowels < 15 || vowels > 15) return false;
     if (rares > 1) return false;
     return true;
 };

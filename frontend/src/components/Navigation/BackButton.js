@@ -10,7 +10,7 @@ const BackButton = () => {
 
     return (
         <div 
-        style={{display: menu.clickedChallenges === true ? 'block' : 'none', minWidth: '6vw', maxWidth: '6vw'}}
+        style={{display: menu.clickedChallenges === true ? 'block' : 'none', minWidth: '9vw', maxWidth: '9vw'}}
         onClick={() => {
             dispatch(setClickedChallenges(false));
             dispatch(clearChallengeRecipient());

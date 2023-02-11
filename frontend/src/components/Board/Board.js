@@ -30,7 +30,7 @@ const Board = ({ difficulty }) => {
 
     const difficultyLevels = {
         training: 3500,
-        easy: 2200,
+        easy: 2000,
         medium: 1400,
         hard: 1200,
         rush: 1000

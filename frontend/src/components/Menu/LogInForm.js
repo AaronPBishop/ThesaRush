@@ -52,19 +52,15 @@ const LogInForm = () => {
             paddingTop: '2vw',
             paddingBottom: '2vw',
             width: '24vw',
-            height: '34vh',
+            height: '32vh',
             backgroundColor: 'rgb(20, 20, 20)',
             border: '2px solid #FFD700',
             borderRadius: '12px'
         }}>
             <div
             style={{
-                display: 'flex',
-                justifyContent: 'center',
-                flexWrap: 'wrap',
                 textAlign: 'center',
                 fontFamily: 'Roboto',
-                margin: 'auto',
                 marginBottom: '2vh',
                 width: '16vw'
             }}>
@@ -80,6 +76,7 @@ const LogInForm = () => {
                   placeholder='Email'
                   onChange={(e) => setEmail(e.target.value)}
                   required
+                  style={{marginBottom: '1vh'}}
                 />
             </label>
 

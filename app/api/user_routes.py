@@ -54,7 +54,7 @@ def update_user_data(id):
     
             db.session.add(new_trophy)
 
-    queried_user.level = math.floor(queried_user.points / 2000)
+    queried_user.level = math.floor(queried_user.points / 3000)
     if queried_user.level > 50:
         queried_user.level = 50
 

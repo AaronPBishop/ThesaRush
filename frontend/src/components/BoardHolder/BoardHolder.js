@@ -165,18 +165,19 @@ const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmit
             id='header-container'
             onMouseOver={() => setIsHovering(true)}
             onMouseLeave={() => setIsHovering(false)}
-            onClick={e => {
+            onClick={async e => {
+                await history.push('/');
+                
+                await dispatch(resetGame());
+
                 if (challenge.inChallenge === true) {
-                    if (challenge.isChallenger === true) dispatch(incurrLoss(user.user_id));
-                    if (challenge.isChallengee === true) dispatch(updateChallenge(challenge.challengeId, 0));
+                    if (challenge.isChallenger === true) await dispatch(incurrLoss(user.user_id));
+                    if (challenge.isChallengee === true) await dispatch(updateChallenge(challenge.challengeId, 0));
                 };
 
-                dispatch(resetGame());
-                dispatch(resetStats());
-                dispatch(resetStatuses());
-                dispatch(resetChallengeState());
-
-                history.push('/');
+                await dispatch(resetStats());
+                await dispatch(resetStatuses());
+                await dispatch(resetChallengeState());
 
                 e.preventDefault();
             }}

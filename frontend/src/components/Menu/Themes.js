@@ -10,7 +10,7 @@ const Themes = () => {
         midnight: ['3px solid rgb(5, 5, 20)', '0px 0px 4px 2px rgb(20, 30, 80)'],
         dawn: ['3px solid rgb(35, 0, 10)', '0px 0px 4px 2px rgb(70, 0, 30)'],
         meadow: ['3px solid rgb(0, 15, 25)', '0px 0px 4px 2px rgb(0, 35, 45)']
-    }
+    };
 
     return (
         <div style={{display: 'flex', justifyContent: 'center', flexWrap: 'wrap', margin: 'auto'}}>
