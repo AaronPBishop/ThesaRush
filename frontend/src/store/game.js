@@ -20,7 +20,12 @@ const initialState = {
         cleared: false,
         submitted: false,
         earnedBomb: false,
-        earnedVoid: false
+        earnedVoid: false,
+        usedLightning: false,
+        earnedLightning: {
+            hasEarned: false,
+            strength: null
+        },
     },
     stats: {
         points: 0, 
@@ -34,6 +39,7 @@ const initialState = {
         goldMiner: 0,
         wordSmith: 0,
         voidMaster: 0,
+        fulminater: 0,
         longestWord: '',
         difficulty: undefined
     }
@@ -172,6 +178,13 @@ export const setSubmitted = (boolean) => {
     };
 };
 
+export const setUsedLightning = (boolean) => {
+    return {
+        type: 'SET_USED_LIGHTNING',
+        payload: boolean
+    };
+};
+
 
 // STATS ACTIONS
 export const incrementInvalidWords = () => {
@@ -241,12 +254,15 @@ const gameReducer = (state = initialState, action) => {
 
         case 'CLEAR_TILES': {
             const values = Object.values(currentState.finalTiles);
+            const totalVals = values.length;
             currentState.clearedTiles = values;
 
-            if (values.length >= 6) currentState.statuses.earnedBomb = true;
+            if (totalVals >= 6 && totalVals < 8) currentState.statuses.earnedBomb = true;
 
-            if (values.length >= 8 && values.length < 10) {
+            if (totalVals >= 8 && totalVals < 10) {
                 currentState.stats.wordSmith += 1;
+                currentState.statuses.earnedLightning.hasEarned = true;
+                currentState.statuses.earnedLightning.strength = 1;
                 
                 for (let i = 0; i < currentState.board.length; i++) {
                     const currColumn = currentState.board[i];
@@ -284,8 +300,10 @@ const gameReducer = (state = initialState, action) => {
                 };
             };
 
-            if (values.length >= 10 && values.length < 12) {
+            if (totalVals >= 10 && totalVals < 12) {
                 currentState.stats.wordSmith += 1;
+                currentState.statuses.earnedLightning.hasEarned = true;
+                currentState.statuses.earnedLightning.strength = 2;
                 
                 for (let i = 0; i < currentState.board.length; i++) {
                     const currColumn = currentState.board[i];
@@ -330,8 +348,10 @@ const gameReducer = (state = initialState, action) => {
                 };
             };
 
-            if (values.length >= 12) {
+            if (totalVals >= 12) {
                 currentState.stats.wordSmith += 1;
+                currentState.statuses.earnedLightning.hasEarned = true;
+                currentState.statuses.earnedLightning.strength = 3;
                 
                 for (let i = 0; i < currentState.board.length; i++) {
                     const currColumn = currentState.board[i];
@@ -383,7 +403,7 @@ const gameReducer = (state = initialState, action) => {
                 };
             };
  
-            for (let i = 0; i < values.length; i++) {
+            for (let i = 0; i < totalVals; i++) {
                 const [col, row] = values[i];
 
                 if (currentState.board[col][row] !== null) {
@@ -418,6 +438,25 @@ const gameReducer = (state = initialState, action) => {
                                     currentState.randKeys.push(newRandKey);
     
                                     continue;
+                                };
+                            };
+                        };
+                    };
+
+                    if (typeof (currentState.board[col][row].properties === 'object') && (currentState.board[col][row].properties.lightning)) {
+                        currentState.stats.fulminater += 1;
+                        currentState.stats.usedLightning = true;
+
+                        for (let innerRow = 0; innerRow < currentState.board.length; innerRow++) {
+                            let counter = 0;
+                        
+                            for (let innerCol = 0; innerCol < currentState.board[innerRow].length; innerCol++) {
+                                if (currentState.board[innerRow][innerCol] !== null && counter < currentState.board[col][row].properties.strength) {
+                                    if (!currentState.board[innerRow][innerCol].properties.lightning) currentState.board[innerRow][innerCol] = null;
+                                
+                                    currentState.clearedTiles.push([innerRow, innerCol]);
+                                    currentState.stats.tilesCleared += 1;
+                                    counter++;
                                 };
                             };
                         };
@@ -495,6 +534,20 @@ const gameReducer = (state = initialState, action) => {
                 return currentState;
             };
 
+            if (currentState.statuses.earnedLightning.hasEarned === true) {
+                const newBoard = dropLetters(
+                    currentState.board, currentState.prevLetters, currentState.prevColumns, {lightning: true, strength: currentState.statuses.earnedLightning.strength}
+                );
+
+                currentState.board = newBoard[0];
+                currentState.prevLetters = newBoard[1];
+                currentState.prevColumns = newBoard[2];
+                currentState.statuses.earnedLightning.hasEarned = false;
+                currentState.statuses.earnedLightning.strength = null;
+
+                return currentState;
+            };
+
             const newBoard = dropLetters(currentState.board, currentState.prevLetters, currentState.prevColumns);
             currentState.board = newBoard[0];
             currentState.prevLetters = newBoard[1];
@@ -561,8 +614,12 @@ const gameReducer = (state = initialState, action) => {
             currentState.clearedTiles = [];
             currentState.prevColumns = [null, null, null];
             currentState.prevLetters = [null, null];
+            currentState.statuses.earnedLightning = {
+                hasEarned: false,
+                strength: 0
+            };
 
-            for (let key in currentState.statuses) currentState.statuses[key] = false;
+            for (let key in currentState.statuses) { if (key !== 'earnedLightning') currentState.statuses[key] = false };
             
             return currentState;
         };
@@ -665,6 +722,12 @@ const gameReducer = (state = initialState, action) => {
         case 'SET_SUBMITTED': {
             currentState.statuses.submitted = action.payload;
             currentState.finalTiles = { ...currentState.tiles };
+
+            return currentState;
+        };
+
+        case 'SET_USED_LIGHTNING': {
+            currentState.statuses.usedLightning = action.payload;
 
             return currentState;
         };

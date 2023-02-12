@@ -5,6 +5,8 @@ import { setInput, removeInputVal, incrementOrder, setTiles, removeTile, setLett
 
 import { EarthEurope } from '@styled-icons/fa-solid/EarthEurope';
 import { Netlify } from '@styled-icons/boxicons-logos/Netlify';
+import { LightningCharge } from '@styled-icons/bootstrap/LightningCharge';
+import { LightningChargeFill } from '@styled-icons/bootstrap/LightningChargeFill';
 
 import { letterClass } from '../../functions/letterGenerator.js';
 
@@ -104,7 +106,7 @@ const Letter = ({ hidden, letter, colPos, rowPos, type, color, properties, rotat
         style={{
           visibility: hidden ? 'hidden' : 'visible',
 
-          color: properties === 'bomb' ? 'yellow' : 'white',
+          color: (typeof properties === 'object' && properties.lightning) || properties === 'bomb' ? 'yellow' : 'white',
 
           textShadow: letterClass(letter) === 'rare' && properties !== 'bomb' && '2px 2px black',
 
@@ -112,18 +114,21 @@ const Letter = ({ hidden, letter, colPos, rowPos, type, color, properties, rotat
           : properties === 'normal' || properties === 'gold' || (typeof properties === 'object') && (properties.void) ? color 
           : properties === 'bomb' ? 'rgb(255,69,0)'
           : (typeof properties === 'object') && (properties.stone) && (properties.stone === 2) ? 'rgb(55, 65, 50)'
-          : (typeof properties === 'object') && (properties.stone) && (properties.stone === 1) && 'rgb(45, 55, 40)',
+          : (typeof properties === 'object') && (properties.stone) && (properties.stone === 1) ? 'rgb(45, 55, 40)'
+          : (typeof properties === 'object') && (properties.lightning) && 'rgb(30, 80, 255)',
 
           boxShadow: clicked === true ? '0px 0px 6px 1px rgb(95, 255, 0)' :
           properties === 'bomb' ? '0px 0px 15px 5px rgb(255, 49, 49)' 
           : (typeof properties === 'object') && (properties.stone) ? '0px 0px 10px 4px rgb(50, 60, 50)'
           : (typeof properties === 'object') && (properties.void) ? '0px 0px 10px 1px white' 
+          : (typeof properties === 'object') && (properties.lightning) ? '0px 0px 15px 5px rgb(0, 40, 200)'
           : properties === 'gold' && '0px 0px 10px 1.5px #FFD700',
 
           border: clicked === true ? '2px solid rgb(95, 255, 0)' 
           : (typeof properties === 'object') && (properties.stone) ? '2px solid rgb(40, 105, 80)'
           : properties === 'bomb' ? '2px solid rgb(180, 65, 0)' 
           : (typeof properties === 'object') && (properties.void) ? '2px solid white'
+          : (typeof properties === 'object') && (properties.lightning) ? '2px solid rgb(0, 20, 140)'
           : (letterClass(letter) === 'consonant') ? '2px solid rgb(40, 0, 65)' 
           : (letterClass(letter) === 'vowel') ? '2px solid rgb(139, 0, 0)' 
           : '2px solid yellow',
@@ -160,11 +165,20 @@ const Letter = ({ hidden, letter, colPos, rowPos, type, color, properties, rotat
             color: 'rgb(25, 35, 20)'
           }}>
           </Netlify>
+
+          <LightningChargeFill
+          style={{
+            visibility: (typeof properties === 'object') && properties.lightning ? 'visible' : 'hidden',
+            width: '5vw',
+            position: 'absolute',
+            color: 'yellow'
+          }}>
+          </LightningChargeFill>
           
           <div 
           style={{
             letterSpacing: '-0.14vw', 
-            textShadow: !clicked && properties === 'normal' && '0px 0px 2.5px white', 
+            textShadow: !clicked && (typeof properties === 'object') && properties.lightning ? '0px 0px 5px blue' : !clicked && properties === 'normal' && '0px 0px 2.5px white', 
             zIndex: '100'
           }}>
               {letter}

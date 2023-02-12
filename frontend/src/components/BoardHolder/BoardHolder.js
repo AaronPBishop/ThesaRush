@@ -31,7 +31,8 @@ import {
     incrementWords, 
     setLongestWord,
     resetStats,
-    removeLastChar
+    removeLastChar,
+    setUsedLightning
 } from '../../store/game';
 
 import { resetStatuses } from '../../store/offerStatuses';
@@ -59,6 +60,7 @@ const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmit
     const invalidWords = useSelector(state => state.game.stats.invalidWords)
     const points = useSelector(state => state.game.stats.points);
     const score = useSelector(state => state.game.stats.score);
+    const usedLightning = useSelector(state => state.game.statuses.usedLightning);
 
     const user = useSelector(state => state.user);
     const menu = useSelector(state => state.menu);
@@ -158,6 +160,16 @@ const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmit
     useEffect(() => {dispatchBadgeActions(goldMiner, 'goldMiner')}, [goldMiner]);
     useEffect(() => {dispatchBadgeActions(wordSmith, 'wordSmith')}, [wordSmith]);
     useEffect(() => {dispatchBadgeActions(voidMaster, 'voidMaster')}, [voidMaster]);
+
+    useEffect(() => {
+        if (usedLightning === true) {
+            const flashTimer = setTimeout(() => {
+                dispatch(setUsedLightning(false));
+            }, [2000]);
+
+            return () => clearTimeout(flashTimer);
+        }
+    }, [usedLightning]);
     
     return (
         <div id='main-content'>
@@ -232,6 +244,15 @@ const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmit
                 <OfferLife />
 
                 <div id='board'>
+                    {/* <div style={{
+                        position: 'absolute',
+                        backgroundColor: 'yellow',
+                        height: '100%',
+                        width: '200%',
+                        marginLeft: '-10vw'
+                    }}>
+                    </div> */}
+
                     <Board difficulty={params.difficulty} />
                     
                     <form

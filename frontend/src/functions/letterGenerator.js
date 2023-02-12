@@ -56,7 +56,7 @@ const letterGenerator = (type, prevLetters, properties='normal') => {
         const spreadLetters = [...prevLetters];
         spreadLetters.shift();
 
-        if (randomLetter <= 2) {
+        if (properties === 'normal' && randomLetter <= 2) {
             spreadLetters.push({letter: rareConsonants[Math.floor((Math.random()*rareConsonants.length))], type: type, color: 'rgb(210, 200, 30)', properties: 'gold', rotation: textureRotation(), randKey: 0});
 
             return spreadLetters;
