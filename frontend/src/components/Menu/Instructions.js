@@ -98,7 +98,7 @@ const Instructions = ({ clickedBack }) => {
                         </li>
 
                         <li style={{marginTop: '4vh'}}>
-                            Submit an 8+ letter word to clear the <i style={{color: 'rgb(95, 255, 0)'}}>entire bottom row</i> and get a bomb tile.
+                            Submit an <b>8-9</b> letter word to clear the <i style={{color: 'rgb(95, 255, 0)'}}>entire bottom row</i> and get a bomb tile. If you think you can pull it off, submit a <b>10-11</b> letter word and clear <i style={{color: 'rgb(95, 255, 0)'}}>both bottom rows</i>. Not enough for you? Submit a <b>12+</b> letter word to clear <i style={{color: 'rgb(95, 255, 0)'}}>all three bottom rows</i> and completely decimate the board.
                         </li>
 
                         <li style={{marginTop: '4vh'}}>

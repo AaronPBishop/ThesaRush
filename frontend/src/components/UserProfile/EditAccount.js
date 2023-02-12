@@ -134,7 +134,7 @@ const EditAccount = () => {
                             </div>
                         </div>
 
-                        <label className='signup-inputs'>
+                        <label className='signup-inputs' style={{marginBottom: '2vh'}}>
                             <input
                               type="text"
                               className="signup-form-inputs"
@@ -145,7 +145,7 @@ const EditAccount = () => {
                             />
                         </label>
                 
-                        <label className='signup-inputs'>
+                        <label className='signup-inputs' style={{marginBottom: '2vh'}}>
                             <input
                               type="text"
                               className="signup-form-inputs"
@@ -156,7 +156,7 @@ const EditAccount = () => {
                             />
                         </label>
                 
-                        <label className='signup-inputs' style={{width: '20vw'}}>
+                        <label className='signup-inputs' style={{width: '20vw', marginBottom: '1vh'}}>
                             <Eye
                             onClick={() => setClickedViewPass(clicked => !clicked)}
                             style={{

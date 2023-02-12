@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { setDifficulty } from '../../store/game';
 import { useHistory } from 'react-router-dom';
@@ -10,6 +10,7 @@ import './styles.css';
 const Difficulties = ({ clickedBack }) => {
     const history = useHistory();
     const dispatch = useDispatch();
+    const rushRef = useRef();
 
     const [clickedTraining, setClickedTraining] = useState(false);
     const [clickedEasy, setClickedEasy] = useState(false);
@@ -24,6 +25,8 @@ const Difficulties = ({ clickedBack }) => {
         setClickedHard(false);
         setClickedRush(false);
     }, [clickedBack]);
+
+    useEffect(() => {if (rushRef && rushRef.current) rushRef.current.scrollIntoView()}, [clickedRush]);
 
     return (
         <div
@@ -177,9 +180,10 @@ const Difficulties = ({ clickedBack }) => {
                 {
                     clickedRush === false ?
                     <li>Rush</li> :
-                    <div>
+                    <div ref={rushRef}>
                         <p className='difficulty-desc'>Tiles drop every second!</p>
                         <p className='difficulty-desc'>Official game-mode of ThesaRush</p>
+                        <p className='difficulty-desc'>Board starts with 4 rows</p>
                         <p className='difficulty-desc' style={{position: 'relative', top: '2vh', fontStyle: 'normal', color: 'rgb(95, 255, 0)'}}>Point multiplier: 3</p>
                         <li
                         className='play-difficulty'

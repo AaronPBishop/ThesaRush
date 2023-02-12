@@ -234,7 +234,7 @@ const gameReducer = (state = initialState, action) => {
     switch (action.type) {
         // BOARD REDUCERS
         case 'INITIATE_BOARD': {
-            currentState.board = buildValidBoard();
+            currentState.board = buildValidBoard(currentState.stats.difficulty);
 
             return currentState;
         };
@@ -245,7 +245,7 @@ const gameReducer = (state = initialState, action) => {
 
             if (values.length >= 6) currentState.statuses.earnedBomb = true;
 
-            if (values.length >= 8) {
+            if (values.length >= 8 && values.length < 10) {
                 currentState.stats.wordSmith += 1;
                 
                 for (let i = 0; i < currentState.board.length; i++) {
@@ -256,6 +256,105 @@ const gameReducer = (state = initialState, action) => {
                         currentState.stats.tilesCleared += 1;
 
                         currentState.clearedTiles.push([i, currColumn.length - 1]);
+                        
+                        for (let j = currColumn.length - 1; j > 0; j--) {
+                            if (currColumn[j] !== null && currColumn[j] !== undefined) {
+                                if (currColumn[j].type === 'initial' || currColumn[j].type === 'new') {
+                                    currColumn[j].type = 'rearranged';
+
+                                    const newRandKey = randKeyGen(currentState.randKeys);
+
+                                    currColumn[j].randKey = newRandKey;
+                                    currentState.randKeys.push(newRandKey);
+    
+                                    continue;
+                                };
+
+                                if (currColumn[j].type === 'rearranged') {
+                                    const newRandKey = randKeyGen(currentState.randKeys);
+
+                                    currColumn[j].randKey = newRandKey;
+                                    currentState.randKeys.push(newRandKey);
+    
+                                    continue;
+                                };
+                            };
+                        };
+                    };
+                };
+            };
+
+            if (values.length >= 10 && values.length < 12) {
+                currentState.stats.wordSmith += 1;
+                
+                for (let i = 0; i < currentState.board.length; i++) {
+                    const currColumn = currentState.board[i];
+
+                    if (currColumn[currColumn.length - 1] !== null) {
+                        currColumn[currColumn.length - 1] = null;
+                        currentState.stats.tilesCleared += 1;
+
+                        currentState.clearedTiles.push([i, currColumn.length - 1]);
+
+                        if (currColumn[currColumn.length - 2] !== null) {
+                            currColumn[currColumn.length - 2] = null;
+                            currentState.stats.tilesCleared += 1;
+
+                            currentState.clearedTiles.push([i, currColumn.length - 2]);
+                        };
+                        
+                        for (let j = currColumn.length - 1; j > 0; j--) {
+                            if (currColumn[j] !== null && currColumn[j] !== undefined) {
+                                if (currColumn[j].type === 'initial' || currColumn[j].type === 'new') {
+                                    currColumn[j].type = 'rearranged';
+
+                                    const newRandKey = randKeyGen(currentState.randKeys);
+
+                                    currColumn[j].randKey = newRandKey;
+                                    currentState.randKeys.push(newRandKey);
+    
+                                    continue;
+                                };
+
+                                if (currColumn[j].type === 'rearranged') {
+                                    const newRandKey = randKeyGen(currentState.randKeys);
+
+                                    currColumn[j].randKey = newRandKey;
+                                    currentState.randKeys.push(newRandKey);
+    
+                                    continue;
+                                };
+                            };
+                        };
+                    };
+                };
+            };
+
+            if (values.length >= 12) {
+                currentState.stats.wordSmith += 1;
+                
+                for (let i = 0; i < currentState.board.length; i++) {
+                    const currColumn = currentState.board[i];
+
+                    if (currColumn[currColumn.length - 1] !== null) {
+                        currColumn[currColumn.length - 1] = null;
+                        currentState.stats.tilesCleared += 1;
+
+                        currentState.clearedTiles.push([i, currColumn.length - 1]);
+
+                        if (currColumn[currColumn.length - 2] !== null) {
+                            currColumn[currColumn.length - 2] = null;
+                            currentState.stats.tilesCleared += 1;
+
+                            currentState.clearedTiles.push([i, currColumn.length - 2]);
+                        };
+
+                        if (currColumn[currColumn.length - 3] !== null) {
+                            currColumn[currColumn.length - 3] = null;
+                            currentState.stats.tilesCleared += 1;
+
+                            currentState.clearedTiles.push([i, currColumn.length - 3]);
+                        };
                         
                         for (let j = currColumn.length - 1; j > 0; j--) {
                             if (currColumn[j] !== null && currColumn[j] !== undefined) {

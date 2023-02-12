@@ -25,6 +25,19 @@ const Letter = ({ hidden, letter, colPos, rowPos, type, color, properties, rotat
     const [newLetter, setNewLetter] = useState('');
 
     useEffect(() => {
+      if ((properties === null || properties === undefined || properties.void === undefined) && letter === '') {
+        letter = 'A';
+        properties = 'normal';
+        return;
+      };
+      
+      if (properties === null || properties === undefined) {
+        properties = 'normal';
+        return;
+      };
+    }, []);
+
+    useEffect(() => {
         if (letter === '') setClickedVoid({colPos: colPos, rowPos: rowPos});
 
         setHasClicked(true);
@@ -96,7 +109,7 @@ const Letter = ({ hidden, letter, colPos, rowPos, type, color, properties, rotat
           textShadow: letterClass(letter) === 'rare' && properties !== 'bomb' && '2px 2px black',
 
           backgroundColor: clicked === true && !properties.void ? 'rgb(40, 40, 40)' 
-          : properties === 'normal' || properties === 'gold' || properties.void ? color 
+          : properties === 'normal' || properties === 'gold' || (typeof properties === 'object') && (properties.void) ? color 
           : properties === 'bomb' ? 'rgb(255,69,0)'
           : (typeof properties === 'object') && (properties.stone) && (properties.stone === 2) ? 'rgb(55, 65, 50)'
           : (typeof properties === 'object') && (properties.stone) && (properties.stone === 1) && 'rgb(45, 55, 40)',
@@ -140,7 +153,7 @@ const Letter = ({ hidden, letter, colPos, rowPos, type, color, properties, rotat
 
           <Netlify
           style={{
-            visibility: properties.stone && properties.stone === 1 ? 'visible' : 'hidden',
+            visibility: (typeof properties === 'object') && properties.stone && properties.stone === 1 ? 'visible' : 'hidden',
             transform: 'rotate(45deg)',
             width: '6vw',
             position: 'absolute',
