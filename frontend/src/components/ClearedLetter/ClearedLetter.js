@@ -3,7 +3,8 @@ import { useSelector } from 'react-redux';
 
 import { Stars } from '@styled-icons/bootstrap/Stars';
 import { Atom } from '@styled-icons/boxicons-regular/Atom';
-import { Connectdevelop } from '@styled-icons/fa-brands/Connectdevelop'
+import { Connectdevelop } from '@styled-icons/fa-brands/Connectdevelop';
+import { LightningChargeFill } from '@styled-icons/bootstrap/LightningChargeFill';
 
 import './styles.css';
 
@@ -46,9 +47,10 @@ const ClearedLetter = ({ colPos, rowPos, color, properties, rotation }) => {
 
     useEffect(() => {
         if (properties && currProperties === '') {
-            if (properties !== 'bomb' && !properties.void) setCurrProperties('normal');
+            if (properties !== 'bomb' && !properties.void && !properties.lightning) setCurrProperties('normal');
             if (properties === 'bomb') setCurrProperties('bomb');
-            if (properties.void) setCurrProperties('void');
+            if (typeof properties === 'object' && properties.void) setCurrProperties('void');
+            if (typeof properties === 'object' && properties.lightning) setCurrProperties('lightning');
         };
 
         if (properties && currProperties.length && (properties !== currProperties)) {
@@ -64,7 +66,8 @@ const ClearedLetter = ({ colPos, rowPos, color, properties, rotation }) => {
         if (propertyTimeUp === true) {
             if (properties !== 'bomb' && !properties.void) setCurrProperties('normal');
             if (properties === 'bomb') setCurrProperties('bomb');
-            if (properties.void) setCurrProperties('void');
+            if (typeof properties === 'object' && properties.void) setCurrProperties('void');
+            if (typeof properties === 'object' && properties.lightning) setCurrProperties('lightning');
             setPropertyTimeUp(false);
         };
     }, [propertyTimeUp]);
@@ -118,6 +121,18 @@ const ClearedLetter = ({ colPos, rowPos, color, properties, rotation }) => {
             border: 'none'
         }}>
         </Connectdevelop>
+
+        <LightningChargeFill
+        className='cleared-letters'
+        style={{
+            display: currProperties === 'lightning' ? 'block' : 'none',
+            transform: 'rotate(-6deg)',
+            color: 'yellow',
+            backgroundColor: 'rgba(255, 255, 0, 0.6)',
+            boxShadow: '0px 0px 100px 100px yellow',
+            border: 'none'
+        }}>
+        </LightningChargeFill>
       </div>
   );
 };

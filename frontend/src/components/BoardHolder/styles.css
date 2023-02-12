@@ -131,6 +131,10 @@
     animation: offerlife-slide .4s, reduce-border 6s;
 }
 
+#lightning-flash-div {
+    animation: lightning-fade 0.5s;
+}
+
 @keyframes input-drop {
     from {bottom: 100vh}
     to {bottom: 21vh}
@@ -147,6 +151,11 @@
 }
 
 @keyframes challenge-timer {
-    from {width: 40vw}
+    from {width: 50vw}
     to {width: 0vw}
+}
+
+@keyframes lightning-fade {
+    from {height: 0%; opacity: 1}
+    to {height: 115%; opacity: 0;}
 }

@@ -165,7 +165,7 @@ const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmit
         if (usedLightning === true) {
             const flashTimer = setTimeout(() => {
                 dispatch(setUsedLightning(false));
-            }, [2000]);
+            }, [500]);
 
             return () => clearTimeout(flashTimer);
         }
@@ -244,14 +244,25 @@ const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmit
                 <OfferLife />
 
                 <div id='board'>
-                    {/* <div style={{
-                        position: 'absolute',
-                        backgroundColor: 'yellow',
-                        height: '100%',
-                        width: '200%',
+                    <div style={{
+                        display: usedLightning ? 'flex' : 'none', 
+                        justifyContent: 'center', 
+                        margin: 'auto',
+                        position: 'absolute', 
+                        height: '115%', 
+                        width: '200%', 
+                        marginTop: '-10vh',
                         marginLeft: '-10vw'
                     }}>
-                    </div> */}
+                        <div 
+                        id='lightning-flash-div'
+                        style={{
+                            margin: 'auto',
+                            backgroundColor: 'yellow',
+                            width: 'inherit'
+                        }}>
+                        </div>
+                    </div>
 
                     <Board difficulty={params.difficulty} />
                     

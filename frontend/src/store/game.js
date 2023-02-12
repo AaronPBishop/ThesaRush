@@ -445,7 +445,7 @@ const gameReducer = (state = initialState, action) => {
 
                     if (typeof (currentState.board[col][row].properties === 'object') && (currentState.board[col][row].properties.lightning)) {
                         currentState.stats.fulminater += 1;
-                        currentState.stats.usedLightning = true;
+                        currentState.statuses.usedLightning = true;
 
                         for (let innerRow = 0; innerRow < currentState.board.length; innerRow++) {
                             let counter = 0;
@@ -511,6 +511,20 @@ const gameReducer = (state = initialState, action) => {
         };
 
         case 'DROP_LETTERS': {
+            if (currentState.statuses.earnedLightning.hasEarned === true) {
+                const newBoard = dropLetters(
+                    currentState.board, currentState.prevLetters, currentState.prevColumns, {lightning: true, strength: currentState.statuses.earnedLightning.strength}
+                );
+
+                currentState.board = newBoard[0];
+                currentState.prevLetters = newBoard[1];
+                currentState.prevColumns = newBoard[2];
+                currentState.statuses.earnedLightning.hasEarned = false;
+                currentState.statuses.earnedLightning.strength = null;
+
+                return currentState;
+            };
+
             if (currentState.statuses.earnedBomb === true) {
                 const newBoard = dropLetters(currentState.board, currentState.prevLetters, currentState.prevColumns, 'bomb');
 
@@ -530,20 +544,6 @@ const gameReducer = (state = initialState, action) => {
                 currentState.prevColumns = newBoard[2];
                 currentState.statuses.earnedVoid = false;
                 currentState.stats.trackScore = 0;
-
-                return currentState;
-            };
-
-            if (currentState.statuses.earnedLightning.hasEarned === true) {
-                const newBoard = dropLetters(
-                    currentState.board, currentState.prevLetters, currentState.prevColumns, {lightning: true, strength: currentState.statuses.earnedLightning.strength}
-                );
-
-                currentState.board = newBoard[0];
-                currentState.prevLetters = newBoard[1];
-                currentState.prevColumns = newBoard[2];
-                currentState.statuses.earnedLightning.hasEarned = false;
-                currentState.statuses.earnedLightning.strength = null;
 
                 return currentState;
             };
