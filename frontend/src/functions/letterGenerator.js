@@ -1,4 +1,4 @@
-const vowels = ['A', 'A', 'A', 'E', 'E', 'E', 'E', 'I', 'I', 'O', 'O', 'U', 'U', 'Y'];
+const vowels = ['A', 'A', 'A', 'A', 'E', 'E', 'E', 'E', 'I', 'I', 'O', 'O', 'O', 'U', 'U', 'U', 'Y'];
 const consonants = ['B', 'B', 'C', 'C', 'D', 'D', 'D', 'F', 'F', 'G', 'G', 'G', 'H', 'H', 'J', 'K', 'K', 'L', 'L', 'L', 'M', 'M', 'N', 'N', 'N', 'N', 'P', 'P', 'R', 'R', 'R', 'S', 'S', 'S', 'S', 'T', 'T', 'T', 'V', 'W'];
 const rareConsonants = ['X', 'Z', 'Q'];
 
@@ -27,19 +27,13 @@ export const letterClass = (letter) => {
     if (rareConsonants.includes(letter)) return 'rare';
 };
 
-export const consonantCounter = (prevLetters) => {
-    if (!prevLetters.length) return Math.floor(Math.random() * 3);
+export const consonantCounter = (prevLetters) => prevLetters.filter(ltr => ltr !== null && (letterClass(ltr.letter) === 'consonant' || letterClass(ltr.letter) === 'rare')).length;
 
-    return prevLetters.filter(ltr => ltr !== null && (letterClass(ltr.letter) === 'consonant' || letterClass(ltr.letter) === 'rare')).length;
-};
-
-export const vowelCounter = (prevLetters) => {
-    if (!prevLetters.length) return Math.floor(Math.random() * 2);
-
-    return prevLetters.filter(ltr => ltr !== null && letterClass(ltr.letter) === 'vowel').length;
-};
+export const vowelCounter = (prevLetters) => prevLetters.filter(ltr => ltr !== null && letterClass(ltr.letter) === 'vowel').length;
 
 const letterGenerator = (type, prevLetters, properties='normal') => {
+    if (prevLetters === undefined || prevLetters === null || !prevLetters.length) prevLetters = [null, null];
+
     if (typeof properties === 'object' && properties.void) {
         const spreadLetters = [...prevLetters];
 
