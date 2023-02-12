@@ -7,6 +7,8 @@ import { Atom } from '@styled-icons/boxicons-regular/Atom';
 import { Ethereum } from '@styled-icons/simple-icons/Ethereum';
 import { Diamond } from '@styled-icons/ionicons-solid/Diamond';
 import { Connectdevelop } from '@styled-icons/fa-brands/Connectdevelop';
+import { Pytorchlightning } from '@styled-icons/simple-icons/Pytorchlightning';
+import { Storm } from '@styled-icons/crypto/Storm';
 
 import './styles.css';
 
@@ -78,7 +80,7 @@ const TrophyComponent = ({ trophyType, container }) => {
             trophyColor: 'black',
             description: 'A distinguishing seal of recognition fashioned by the unfathomable champions of the great Alphabet Wars.',
             descriptionBackground: 'rgb(105, 0, 0)',
-            pointTotal: 9000
+            pointTotal: 12000
         },
         CosmicIntellect: {
             header: 'Attained Cosmic League Status',
@@ -89,6 +91,17 @@ const TrophyComponent = ({ trophyType, container }) => {
             trophyColor: 'black',
             description: 'Those who attain this emblem are said to be imbued with an ancient intelligence known only to the cosmos itself.',
             descriptionBackground: 'rgb(125, 0, 120)',
+            pointTotal: 15000
+        },
+        SkyboltSummoner: {
+            header: 'Earned 50 Fulminator Badges',
+            backgroundColor: 'rgba(30, 50, 255, 1)',
+            color: 'white',
+            boxShadow: '0px 0px 12px 4px rgb(0, 40, 255)',
+            border: '4px solid rgb(0, 140, 255)',
+            trophyColor: 'rgb(0, 255, 195)',
+            description: 'This scarce medallion is obtainable only by those with an acute mastery of elemental storm magic. The few who adorn it are known to decimate the alphabet-arena with flashes of archaic energy and all the fury of the megacosm.',
+            descriptionBackground: 'rgb(0, 140, 255)',
             pointTotal: 10000
         }
     };
@@ -171,6 +184,15 @@ const TrophyComponent = ({ trophyType, container }) => {
                 width: '7vw'
             }}>
             </BrainCircuit>
+
+            <Pytorchlightning 
+            style={{
+                display: !clicked && trophyType === 'Skybolt Summoner' ? 'block' : 'none',
+                color: mapStyles[trophyType.replace(/ /g, '')].trophyColor,
+                marginTop: '2.5vh',
+                width: '7vw'
+            }}>
+            </Pytorchlightning>
 
             {
                 !clicked ?

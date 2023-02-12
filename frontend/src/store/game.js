@@ -39,7 +39,7 @@ const initialState = {
         goldMiner: 0,
         wordSmith: 0,
         voidMaster: 0,
-        fulminater: 0,
+        fulminator: 0,
         longestWord: '',
         difficulty: undefined
     }
@@ -444,7 +444,7 @@ const gameReducer = (state = initialState, action) => {
                     };
 
                     if (typeof (currentState.board[col][row].properties === 'object') && (currentState.board[col][row].properties.lightning)) {
-                        currentState.stats.fulminater += 1;
+                        currentState.stats.fulminator += 1;
                         currentState.statuses.usedLightning = true;
 
                         for (let innerRow = 0; innerRow < currentState.board.length; innerRow++) {

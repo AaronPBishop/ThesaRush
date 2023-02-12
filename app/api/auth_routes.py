@@ -82,6 +82,7 @@ def create_new_user():
         gold_miner = 0,
         word_smith = 0,
         void_master = 0,
+        fulminator = 0,
         league_name = 'Bronze',
         wins=0,
         losses=0
@@ -164,6 +165,7 @@ def create_random_user():
         gold_miner = 0,
         word_smith = 0,
         void_master = 0,
+        fulminator = 0,
         league_name = 'Bronze',
         wins=0,
         losses=0

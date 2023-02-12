@@ -37,7 +37,8 @@ def update_user_data(id):
         'gold_miner': ['Treasure Tactician', 3000],
         'word_smith': ['Alphabet Architect', 8000],
         'void_master': ['Antimatter Maestro', 4000],
-        'wins': ['Vengeant Vanquisher', 9000]
+        'fulminator': ['Skybolt Summoner', 10000],
+        'wins': ['Vengeant Vanquisher', 12000]
     }
 
     for key, val in trophies.items():
@@ -64,8 +65,8 @@ def update_user_data(id):
             user_id=queried_user.id
         )
 
-        queried_user.points += 10000
-        queried_user.points_balance += 10000
+        queried_user.points += 15000
+        queried_user.points_balance += 15000
 
         db.session.add(new_trophy)
 

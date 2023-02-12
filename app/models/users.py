@@ -33,6 +33,7 @@ class User(db.Model, UserMixin):
     gold_miner = Column(Integer)
     word_smith = Column(Integer)
     void_master = Column(Integer)
+    fulminator = Column(Integer)
 
     league_name = Column(String, ForeignKey(add_prefix_for_prod('leagues.league_name')))
 
@@ -71,6 +72,7 @@ class User(db.Model, UserMixin):
             'gold_miner': self.gold_miner,
             'word_smith': self.word_smith,
             'void_master': self.void_master,
+            'fulminator': self.fulminator,
             'league': self.league_name,
             'trophies': [trophy.to_dict() for trophy in self.trophies],
             'sent_challenges': [challenge.to_dict() for challenge in self.sent_challenges],
@@ -94,6 +96,7 @@ class User(db.Model, UserMixin):
             'gold_miner': self.gold_miner,
             'word_smith': self.word_smith,
             'void_master': self.void_master,
+            'fulminator': self.fulminator,
             'league': self.league_name,
             'trophies': [trophy.to_dict() for trophy in self.trophies],
             'wins': self.wins,

@@ -114,20 +114,20 @@ const Letter = ({ hidden, letter, colPos, rowPos, type, color, properties, rotat
           : properties === 'bomb' ? 'rgb(255,69,0)'
           : (typeof properties === 'object') && (properties.stone) && (properties.stone === 2) ? 'rgb(55, 65, 50)'
           : (typeof properties === 'object') && (properties.stone) && (properties.stone === 1) ? 'rgb(45, 55, 40)'
-          : (typeof properties === 'object') && (properties.lightning) && 'rgb(30, 70, 255)',
+          : (typeof properties === 'object') && (properties.lightning) && 'rgb(30, 50, 255)',
 
           boxShadow: clicked === true ? '0px 0px 6px 1px rgb(95, 255, 0)' :
           properties === 'bomb' ? '0px 0px 15px 5px rgb(255, 49, 49)' 
           : (typeof properties === 'object') && (properties.stone) ? '0px 0px 10px 4px rgb(50, 60, 50)'
           : (typeof properties === 'object') && (properties.void) ? '0px 0px 10px 1px white' 
-          : (typeof properties === 'object') && (properties.lightning) ? '0px 0px 20px 6px rgb(0, 40, 200)'
+          : (typeof properties === 'object') && (properties.lightning) ? '0px 0px 20px 6px rgb(0, 40, 255)'
           : properties === 'gold' && '0px 0px 10px 1.5px #FFD700',
 
           border: clicked === true ? '2px solid rgb(95, 255, 0)' 
           : (typeof properties === 'object') && (properties.stone) ? '2px solid rgb(40, 105, 80)'
           : properties === 'bomb' ? '2px solid rgb(180, 65, 0)' 
           : (typeof properties === 'object') && (properties.void) ? '2px solid white'
-          : (typeof properties === 'object') && (properties.lightning) ? '2px solid rgb(50, 120, 255)'
+          : (typeof properties === 'object') && (properties.lightning) ? '2px solid rgb(60, 160, 255)'
           : (letterClass(letter) === 'consonant') ? '2px solid rgb(40, 0, 65)' 
           : (letterClass(letter) === 'vowel') ? '2px solid rgb(139, 0, 0)' 
           : '2px solid yellow',
@@ -171,7 +171,7 @@ const Letter = ({ hidden, letter, colPos, rowPos, type, color, properties, rotat
             width: '5.5vw',
             position: 'absolute',
             transform: 'rotate(-6deg)',
-            color: 'rgba(255, 255, 0, 0.5)'
+            color: 'rgba(255, 255, 0, 0.6)'
           }}>
           </LightningChargeFill>
           

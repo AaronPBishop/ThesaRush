@@ -6,7 +6,8 @@ const InGameBadges = ({ hidden, badge }) => {
         stoneCrusher: <p id='ingame-badge'>🪨 Stone Crusher</p>,
         goldMiner: <p id='ingame-badge'>🪙 Gold Miner</p>,
         wordSmith: <p id='ingame-badge'>🛠️ Word Smith</p>,
-        voidMaster: <p id='ingame-badge'>🪄 Void Master</p>
+        voidMaster: <p id='ingame-badge'>🪄 Void Master</p>,
+        fulminator: <p id='ingame-badge'>⚡ Fulminator</p>
     };
 
     return (

@@ -250,6 +250,10 @@ const Instructions = ({ clickedBack }) => {
                             <div onClick={e => e.stopPropagation()}>
                                 <Badge badgeType='voidMaster' numBadges={0} type='instructional' />
                             </div>
+
+                            <div onClick={e => e.stopPropagation()}>
+                                <Badge badgeType='fulminator' numBadges={0} type='instructional' />
+                            </div>
                         </div>
 
                         <li style={{fontStyle: 'italic', marginTop: '2vh', color: 'rgb(95, 255, 0)'}}>
