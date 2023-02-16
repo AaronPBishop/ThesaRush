@@ -2,19 +2,15 @@ import performSplice from "../functions/performSplice.js";
 import { insertRow } from "../functions/dropLetters.js";
 import buildValidBoard from "../functions/buildValidBoard.js";
 import dropLetters from "../functions/dropLetters.js";
-import getNeighbors from "../functions/getNeighbors.js";
-import randKeyGen from "../functions/randKeyGen.js";
-import { hasLightningTile } from "../functions/clearTiles.js";
+import clearTilesFunc, { hasLightningTile, clearBottomRows, clearColumnsFunc } from "../functions/clearTiles.js";
 
 import sfx1 from '../confirmation_001.ogg';
 import sfx2 from '../confirmation_004.ogg';
 import sfx3 from '../confirmation_002.ogg';
-import sfx4 from '../impactMining_000.ogg';
 
 const shortWordSfx = new Audio(sfx1);
 const medWordSfx = new Audio(sfx2);
 const longWordSfx = new Audio(sfx3);
-const lightningSfx = new Audio(sfx4);
 
 const initialState = {
     board: [],
@@ -275,256 +271,37 @@ const gameReducer = (state = initialState, action) => {
                 currentState.statuses.earnedBomb = true;
             };
 
-            if (totalVals >= 8 && totalVals < 10) {
+            if (totalVals >= 8) {
                 if (!hasLightningTile(currentState.board, values, totalVals)) longWordSfx.play();
 
-                currentState.stats.wordSmith += 1;
                 currentState.statuses.earnedLightning.hasEarned = true;
-                currentState.statuses.earnedLightning.strength = 1;
-                
-                for (let i = 0; i < currentState.board.length; i++) {
-                    const currColumn = currentState.board[i];
-
-                    if (currColumn[currColumn.length - 1] !== null) {
-                        currColumn[currColumn.length - 1] = null;
-                        currentState.stats.tilesCleared += 1;
-
-                        currentState.clearedTiles.push([i, currColumn.length - 1]);
-                        
-                        for (let j = currColumn.length - 1; j > 0; j--) {
-                            if (currColumn[j] !== null && currColumn[j] !== undefined) {
-                                if (currColumn[j].type === 'initial' || currColumn[j].type === 'new') {
-                                    currColumn[j].type = 'rearranged';
-
-                                    const newRandKey = randKeyGen(currentState.randKeys);
-
-                                    currColumn[j].randKey = newRandKey;
-                                    currentState.randKeys.push(newRandKey);
-    
-                                    continue;
-                                };
-
-                                if (currColumn[j].type === 'rearranged') {
-                                    const newRandKey = randKeyGen(currentState.randKeys);
-
-                                    currColumn[j].randKey = newRandKey;
-                                    currentState.randKeys.push(newRandKey);
-    
-                                    continue;
-                                };
-                            };
-                        };
-                    };
-                };
-            };
-
-            if (totalVals >= 10 && totalVals < 12) {
-                if (!hasLightningTile(currentState.board, values, totalVals)) longWordSfx.play();
+                if (totalVals < 10) currentState.statuses.earnedLightning.strength = 1;
+                if (totalVals >= 10 && totalVals < 12) currentState.statuses.earnedLightning.strength = 2;
+                if (totalVals >= 12) currentState.statuses.earnedLightning.strength = 3;
 
                 currentState.stats.wordSmith += 1;
-                currentState.statuses.earnedLightning.hasEarned = true;
-                currentState.statuses.earnedLightning.strength = 2;
                 
-                for (let i = 0; i < currentState.board.length; i++) {
-                    const currColumn = currentState.board[i];
+                const newBoard = clearBottomRows(totalVals, currentState.board, currentState.clearedTiles, currentState.randKeys);
 
-                    if (currColumn[currColumn.length - 1] !== null) {
-                        currColumn[currColumn.length - 1] = null;
-                        currentState.stats.tilesCleared += 1;
-
-                        currentState.clearedTiles.push([i, currColumn.length - 1]);
-
-                        if (currColumn[currColumn.length - 2] !== null) {
-                            currColumn[currColumn.length - 2] = null;
-                            currentState.stats.tilesCleared += 1;
-
-                            currentState.clearedTiles.push([i, currColumn.length - 2]);
-                        };
-                        
-                        for (let j = currColumn.length - 1; j > 0; j--) {
-                            if (currColumn[j] !== null && currColumn[j] !== undefined) {
-                                if (currColumn[j].type === 'initial' || currColumn[j].type === 'new') {
-                                    currColumn[j].type = 'rearranged';
-
-                                    const newRandKey = randKeyGen(currentState.randKeys);
-
-                                    currColumn[j].randKey = newRandKey;
-                                    currentState.randKeys.push(newRandKey);
-    
-                                    continue;
-                                };
-
-                                if (currColumn[j].type === 'rearranged') {
-                                    const newRandKey = randKeyGen(currentState.randKeys);
-
-                                    currColumn[j].randKey = newRandKey;
-                                    currentState.randKeys.push(newRandKey);
-    
-                                    continue;
-                                };
-                            };
-                        };
-                    };
-                };
+                currentState.board = newBoard.board;
+                currentState.clearedTiles = newBoard.clearedTiles;
+                currentState.stats.tilesCleared += newBoard.tilesCleared;
+                currentState.randKeys = newBoard.randKeys;
             };
 
-            if (totalVals >= 12) {
-                if (!hasLightningTile(currentState.board, values, totalVals)) longWordSfx.play();
-                
-                currentState.stats.wordSmith += 1;
-                currentState.statuses.earnedLightning.hasEarned = true;
-                currentState.statuses.earnedLightning.strength = 3;
-                
-                for (let i = 0; i < currentState.board.length; i++) {
-                    const currColumn = currentState.board[i];
+            const newBoard = clearTilesFunc(totalVals, values, currentState.board, currentState.clearedTiles, currentState.randKeys);
 
-                    if (currColumn[currColumn.length - 1] !== null) {
-                        currColumn[currColumn.length - 1] = null;
-                        currentState.stats.tilesCleared += 1;
-
-                        currentState.clearedTiles.push([i, currColumn.length - 1]);
-
-                        if (currColumn[currColumn.length - 2] !== null) {
-                            currColumn[currColumn.length - 2] = null;
-                            currentState.stats.tilesCleared += 1;
-
-                            currentState.clearedTiles.push([i, currColumn.length - 2]);
-                        };
-
-                        if (currColumn[currColumn.length - 3] !== null) {
-                            currColumn[currColumn.length - 3] = null;
-                            currentState.stats.tilesCleared += 1;
-
-                            currentState.clearedTiles.push([i, currColumn.length - 3]);
-                        };
-                        
-                        for (let j = currColumn.length - 1; j > 0; j--) {
-                            if (currColumn[j] !== null && currColumn[j] !== undefined) {
-                                if (currColumn[j].type === 'initial' || currColumn[j].type === 'new') {
-                                    currColumn[j].type = 'rearranged';
-
-                                    const newRandKey = randKeyGen(currentState.randKeys);
-
-                                    currColumn[j].randKey = newRandKey;
-                                    currentState.randKeys.push(newRandKey);
-    
-                                    continue;
-                                };
-
-                                if (currColumn[j].type === 'rearranged') {
-                                    const newRandKey = randKeyGen(currentState.randKeys);
-
-                                    currColumn[j].randKey = newRandKey;
-                                    currentState.randKeys.push(newRandKey);
-    
-                                    continue;
-                                };
-                            };
-                        };
-                    };
-                };
-            };
- 
-            for (let i = 0; i < totalVals; i++) {
-                const [col, row] = values[i];
-
-                if (currentState.board[col][row] !== null) {
-                    if (currentState.board[col][row].properties === 'bomb') {
-                        currentState.stats.bombardier += 1;
-
-                        const neighbors = getNeighbors(currentState.board, values[i]);
-
-                        for (let i = 0; i < neighbors.length; i++) {
-                            const [neighborCol, neighborRow] = neighbors[i];
-
-                            currentState.board[neighborCol][neighborRow] = null;
-                            currentState.clearedTiles.push([neighborCol, neighborRow]);
-                            currentState.stats.tilesCleared += 1;
-
-                            for (let j = currentState.board[neighborCol].length - 1; j > 0; j--) {
-                                if (currentState.board[neighborCol][neighborRow] !== null && (currentState.board[neighborCol][neighborRow].type === 'initial' || currentState.board[neighborCol][neighborRow].type === 'new')) {
-                                    currentState.board[neighborCol][neighborRow].type = 'rearranged';
-
-                                    const newRandKey = randKeyGen(currentState.randKeys);
-                                    
-                                    currentState.board[neighborCol][neighborRow].randKey = newRandKey;
-                                    currentState.randKeys.push(newRandKey);
-    
-                                    continue;
-                                };
-
-                                if (currentState.board[neighborCol][neighborRow] !== null && (currentState.board[neighborCol][neighborRow].type === 'rearranged')) {
-                                    const newRandKey = randKeyGen(currentState.randKeys);
-                                    
-                                    currentState.board[neighborCol][neighborRow].randKey = newRandKey;
-                                    currentState.randKeys.push(newRandKey);
-    
-                                    continue;
-                                };
-                            };
-                        };
-                    };
-
-                    if (typeof (currentState.board[col][row].properties === 'object') && (currentState.board[col][row].properties.lightning)) {
-                        lightningSfx.play();
-
-                        currentState.stats.fulminator += 1;
-                        currentState.statuses.usedLightning = true;
-
-                        for (let innerRow = 0; innerRow < currentState.board.length; innerRow++) {
-                            let counter = 0;
-                        
-                            for (let innerCol = 0; innerCol < currentState.board[innerRow].length; innerCol++) {
-                                if (currentState.board[innerRow][innerCol] !== null && counter < currentState.board[col][row].properties.strength) {
-                                    if (!currentState.board[innerRow][innerCol].properties.lightning) currentState.board[innerRow][innerCol] = null;
-                                
-                                    currentState.clearedTiles.push([innerRow, innerCol]);
-                                    currentState.stats.tilesCleared += 1;
-                                    counter++;
-                                };
-                            };
-                        };
-                    };
-
-                    if (typeof currentState.board[col][row].properties === 'object' && (currentState.board[col][row].properties.stone) && currentState.board[col][row].properties.stone > 1) {
-                        currentState.board[col][row].properties.stone -= 1;
-                    } else {
-                        if (currentState.board[col][row].properties.stone) currentState.stats.stoneCrusher += 1;
-                        if (typeof currentState.board[col][row].properties === 'object' && (currentState.board[col][row].properties.void)) currentState.stats.voidMaster += 1;
-
-                        currentState.board[col][row] = null;
-                        currentState.stats.tilesCleared += 1;
-
-                        for (let j = currentState.board[col].length; j > 0; j--) {
-                            if (j < row) {
-                                if (currentState.board[col][j] !== null && currentState.board[col][j] !== undefined) {
-                                    if (currentState.board[col][j].type === 'initial' || currentState.board[col][j].type === 'new') {
-                                        currentState.board[col][j].type = 'rearranged';
-
-                                        const newRandKey = randKeyGen(currentState.randKeys);
-                                    
-                                        currentState.board[col][j].randKey = newRandKey;
-                                        currentState.randKeys.push(newRandKey);
-
-                                        continue;
-                                    };
-
-                                    if (currentState.board[col][j].type === 'rearranged') {
-                                        const newRandKey = randKeyGen(currentState.randKeys);
-                                    
-                                        currentState.board[col][j].randKey = newRandKey;
-                                        currentState.randKeys.push(newRandKey);
-
-                                        continue;
-                                    };
-                                };
-                            };
-                        };
-                    };
-                };
-            };
-
+            currentState.board = newBoard.board;
+            currentState.clearedTiles = newBoard.clearedTiles;
+            currentState.stats.tilesCleared += newBoard.tilesCleared;
+            currentState.randKeys = newBoard.randKeys;
+            currentState.stats.stoneCrusher += newBoard.stoneCrusher;
+            currentState.stats.bombardier += newBoard.bombardier;
+            currentState.stats.voidMaster += newBoard.voidMaster;
+            currentState.stats.fulminator += newBoard.fulminator;
+            currentState.statuses.usedLightning = newBoard.usedLightning;
             currentState.finalTiles = {};
+
             return currentState;
         };
 
@@ -598,31 +375,10 @@ const gameReducer = (state = initialState, action) => {
         };
 
         case 'CLEAR_COLUMN': {
-            currentState.clearedTiles = [];
-            for (let row = 0; row < currentState.board.length; row++) {
-                if (currentState.board[row][3] === null) {
-                    let counter = 0;
+            const newBoard = clearColumnsFunc(currentState.board);
 
-                    for (let col = 0; col < currentState.board[row].length; col++) {
-                        if (currentState.board[row][col] !== null && counter < 3) {
-                            currentState.board[row][col] = null;
-
-                            currentState.clearedTiles.push([row, col]);
-                            counter++;
-                        };
-                    };
-
-                    continue;
-                };
-
-                if (currentState.board[row][2] !== null || currentState.board[row][3] !== null) {
-                    for (let col = 0; col < currentState.board[row].length; col++) {
-                        currentState.board[row][col] = null;
-
-                        currentState.clearedTiles.push([row, col]);
-                    };
-                };
-            };
+            currentState.board = newBoard.board;
+            currentState.clearedTiles = newBoard.clearedTiles;
 
             return currentState;
         };
