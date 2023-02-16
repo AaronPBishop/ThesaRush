@@ -26,19 +26,6 @@ const Letter = ({ hidden, letter, colPos, rowPos, type, color, properties, rotat
     const [newLetter, setNewLetter] = useState('');
 
     useEffect(() => {
-      if ((properties === null || properties === undefined || properties.void === undefined) && letter === '') {
-        letter = 'A';
-        properties = 'normal';
-        return;
-      };
-      
-      if (properties === null || properties === undefined) {
-        properties = 'normal';
-        return;
-      };
-    }, []);
-
-    useEffect(() => {
         if (letter === '') setClickedVoid({colPos: colPos, rowPos: rowPos});
 
         setHasClicked(true);
@@ -60,7 +47,7 @@ const Letter = ({ hidden, letter, colPos, rowPos, type, color, properties, rotat
           dispatch(removeInputVal([colPos, rowPos].join('')));
           dispatch(removeTile([colPos, rowPos])); 
 
-          if (properties.void) setClickedVoid({colPos: null, rowPos: null});
+          if ((typeof properties === 'object') && properties.void) setClickedVoid({colPos: null, rowPos: null});
         };
 
         for (let i = 0; i < positions.length; i++) dispatch(setTiles(positions[i]));

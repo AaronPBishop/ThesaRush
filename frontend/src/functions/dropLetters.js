@@ -30,7 +30,7 @@ const findInsertPoint = (board, randCol) => {
 
 export const insertRow = (board) => {
     for (let i = 0; i < board.length; i++) {
-        const newLetter = letterGenerator('new');
+        const newLetter = letterGenerator('new', null, 'normal', true);
 
         const insertPoint = findInsertPoint(board, i);
 

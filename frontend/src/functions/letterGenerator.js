@@ -31,7 +31,7 @@ export const consonantCounter = (prevLetters) => prevLetters.filter(ltr => ltr !
 
 export const vowelCounter = (prevLetters) => prevLetters.filter(ltr => ltr !== null && letterClass(ltr.letter) === 'vowel').length;
 
-const letterGenerator = (type, prevLetters, properties='normal') => {
+const letterGenerator = (type, prevLetters, properties='normal', isRowTile=false) => {
     if (prevLetters === undefined || prevLetters === null || !prevLetters.length) prevLetters = [null, null];
 
     if (typeof properties === 'object' && properties.void) {
@@ -48,9 +48,9 @@ const letterGenerator = (type, prevLetters, properties='normal') => {
 
     if (properties === 'normal' && randomLetter > 2 && randomProperty <= 3) properties = {'stone': 2};
 
-    if (type === 'initial' && randomLetter >= 49) return {letter: consonants[Math.floor((Math.random()*consonants.length))], type: type, color: determineColor('consonant'), properties: properties, rotation: textureRotation(), randKey: 0};
-    if (type === 'initial' && randomLetter > 2 && randomLetter < 49) return {letter: vowels[Math.floor((Math.random()*vowels.length))], type: type, color: determineColor('vowel'), properties: properties, rotation: textureRotation(), randKey: 0};
-    if (type === 'initial' && randomLetter <= 2) return {letter: rareConsonants[Math.floor((Math.random()*rareConsonants.length))], type: type, color: 'rgb(210, 200, 30)', properties: 'gold', rotation: textureRotation(), randKey: 0};
+    if ((type === 'initial' || isRowTile) && randomLetter >= 49) return {letter: consonants[Math.floor((Math.random()*consonants.length))], type: type, color: determineColor('consonant'), properties: properties, rotation: textureRotation(), randKey: 0};
+    if ((type === 'initial' || isRowTile) && randomLetter > 2 && randomLetter < 49) return {letter: vowels[Math.floor((Math.random()*vowels.length))], type: type, color: determineColor('vowel'), properties: properties, rotation: textureRotation(), randKey: 0};
+    if ((type === 'initial' || isRowTile) && randomLetter <= 2) return {letter: rareConsonants[Math.floor((Math.random()*rareConsonants.length))], type: type, color: 'rgb(210, 200, 30)', properties: 'gold', rotation: textureRotation(), randKey: 0};
 
     if (consonantCounter(prevLetters) < 2) {
         const spreadLetters = [...prevLetters];
