@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux'; 
 
-import audio from "../../Station-X.webm";
+import music from "../../Station-X.webm";
 
 import './styles.css';
 
-const Audio = () => {
+const MusicPlayer = () => {
     const menu = useSelector(state => state.menu);
 
     const [shouldDisplay, setShouldDisplay] = useState(true);
@@ -43,7 +43,10 @@ const Audio = () => {
             onClick={e => {
                 e.preventDefault();
 
-                document.getElementById('music-player').play()
+                const soundTrack = document.getElementById('music-player');
+
+                soundTrack.volume = 0.3;
+                soundTrack.play()
 
                 return false;
             }}>
@@ -69,10 +72,10 @@ const Audio = () => {
             </button>
 
             <audio id='music-player' autoPlay loop> 
-                <source src={audio} type="audio/mpeg" /> 
+                <source src={music} type="audio/mpeg" /> 
             </audio>
         </div>
     );
 };
 
-export default Audio;
+export default MusicPlayer;

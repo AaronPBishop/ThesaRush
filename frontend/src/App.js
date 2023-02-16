@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import BoardHolder from './components/BoardHolder/BoardHolder.js';
 import Menu from './components/Menu/Menu.js';
 import GameOver from './components/GameOver/GameOver.js';
-import Audio from './components/Audio/Audio.js';
+import Musicplayer from './components/MusicPlayer/MusicPlayer.js';
 
 import { setBackgroundColor } from './store/menu.js';
 import { authenticate } from './store/user.js';
@@ -41,7 +41,7 @@ const App = () => {
   return (
     <div>
       <div style={{display: 'flex', justifyContent: 'flex-end', position: 'relative', top: '1vh', right: '0.5vw'}}>
-        <Audio />
+        <Musicplayer />
       </div>
       
       <Switch>
