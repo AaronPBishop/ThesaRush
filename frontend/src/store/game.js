@@ -5,6 +5,16 @@ import dropLetters from "../functions/dropLetters.js";
 import getNeighbors from "../functions/getNeighbors.js";
 import randKeyGen from "../functions/randKeyGen.js";
 
+import sfx1 from '../confirmation_001.ogg';
+import sfx2 from '../confirmation_004.ogg';
+import sfx3 from '../confirmation_002.ogg';
+import sfx4 from '../impactMining_000.ogg';
+
+const shortWordSfx = new Audio(sfx1);
+const medWordSfx = new Audio(sfx2);
+const longWordSfx = new Audio(sfx3);
+const lightningSfx = new Audio(sfx4);
+
 const initialState = {
     board: [],
     input: {},
@@ -257,9 +267,25 @@ const gameReducer = (state = initialState, action) => {
             const totalVals = values.length;
             currentState.clearedTiles = values;
 
-            if (totalVals >= 6 && totalVals < 8) currentState.statuses.earnedBomb = true;
+            const hasLightningTile = () => {
+                for (let i = 0; i < totalVals; i++) {
+                    const [col, row] = values[i];
+                    if (currentState.board[col][row] !== null) {
+                        if (typeof (currentState.board[col][row].properties === 'object') && (currentState.board[col][row].properties.lightning)) return true;
+                    };
+                };
+            };
+
+            if (totalVals < 6 && !hasLightningTile()) shortWordSfx.play();
+
+            if (totalVals >= 6 && totalVals < 8) {
+                if (!hasLightningTile()) medWordSfx.play();
+                currentState.statuses.earnedBomb = true;
+            };
 
             if (totalVals >= 8 && totalVals < 10) {
+                if (!hasLightningTile()) longWordSfx.play();
+
                 currentState.stats.wordSmith += 1;
                 currentState.statuses.earnedLightning.hasEarned = true;
                 currentState.statuses.earnedLightning.strength = 1;
@@ -301,6 +327,8 @@ const gameReducer = (state = initialState, action) => {
             };
 
             if (totalVals >= 10 && totalVals < 12) {
+                if (!hasLightningTile()) longWordSfx.play();
+
                 currentState.stats.wordSmith += 1;
                 currentState.statuses.earnedLightning.hasEarned = true;
                 currentState.statuses.earnedLightning.strength = 2;
@@ -349,6 +377,8 @@ const gameReducer = (state = initialState, action) => {
             };
 
             if (totalVals >= 12) {
+                if (!hasLightningTile()) longWordSfx.play();
+                
                 currentState.stats.wordSmith += 1;
                 currentState.statuses.earnedLightning.hasEarned = true;
                 currentState.statuses.earnedLightning.strength = 3;
@@ -444,6 +474,8 @@ const gameReducer = (state = initialState, action) => {
                     };
 
                     if (typeof (currentState.board[col][row].properties === 'object') && (currentState.board[col][row].properties.lightning)) {
+                        lightningSfx.play();
+
                         currentState.stats.fulminator += 1;
                         currentState.statuses.usedLightning = true;
 

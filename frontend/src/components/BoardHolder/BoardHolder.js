@@ -11,6 +11,9 @@ import OfferLife from './OfferLife.js';
 import { CloseSquare } from '@styled-icons/evaicons-solid/CloseSquare';
 import { CheckmarkSquare } from '@styled-icons/fluentui-system-filled/CheckmarkSquare';
 
+import sfx1 from '../../error_005.ogg';
+import sfx2 from '../../error_004.ogg';
+
 import './styles.css';
 
 import { 
@@ -44,6 +47,9 @@ const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmit
     const params = useParams();
     const dispatch = useDispatch();
 
+    const invalidWordSfx = new Audio(sfx1);
+    const tooShortSfx = new Audio(sfx2);
+
     const [isValid, setIsValid] = useState(false);
     const [invalid, setInvalid] = useState(false);
 
@@ -75,37 +81,38 @@ const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmit
     }, []);
  
     useEffect(() => {
-        const makeSearch = () => {
-            if (orderedInput.length <= 2) return;
-  
-            if (dictionary[orderedInput.toLowerCase()]) {
-                setIsValid(true);
-                dispatch(clearTiles());
-                dispatch(rearrangeTiles());
+        if (orderedInput.length === 0) return;
 
-                dispatch(determinePoints(orderedInput.length, orderedInput));
-                dispatch(incrementWords());
-                dispatch(setLongestWord(orderedInput));
-            } else {
-                dispatch(incrementInvalidWords());
-                setInvalid(true);
-
-                if (invalidWords <= 1) {
-                    for (let i = 0; i <= invalidWords; i++) dispatch(dropLettersAction());
-                };
-
-                if (invalidWords > 1) dispatch(dropRow());
-            };
-
-            dispatch(resetInput());
-            dispatch(resetOrder());
-            dispatch(resetTiles());
-
+        if (orderedInput.length > 0 && orderedInput.length <= 2) {
+            tooShortSfx.play();
             return;
         };
+  
+        if (dictionary[orderedInput.toLowerCase()]) {
+            setIsValid(true);
+            dispatch(clearTiles());
+            dispatch(rearrangeTiles());
+        
+            dispatch(determinePoints(orderedInput.length, orderedInput));
+            dispatch(incrementWords());
+            dispatch(setLongestWord(orderedInput));
+        } else {
+            invalidWordSfx.play();
 
-        makeSearch();
- 
+            dispatch(incrementInvalidWords());
+            setInvalid(true);
+        
+            if (invalidWords <= 1) {
+                for (let i = 0; i <= invalidWords; i++) dispatch(dropLettersAction());
+            };
+        
+            if (invalidWords > 1) dispatch(dropRow());
+        };
+
+        dispatch(resetInput());
+        dispatch(resetOrder());
+        dispatch(resetTiles());
+
         const timer = setTimeout(() => {
             setIsValid(false);
             setInvalid(false);
@@ -113,7 +120,6 @@ const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmit
         }, 1000);
         
         return () => clearTimeout(timer);
-
     }, [submitted]);
 
     useEffect(() => {
@@ -169,7 +175,7 @@ const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmit
             }, [500]);
 
             return () => clearTimeout(flashTimer);
-        }
+        };
     }, [usedLightning]);
     
     return (

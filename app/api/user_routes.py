@@ -29,6 +29,9 @@ def update_user_data(id):
     for key, val in req_data.items():
         if key != 'longest_word' and key != 'high_score':
             attr = getattr(queried_user, key)
+            if attr == None:
+                setattr(queried_user, key, val)
+                continue
             setattr(queried_user, key, attr + val)
 
     trophies = {

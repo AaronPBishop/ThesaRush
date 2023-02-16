@@ -11,6 +11,8 @@ import { setClickedProfile } from '../../store/menu';
 import Badge from '../Badge/Badge.js';
 import ChallengeStatus from './ChallengeStatus.js';
 
+import sfx from '../../laser1.ogg';
+
 import { Trophy } from '@styled-icons/entypo/Trophy';
 
 import './styles.css';
@@ -18,6 +20,8 @@ import './styles.css';
 const GameOver = ({ points, numWords, longestWord, tilesCleared, bombardier, stoneCrusher, goldMiner, wordSmith, voidMaster, fulminator }) => {
     const dispatch = useDispatch();
     const history = useHistory();
+
+    const gameOverSfx = new Audio(sfx);
     
     const difficulty = useSelector(state => state.game.stats.difficulty);
     const menu = useSelector(state => state.menu);
@@ -51,6 +55,8 @@ const GameOver = ({ points, numWords, longestWord, tilesCleared, bombardier, sto
         window.onpopstate = () => {
             window.history.go(1);
         };
+
+        gameOverSfx.play();
         
         setBadges(bombardier + stoneCrusher + goldMiner + wordSmith + voidMaster + fulminator);
         

@@ -57,11 +57,11 @@ const Instructions = ({ clickedBack }) => {
                         </li>
 
                         <li style={{marginTop: '4vh'}}>
-                            ThesaRush is designed to reward longer word submissions and more skillful play. While it may be tempting to fire off 3-4 letter words, increased weight has been placed on puralizing-letters such as <b>E, S, I, R, N, G</b> etc. that can be added on to the ends of words in order to lengthen them.
+                            ThesaRush is designed to reward longer word submissions and more skillful play. While it may be tempting to fire off 3-4 letter words, increased weight has been placed on puralizing-letters such as <b>E, S, I, R, N, G</b> etc. that can be added on to the ends of words in order to lengthen them and in turn clear far more letters than would otherwise be possible!
                         </li>
 
                         <li style={{marginTop: '2vh', fontStyle: 'italic', color: 'rgb(95, 255, 0)'}}>
-                            For example: If you have a three-letter word, try and find an 'ers' to add to it, and get a bomb tile! If you have a five-letter word, try and find an 'ing' to add to it and clear the whole bottom row + get a bomb tile.
+                            For example: If you have a three-letter word, try and find an 'ers' to add to it, and get a bomb tile! If you have a five-letter word, try and find an 'ing' to add to it and clear the whole bottom row + get a lightning tile.
                         </li>
 
                         <li style={{marginTop: '4vh'}}>
@@ -98,11 +98,11 @@ const Instructions = ({ clickedBack }) => {
                         </li>
 
                         <li style={{marginTop: '4vh'}}>
-                            Submit an <b>8-9</b> letter word to clear the <i style={{color: 'rgb(95, 255, 0)'}}>entire bottom row</i> and get a bomb tile. If you think you can pull it off, submit a <b>10-11</b> letter word and clear <i style={{color: 'rgb(95, 255, 0)'}}>both bottom rows</i>. Not enough for you? Submit a <b>12+</b> letter word to clear <i style={{color: 'rgb(95, 255, 0)'}}>all three bottom rows</i> and completely decimate the board.
+                            Submit an <b>8-9</b> letter word to clear the <i style={{color: 'rgb(95, 255, 0)'}}>entire bottom row</i> and get a lightning tile. If you think you can pull it off, submit a <b>10-11</b> letter word and clear <i style={{color: 'rgb(95, 255, 0)'}}>both bottom rows</i> and get an even stronger lightning tile. Not enough for you? Submit a <b>12+</b> letter word to clear <i style={{color: 'rgb(95, 255, 0)'}}>all three bottom rows</i> and completely decimate the board.
                         </li>
 
                         <li style={{marginTop: '4vh'}}>
-                            Lives cost 500 points and are offered upon `Game Over` to logged-in users if adequate points or lives are available. Upon use, all columns stacked to the height of the board will be cleared (along with 3 tiles out of every other column) and you may continue playing!
+                            Lives cost 500 points and are offered upon `Game Over` to logged-in users if adequate points or lives are available. Upon use, all columns stacked to the height of the board will be cleared (along with 3 tiles out of every remaining column) and you may continue playing!
                         </li>
 
                         <li style={{marginTop: '2vh', fontStyle: 'italic', color: 'rgb(95, 255, 0)'}}>
@@ -175,14 +175,18 @@ const Instructions = ({ clickedBack }) => {
                             Each time 50 points are accrued in your total score, the next tile dropped will be a void tile. Click on a void tile, then press any letter you wish for on your keyboard to turn it into that letter!
                         </li>
 
+                        <li style={{marginTop: '4vh'}}>
+                            Submit an 8+ letter word and the next letter that drops will be a lightning tile. Use it to clear up to three tiles off the top of each column on the board! The strength of a lightning tile is based off of the word submitted to earn it. Lightning tiles awarded for an 8-9 letter word submission will clear 1 tile from each column, 10-11 letter word submissions will clear 2 tiles from each column, and 12+ letter word submissions will grant a lightning tile that clears 3 letters from each column. 
+                        </li>
+
                         <div style={{
                             display: 'flex', 
-                            justifyContent: 'space-evenly', 
+                            justifyContent: 'space-evenly',
                             margin: 'auto',
                             marginTop: '4vh', 
                             background: menu.backgroundColor,
                             height: '12vh',
-                            width: '24vw',
+                            width: '27vw',
                             boxShadow: '0px 0px 1px 1px black',
                             borderRadius: '12px'
                             }}>
@@ -203,8 +207,12 @@ const Instructions = ({ clickedBack }) => {
                                     <Letter hidden={false} letter='Q' colPos={0} rowPos={0} color='rgb(210, 200, 30)' properties='gold' />
                                 </div>
                                 
-                                <div>
+                                <div style={{marginRight: '1vw'}}>
                                     <Letter hidden={false} letter='' colPos={0} rowPos={0} color='black' properties={{void: true}} />
+                                </div>
+
+                                <div>
+                                    <Letter hidden={false} letter='L' colPos={0} rowPos={0} color={null} properties={{lightning: true, strength: 3}} />
                                 </div>
                             </div>
                         </div>
