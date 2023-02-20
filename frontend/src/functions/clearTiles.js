@@ -1,9 +1,11 @@
 import randKeyGen from "./randKeyGen.js";
 import getNeighbors from "./getNeighbors.js";
 
-import sfx4 from '../impactMining_000.ogg';
+import sfx1 from '../impactMining_000.ogg';
+import sfx2 from '../impactMining_001.ogg';
 
-const lightningSfx = new Audio(sfx4);
+const lightningSfx = new Audio(sfx1);
+const useLifeSfx = new Audio(sfx2);
 
 export const hasLightningTile = (board, tileValues, totalVals) => {
     for (let i = 0; i < totalVals; i++) {
@@ -75,6 +77,8 @@ export const clearBottomRows = (totalVals, board, clearedTiles, randKeys) => {
 };
 
 export const clearColumnsFunc = (board) => {
+    useLifeSfx.play();
+    
     const clearedTiles = [];
 
     for (let row = 0; row < board.length; row++) {

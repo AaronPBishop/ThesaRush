@@ -32,20 +32,20 @@ const checkBoard = (board, difficulty) => {
     };
 
     if (difficulty === 'rush') {
-        if (vowels < 20 || vowels > 20) return false;
-        if (rares > 2) return false;
+        if (vowels < 24 || vowels > 24) return false;
+        if (rares > 3) return false;
         return true;
     };
 
-    if (vowels < 15 || vowels > 15) return false;
-    if (rares > 1) return false;
+    if (vowels < 18 || vowels > 18) return false;
+    if (rares > 2) return false;
     return true;
 };
 
 const buildValidBoard = (difficulty) => {
     const board = [];
 
-    for (let i = 0; i < 10; i++) board.push(randomColumn(difficulty));
+    for (let i = 0; i < 12; i++) board.push(randomColumn(difficulty));
 
     if (!checkBoard(board, difficulty)) return buildValidBoard(difficulty);
     if (checkBoard(board, difficulty)) return board;

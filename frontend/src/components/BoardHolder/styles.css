@@ -5,13 +5,13 @@
     margin-right: 41vw;
 
     font-family: 'Roboto'; 
-    font-size: 2.2vh;
+    font-size: 2.4vh;
     text-align: center;
     text-shadow: none;
 
     height: 6vh;
-    min-width: 6vw;
-    max-width: 8vw;
+    min-width: 8vw;
+    max-width: 10vw;
 
     color: white; 
     background-color: rgb(140, 0, 55);
@@ -57,8 +57,8 @@
     box-shadow: 0px 0px 10px 1px rgb(90, 90, 210);
     border-radius: 8px;
     
-    min-width: 43vw;
-    max-width: 43vw;
+    min-width: 51vw;
+    max-width: 51vw;
 
     height: 6.2vh;
 

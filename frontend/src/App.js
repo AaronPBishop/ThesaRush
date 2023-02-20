@@ -40,7 +40,7 @@ const App = () => {
 
   return (
     <div>
-      <div style={{display: 'flex', justifyContent: 'flex-end', position: 'relative', top: '1vh', right: '0.5vw'}}>
+      <div style={{display: 'flex', justifyContent: 'flex-end', position: 'relative', right: '0.4vw'}}>
         <Musicplayer />
       </div>
       

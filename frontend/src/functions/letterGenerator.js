@@ -31,9 +31,7 @@ export const consonantCounter = (prevLetters) => prevLetters.filter(ltr => ltr !
 
 export const vowelCounter = (prevLetters) => prevLetters.filter(ltr => ltr !== null && letterClass(ltr.letter) === 'vowel').length;
 
-const letterGenerator = (type, prevLetters, properties='normal', isRowTile=false) => {
-    if (prevLetters === undefined || prevLetters === null || !prevLetters.length) prevLetters = [null, null];
-
+const letterGenerator = (type, prevLetters=[null, null], properties='normal', isRowTile=false) => {
     if (typeof properties === 'object' && properties.void) {
         const spreadLetters = [...prevLetters];
 

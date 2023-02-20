@@ -52,7 +52,7 @@ const Difficulties = ({ clickedBack }) => {
                     clickedTraining === false ?
                     <li>Training</li> :
                     <div>
-                        <p className='difficulty-desc'>Tiles drop every 3.5 seconds</p>
+                        <p className='difficulty-desc'>Tiles drop every 4 seconds</p>
                         <p className='difficulty-desc'>Find your rythm, sweat-free</p>
                         <p className='difficulty-desc' style={{position: 'relative', top: '2vh', fontStyle: 'normal', color: 'rgb(95, 255, 0)'}}>Score data not saved in training!</p>
                         <li

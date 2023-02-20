@@ -5,6 +5,7 @@ import { setInput, removeInputVal, incrementOrder, setTiles, removeTile, setLett
 
 import { EarthEurope } from '@styled-icons/fa-solid/EarthEurope';
 import { Netlify } from '@styled-icons/boxicons-logos/Netlify';
+import { Bomb } from '@styled-icons/fa-solid/Bomb';
 import { LightningChargeFill } from '@styled-icons/bootstrap/LightningChargeFill';
 
 import { letterClass } from '../../functions/letterGenerator.js';
@@ -39,7 +40,7 @@ const Letter = ({ hidden, letter, colPos, rowPos, type, color, properties, rotat
 
           const currPosition = [colPos, rowPos].join('');
 
-          dispatch(setInput(currPosition, [letter, order]));
+          dispatch(setInput(currPosition, [letter, order, [colPos, rowPos]]));
           dispatch(incrementOrder());
         };
 
@@ -98,7 +99,7 @@ const Letter = ({ hidden, letter, colPos, rowPos, type, color, properties, rotat
 
           backgroundColor: clicked === true && !properties.void ? 'rgb(40, 40, 40)' 
           : properties === 'normal' || properties === 'gold' || (typeof properties === 'object') && (properties.void) ? color 
-          : properties === 'bomb' ? 'rgb(255,69,0)'
+          : properties === 'bomb' ? 'rgb(255, 69, 0)'
           : (typeof properties === 'object') && (properties.stone) && (properties.stone === 2) ? 'rgb(55, 65, 50)'
           : (typeof properties === 'object') && (properties.stone) && (properties.stone === 1) ? 'rgb(45, 55, 40)'
           : (typeof properties === 'object') && (properties.lightning) && 'rgb(30, 50, 255)',
@@ -152,6 +153,15 @@ const Letter = ({ hidden, letter, colPos, rowPos, type, color, properties, rotat
           }}>
           </Netlify>
 
+          <Bomb
+          style={{
+            visibility: properties === 'bomb' && !clicked ? 'visible' : 'hidden',
+            width: '3.5vw',
+            position: 'absolute',
+            color: 'rgba(155, 20, 0, 0.4)'
+          }}>
+          </Bomb>
+
           <LightningChargeFill
           style={{
             visibility: (typeof properties === 'object') && properties.lightning ? 'visible' : 'hidden',
@@ -161,6 +171,24 @@ const Letter = ({ hidden, letter, colPos, rowPos, type, color, properties, rotat
             color: 'rgba(255, 255, 0, 0.6)'
           }}>
           </LightningChargeFill>
+
+          <div style={{display: (typeof properties === 'object') && properties.lightning ? 'flex' : 'none', justifyContent: 'center', position: 'absolute'}}>
+            <p 
+            style={{
+              position: 'absolute', 
+              backgroundColor: 'rgb(0, 190, 255)',
+              border: 'none',
+              borderRadius: '3px',
+              width: '0.9vw',
+              color: 'white', 
+              fontSize: '1.6vh', 
+              fontWeight: 'bold', 
+              marginTop: '-3.9vh', 
+              marginLeft: '-2.8vw'
+            }}>
+              {(typeof properties === 'object' && properties.lightning) && properties.strength}
+            </p>
+          </div>
           
           <div 
           style={{

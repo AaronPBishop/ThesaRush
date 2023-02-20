@@ -172,7 +172,7 @@ const Instructions = ({ clickedBack }) => {
                         </li>
 
                         <li style={{marginTop: '4vh'}}>
-                            Each time 50 points are accrued in your total score, the next tile dropped will be a void tile. Click on a void tile, then press any letter you wish for on your keyboard to turn it into that letter!
+                            Each time 60 points are accrued in your total score, the next tile dropped will be a void tile. Click on a void tile, then press any letter you wish for on your keyboard to turn it into that letter!
                         </li>
 
                         <li style={{marginTop: '4vh'}}>

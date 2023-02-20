@@ -54,14 +54,14 @@ export const randColumnGenerator = (boardLen, prevColumns) => {
 };
 
 const dropLetters = (board, prevLetters, prevColumns, properties='normal') => {
-    if (board.length === undefined) return [board, [null, null, null], [null, null]];
+    if (board.length === undefined) return [board, [null, null, null, null, null, null], [null, null]];
 
     const randomLetters = letterGenerator('new', prevLetters, properties);
     const randomColumns = randColumnGenerator(board.length, prevColumns);
 
-    const insertPoint = findInsertPoint(board, randomColumns[2]);
+    const insertPoint = findInsertPoint(board, randomColumns[5]);
 
-    board[randomColumns[2]].splice(insertPoint, 1, randomLetters[1]);
+    board[randomColumns[5]].splice(insertPoint, 1, randomLetters[1]);
    
     return [board, randomLetters, randomColumns];
 };

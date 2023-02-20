@@ -26,8 +26,7 @@ const MusicPlayer = () => {
             justifyContent: 'center',
             position: 'absolute',
             border: '2px solid rgb(10, 255, 100)',
-            borderRadius: '30vw',
-            boxShadow: '0px 2px 15px rgb(0, 110, 0)',
+            borderRadius: '12px',
             background: menu.backgroundColor,
             width: '6vw',
             height: '4vh'

@@ -7,7 +7,7 @@ import clearTilesFunc, { hasLightningTile, clearBottomRows, clearColumnsFunc } f
 import sfx1 from '../confirmation_001.ogg';
 import sfx2 from '../confirmation_004.ogg';
 import sfx3 from '../confirmation_002.ogg';
-
+ 
 const shortWordSfx = new Audio(sfx1);
 const medWordSfx = new Audio(sfx2);
 const longWordSfx = new Audio(sfx3);
@@ -21,7 +21,7 @@ const initialState = {
     removedChar: [],
     randKeys: [],
     clearedTiles: [],
-    prevColumns: [null, null, null],
+    prevColumns: [null, null, null, null, null, null],
     prevLetters: [null, null],
     statuses: {
         cleared: false,
@@ -392,7 +392,7 @@ const gameReducer = (state = initialState, action) => {
             currentState.tiles = {};
             currentState.randKeys = [];
             currentState.clearedTiles = [];
-            currentState.prevColumns = [null, null, null];
+            currentState.prevColumns = [null, null, null, null, null, null];
             currentState.prevLetters = [null, null];
             currentState.statuses.earnedLightning = {
                 hasEarned: false,
@@ -432,13 +432,12 @@ const gameReducer = (state = initialState, action) => {
                 if (Object.values(currentState.input)[i][1] > highestChar) highestChar = Object.values(currentState.input)[i][1];
             };
             
-            const coordinates = [];
+            let coordinates = [];
             for (let key in currentState.input) {
                 const currLetter = currentState.input[key];
 
                 if (currLetter[1] === highestChar) {
-                    coordinates.push(Number(key.split('')[0]));
-                    coordinates.push(Number(key.split('').slice(1, key.split('').length).join('')));
+                    coordinates = currLetter[2];
 
                     delete currentState.input[key];
                 };
@@ -563,7 +562,7 @@ const gameReducer = (state = initialState, action) => {
                 currentState.stats.trackScore += action.payload *= multiplier;
             };
 
-            if (currentState.stats.trackScore >= 50) currentState.statuses.earnedVoid = true;
+            if (currentState.stats.trackScore >= 60) currentState.statuses.earnedVoid = true;
 
             return currentState;
         };
@@ -573,7 +572,7 @@ const gameReducer = (state = initialState, action) => {
             currentState.stats.points += action.payload;
             currentState.stats.trackScore += action.payload;
 
-            if (currentState.stats.trackScore >= 50) currentState.statuses.earnedVoid = true;
+            if (currentState.stats.trackScore >= 60) currentState.statuses.earnedVoid = true;
 
             return currentState;
         };

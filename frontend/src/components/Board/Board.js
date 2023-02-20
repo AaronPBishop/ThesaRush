@@ -26,10 +26,11 @@ const Board = ({ difficulty }) => {
 
     const [switched, setSwitched] = useState(false);
     const [tripped, setTripped] = useState(false);
+    const [numDrops, setNumDrops] = useState(0);
     const [endChallenge, setEndChallenge] = useState(false);
 
     const difficultyLevels = {
-        training: 3500,
+        training: 4000,
         easy: 2000,
         medium: 1400,
         hard: 1200,
@@ -59,7 +60,15 @@ const Board = ({ difficulty }) => {
             };
         }, difficultyLevels[difficulty]);
     
-        if (board.length && paused === false) dispatch(dropLettersAction());
+        if (board.length && paused === false) {
+            if (numDrops === 0) {
+                dispatch(dropLettersAction());
+                setNumDrops(1);
+            } else if (numDrops === 1) {
+                for (let i = 0; i <= 1; i++) dispatch(dropLettersAction());
+                setNumDrops(0);
+            };
+        };
     
         if (checkGameOver(board)) {
             const gracePeriod = setTimeout(() => {
