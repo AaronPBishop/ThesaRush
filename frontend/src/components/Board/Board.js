@@ -30,10 +30,10 @@ const Board = ({ difficulty }) => {
     const [endChallenge, setEndChallenge] = useState(false);
 
     const difficultyLevels = {
-        training: 4000,
-        easy: 2500,
-        medium: 1400,
-        hard: 1200,
+        training: 3500,
+        easy: 2000,
+        medium: 1500,
+        hard: 1250,
         rush: 1000
     };
 
@@ -61,12 +61,19 @@ const Board = ({ difficulty }) => {
         }, difficultyLevels[difficulty]);
     
         if (board.length && paused === false) {
-            if (numDrops === 0) {
-                dispatch(dropLettersAction());
-                setNumDrops(1);
-            } else if (numDrops === 1) {
-                for (let i = 0; i <= 1; i++) dispatch(dropLettersAction());
-                setNumDrops(0);
+            const trainingPlus = ['training', 'easy'];
+            const medPlus = ['medium', 'hard', 'rush'];
+
+            if (trainingPlus.includes(difficulty)) dispatch(dropLettersAction());
+
+            if (medPlus.includes(difficulty)) {
+                if (numDrops === 0) {
+                    dispatch(dropLettersAction());
+                    setNumDrops(1);
+                } else if (numDrops === 1) {
+                    for (let i = 0; i <= 1; i++) dispatch(dropLettersAction());
+                    setNumDrops(0);
+                };
             };
         };
     
