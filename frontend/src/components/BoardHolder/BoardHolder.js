@@ -324,7 +324,7 @@ const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmit
                                 orderedInput.length < 8 ? '0px 0px 6px 2px rgb(200, 200, 0)' 
                                 : orderedInput.length >= 8 && '0px 0px 10px 4px rgb(255, 255, 0)', 
                                 borderRadius: '10px', 
-                                marginTop: '4.4vh', 
+                                marginTop: '4vh', 
                                 contain: 'strict'
                             }}>
                                 <div 
@@ -376,7 +376,7 @@ const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmit
                                 stats.trackScore < 60 ? '0px 0px 6px 2px rgb(200, 200, 200)' 
                                 : stats.trackScore >= 60 && '0px 0px 10px 4px rgb(255, 255, 255)', 
                                 borderRadius: '10px', 
-                                marginTop: '4.4vh', 
+                                marginTop: '4vh', 
                                 contain: 'strict'
                             }}>
                                 <div 
