@@ -4,7 +4,7 @@
 
 New random letter components (weighted in favor of consonants, then vowels, and finally 'XZQ') are rendered in timed-intervals with animation, and player-built words are validated by indexing a JSON file containing 370,000+ English words upon submission. If the submitted word is valid, all corresponding letters are cleared from the board. If the word is invalid, two new letters are dropped immediately as penalty. Three invalid word submissions in a row will cause an entire row of letters to drop immediately. 
 
-Players are awarded points based off of the length of a submitted word, and points are multiplied upon the same premise. Gold tiles multiply word score x2 for each gold letter used in a word. A word that is less than 3 characters long will not be submitted. However, a valid 6+ letter word will cause the next tile that is spawned to be a bomb tile, which clears all tiles surrounding it in a 1 tile vicinity when used. A valid 8+ letter word will clear the entire bottom row of letters and also spawn a bomb tile.
+Players are awarded points based off of the length of a submitted word, and points are multiplied upon the same premise. Gold tiles multiply word score x2 for each gold letter used in a word. A word that is less than 3 characters long will not be submitted. However, a valid 6+ letter word will cause the next tile that is spawned to be a bomb tile, which clears all tiles surrounding it in a 1 tile vicinity when used. A valid 8+ letter word will clear the entire bottom row of letters and spawn a lightning tile.
 
 Redux actions are utilized in order to perform various board operations, such as splicing off submitted letters and moving remaining letters into their respective places as needed, or reordering letters in the input bar upon selection/deselection of tiles.
 
@@ -13,7 +13,7 @@ Redux actions are utilized in order to perform various board operations, such as
 
 ## What's new in the latest build:
 * If you think you can pull it off, 10-11 letter word submissions now clear both bottom rows! Not enough for you? Submit a 12+ letter word to clear all three bottom rows and completely decimate the board.
-* ThesaRush just got bigger and better! Two new columns have been added to the widened-board in order to encourage lengthier word submissions and longer games.
+* ThesaRush just got bigger and better! Four new columns have been added to the widened-board in order to encourage lengthier word submissions and longer games.
 * Lives now clear all columns stacked to the height of the board, plus 3 tiles out of every other column on the board. Breathe new-found life into your games and knock your all-time high-score out of the park!
 * More difficult levels now award greater points! Rank up faster and knock out the competition by taking on more challenging game-modes.
 * Challenges - You can now send and receive challenges from other players! Choose a time limit and difficulty, then rack up as many points as you can to send a challenge to another player. Await their response and compare your results! Winners may claim up to 1,000 points for a win.
