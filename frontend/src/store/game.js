@@ -28,6 +28,7 @@ const initialState = {
         submitted: false,
         earnedBomb: false,
         earnedVoid: false,
+        lastVoidClicked: [],
         usedLightning: false,
         earnedLightning: {
             hasEarned: false,
@@ -83,6 +84,20 @@ export const setLetter = (col, row, letter) => {
         payload1: col,
         payload2: row,
         payload3: letter
+    };
+};
+
+export const setLastVoidClicked = (col, row) => {
+    return {
+        type: 'SET_LAST_VOID_CLICKED',
+        payload1: col,
+        payload2: row
+    };
+};
+
+export const removeLastVoidClicked = () => {
+    return {
+        type: 'REMOVE_LAST_VOID_CLICKED'
     };
 };
 
@@ -254,7 +269,7 @@ const gameReducer = (state = initialState, action) => {
     switch (action.type) {
         // BOARD REDUCERS
         case 'INITIATE_BOARD': {
-            currentState.board = buildValidBoard(currentState.stats.difficulty);
+            currentState.board = buildValidBoard();
 
             return currentState;
         };
@@ -357,12 +372,24 @@ const gameReducer = (state = initialState, action) => {
             return currentState;
         };
 
+        case 'SET_LAST_VOID_CLICKED': {
+            currentState.statuses.lastVoidClicked = [action.payload1, action.payload2];
+
+            return currentState;
+        };
+
+        case 'REMOVE_LAST_VOID_CLICKED': {
+            currentState.statuses.lastVoidClicked = [];
+
+            return currentState;
+        };
+
         case 'SET_LETTER': {
             currentState.board[action.payload1][action.payload2].letter = action.payload3;
 
             const coord = Number([action.payload1, action.payload2].join(''));
 
-            currentState.input[coord] = [action.payload3, currentState.order];
+            currentState.input[coord] = [action.payload3, currentState.order, [action.payload1, action.payload2]];
             currentState.order += 1;
 
             return currentState;
@@ -394,6 +421,7 @@ const gameReducer = (state = initialState, action) => {
             currentState.clearedTiles = [];
             currentState.prevColumns = [null, null, null, null, null, null];
             currentState.prevLetters = [null, null];
+            currentState.statuses.lastVoidClicked = [];
             currentState.statuses.earnedLightning = {
                 hasEarned: false,
                 strength: 0

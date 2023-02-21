@@ -1,27 +1,18 @@
 import letterGenerator from "./letterGenerator.js";
 import { letterClass } from "./letterGenerator.js";
 
-const randomColumn = (difficulty) => {
+const randomColumn = () => {
     const column = [];
 
-    if (difficulty === 'rush') {
-        for (let i = 0; i < 12; i++) {
-            if (i > 7) column.push(letterGenerator('initial'));
-            else column.push(null);
-        };
-    };
-    
-    if (difficulty !== 'rush') {
-        for (let i = 0; i < 12; i++) {
-            if (i > 8) column.push(letterGenerator('initial'));
-            else column.push(null);
-        };
+    for (let i = 0; i < 12; i++) {
+        if (i > 8) column.push(letterGenerator('initial'));
+        else column.push(null);
     };
     
     return column;
 };
 
-const checkBoard = (board, difficulty) => {
+const checkBoard = (board) => {
     let vowels = 0;
     let rares = 0;
     for (let i = 0; i < board.length; i++) {
@@ -31,24 +22,18 @@ const checkBoard = (board, difficulty) => {
         };
     };
 
-    if (difficulty === 'rush') {
-        if (vowels < 24 || vowels > 24) return false;
-        if (rares > 3) return false;
-        return true;
-    };
-
     if (vowels < 18 || vowels > 18) return false;
-    if (rares > 2) return false;
+    if (rares > 1) return false;
     return true;
 };
 
-const buildValidBoard = (difficulty) => {
+const buildValidBoard = () => {
     const board = [];
 
-    for (let i = 0; i < 12; i++) board.push(randomColumn(difficulty));
+    for (let i = 0; i < 12; i++) board.push(randomColumn());
 
-    if (!checkBoard(board, difficulty)) return buildValidBoard(difficulty);
-    if (checkBoard(board, difficulty)) return board;
+    if (!checkBoard(board)) return buildValidBoard();
+    if (checkBoard(board)) return board;
 };
 
 export default buildValidBoard;

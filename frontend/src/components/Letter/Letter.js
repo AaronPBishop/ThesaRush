@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { setInput, removeInputVal, incrementOrder, setTiles, removeTile, setLetter } from '../../store/game';
+import { setInput, removeInputVal, incrementOrder, setTiles, removeTile, setLetter, setLastVoidClicked, removeLastVoidClicked } from '../../store/game';
 
 import { EarthEurope } from '@styled-icons/fa-solid/EarthEurope';
 import { Netlify } from '@styled-icons/boxicons-logos/Netlify';
@@ -20,21 +20,22 @@ const Letter = ({ hidden, letter, colPos, rowPos, type, color, properties, rotat
     const submitted = useSelector(state => state.game.statuses.submitted);
     const removedChar = useSelector(state => state.game.removedChar);
     const paused = useSelector(state => state.offerStatuses.paused);
+    const lastVoidClicked = useSelector(state => state.game.statuses.lastVoidClicked);
 
     const [hasClicked, setHasClicked] = useState(false);
     const [clicked, setClicked] = useState(false);
     const [clickedVoid, setClickedVoid] = useState({colPos: null, rowPos: null});
-    const [newLetter, setNewLetter] = useState('');
 
     useEffect(() => {
-        if (letter === '') setClickedVoid({colPos: colPos, rowPos: rowPos});
-
         setHasClicked(true);
 
         const positions = [];
         const currValues = [];
 
         if (clicked) {
+          if (typeof properties === 'object' && properties.void) setClickedVoid({colPos: colPos, rowPos: rowPos});
+          if (!properties.void) dispatch(removeLastVoidClicked());
+
           positions.push([colPos, rowPos]);
           currValues.push(`${letter}`);
 
@@ -48,7 +49,10 @@ const Letter = ({ hidden, letter, colPos, rowPos, type, color, properties, rotat
           dispatch(removeInputVal([colPos, rowPos].join('')));
           dispatch(removeTile([colPos, rowPos])); 
 
-          if ((typeof properties === 'object') && properties.void) setClickedVoid({colPos: null, rowPos: null});
+          if ((typeof properties === 'object') && properties.void) {
+            dispatch(removeLastVoidClicked());
+            setClickedVoid({colPos: null, rowPos: null});
+          };
         };
 
         for (let i = 0; i < positions.length; i++) dispatch(setTiles(positions[i]));
@@ -63,10 +67,16 @@ const Letter = ({ hidden, letter, colPos, rowPos, type, color, properties, rotat
     }, [removedChar]);
 
     useEffect(() => {
+      if (clickedVoid.colPos !== null && clickedVoid.rowPos !== null) dispatch(setLastVoidClicked(colPos, rowPos));
+
       const keyDownHandler = e => {
         e.preventDefault();
 
-        if (String.fromCharCode(e.keyCode).match(/[A-Za-z]/) && colPos === clickedVoid.colPos && rowPos === clickedVoid.rowPos) setNewLetter(String.fromCharCode(e.keyCode));
+        if (String.fromCharCode(e.keyCode).match(/[A-Za-z]/) && (colPos === clickedVoid.colPos && rowPos === clickedVoid.rowPos)) {
+            dispatch(setLetter(colPos, rowPos, String.fromCharCode(e.keyCode)));
+
+            setClickedVoid({colPos: null, rowPos: null});
+        };
       };
 
       document.addEventListener('keydown', keyDownHandler);
@@ -75,8 +85,16 @@ const Letter = ({ hidden, letter, colPos, rowPos, type, color, properties, rotat
     }, [clickedVoid]);
 
     useEffect(() => {
-        if (letter === '' && colPos === clickedVoid.colPos && rowPos === clickedVoid.rowPos && newLetter.length > 0) dispatch(setLetter(colPos, rowPos, newLetter));
-    }, [newLetter]);
+      const keyDownHandler = e => {
+        e.preventDefault();
+
+        if (String.fromCharCode(e.keyCode).match(/[A-Za-z]/) && (colPos === lastVoidClicked[0] && rowPos === lastVoidClicked[1])) dispatch(setLetter(colPos, rowPos, String.fromCharCode(e.keyCode)));
+      };
+
+      document.addEventListener('keydown', keyDownHandler);
+
+      return () => document.removeEventListener('keydown', keyDownHandler);
+    }, [lastVoidClicked]);
 
     return (
       <div

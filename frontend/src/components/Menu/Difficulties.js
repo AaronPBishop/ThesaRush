@@ -83,7 +83,7 @@ const Difficulties = ({ clickedBack }) => {
                     clickedEasy === false ?
                     <li>Easy</li> :
                     <div>
-                        <p className='difficulty-desc'>Tiles drop every 2 seconds</p>
+                        <p className='difficulty-desc'>Tiles drop every 1.8 seconds</p>
                         <p className='difficulty-desc'>Practice up for the big leagues!</p>
                         <p className='difficulty-desc' style={{position: 'relative', top: '2vh', fontStyle: 'normal', color: 'rgb(95, 255, 0)'}}>High scores not saved on easy!</p>
                         <li
@@ -117,7 +117,7 @@ const Difficulties = ({ clickedBack }) => {
                     <div>
                         <p className='difficulty-desc'>Tiles drop every 1.5 seconds</p>
                         <p className='difficulty-desc'>Don't get too comfortable</p>
-                        <p className='difficulty-desc'>Every other drop is 2 tiles</p>
+                        <p className='difficulty-desc'>Every other interval drops 2 tiles</p>
                         <p className='difficulty-desc' style={{position: 'relative', top: '2vh', fontStyle: 'normal', color: 'rgb(95, 255, 0)'}}>Point multiplier: 1.5</p>
                         <li
                         className='play-difficulty'
@@ -150,7 +150,7 @@ const Difficulties = ({ clickedBack }) => {
                     <div>
                         <p className='difficulty-desc'>Tiles drop every 1.25 seconds</p>
                         <p className='difficulty-desc'>Not so easy any more!</p>
-                        <p className='difficulty-desc'>Every other drop is 2 tiles</p>
+                        <p className='difficulty-desc'>Every other interval drops 2 tiles</p>
                         <p className='difficulty-desc' style={{position: 'relative', top: '2vh', fontStyle: 'normal', color: 'rgb(95, 255, 0)', textShadow: '0px 2px 4px black'}}>Point multiplier: 2</p>
                         <li
                         className='play-difficulty'
@@ -185,8 +185,7 @@ const Difficulties = ({ clickedBack }) => {
                     <div ref={rushRef}>
                         <p className='difficulty-desc'>Tiles drop every second!</p>
                         <p className='difficulty-desc'>Official game-mode of ThesaRush</p>
-                        <p className='difficulty-desc'>Every other drop is 2 tiles</p>
-                        <p className='difficulty-desc'>Board starts with 4 rows</p>
+                        <p className='difficulty-desc'>Every other interval drops 2 tiles</p>
                         <p className='difficulty-desc' style={{position: 'relative', top: '2vh', fontStyle: 'normal', color: 'rgb(95, 255, 0)'}}>Point multiplier: 3</p>
                         <li
                         className='play-difficulty'
