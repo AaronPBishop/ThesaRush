@@ -27,14 +27,17 @@ const Letter = ({ hidden, letter, colPos, rowPos, type, color, properties, rotat
     const [clickedVoid, setClickedVoid] = useState({colPos: null, rowPos: null});
 
     useEffect(() => {
-        setHasClicked(true);
-
         const positions = [];
         const currValues = [];
 
         if (clicked) {
+          setHasClicked(true);
+          
           if (typeof properties === 'object' && properties.void) setClickedVoid({colPos: colPos, rowPos: rowPos});
-          if (!properties.void) dispatch(removeLastVoidClicked());
+          if (!properties.void) {
+            setClickedVoid({colPos: null, rowPos: null});
+            dispatch(removeLastVoidClicked());
+          };
 
           positions.push([colPos, rowPos]);
           currValues.push(`${letter}`);
@@ -67,12 +70,12 @@ const Letter = ({ hidden, letter, colPos, rowPos, type, color, properties, rotat
     }, [removedChar]);
 
     useEffect(() => {
-      if (clickedVoid.colPos !== null && clickedVoid.rowPos !== null) dispatch(setLastVoidClicked(colPos, rowPos));
+      if ((typeof properties === 'object' && properties.void) && clickedVoid.colPos !== null && clickedVoid.rowPos !== null) dispatch(setLastVoidClicked(colPos, rowPos));
 
       const keyDownHandler = e => {
         e.preventDefault();
 
-        if (String.fromCharCode(e.keyCode).match(/[A-Za-z]/) && (colPos === clickedVoid.colPos && rowPos === clickedVoid.rowPos)) {
+        if ((typeof properties === 'object' && properties.void) && String.fromCharCode(e.keyCode).match(/[A-Za-z]/) && (colPos === clickedVoid.colPos && rowPos === clickedVoid.rowPos)) {
             dispatch(setLetter(colPos, rowPos, String.fromCharCode(e.keyCode)));
 
             setClickedVoid({colPos: null, rowPos: null});
@@ -88,7 +91,7 @@ const Letter = ({ hidden, letter, colPos, rowPos, type, color, properties, rotat
       const keyDownHandler = e => {
         e.preventDefault();
 
-        if (String.fromCharCode(e.keyCode).match(/[A-Za-z]/) && (colPos === lastVoidClicked[0] && rowPos === lastVoidClicked[1])) dispatch(setLetter(colPos, rowPos, String.fromCharCode(e.keyCode)));
+        if ((typeof properties === 'object' && properties.void) && String.fromCharCode(e.keyCode).match(/[A-Za-z]/) && (colPos === lastVoidClicked[0] && rowPos === lastVoidClicked[1])) dispatch(setLetter(colPos, rowPos, String.fromCharCode(e.keyCode)));
       };
 
       document.addEventListener('keydown', keyDownHandler);

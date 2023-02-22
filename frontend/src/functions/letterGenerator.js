@@ -1,6 +1,6 @@
 const vowels = ['A', 'A', 'A', 'E', 'E', 'E', 'I', 'I', 'O', 'O', 'U', 'U', 'Y'];
-const consonants = ['B', 'B', 'D', 'D', 'C', 'C', 'F', 'H', 'J', 'K', 'L', 'L', 'L', 'M', 'M', 'P', 'V', 'W'];
-const pluralizers = ['G', 'G', 'N', 'N', 'R', 'S', 'S', 'T'];
+const consonants = ['B', 'B', 'D', 'D', 'C', 'C', 'F', 'H', 'H', 'J', 'K', 'L', 'L', 'L', 'M', 'M', 'P', 'V', 'W'];
+const pluralizers = ['G', 'N', 'R', 'S', 'T'];
 const rareConsonants = ['X', 'Z', 'Q'];
 
 const vowelColors = () => {
@@ -83,7 +83,6 @@ const letterGenerator = (type, prevLetters=[null, null], properties='normal', is
     };
 
     if (vowelCounter(prevLetters) < 1) {
-        console.log(vowelCounter(prevLetters))
         const spreadLetters = [...prevLetters];
 
         spreadLetters.shift();
