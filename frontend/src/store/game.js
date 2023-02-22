@@ -385,14 +385,16 @@ const gameReducer = (state = initialState, action) => {
         };
 
         case 'SET_LETTER': {
-            currentState.board[action.payload1][action.payload2].letter = action.payload3;
+            if ((typeof currentState.board[action.payload1][action.payload2].properties === 'object') && (currentState.board[action.payload1][action.payload2].properties.void)) {
+                currentState.board[action.payload1][action.payload2].letter = action.payload3;
 
-            const coord = Number([action.payload1, action.payload2].join(''));
+                const coord = Number([action.payload1, action.payload2].join(''));
 
-            currentState.input[coord] = [action.payload3, currentState.order, [action.payload1, action.payload2]];
-            currentState.order += 1;
+                currentState.input[coord] = [action.payload3, currentState.order, [action.payload1, action.payload2]];
+                currentState.order += 1;
 
-            return currentState;
+                return currentState;
+            };
         };
 
         case 'DROP_ROW': {
