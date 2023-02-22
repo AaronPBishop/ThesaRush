@@ -23,9 +23,11 @@ const determineColor = (letterClass) => {
 };
 
 export const letterClass = (letter) => {
+    if (consonants.includes(letter)) return 'consonant';
     if (vowels.includes(letter)) return 'vowel';
-    if (consonants.includes(letter) || pluralizers.includes(letter)) return 'consonant';
     if (rareConsonants.includes(letter)) return 'rare';
+    
+    return 'consonant';
 };
 
 export const consonantCounter = (prevLetters) => prevLetters.filter(ltr => ltr !== null && (consonants.includes(ltr.letter) || rareConsonants.includes(ltr.letter))).length;
