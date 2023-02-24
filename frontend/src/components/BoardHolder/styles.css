@@ -135,6 +135,17 @@
     animation: lightning-fade 0.5s;
 }
 
+#hint-icon {
+    opacity: 0.2;
+    animation-name: robo-fade;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
+#hint-status-bar {
+    animation: hint-glow 2s infinite;
+}
+
 @keyframes input-drop {
     from {bottom: 100vh}
     to {bottom: 21vh}
@@ -158,4 +169,28 @@
 @keyframes lightning-fade {
     from {height: 0%; opacity: 1}
     to {height: 115%; opacity: 0;}
+}
+
+@keyframes robo-fade {
+    0% {
+      opacity: 0.2;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0.2;
+    }
+}
+
+@keyframes hint-glow {
+    0% {
+      box-shadow: 0 0 10px 5px rgb(100, 125, 255);
+    }
+    50% {
+      box-shadow: 0 0 20px 10px rgb(100, 125, 255);
+    }
+    100% {
+      box-shadow: 0 0 10px 5px rgb(100, 125, 255);
+    }
 }

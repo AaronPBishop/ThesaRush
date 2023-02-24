@@ -3,6 +3,7 @@ import { insertRow } from "../functions/dropLetters.js";
 import buildValidBoard from "../functions/buildValidBoard.js";
 import dropLetters from "../functions/dropLetters.js";
 import clearTilesFunc, { hasLightningTile, clearBottomRows, clearColumnsFunc } from "../functions/clearTiles.js";
+import hintFinder from "../functions/hintFinder.js";
 
 import sfx1 from '../confirmation_001.ogg';
 import sfx2 from '../confirmation_004.ogg';
@@ -23,11 +24,13 @@ const initialState = {
     clearedTiles: [],
     prevColumns: [null, null, null, null, null, null],
     prevLetters: [null, null],
+    hint: '',
     statuses: {
         cleared: false,
         submitted: false,
         earnedBomb: false,
         earnedVoid: false,
+        foundHint: false,
         usedLightning: false,
         earnedLightning: {
             hasEarned: false,
@@ -38,6 +41,7 @@ const initialState = {
         points: 0, 
         score: 0, 
         trackScore: 0,
+        trackHint: 0,
         invalidWords: 0,
         words: 0,
         tilesCleared: 0,
@@ -93,6 +97,12 @@ export const dropRow = () => {
 export const clearColumn = () => {
     return {
         type: 'CLEAR_COLUMN'
+    };
+};
+
+export const initiateHint = () => {
+    return {
+        type: 'USE_HINT'
     };
 };
 
@@ -258,6 +268,12 @@ const gameReducer = (state = initialState, action) => {
         };
 
         case 'CLEAR_TILES': {
+            if (currentState.hint.length && currentState.statuses.foundHint === true) {
+                currentState.hint = '';
+                currentState.statuses.foundHint = false;
+                currentState.stats.trackHint = 0;
+            };
+
             const values = Object.values(currentState.finalTiles);
             const totalVals = values.length;
             currentState.clearedTiles = values;
@@ -397,6 +413,19 @@ const gameReducer = (state = initialState, action) => {
 
             currentState.board = newBoard.board;
             currentState.clearedTiles = newBoard.clearedTiles;
+            currentState.hint = '';
+            currentState.statuses.foundHint = false;
+
+            return currentState;
+        };
+
+        case 'USE_HINT': {
+            if (currentState.statuses.foundHint === true) return currentState;
+
+            const hint = hintFinder(currentState.board);
+
+            currentState.statuses.foundHint = hint.found;
+            currentState.hint = hint.value;
 
             return currentState;
         };
@@ -412,12 +441,18 @@ const gameReducer = (state = initialState, action) => {
             currentState.clearedTiles = [];
             currentState.prevColumns = [null, null, null, null, null, null];
             currentState.prevLetters = [null, null];
-            currentState.statuses.earnedLightning = {
-                hasEarned: false,
-                strength: 0
-            };
+            currentState.hint = '';
 
-            for (let key in currentState.statuses) { if (key !== 'earnedLightning') currentState.statuses[key] = false };
+            for (let key in currentState.statuses) { 
+                if (key === 'earnedLightning') {
+                    currentState.statuses.earnedLightning = {
+                        hasEarned: false,
+                        strength: 0
+                    };
+                } else {
+                    currentState.statuses[key] = false 
+                };
+            };
             
             return currentState;
         };
@@ -566,24 +601,28 @@ const gameReducer = (state = initialState, action) => {
                 currentState.stats.points += action.payload;
                 currentState.stats.score += action.payload;
                 currentState.stats.trackScore += action.payload;
+                currentState.stats.trackHint += action.payload;
             };
 
             if (action.payload > 4) {
                 currentState.stats.points += pointsMap[action.payload];
                 currentState.stats.score += pointsMap[action.payload];
                 currentState.stats.trackScore += pointsMap[action.payload];
+                currentState.stats.trackHint += pointsMap[action.payload];
             };
 
             if (action.payload > 16) {
                 currentState.stats.points += (action.payload * 20);
                 currentState.stats.score += (action.payload * 20);
                 currentState.stats.trackScore += (action.payload * 20);
+                currentState.stats.trackHint += (action.payload * 20);
             };
 
             if (multiplier > 0) {
                 currentState.stats.points += action.payload *= multiplier;
                 currentState.stats.score += action.payload *= multiplier;
                 currentState.stats.trackScore += action.payload *= multiplier;
+                currentState.stats.trackHint += action.payload *= multiplier;
             };
 
             if (currentState.stats.trackScore >= 60) currentState.statuses.earnedVoid = true;
@@ -595,6 +634,7 @@ const gameReducer = (state = initialState, action) => {
             currentState.stats.score += action.payload;
             currentState.stats.points += action.payload;
             currentState.stats.trackScore += action.payload;
+            currentState.stats.trackHint += action.payload;
 
             if (currentState.stats.trackScore >= 60) currentState.statuses.earnedVoid = true;
 

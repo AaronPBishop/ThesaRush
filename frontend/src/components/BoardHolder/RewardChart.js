@@ -1,13 +1,20 @@
 import { useRef, useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { initiateHint } from '../../store/game.js';
 
 import { Bomb } from '@styled-icons/fa-solid/Bomb';
 import { BoltLightning } from '@styled-icons/fa-solid/BoltLightning';
 import { Connectdevelop } from '@styled-icons/fa-brands/Connectdevelop';
+import { Robot } from '@styled-icons/bootstrap/Robot';
 
 const RewardChart = ({ orderedInputLen }) => {
+    const dispatch = useDispatch();
+
     const menu = useSelector(state => state.menu);
     const stats = useSelector(state => state.game.stats);
+    const hintStatus = useSelector(state => state.game.statuses.foundHint);
+    const hint = useSelector(state => state.game.hint);
 
     const [isDragging, setIsDragging] = useState(false);
     const [origin, setOrigin] = useState({ x: 0, y: 0 });
@@ -57,7 +64,7 @@ const RewardChart = ({ orderedInputLen }) => {
             paddingBottom: '1vh',
             position: 'fixed',
             width: '18vw',
-            height: '30vh',
+            height: '40vh',
             background: menu.backgroundColor,
             border: 'none',
             borderRadius: '12px',
@@ -202,6 +209,64 @@ const RewardChart = ({ orderedInputLen }) => {
                         height: '100%', 
                         borderRadius: '10px'
                     }}>
+                    </div>
+                </div>
+            </div>
+
+            <div 
+            style={{
+                display: 'flex', 
+                justifyContent: 'flex-start', 
+                paddingLeft: '0.2vw',
+                paddingRight: '0.5vw',
+                width: '90%', 
+                height: '10vh', 
+                contain: 'strict'
+            }}>
+                <div 
+                onClick={e => {
+                    e.preventDefault();
+
+                    if (stats.trackHint >= 200) dispatch(initiateHint());
+                }}
+                style={{display: 'flex', justifyContent: 'center', cursor: stats.trackHint >= 200 && 'pointer'}}>
+                    <Robot
+                    id={stats.trackHint >= 200 && 'hint-icon'}
+                    style={{
+                        minWidth: '2.5vw',
+                        maxWidth: '2.5vw',
+                        color: 'rgb(90, 100, 225)',
+                        marginRight: '0.8vw'
+                    }}>
+                    </Robot>
+                </div>
+
+                <div 
+                id={stats.trackHint >= 200 && 'hint-status-bar'}
+                style={{
+                    width: '90%', 
+                    height: hint.length < 1 ? '25%' : hint.length > 0 && '45%', 
+                    boxShadow: 
+                    stats.trackHint < 200 ? '0px 0px 6px 2px rgb(90, 90, 210)' 
+                    : stats.trackHint >= 200 && '0px 0px 10px 4px rgb(100, 125, 255)',
+                    borderRadius: hint.length < 1 ? '10px' : '14px', 
+                    marginTop: hint.length < 1 ? '4vh' : hint.length > 0 && '3.2vh', 
+                    contain: 'strict'
+                }}>
+                    <div 
+                    style={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        fontFamily: 'Roboto',
+                        fontSize: hintStatus ? '18px' : '16px',
+                        letterSpacing: hintStatus && '4px',
+                        color: 'white',
+                        background: hint.length > 0 ? 'transparent' : 'rgb(100, 125, 255)', 
+                        maxWidth: `${(stats.trackHint / 200) * 100}%`, 
+                        height: '100%', 
+                        borderRadius: '10px'
+                    }}>
+                        <p style={{position: 'absolute', lineHeight: '0vh', marginTop: '2.3vh'}}>{ hint }</p>
                     </div>
                 </div>
             </div>

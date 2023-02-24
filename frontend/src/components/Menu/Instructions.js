@@ -110,6 +110,14 @@ const Instructions = ({ clickedBack }) => {
                         </li>
 
                         <li style={{marginTop: '4vh'}}>
+                            Each time 200 points are accrued in your total score, you will be offered the opportunity to receive a 'hint'. Click the glowing robot icon and a valid 8-9 letter word will be found within your letters and displayed on your reward chart! While all letters in your hint have guaranteed presence, you must find and select the tiles yourself.
+                        </li>
+
+                        <li style={{marginTop: '2vh', fontStyle: 'italic', color: 'rgb(95, 255, 0)'}}>
+                            At least three rows of letters must be present in order to receive your hint. Don't worry, an insufficient amount of letters will NOT 'spend' your hint.
+                        </li>
+
+                        <li style={{marginTop: '4vh'}}>
                             You can send a challenge to another player within any league if you have at least 50 points. Select a time limit, then rack up as many points as you can. Await their response and compare your results! A challenge will be considered an automatic loss and/or not be sent if the tiles stack to the top of the board before the time limit is up. <b>Winners may claim up to 1,000 points!</b>
                         </li>
                     </div>
