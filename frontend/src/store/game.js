@@ -8,7 +8,7 @@ import hintFinder from "../functions/hintFinder.js";
 import sfx1 from '../confirmation_001.ogg';
 import sfx2 from '../confirmation_004.ogg';
 import sfx3 from '../confirmation_002.ogg';
- 
+
 const shortWordSfx = new Audio(sfx1);
 const medWordSfx = new Audio(sfx2);
 const longWordSfx = new Audio(sfx3);
@@ -24,6 +24,7 @@ const initialState = {
     clearedTiles: [],
     prevColumns: [null, null, null, null, null, null],
     prevLetters: [null, null],
+    prevWasVoid: false,
     hint: '',
     statuses: {
         cleared: false,
@@ -372,7 +373,11 @@ const gameReducer = (state = initialState, action) => {
         };
 
         case 'SET_LETTER': {
+            if (currentState.prevWasVoid === false && action.payload.toLowerCase() === 'q') return currentState;
+
+            currentState.prevWasVoid = true;
             let highestChar = 0;
+
             for (let key in currentState.input) {
                 const currLetter = currentState.input[key];
 
@@ -441,6 +446,7 @@ const gameReducer = (state = initialState, action) => {
             currentState.clearedTiles = [];
             currentState.prevColumns = [null, null, null, null, null, null];
             currentState.prevLetters = [null, null];
+            currentState.prevWasVoid = false;
             currentState.hint = '';
 
             for (let key in currentState.statuses) { 
@@ -480,6 +486,8 @@ const gameReducer = (state = initialState, action) => {
         };
 
         case 'REMOVE_LAST_CHAR': {
+            if (currentState.prevWasVoid === true) return currentState;
+
             let highestChar = 0;
             for (let key in currentState.input) {
                 const currLetter = currentState.input[key];
@@ -496,7 +504,7 @@ const gameReducer = (state = initialState, action) => {
 
                     const [col, row] = coordinates;
 
-                    if ((typeof currentState.board[col][row].properties === 'object') && (currentState.board[col][row].properties.void)) return currentState;
+                    if ((typeof currentState.board[col][row].properties === 'object') && (currentState.board[col][row].properties.void)) currentState.prevWasVoid = true;
 
                     delete currentState.input[key];
                 };
@@ -508,9 +516,33 @@ const gameReducer = (state = initialState, action) => {
 
             currentState.removedChar = [...coordinates];
 
+            highestChar = 0;
+            for (let key in currentState.input) {
+                const currLetter = currentState.input[key];
+
+                if (currLetter[1] > highestChar) highestChar = currLetter[1];
+            };
+
+            for (let key in currentState.input) {
+                const currLetter = currentState.input[key];
+
+                if (currLetter[1] === highestChar) {
+                    coordinates = currLetter[2];
+
+                    const [col, row] = coordinates;
+
+                    if (!currentState.board[col][row].properties.void) currentState.prevWasVoid = false;
+                };
+            };
+
             return currentState;
         };
 
+        case 'SET_WAS_VOID': {
+            currentState.prevWasVoid = action.payload;
+
+            return currentState;
+        };
 
         // ORDER REDUCERS
         case 'INCREMENT_ORDER': {
@@ -529,14 +561,20 @@ const gameReducer = (state = initialState, action) => {
         // TILE COORDINATE REDUCERS
         case 'SET_TILES': {
             currentState.tiles[action.payload] = action.payload;
+            
+            if ((typeof currentState.board[action.payload[0]][action.payload[1]].properties) === 'object' && (currentState.board[action.payload[0]][action.payload[1]].properties.void)) {
+                currentState.prevWasVoid = true;
+                return currentState;
+            };
 
+            currentState.prevWasVoid = false;
             return currentState;
         };
 
         case 'REMOVE_TILE': {
-            for (let key in currentState.tiles) {
-                if (currentState.tiles[key][0] === action.payload[0] && currentState.tiles[key][1] === action.payload[1]) delete currentState.tiles[key];
-            };
+            for (let key in currentState.tiles) delete currentState.tiles[key];
+            
+            currentState.prevWasVoid = false;
 
             return currentState;
         };

@@ -6,10 +6,11 @@ import { initiateHint } from '../../store/game.js';
 import { Bomb } from '@styled-icons/fa-solid/Bomb';
 import { BoltLightning } from '@styled-icons/fa-solid/BoltLightning';
 import { Connectdevelop } from '@styled-icons/fa-brands/Connectdevelop';
-import { Robot } from '@styled-icons/bootstrap/Robot';
+import { BrainCircuit } from '@styled-icons/fluentui-system-filled/BrainCircuit';
 
 const RewardChart = ({ orderedInputLen }) => {
     const dispatch = useDispatch();
+    const draggableRef = useRef(null);
 
     const menu = useSelector(state => state.menu);
     const stats = useSelector(state => state.game.stats);
@@ -19,10 +20,9 @@ const RewardChart = ({ orderedInputLen }) => {
     const [isDragging, setIsDragging] = useState(false);
     const [origin, setOrigin] = useState({ x: 0, y: 0 });
     const [translation, setTranslation] = useState({ x: 0, y: 0 });
-    const draggableRef = useRef(null);
 
     useEffect(() => {
-        const handleMouseMove = (e) => {
+        const handleMouseMove = e => {
             if (isDragging) {
                 const newTranslation = {
                     x: e.clientX - origin.x,
@@ -47,8 +47,10 @@ const RewardChart = ({ orderedInputLen }) => {
     }, [isDragging, origin]);
     
     const handleMouseDown = (e) => {
-      setIsDragging(true);
-      setOrigin({ x: e.clientX - translation.x, y: e.clientY - translation.y });
+        setIsDragging(true);
+        setOrigin({ x: e.clientX - translation.x, y: e.clientY - translation.y });
+
+        return;
     };
 
     return (
@@ -214,6 +216,14 @@ const RewardChart = ({ orderedInputLen }) => {
             </div>
 
             <div 
+            onMouseDown={e => { if (stats.trackHint >= 200) e.stopPropagation() }}
+            onMouseUp={e => { if (stats.trackHint >= 200) e.stopPropagation() }}
+            onClick={e => { 
+                if (stats.trackHint >= 200) { 
+                    e.stopPropagation();
+                    dispatch(initiateHint())
+                };
+            }}
             style={{
                 display: 'flex', 
                 justifyContent: 'flex-start', 
@@ -221,24 +231,20 @@ const RewardChart = ({ orderedInputLen }) => {
                 paddingRight: '0.5vw',
                 width: '90%', 
                 height: '10vh', 
-                contain: 'strict'
+                contain: 'strict',
+                cursor: stats.trackHint >= 200 && 'pointer'
             }}>
                 <div 
-                onClick={e => {
-                    e.preventDefault();
-
-                    if (stats.trackHint >= 200) dispatch(initiateHint());
-                }}
-                style={{display: 'flex', justifyContent: 'center', cursor: stats.trackHint >= 200 && 'pointer'}}>
-                    <Robot
+                style={{display: 'flex', justifyContent: 'center'}}>
+                    <BrainCircuit
                     id={stats.trackHint >= 200 && 'hint-icon'}
                     style={{
-                        minWidth: '2.5vw',
-                        maxWidth: '2.5vw',
+                        minWidth: '2.6vw',
+                        maxWidth: '2.6vw',
                         color: 'rgb(90, 100, 225)',
                         marginRight: '0.8vw'
                     }}>
-                    </Robot>
+                    </BrainCircuit>
                 </div>
 
                 <div 
