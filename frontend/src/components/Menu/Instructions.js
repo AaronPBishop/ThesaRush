@@ -57,7 +57,7 @@ const Instructions = ({ clickedBack }) => {
                         </li>
 
                         <li style={{marginTop: '4vh'}}>
-                            ThesaRush is designed to reward longer word submissions and more skillful play. While it may be tempting to fire off 3-4 letter words, increased weight has been placed on puralizing-letters such as <b>E, S, I, R, N, G</b> etc. that can be added on to the ends of words in order to lengthen them and in turn clear far more letters than would otherwise be possible!
+                            ThesaRush is designed to reward longer word submissions and more skillful play. While it may be tempting to fire off 3-4 letter words, the drop system has been optimized to alternate between dropping pluralizing letters and vowels, such as <b>E, S, I, R, N, G</b> etc. that can be added on to the ends of words in order to lengthen them and in turn clear far more letters than would otherwise be possible!
                         </li>
 
                         <li style={{marginTop: '2vh', fontStyle: 'italic', color: 'rgb(95, 255, 0)'}}>

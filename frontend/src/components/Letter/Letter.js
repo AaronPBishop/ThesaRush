@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { setInput, removeInputVal, incrementOrder, setTiles, removeTile, setLetter, setLastVoidClicked, removeLastVoidClicked } from '../../store/game';
+import { setInput, removeInputVal, incrementOrder, setTiles, removeTile, setLetter } from '../../store/game';
 
 import { EarthEurope } from '@styled-icons/fa-solid/EarthEurope';
 import { Netlify } from '@styled-icons/boxicons-logos/Netlify';
@@ -20,42 +20,40 @@ const Letter = ({ hidden, letter, colPos, rowPos, type, color, properties, rotat
     const submitted = useSelector(state => state.game.statuses.submitted);
     const removedChar = useSelector(state => state.game.removedChar);
     const paused = useSelector(state => state.offerStatuses.paused);
-    const lastVoidClicked = useSelector(state => state.game.statuses.lastVoidClicked);
 
     const [hasClicked, setHasClicked] = useState(false);
     const [clicked, setClicked] = useState(false);
-    const [clickedVoid, setClickedVoid] = useState({colPos: null, rowPos: null});
 
     useEffect(() => {
         const positions = [];
-        const currValues = [];
 
         if (clicked) {
           setHasClicked(true);
-          
-          if (typeof properties === 'object' && properties.void) setClickedVoid({colPos: colPos, rowPos: rowPos});
-          if (!properties.void) {
-            setClickedVoid({colPos: null, rowPos: null});
-            dispatch(removeLastVoidClicked());
-          };
 
           positions.push([colPos, rowPos]);
-          currValues.push(`${letter}`);
-
           const currPosition = [colPos, rowPos].join('');
-
+        
           dispatch(setInput(currPosition, [letter, order, [colPos, rowPos]]));
           dispatch(incrementOrder());
+          
+          if (typeof properties === 'object' && properties.void) {
+              const keyDownHandler = e => {
+                e.preventDefault();
+        
+                if (String.fromCharCode(e.keyCode).match(/[A-Za-z]/)) dispatch(setLetter(String.fromCharCode(e.keyCode)));
+              };
+          
+              document.addEventListener('keydown', keyDownHandler);
+        
+              for (let i = 0; i < positions.length; i++) dispatch(setTiles(positions[i]));
+
+              return () => document.removeEventListener('keydown', keyDownHandler);
+          };
         };
 
         if (hasClicked === true && clicked === false) {
           dispatch(removeInputVal([colPos, rowPos].join('')));
           dispatch(removeTile([colPos, rowPos])); 
-
-          if ((typeof properties === 'object') && properties.void) {
-            dispatch(removeLastVoidClicked());
-            setClickedVoid({colPos: null, rowPos: null});
-          };
         };
 
         for (let i = 0; i < positions.length; i++) dispatch(setTiles(positions[i]));
@@ -68,36 +66,6 @@ const Letter = ({ hidden, letter, colPos, rowPos, type, color, properties, rotat
     useEffect(() => {
       if (colPos === removedChar[0] && rowPos === removedChar[1]) setClicked(false);
     }, [removedChar]);
-
-    useEffect(() => {
-      if ((typeof properties === 'object' && properties.void) && clickedVoid.colPos !== null && clickedVoid.rowPos !== null) dispatch(setLastVoidClicked(colPos, rowPos));
-
-      const keyDownHandler = e => {
-        e.preventDefault();
-
-        if ((typeof properties === 'object' && properties.void) && String.fromCharCode(e.keyCode).match(/[A-Za-z]/) && (colPos === clickedVoid.colPos && rowPos === clickedVoid.rowPos)) {
-            dispatch(setLetter(colPos, rowPos, String.fromCharCode(e.keyCode)));
-
-            setClickedVoid({colPos: null, rowPos: null});
-        };
-      };
-
-      document.addEventListener('keydown', keyDownHandler);
-
-      return () => document.removeEventListener('keydown', keyDownHandler);
-    }, [clickedVoid]);
-
-    useEffect(() => {
-      const keyDownHandler = e => {
-        e.preventDefault();
-
-        if ((typeof properties === 'object' && properties.void) && String.fromCharCode(e.keyCode).match(/[A-Za-z]/) && (colPos === lastVoidClicked[0] && rowPos === lastVoidClicked[1])) dispatch(setLetter(colPos, rowPos, String.fromCharCode(e.keyCode)));
-      };
-
-      document.addEventListener('keydown', keyDownHandler);
-
-      return () => document.removeEventListener('keydown', keyDownHandler);
-    }, [lastVoidClicked]);
 
     return (
       <div

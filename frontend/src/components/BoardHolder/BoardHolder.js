@@ -103,9 +103,7 @@ const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmit
             dispatch(incrementInvalidWords());
             setInvalid(true);
         
-            if (invalidWords <= 1) {
-                for (let i = 0; i <= (invalidWords + 1); i++) dispatch(dropLettersAction());
-            };
+            if (invalidWords <= 1) for (let i = 0; i <= (invalidWords + 1); i++) dispatch(dropLettersAction());
         
             if (invalidWords > 1) dispatch(dropRow());
         };

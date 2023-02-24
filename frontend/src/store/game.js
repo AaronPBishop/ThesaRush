@@ -28,7 +28,6 @@ const initialState = {
         submitted: false,
         earnedBomb: false,
         earnedVoid: false,
-        lastVoidClicked: [],
         usedLightning: false,
         earnedLightning: {
             hasEarned: false,
@@ -78,26 +77,10 @@ export const dropLettersAction = () => {
     };
 };
 
-export const setLetter = (col, row, letter) => {
+export const setLetter = (letter) => {
     return {
         type: 'SET_LETTER',
-        payload1: col,
-        payload2: row,
-        payload3: letter
-    };
-};
-
-export const setLastVoidClicked = (col, row) => {
-    return {
-        type: 'SET_LAST_VOID_CLICKED',
-        payload1: col,
-        payload2: row
-    };
-};
-
-export const removeLastVoidClicked = () => {
-    return {
-        type: 'REMOVE_LAST_VOID_CLICKED'
+        payload: letter
     };
 };
 
@@ -372,29 +355,35 @@ const gameReducer = (state = initialState, action) => {
             return currentState;
         };
 
-        case 'SET_LAST_VOID_CLICKED': {
-            currentState.statuses.lastVoidClicked = [action.payload1, action.payload2];
-
-            return currentState;
-        };
-
-        case 'REMOVE_LAST_VOID_CLICKED': {
-            currentState.statuses.lastVoidClicked = [];
-
-            return currentState;
-        };
-
         case 'SET_LETTER': {
-            if ((typeof currentState.board[action.payload1][action.payload2].properties === 'object') && (currentState.board[action.payload1][action.payload2].properties.void)) {
-                currentState.board[action.payload1][action.payload2].letter = action.payload3;
+            let highestChar = 0;
+            for (let key in currentState.input) {
+                const currLetter = currentState.input[key];
 
-                const coord = Number([action.payload1, action.payload2].join(''));
+                if (currLetter[1] > highestChar) highestChar = currLetter[1];
+            };
 
-                currentState.input[coord] = [action.payload3, currentState.order, [action.payload1, action.payload2]];
+            let coordinates = [];
+            for (let key in currentState.input) {
+                const currLetter = currentState.input[key];
+
+                if (currLetter[1] === highestChar) coordinates = currLetter[2];
+            };
+
+            const [col, row] = coordinates;
+
+            if ((typeof currentState.board[col][row].properties === 'object') && (currentState.board[col][row].properties.void)) {
+                currentState.board[col][row].letter = action.payload;
+
+                const coord = Number([col, row].join(''));
+
+                currentState.input[coord] = [action.payload, currentState.order, [col, row]];
                 currentState.order += 1;
 
                 return currentState;
             };
+
+            return currentState;
         };
 
         case 'DROP_ROW': {
@@ -423,7 +412,6 @@ const gameReducer = (state = initialState, action) => {
             currentState.clearedTiles = [];
             currentState.prevColumns = [null, null, null, null, null, null];
             currentState.prevLetters = [null, null];
-            currentState.statuses.lastVoidClicked = [];
             currentState.statuses.earnedLightning = {
                 hasEarned: false,
                 strength: 0
@@ -458,8 +446,10 @@ const gameReducer = (state = initialState, action) => {
 
         case 'REMOVE_LAST_CHAR': {
             let highestChar = 0;
-            for (let i = 0; i < Object.values(currentState.input).length; i++) {
-                if (Object.values(currentState.input)[i][1] > highestChar) highestChar = Object.values(currentState.input)[i][1];
+            for (let key in currentState.input) {
+                const currLetter = currentState.input[key];
+
+                if (currLetter[1] > highestChar) highestChar = currLetter[1];
             };
             
             let coordinates = [];
@@ -468,6 +458,10 @@ const gameReducer = (state = initialState, action) => {
 
                 if (currLetter[1] === highestChar) {
                     coordinates = currLetter[2];
+
+                    const [col, row] = coordinates;
+
+                    if ((typeof currentState.board[col][row].properties === 'object') && (currentState.board[col][row].properties.void)) return currentState;
 
                     delete currentState.input[key];
                 };
@@ -592,7 +586,7 @@ const gameReducer = (state = initialState, action) => {
                 currentState.stats.trackScore += action.payload *= multiplier;
             };
 
-            if (currentState.stats.trackScore >= 60) currentState.statuses.earnedVoid = true;
+            if (currentState.stats.trackScore >= 1) currentState.statuses.earnedVoid = true;
 
             return currentState;
         };
@@ -602,7 +596,7 @@ const gameReducer = (state = initialState, action) => {
             currentState.stats.points += action.payload;
             currentState.stats.trackScore += action.payload;
 
-            if (currentState.stats.trackScore >= 60) currentState.statuses.earnedVoid = true;
+            if (currentState.stats.trackScore >= 1) currentState.statuses.earnedVoid = true;
 
             return currentState;
         };
