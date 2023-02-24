@@ -572,7 +572,9 @@ const gameReducer = (state = initialState, action) => {
         };
 
         case 'REMOVE_TILE': {
-            for (let key in currentState.tiles) delete currentState.tiles[key];
+            for (let key in currentState.tiles) {
+                if (currentState.tiles[key][0] === action.payload[0] && currentState.tiles[key][1] === action.payload[1]) delete currentState.tiles[key];
+            };
             
             currentState.prevWasVoid = false;
 
@@ -580,9 +582,7 @@ const gameReducer = (state = initialState, action) => {
         };
 
         case 'RESET_TILES': {
-            for (let key in currentState.tiles) {
-                delete currentState.tiles[key]
-            };
+            for (let key in currentState.tiles) delete currentState.tiles[key]
             
             return currentState;
         };
