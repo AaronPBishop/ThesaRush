@@ -110,7 +110,7 @@ const Instructions = ({ clickedBack }) => {
                         </li>
 
                         <li style={{marginTop: '4vh'}}>
-                            Each time 200 points are accrued in your total score, you will be offered the opportunity to receive a 'hint'. Click the glowing robot icon and a valid 8-9 letter word will be found within your letters and displayed on your reward chart! While all letters in your hint have guaranteed presence, you must find and select the tiles yourself.
+                            Each time 200 points are accrued in your total score, you will be offered the opportunity to receive a 'hint'. Click the glowing brain icon and a valid 8-9 letter word will be found within your letters and displayed on your reward chart! While all letters in your hint have guaranteed presence, you must find and select the tiles yourself.
                         </li>
 
                         <li style={{marginTop: '2vh', fontStyle: 'italic', color: 'rgb(95, 255, 0)'}}>
