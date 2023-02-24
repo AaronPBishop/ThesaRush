@@ -586,7 +586,7 @@ const gameReducer = (state = initialState, action) => {
                 currentState.stats.trackScore += action.payload *= multiplier;
             };
 
-            if (currentState.stats.trackScore >= 1) currentState.statuses.earnedVoid = true;
+            if (currentState.stats.trackScore >= 60) currentState.statuses.earnedVoid = true;
 
             return currentState;
         };
@@ -596,7 +596,7 @@ const gameReducer = (state = initialState, action) => {
             currentState.stats.points += action.payload;
             currentState.stats.trackScore += action.payload;
 
-            if (currentState.stats.trackScore >= 1) currentState.statuses.earnedVoid = true;
+            if (currentState.stats.trackScore >= 60) currentState.statuses.earnedVoid = true;
 
             return currentState;
         };
