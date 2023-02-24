@@ -538,12 +538,6 @@ const gameReducer = (state = initialState, action) => {
             return currentState;
         };
 
-        case 'SET_WAS_VOID': {
-            currentState.prevWasVoid = action.payload;
-
-            return currentState;
-        };
-
         // ORDER REDUCERS
         case 'INCREMENT_ORDER': {
             currentState.order += 1;
