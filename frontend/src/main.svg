@@ -7,204 +7,94 @@
     </defs>
     <rect x="0" y="0" width="100%" height="100%" fill="#0A0E3F" />
     <g transform="translate(500,250)">
-        <circle r="100" stroke="rgb(225, 60, 70)" stroke-width="2" fill="none" stroke-dasharray="628.318, 628.318" stroke-dashoffset="0">
-            <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0" to="25000" dur="600" repeatCount="indefinite" />
-            <animate attributeName="stroke-dashoffset" from="0" to="25000" dur="600" repeatCount="indefinite" />
-        </circle>
-
-		<circle r="110" stroke="rgb(235, 40, 60)" stroke-width="2" fill="none" stroke-dasharray="628.318, 628.318" stroke-dashoffset="0">
-            <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="10" to="25000" dur="600" repeatCount="indefinite" />
-            <animate attributeName="stroke-dashoffset" from="10" to="25000" dur="600" repeatCount="indefinite" />
-        </circle>
-
-        <circle r="115" stroke="rgb(255, 20, 40)" stroke-width="2" fill="none" stroke-dasharray="628.318, 628.318" stroke-dashoffset="0">
-            <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="15" to="25000" dur="600" repeatCount="indefinite" />
-            <animate attributeName="stroke-dashoffset" from="15" to="25000" dur="600" repeatCount="indefinite" />
-        </circle>
-
-		<circle r="130" stroke="rgb(20, 120, 255)" stroke-width="2" fill="none" stroke-dasharray="628.318, 628.318" stroke-dashoffset="0">
-            <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="30" to="25000" dur="600" repeatCount="indefinite" />
-            <animate attributeName="stroke-dashoffset" from="30" to="25000" dur="600" repeatCount="indefinite" />
-        </circle>
-
-		<circle r="140" stroke="rgb(60, 60, 205)" stroke-width="2" fill="none" stroke-dasharray="628.318, 628.318" stroke-dashoffset="0">
-            <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="40" to="25000" dur="600" repeatCount="indefinite" />
-            <animate attributeName="stroke-dashoffset" from="40" to="25000" dur="600" repeatCount="indefinite" />
-        </circle>
-
-		<circle r="160" stroke="rgb(100, 40, 205)" stroke-width="2" fill="none" stroke-dasharray="628.318, 628.318" stroke-dashoffset="0">
-            <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="60" to="25000" dur="600" repeatCount="indefinite" />
-            <animate attributeName="stroke-dashoffset" from="60" to="25000" dur="600" repeatCount="indefinite" />
-        </circle>
-
-		<circle r="170" stroke="rgb(0, 220, 100)" stroke-width="2" fill="none" stroke-dasharray="628.318, 628.318" stroke-dashoffset="0">
-            <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="70" to="25000" dur="600" repeatCount="indefinite" />
-            <animate attributeName="stroke-dashoffset" from="70" to="25000" dur="600" repeatCount="indefinite" />
-        </circle>
-
-		<circle r="190" stroke="rgb(100, 40, 205)" stroke-width="2" fill="none" stroke-dasharray="628.318, 628.318" stroke-dashoffset="0">
-            <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="90" to="25000" dur="600" repeatCount="indefinite" />
-            <animate attributeName="stroke-dashoffset" from="90" to="25000" dur="600" repeatCount="indefinite" />
-        </circle>
-
-		<circle r="200" stroke="rgb(80, 60, 225)" stroke-width="2" fill="none" stroke-dasharray="628.318, 628.318" stroke-dashoffset="0">
-            <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0" to="25000" dur="600" repeatCount="indefinite" />
-            <animate attributeName="stroke-dashoffset" from="0" to="25000" dur="600" repeatCount="indefinite" />
-        </circle>
-
-		<circle r="205" stroke="rgb(60, 60, 245)" stroke-width="2" fill="none" stroke-dasharray="628.318, 628.318" stroke-dashoffset="0">
-            <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="5" to="25000" dur="600" repeatCount="indefinite" />
-            <animate attributeName="stroke-dashoffset" from="5" to="25000" dur="600" repeatCount="indefinite" />
-        </circle>
-
-		<circle r="220" stroke="rgb(0, 245, 80)" stroke-width="2" fill="none" stroke-dasharray="628.318, 628.318" stroke-dashoffset="0">
-            <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="20" to="25000" dur="600" repeatCount="indefinite" />
-            <animate attributeName="stroke-dashoffset" from="20" to="25000" dur="600" repeatCount="indefinite" />
-        </circle>
-
-		<circle r="230" stroke="rgb(60, 255, 0)" stroke-width="2" fill="none" stroke-dasharray="628.318, 628.318" stroke-dashoffset="0">
-            <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="30" to="25000" dur="600" repeatCount="indefinite" />
-            <animate attributeName="stroke-dashoffset" from="30" to="25000" dur="600" repeatCount="indefinite" />
-        </circle>
-
-		<circle r="235" stroke="rgb(255, 0, 20)" stroke-width="2" fill="none" stroke-dasharray="628.318, 628.318" stroke-dashoffset="0">
-            <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="35" to="25000" dur="600" repeatCount="indefinite" />
-            <animate attributeName="stroke-dashoffset" from="35" to="25000" dur="600" repeatCount="indefinite" />
-        </circle>
-
-		<circle r="245" stroke="rgb(225, 0, 60)" stroke-width="2" fill="none" stroke-dasharray="628.318, 628.318" stroke-dashoffset="0">
-            <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="45" to="25000" dur="600" repeatCount="indefinite" />
-            <animate attributeName="stroke-dashoffset" from="45" to="25000" dur="600" repeatCount="indefinite" />
-        </circle>
-
-		<circle r="260" stroke="rgb(20, 120, 255)" stroke-width="2" fill="none" stroke-dasharray="628.318, 628.318" stroke-dashoffset="0">
-            <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="60" to="25000" dur="600" repeatCount="indefinite" />
-            <animate attributeName="stroke-dashoffset" from="60" to="25000" dur="600" repeatCount="indefinite" />
-        </circle>
-
-		<circle r="270" stroke="rgb(0, 90, 255)" stroke-width="2" fill="none" stroke-dasharray="628.318, 628.318" stroke-dashoffset="0">
-            <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="70" to="25000" dur="600" repeatCount="indefinite" />
-            <animate attributeName="stroke-dashoffset" from="70" to="25000" dur="600" repeatCount="indefinite" />
-        </circle>
-
-		<circle r="275" stroke="rgb(0, 220, 100)" stroke-width="2" fill="none" stroke-dasharray="628.318, 628.318" stroke-dashoffset="0">
-            <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="75" to="25000" dur="600" repeatCount="indefinite" />
-            <animate attributeName="stroke-dashoffset" from="75" to="25000" dur="600" repeatCount="indefinite" />
-        </circle>
-
-		<circle r="285" stroke="rgb(100, 220, 0)" stroke-width="2" fill="none" stroke-dasharray="628.318, 628.318" stroke-dashoffset="0">
-            <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="85" to="25000" dur="600" repeatCount="indefinite" />
-            <animate attributeName="stroke-dashoffset" from="85" to="25000" dur="600" repeatCount="indefinite" />
-        </circle>
-
-		<circle r="290" stroke="rgb(200, 0, 60)" stroke-width="2" fill="none" stroke-dasharray="628.318, 628.318" stroke-dashoffset="0">
-            <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="90" to="25000" dur="600" repeatCount="indefinite" />
-            <animate attributeName="stroke-dashoffset" from="90" to="25000" dur="600" repeatCount="indefinite" />
-        </circle>
-
 		<circle r="300" stroke="rgb(60, 60, 220)" stroke-width="2" fill="none" stroke-dasharray="628.318, 628.318" stroke-dashoffset="0">
-            <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0" to="25000" dur="600" repeatCount="indefinite" />
-            <animate attributeName="stroke-dashoffset" from="0" to="25000" dur="600" repeatCount="indefinite" />
+            <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0" to="25000" dur="1200" repeatCount="indefinite" />
+            <animate attributeName="stroke-dashoffset" from="0" to="25000" dur="1200" repeatCount="indefinite" />
         </circle>
 
 		<circle r="310" stroke="rgb(20, 100, 255)" stroke-width="2" fill="none" stroke-dasharray="628.318, 628.318" stroke-dashoffset="0">
-            <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="10" to="25000" dur="600" repeatCount="indefinite" />
-            <animate attributeName="stroke-dashoffset" from="10" to="25000" dur="600" repeatCount="indefinite" />
+            <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="10" to="25000" dur="1200" repeatCount="indefinite" />
+            <animate attributeName="stroke-dashoffset" from="10" to="25000" dur="1200" repeatCount="indefinite" />
         </circle>
 
         <circle r="320" stroke="rgb(225, 60, 70)" stroke-width="2" fill="none" stroke-dasharray="628.318, 628.318" stroke-dashoffset="0">
-            <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="20" to="25000" dur="600" repeatCount="indefinite" />
-            <animate attributeName="stroke-dashoffset" from="20" to="25000" dur="600" repeatCount="indefinite" />
+            <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="20" to="25000" dur="1200" repeatCount="indefinite" />
+            <animate attributeName="stroke-dashoffset" from="20" to="25000" dur="1200" repeatCount="indefinite" />
         </circle>
 
 		<circle r="330" stroke="rgb(235, 40, 60)" stroke-width="2" fill="none" stroke-dasharray="628.318, 628.318" stroke-dashoffset="0">
-            <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="30" to="25000" dur="600" repeatCount="indefinite" />
-            <animate attributeName="stroke-dashoffset" from="30" to="25000" dur="600" repeatCount="indefinite" />
+            <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="30" to="25000" dur="1200" repeatCount="indefinite" />
+            <animate attributeName="stroke-dashoffset" from="30" to="25000" dur="1200" repeatCount="indefinite" />
         </circle>
 
         <circle r="335" stroke="rgb(255, 20, 40)" stroke-width="2" fill="none" stroke-dasharray="628.318, 628.318" stroke-dashoffset="0">
-            <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="35" to="25000" dur="600" repeatCount="indefinite" />
-            <animate attributeName="stroke-dashoffset" from="35" to="25000" dur="600" repeatCount="indefinite" />
+            <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="35" to="25000" dur="1200" repeatCount="indefinite" />
+            <animate attributeName="stroke-dashoffset" from="35" to="25000" dur="1200" repeatCount="indefinite" />
         </circle>
 
 		<circle r="340" stroke="rgb(20, 120, 255)" stroke-width="2" fill="none" stroke-dasharray="628.318, 628.318" stroke-dashoffset="0">
-            <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="40" to="25000" dur="600" repeatCount="indefinite" />
-            <animate attributeName="stroke-dashoffset" from="40" to="25000" dur="600" repeatCount="indefinite" />
+            <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="40" to="25000" dur="1200" repeatCount="indefinite" />
+            <animate attributeName="stroke-dashoffset" from="40" to="25000" dur="1200" repeatCount="indefinite" />
         </circle>
 
 		<circle r="350" stroke="rgb(60, 60, 205)" stroke-width="2" fill="none" stroke-dasharray="628.318, 628.318" stroke-dashoffset="0">
-            <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="50" to="25000" dur="600" repeatCount="indefinite" />
-            <animate attributeName="stroke-dashoffset" from="50" to="25000" dur="600" repeatCount="indefinite" />
+            <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="50" to="25000" dur="1200" repeatCount="indefinite" />
+            <animate attributeName="stroke-dashoffset" from="50" to="25000" dur="1200" repeatCount="indefinite" />
         </circle>
 
 		<circle r="360" stroke="rgb(100, 40, 205)" stroke-width="2" fill="none" stroke-dasharray="628.318, 628.318" stroke-dashoffset="0">
-            <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="60" to="25000" dur="600" repeatCount="indefinite" />
-            <animate attributeName="stroke-dashoffset" from="60" to="25000" dur="600" repeatCount="indefinite" />
+            <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="60" to="25000" dur="1200" repeatCount="indefinite" />
+            <animate attributeName="stroke-dashoffset" from="60" to="25000" dur="1200" repeatCount="indefinite" />
         </circle>
 
 		<circle r="370" stroke="rgb(0, 220, 100)" stroke-width="2" fill="none" stroke-dasharray="628.318, 628.318" stroke-dashoffset="0">
-            <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="70" to="25000" dur="600" repeatCount="indefinite" />
-            <animate attributeName="stroke-dashoffset" from="70" to="25000" dur="600" repeatCount="indefinite" />
+            <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="70" to="25000" dur="1200" repeatCount="indefinite" />
+            <animate attributeName="stroke-dashoffset" from="70" to="25000" dur="1200" repeatCount="indefinite" />
         </circle>
 
 		<circle r="390" stroke="rgb(100, 40, 205)" stroke-width="2" fill="none" stroke-dasharray="628.318, 628.318" stroke-dashoffset="0">
-            <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="90" to="25000" dur="600" repeatCount="indefinite" />
-            <animate attributeName="stroke-dashoffset" from="90" to="25000" dur="600" repeatCount="indefinite" />
+            <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="90" to="25000" dur="1200" repeatCount="indefinite" />
+            <animate attributeName="stroke-dashoffset" from="90" to="25000" dur="1200" repeatCount="indefinite" />
         </circle>
 
 		<circle r="400" stroke="rgb(80, 60, 225)" stroke-width="2" fill="none" stroke-dasharray="628.318, 628.318" stroke-dashoffset="0">
-            <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0" to="25000" dur="600" repeatCount="indefinite" />
-            <animate attributeName="stroke-dashoffset" from="0" to="25000" dur="600" repeatCount="indefinite" />
+            <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0" to="25000" dur="1200" repeatCount="indefinite" />
+            <animate attributeName="stroke-dashoffset" from="0" to="25000" dur="1200" repeatCount="indefinite" />
         </circle>
 
 		<circle r="405" stroke="rgb(60, 60, 245)" stroke-width="2" fill="none" stroke-dasharray="628.318, 628.318" stroke-dashoffset="0">
-            <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="5" to="25000" dur="600" repeatCount="indefinite" />
-            <animate attributeName="stroke-dashoffset" from="5" to="25000" dur="600" repeatCount="indefinite" />
+            <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="5" to="25000" dur="1200" repeatCount="indefinite" />
+            <animate attributeName="stroke-dashoffset" from="5" to="25000" dur="1200" repeatCount="indefinite" />
         </circle>
 
-		<circle r="420" stroke="rgb(0, 245, 80)" stroke-width="2" fill="none" stroke-dasharray="628.318, 628.318" stroke-dashoffset="0">
-            <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="20" to="25000" dur="600" repeatCount="indefinite" />
-            <animate attributeName="stroke-dashoffset" from="20" to="25000" dur="600" repeatCount="indefinite" />
+		<circle r="420" stroke="rgb(0, 255, 80)" stroke-width="2" fill="none" stroke-dasharray="628.318, 628.318" stroke-dashoffset="0">
+            <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="20" to="25000" dur="1200" repeatCount="indefinite" />
+            <animate attributeName="stroke-dashoffset" from="20" to="25000" dur="1200" repeatCount="indefinite" />
         </circle>
 
 		<circle r="430" stroke="rgb(60, 255, 0)" stroke-width="2" fill="none" stroke-dasharray="628.318, 628.318" stroke-dashoffset="0">
-            <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="30" to="25000" dur="600" repeatCount="indefinite" />
-            <animate attributeName="stroke-dashoffset" from="30" to="25000" dur="600" repeatCount="indefinite" />
+            <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="30" to="25000" dur="1200" repeatCount="indefinite" />
+            <animate attributeName="stroke-dashoffset" from="30" to="25000" dur="1200" repeatCount="indefinite" />
         </circle>
 
 		<circle r="435" stroke="rgb(255, 0, 20)" stroke-width="2" fill="none" stroke-dasharray="628.318, 628.318" stroke-dashoffset="0">
-            <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="35" to="25000" dur="600" repeatCount="indefinite" />
-            <animate attributeName="stroke-dashoffset" from="35" to="25000" dur="600" repeatCount="indefinite" />
+            <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="35" to="25000" dur="1200" repeatCount="indefinite" />
+            <animate attributeName="stroke-dashoffset" from="35" to="25000" dur="1200" repeatCount="indefinite" />
         </circle>
 
 		<circle r="445" stroke="rgb(225, 0, 60)" stroke-width="2" fill="none" stroke-dasharray="628.318, 628.318" stroke-dashoffset="0">
-            <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="45" to="25000" dur="600" repeatCount="indefinite" />
-            <animate attributeName="stroke-dashoffset" from="45" to="25000" dur="600" repeatCount="indefinite" />
+            <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="45" to="25000" dur="1200" repeatCount="indefinite" />
+            <animate attributeName="stroke-dashoffset" from="45" to="25000" dur="1200" repeatCount="indefinite" />
         </circle>
 
-		<circle r="460" stroke="rgb(20, 120, 255)" stroke-width="2" fill="none" stroke-dasharray="628.318, 628.318" stroke-dashoffset="0">
-            <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="60" to="25000" dur="600" repeatCount="indefinite" />
-            <animate attributeName="stroke-dashoffset" from="60" to="25000" dur="600" repeatCount="indefinite" />
+		<circle r="450" stroke="rgb(20, 120, 255)" stroke-width="2" fill="none" stroke-dasharray="628.318, 628.318" stroke-dashoffset="0">
+            <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="50" to="25000" dur="1200" repeatCount="indefinite" />
+            <animate attributeName="stroke-dashoffset" from="50" to="25000" dur="1200" repeatCount="indefinite" />
         </circle>
 
-		<circle r="470" stroke="rgb(0, 90, 255)" stroke-width="2" fill="none" stroke-dasharray="628.318, 628.318" stroke-dashoffset="0">
-            <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="70" to="25000" dur="600" repeatCount="indefinite" />
-            <animate attributeName="stroke-dashoffset" from="70" to="25000" dur="600" repeatCount="indefinite" />
-        </circle>
-
-		<circle r="475" stroke="rgb(0, 220, 100)" stroke-width="2" fill="none" stroke-dasharray="628.318, 628.318" stroke-dashoffset="0">
-            <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="75" to="25000" dur="600" repeatCount="indefinite" />
-            <animate attributeName="stroke-dashoffset" from="75" to="25000" dur="600" repeatCount="indefinite" />
-        </circle>
-
-		<circle r="485" stroke="rgb(100, 220, 0)" stroke-width="2" fill="none" stroke-dasharray="628.318, 628.318" stroke-dashoffset="0">
-            <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="85" to="25000" dur="600" repeatCount="indefinite" />
-            <animate attributeName="stroke-dashoffset" from="85" to="25000" dur="600" repeatCount="indefinite" />
-        </circle>
-
-		<circle r="490" stroke="rgb(200, 0, 60)" stroke-width="2" fill="none" stroke-dasharray="628.318, 628.318" stroke-dashoffset="0">
-            <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="90" to="25000" dur="600" repeatCount="indefinite" />
-            <animate attributeName="stroke-dashoffset" from="90" to="25000" dur="600" repeatCount="indefinite" />
+		<circle r="460" stroke="rgb(0, 90, 255)" stroke-width="2" fill="none" stroke-dasharray="628.318, 628.318" stroke-dashoffset="0">
+            <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="60" to="25000" dur="1200" repeatCount="indefinite" />
+            <animate attributeName="stroke-dashoffset" from="60" to="25000" dur="1200" repeatCount="indefinite" />
         </circle>
     </g>
 </svg>
