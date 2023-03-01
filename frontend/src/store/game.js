@@ -620,7 +620,9 @@ const gameReducer = (state = initialState, action) => {
             const scoreMultipliers = ['X', 'Z', 'Q'];
             let multiplier = 0;
 
-            const pointsMap = {5: 7, 6: 9, 7: 11, 8: 16, 9: 20, 10: 30, 11: 45, 12: 70, 13: 100, 14: 140, 15: 190, 16: 250};
+            const pointsMap = {
+                5: 7, 6: 9, 7: 11, 8: 16, 9: 20, 10: 30, 11: 45, 12: 70, 13: 100, 14: 140, 15: 190, 16: 250, 17: 350, 18: 500, 19: 700, 20: 1000
+            };
 
             action.payload2.split('').forEach(letter => {
                 if (scoreMultipliers.includes(letter)) {
