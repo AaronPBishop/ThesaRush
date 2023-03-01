@@ -638,18 +638,18 @@ const gameReducer = (state = initialState, action) => {
                 currentState.stats.trackHint += action.payload;
             };
 
-            if (action.payload > 4) {
+            if (action.payload > 4 && action.payload <= 20) {
                 currentState.stats.points += pointsMap[action.payload];
                 currentState.stats.score += pointsMap[action.payload];
                 currentState.stats.trackScore += pointsMap[action.payload];
                 currentState.stats.trackHint += pointsMap[action.payload];
             };
 
-            if (action.payload > 16) {
-                currentState.stats.points += (action.payload * 20);
-                currentState.stats.score += (action.payload * 20);
-                currentState.stats.trackScore += (action.payload * 20);
-                currentState.stats.trackHint += (action.payload * 20);
+            if (action.payload > 20) {
+                currentState.stats.points += (action.payload * 50);
+                currentState.stats.score += (action.payload * 50);
+                currentState.stats.trackScore += (action.payload * 50);
+                currentState.stats.trackHint += (action.payload * 50);
             };
 
             if (multiplier > 0) {

@@ -14,6 +14,8 @@ export const hasLightningTile = (board, tileValues, totalVals) => {
             if (typeof (board[col][row].properties === 'object') && (board[col][row].properties.lightning)) return true;
         };
     };
+
+    return false;
 };
 
 export const clearBottomRows = (totalVals, board, clearedTiles, randKeys) => {
