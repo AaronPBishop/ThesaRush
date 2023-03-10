@@ -8,6 +8,7 @@ import { Ethereum } from '@styled-icons/simple-icons/Ethereum';
 import { Diamond } from '@styled-icons/ionicons-solid/Diamond';
 import { Connectdevelop } from '@styled-icons/fa-brands/Connectdevelop';
 import { WeatherThunderstorm } from '@styled-icons/fluentui-system-filled/WeatherThunderstorm';
+import { BoltLightning } from '@styled-icons/fa-solid/BoltLightning';
 
 import './styles.css';
 
@@ -98,7 +99,7 @@ const TrophyComponent = ({ trophyType, container }) => {
             color: 'white',
             boxShadow: '0px 0px 12px 4px rgb(0, 40, 255)',
             border: '4px solid rgb(0, 140, 255)',
-            trophyColor: 'rgba(255, 255, 0, 0.85)',
+            trophyColor: 'rgba(255, 255, 0, 0.8)',
             description: 'This scarce medallion is obtainable only by those with an acute mastery of elemental storm magic. The few who adorn it are known to decimate the alphabet-arena with flashes of archaic energy and all the fury of the megacosm.',
             descriptionBackground: 'rgb(0, 140, 255)',
             pointTotal: 10000
@@ -184,15 +185,14 @@ const TrophyComponent = ({ trophyType, container }) => {
             }}>
             </BrainCircuit>
 
-            <WeatherThunderstorm 
+            <BoltLightning 
             style={{
                 display: !clicked && trophyType === 'Skybolt Summoner' ? 'block' : 'none',
                 color: mapStyles[trophyType.replace(/ /g, '')].trophyColor,
-                marginTop: '1vh',
-                marginBottom: '-1vh',
-                width: '8vw'
+                marginTop: '4vh',
+                width: '4.5vw'
             }}>
-            </WeatherThunderstorm>
+            </BoltLightning>
 
             {
                 !clicked ?
