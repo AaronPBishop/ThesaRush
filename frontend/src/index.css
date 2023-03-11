@@ -1,5 +1,4 @@
 body {
-    background-image: url('./main.svg');
     position: relative;
 
     background-size: cover;
@@ -10,6 +9,14 @@ body {
     overflow: hidden;
 
     user-select: none;
+}
+
+#dynamic-body {
+    background-image: url('./main.svg');
+}
+
+#static-body {
+    background-image: url('./static.svg');
 }
 
 input:-webkit-autofill {

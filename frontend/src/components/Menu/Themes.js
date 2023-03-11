@@ -1,9 +1,11 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { setBackgroundColor } from '../../store/menu';
+import { setBackgroundColor, setBackdropType } from '../../store/menu';
 
 const Themes = () => {
     const dispatch = useDispatch();
+
+    const backDrop = useSelector(state => state.menu.backDrop);
 
     const mapThemeStyles = {
         classic: ['3px solid rgb(0, 0, 0)', '0px 0px 4px 1.5px rgb(220, 220, 220)'],
@@ -20,10 +22,10 @@ const Themes = () => {
                 display: 'flex', 
                 justifyContent: 'center', 
                 flexWrap: 'wrap',
-                marginTop: '-1vh', 
-                margin: 'auto',
+                marginTop: '-3vh', 
                 paddingTop: '5vh',
-                border: '2px solid rgb(120, 120, 255)',
+                border: 'none',
+                boxShadow: '0px 0px 6px 2px rgb(120, 120, 255)',
                 borderRadius: '12px',
                 width: '28vw'
             }}>
@@ -73,6 +75,41 @@ const Themes = () => {
                 >
                     <li>Meadow</li>
                 </div>
+            </div>
+
+            <div
+            onClick={() => {
+                if (!window.localStorage.getItem("backDrop") || window.localStorage.getItem("backDrop") === 'dynamic') {
+                    dispatch(setBackdropType('static'));
+                    window.localStorage.setItem("backDrop", "static");
+
+                    return;
+                };
+
+                if (window.localStorage.getItem("backDrop") === 'static') {
+                    dispatch(setBackdropType('dynamic'));
+                    window.localStorage.setItem("backDrop", "dynamic");
+
+                    return;
+                };
+            }}
+            style={{
+                fontFamily: 'Bungee Spice',
+                textShadow: '0px 2px 1px black',
+                fontSize: '20px',
+                lineHeight: '7.4vh',
+                height: '7vh',
+                width: '18vw',
+                marginTop: '4vh',
+                borderRadius: '12px',
+                backgroundColor: 'rgb(140, 0, 55)', 
+                border: 'none',
+                borderBottom: '3.5px solid rgb(105, 0, 40)', 
+                cursor: 'pointer'
+            }}>
+                {
+                    backDrop === 'dynamic' ? 'Dynamic Backdrop' : 'Static Backdrop'
+                }
             </div>
         </div>
     );

@@ -7,7 +7,7 @@ import Menu from './components/Menu/Menu.js';
 import GameOver from './components/GameOver/GameOver.js';
 import Musicplayer from './components/MusicPlayer/MusicPlayer.js';
 
-import { setBackgroundColor } from './store/menu.js';
+import { setBackdropType, setBackgroundColor } from './store/menu.js';
 import { authenticate } from './store/user.js';
 
 import * as data from './dictionary/words_dictionary';
@@ -15,11 +15,20 @@ import * as data from './dictionary/words_dictionary';
 const App = () => {
   const dispatch = useDispatch();
 
+  const backDrop = useSelector(state => state.menu.backDrop);
+
   useEffect(() => {
     const background = window.localStorage.getItem('backgroundColor');
+    const storageBackdrop = window.localStorage.getItem('backDrop');
 
     if (background) dispatch(setBackgroundColor(background));
+    if (storageBackdrop) dispatch(setBackdropType(storageBackdrop));
   }, []);
+
+  useEffect(() => {
+    if (backDrop === 'dynamic') document.body.id = 'dynamic-body';
+    if (backDrop === 'static') document.body.id = 'static-body';
+  }, [backDrop]);
 
   useEffect(() => {
     (async () => {

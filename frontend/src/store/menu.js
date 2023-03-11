@@ -1,5 +1,6 @@
 const initialState = {
     backgroundColor: 'rgb(0, 0, 0)',
+    backDrop: 'dynamic',
     clickedSignUp: false,
     clickedLogIn: false,
     clickedProfile: false,
@@ -13,6 +14,13 @@ export const setBackgroundColor = (color) => {
     return {
         type: 'SET_BACKGROUND_COLOR',
         payload: color
+    };
+};
+
+export const setBackdropType = (type) => {
+    return {
+        type: 'SET_BACKDROP_TYPE',
+        payload: type
     };
 };
 
@@ -72,6 +80,12 @@ const menuReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'SET_BACKGROUND_COLOR': {
             currentState.backgroundColor = action.payload;
+
+            return currentState;
+        };
+
+        case 'SET_BACKDROP_TYPE': {
+            currentState.backDrop = action.payload;
 
             return currentState;
         };
