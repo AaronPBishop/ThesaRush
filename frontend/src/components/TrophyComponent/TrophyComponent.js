@@ -219,7 +219,7 @@ const TrophyComponent = ({ trophyType, container }) => {
                 <p 
                 id='animate-text' 
                 style={{
-                    textShadow: trophyType === 'Ruination Ruler' ? 'none' : '0px 3px 2px black',
+                    textShadow: trophyType === 'Ruination Ruler' ? '0px 3px 2px rgb(0, 225, 0)' : '0px 3px 2px black',
                     fontWeight: 'bold', 
                     fontSize: '20px', 
                     width: '14vw'
@@ -232,7 +232,7 @@ const TrophyComponent = ({ trophyType, container }) => {
                         {mapStyles[trophyType.replace(/ /g, '')].header}
                     </p>
 
-                    <b style={{color: 'Ruination Ruler' && 'red', textShadow: trophyType === 'Treasure Tactician' ? '0px 2px 2px black' : 'none', marginTop: '-1.5vh'}}>
+                    <b style={{color: trophyType === 'Ruination Ruler' && 'red', textShadow: trophyType === 'Treasure Tactician' ? '0px 2px 2px black' : 'none', marginTop: '-1.5vh'}}>
                         +{mapStyles[trophyType.replace(/ /g, '')].pointTotal} points
                     </b>
 
