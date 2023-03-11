@@ -100,19 +100,19 @@ const TrophyComponent = ({ trophyType, container }) => {
             boxShadow: '0px 0px 12px 4px rgb(0, 40, 255)',
             border: '4px solid rgb(0, 140, 255)',
             trophyColor: 'rgba(255, 255, 0, 0.8)',
-            description: 'This scarce medallion is obtainable only by those with an acute mastery of elemental storm magic. The few who adorn it are known to decimate the alphabet-arena with flashes of archaic energy and all the fury of the megacosm.',
+            description: 'This scarce medallion is obtainable only by those with an acute mastery of elemental storm magic. The few who adorn it are known to decimate entire alphabets with flashes of archaic energy and all the fury of the megacosm.',
             descriptionBackground: 'rgb(0, 140, 255)',
             pointTotal: 10000
         },
         RuinationRuler: {
             header: 'Earned 50 Decimator Badges',
-            backgroundColor: 'rgba(30, 50, 255, 1)',
-            color: 'white',
-            boxShadow: '0px 0px 12px 4px rgb(0, 40, 255)',
-            border: '4px solid rgb(0, 140, 255)',
-            trophyColor: 'rgba(255, 255, 0, 0.8)',
-            description: '',
-            descriptionBackground: 'rgb(0, 140, 255)',
+            backgroundColor: 'rgb(0, 255, 0)',
+            color: 'red',
+            boxShadow: '0px 0px 12px 4px rgb(255, 0, 0)',
+            border: '4px solid rgb(100, 0, 0)',
+            trophyColor: 'red',
+            description: 'A twisted stamp of impending eradication, symbolizing the scorched letters left in the wake of the ominous who claim it. Its malevolent aura is a reflection of the ravenous souls attracted to its hideous power, never satisfied by their attempts at total obliteration.',
+            descriptionBackground: 'rgb(0, 155, 0)',
             pointTotal: 15000
         }
     };
@@ -209,8 +209,8 @@ const TrophyComponent = ({ trophyType, container }) => {
             style={{
                 display: !clicked && trophyType === 'Ruination Ruler' ? 'block' : 'none',
                 color: mapStyles[trophyType.replace(/ /g, '')].trophyColor,
-                marginTop: '4vh',
-                width: '4.5vw'
+                marginTop: '4.5vh',
+                width: '6vw'
             }}>
             </Radioactive>
 
@@ -219,7 +219,7 @@ const TrophyComponent = ({ trophyType, container }) => {
                 <p 
                 id='animate-text' 
                 style={{
-                    textShadow: '0px 3px 2px black',
+                    textShadow: trophyType === 'Ruination Ruler' ? 'none' : '0px 3px 2px black',
                     fontWeight: 'bold', 
                     fontSize: '20px', 
                     width: '14vw'
@@ -228,11 +228,11 @@ const TrophyComponent = ({ trophyType, container }) => {
                 </p> 
                 :
                 <div style={{display: 'flex', justifyContent: 'center', margin: 'auto', flexWrap: 'wrap', overflowY: 'hidden', overflowX: 'hidden'}}>
-                    <p style={{textShadow: trophyType === 'Treasure Tactician' ? '0px 2px 1px black' : 'none', fontSize: '20px', fontWeight: 'bold', marginTop: '1.5vh', width: '12vw'}}>
+                    <p style={{textShadow: trophyType === 'TreasureTactician' ? '0px 2px 1px black' : 'none', fontSize: '20px', fontWeight: 'bold', marginTop: '1.5vh', width: '12vw'}}>
                         {mapStyles[trophyType.replace(/ /g, '')].header}
                     </p>
 
-                    <b style={{textShadow: trophyType === 'Treasure Tactician' ? '0px 2px 2px black' : 'none', marginTop: '-1.5vh'}}>
+                    <b style={{color: 'Ruination Ruler' && 'red', textShadow: trophyType === 'Treasure Tactician' ? '0px 2px 2px black' : 'none', marginTop: '-1.5vh'}}>
                         +{mapStyles[trophyType.replace(/ /g, '')].pointTotal} points
                     </b>
 
