@@ -123,6 +123,7 @@ def seed_trophies():
         {"trophy_name": "Vengeant Vanquisher", "user_id": 30},
         {"trophy_name": "Cosmic Intellect", "user_id": 30},
         {"trophy_name": "Skybolt Summoner", "user_id": 30},
+        {"trophy_name": "Ruination Ruler", "user_id": 30},
 
         # New Trophy Testing Seeders
         # {"trophy_name": "Master Blaster", "user_id": 32},

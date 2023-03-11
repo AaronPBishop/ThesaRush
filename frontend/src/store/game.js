@@ -52,6 +52,7 @@ const initialState = {
         wordSmith: 0,
         voidMaster: 0,
         fulminator: 0,
+        decimator: 0,
         longestWord: '',
         difficulty: undefined
     }
@@ -292,9 +293,11 @@ const gameReducer = (state = initialState, action) => {
                 currentState.statuses.earnedLightning.hasEarned = true;
                 if (totalVals < 10) currentState.statuses.earnedLightning.strength = 1;
                 if (totalVals >= 10 && totalVals < 12) currentState.statuses.earnedLightning.strength = 2;
-                if (totalVals >= 12) currentState.statuses.earnedLightning.strength = 3;
-
-                currentState.stats.wordSmith += 1;
+                if (totalVals < 12) currentState.stats.wordSmith += 1;
+                if (totalVals >= 12) {
+                    currentState.stats.decimator += 1;
+                    currentState.statuses.earnedLightning.strength = 3;
+                };
                 
                 const newBoard = clearBottomRows(totalVals, currentState.board, currentState.clearedTiles, currentState.randKeys);
 

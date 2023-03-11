@@ -41,7 +41,8 @@ def update_user_data(id):
         'word_smith': ['Alphabet Architect', 8000],
         'void_master': ['Antimatter Maestro', 4000],
         'fulminator': ['Skybolt Summoner', 10000],
-        'wins': ['Vengeant Vanquisher', 12000]
+        'decimator': ['Ruination Ruler', 15000],
+        'wins': ['Vengeant Vanquisher', 30000]
     }
 
     for key, val in trophies.items():

@@ -17,7 +17,7 @@ import { Trophy } from '@styled-icons/entypo/Trophy';
 
 import './styles.css';
 
-const GameOver = ({ points, numWords, longestWord, tilesCleared, bombardier, stoneCrusher, goldMiner, wordSmith, voidMaster, fulminator }) => {
+const GameOver = ({ points, numWords, longestWord, tilesCleared, bombardier, stoneCrusher, goldMiner, wordSmith, voidMaster, fulminator, decimator }) => {
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -40,7 +40,8 @@ const GameOver = ({ points, numWords, longestWord, tilesCleared, bombardier, sto
         goldMiner: goldMiner,
         wordSmith: wordSmith,
         voidMaster: voidMaster,
-        fulminator: fulminator
+        fulminator: fulminator,
+        decimator: decimator
     };
 
     const mapPoints = {
@@ -58,16 +59,16 @@ const GameOver = ({ points, numWords, longestWord, tilesCleared, bombardier, sto
 
         gameOverSfx.play();
         
-        setBadges(bombardier + stoneCrusher + goldMiner + wordSmith + voidMaster + fulminator);
+        setBadges(bombardier + stoneCrusher + goldMiner + wordSmith + voidMaster + fulminator + decimator);
         
         if (user.user_id && difficulty !== 'training') {
-            if (difficulty === 'easy') dispatch(updateUserData(user.user_id, 0, points, numWords, longestWord, tilesCleared, bombardier, stoneCrusher, goldMiner, wordSmith, voidMaster, fulminator));
+            if (difficulty === 'easy') dispatch(updateUserData(user.user_id, 0, points, numWords, longestWord, tilesCleared, bombardier, stoneCrusher, goldMiner, wordSmith, voidMaster, fulminator, decimator));
 
-            if (difficulty === 'medium') dispatch(updateUserData(user.user_id, points, Math.round(points * 1.5), numWords, longestWord, tilesCleared, bombardier, stoneCrusher, goldMiner, wordSmith, voidMaster, fulminator));
+            if (difficulty === 'medium') dispatch(updateUserData(user.user_id, points, Math.round(points * 1.5), numWords, longestWord, tilesCleared, bombardier, stoneCrusher, goldMiner, wordSmith, voidMaster, fulminator, decimator));
 
-            if (difficulty === 'hard') dispatch(updateUserData(user.user_id, points, (points * 2), numWords, longestWord, tilesCleared, bombardier, stoneCrusher, goldMiner, wordSmith, voidMaster, fulminator));
+            if (difficulty === 'hard') dispatch(updateUserData(user.user_id, points, (points * 2), numWords, longestWord, tilesCleared, bombardier, stoneCrusher, goldMiner, wordSmith, voidMaster, fulminator, decimator));
 
-            if (difficulty === 'rush') dispatch(updateUserData(user.user_id, points, (points * 3), numWords, longestWord, tilesCleared, bombardier, stoneCrusher, goldMiner, wordSmith, voidMaster, fulminator));
+            if (difficulty === 'rush') dispatch(updateUserData(user.user_id, points, (points * 3), numWords, longestWord, tilesCleared, bombardier, stoneCrusher, goldMiner, wordSmith, voidMaster, fulminator, decimator));
         };
 
         if (challenge.inChallenge && challenge.isChallengee && challenge.completedChallenge === false) dispatch(updateChallenge(challenge.challengeId, 0));

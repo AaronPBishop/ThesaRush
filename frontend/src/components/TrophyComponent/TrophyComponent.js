@@ -7,8 +7,8 @@ import { Atom } from '@styled-icons/boxicons-regular/Atom';
 import { Ethereum } from '@styled-icons/simple-icons/Ethereum';
 import { Diamond } from '@styled-icons/ionicons-solid/Diamond';
 import { Connectdevelop } from '@styled-icons/fa-brands/Connectdevelop';
-import { WeatherThunderstorm } from '@styled-icons/fluentui-system-filled/WeatherThunderstorm';
 import { BoltLightning } from '@styled-icons/fa-solid/BoltLightning';
+import { Radioactive } from '@styled-icons/bootstrap/Radioactive';
 
 import './styles.css';
 
@@ -103,6 +103,17 @@ const TrophyComponent = ({ trophyType, container }) => {
             description: 'This scarce medallion is obtainable only by those with an acute mastery of elemental storm magic. The few who adorn it are known to decimate the alphabet-arena with flashes of archaic energy and all the fury of the megacosm.',
             descriptionBackground: 'rgb(0, 140, 255)',
             pointTotal: 10000
+        },
+        RuinationRuler: {
+            header: 'Earned 50 Decimator Badges',
+            backgroundColor: 'rgba(30, 50, 255, 1)',
+            color: 'white',
+            boxShadow: '0px 0px 12px 4px rgb(0, 40, 255)',
+            border: '4px solid rgb(0, 140, 255)',
+            trophyColor: 'rgba(255, 255, 0, 0.8)',
+            description: '',
+            descriptionBackground: 'rgb(0, 140, 255)',
+            pointTotal: 15000
         }
     };
 
@@ -193,6 +204,15 @@ const TrophyComponent = ({ trophyType, container }) => {
                 width: '4.5vw'
             }}>
             </BoltLightning>
+
+            <Radioactive 
+            style={{
+                display: !clicked && trophyType === 'Ruination Ruler' ? 'block' : 'none',
+                color: mapStyles[trophyType.replace(/ /g, '')].trophyColor,
+                marginTop: '4vh',
+                width: '4.5vw'
+            }}>
+            </Radioactive>
 
             {
                 !clicked ?

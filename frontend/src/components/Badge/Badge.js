@@ -11,7 +11,8 @@ const Badge = ({ badgeType, numBadges, type='' }) => {
         goldMiner: ['🪙', 'Gold Miner', 'Clear 3 gold tiles'],
         wordSmith: ['🛠️', 'Word Smith', 'Submit 8+ letter word'],
         voidMaster: ['🪄', 'Void Master', 'Use 3 void tiles'],
-        fulminator: ['⚡', 'Fulminator', 'Use 2 lightning tiles']
+        fulminator: ['⚡', 'Fulminator', 'Use 2 lightning tiles'],
+        decimator: ['☢️', 'Decimator', 'Submit 12+ letter word']
     };
 
     return (

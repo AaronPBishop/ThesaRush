@@ -100,7 +100,7 @@ const Themes = () => {
                 lineHeight: '7.4vh',
                 height: '7vh',
                 width: '18vw',
-                marginTop: '4vh',
+                marginTop: '3.5vh',
                 borderRadius: '12px',
                 backgroundColor: 'rgb(140, 0, 55)', 
                 border: 'none',
