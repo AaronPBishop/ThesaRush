@@ -12,6 +12,8 @@ Redux actions are utilized in order to perform various board operations, such as
 > From your terminal, `cd` into `/frontend`, run `npm install`, then run `npm start`. Next, create a `.env` file based on the example `.env.example` file provided (within the same directory). In a separate terminal, from the root '/ThesaRush' directory, run `pipenv shell` to start your virtual environment, then run `pipenv install -r requirements.txt`. Next, run `flask db upgrade`, followed by `flask seed all`, and finally `flask run`. Have fun!
 
 ## What's new in the latest build:
+* 2 new badges and associated trophies have been added to the game!
+* Each time 200 points are accrued in your total score, check your reward chart for the glowing 'neural circuit'. Upon clicking, an 8-9 letter word will instantly be found in your board and displayed on the chart!
 * Lightning tiles - You heard it right, 8+ letter words now drop their own unique lightning tile with varying strengths based on the length of your word! Use a lightning tile to clear up to three tiles off the top of each column.
 * A chart has been added to the left side of the board to indicate progress toward special tiles.
 * Unique sound effects have been added to various in-game actions.
@@ -19,7 +21,6 @@ Redux actions are utilized in order to perform various board operations, such as
 * Void tile values may now be altered after you've set them. Gone are the days of pesky typos ruining your hard-earned void tiles.
 * If you think you can pull it off, 10-11 letter word submissions now clear both bottom rows! Not enough for you? Submit a 12+ letter word to clear all three bottom rows and completely decimate the board.
 * ThesaRush just got bigger and better! Four new columns have been added to the widened-board in order to encourage lengthier word submissions and longer games.
-* Lives now clear all columns stacked to the height of the board, plus 3 tiles out of every other column on the board. Breathe new-found life into your games and knock your all-time high-score out of the park!
 * More difficult levels now award greater points! Rank up faster and knock out the competition by taking on more challenging game-modes.
 
 ## Technologies used:
