@@ -41,8 +41,9 @@ const initialState = {
     stats: {
         points: 0, 
         score: 0, 
-        trackScore: 0,
+        trackVoid: 0,
         trackHint: 0,
+        trackScore: 0,
         invalidWords: 0,
         words: 0,
         tilesCleared: 0,
@@ -53,6 +54,7 @@ const initialState = {
         voidMaster: 0,
         fulminator: 0,
         decimator: 0,
+        scoreSleuth: 0,
         longestWord: '',
         difficulty: undefined
     }
@@ -362,7 +364,7 @@ const gameReducer = (state = initialState, action) => {
                 currentState.prevLetters = newBoard[1];
                 currentState.prevColumns = newBoard[2];
                 currentState.statuses.earnedVoid = false;
-                currentState.stats.trackScore = 0;
+                currentState.stats.trackVoid = 0;
 
                 return currentState;
             };
@@ -620,6 +622,11 @@ const gameReducer = (state = initialState, action) => {
         };
 
         case 'DETERMINE_POINTS': {
+            if (currentState.trackScore >= 1000) {
+                currentState.scoreSleuth += 1;
+                currentState.trackScore = 0;
+            };
+
             const scoreMultipliers = ['X', 'Z', 'Q'];
             let multiplier = 0;
 
@@ -637,43 +644,53 @@ const gameReducer = (state = initialState, action) => {
             if (action.payload < 5) {
                 currentState.stats.points += action.payload;
                 currentState.stats.score += action.payload;
-                currentState.stats.trackScore += action.payload;
+                currentState.stats.trackVoid += action.payload;
                 currentState.stats.trackHint += action.payload;
+                currentState.stats.trackScore += action.payload;
             };
 
             if (action.payload > 4 && action.payload <= 20) {
                 currentState.stats.points += pointsMap[action.payload];
                 currentState.stats.score += pointsMap[action.payload];
-                currentState.stats.trackScore += pointsMap[action.payload];
+                currentState.stats.trackVoid += pointsMap[action.payload];
                 currentState.stats.trackHint += pointsMap[action.payload];
+                currentState.stats.trackScore += pointsMap[action.payload];
             };
 
             if (action.payload > 20) {
                 currentState.stats.points += (action.payload * 50);
                 currentState.stats.score += (action.payload * 50);
-                currentState.stats.trackScore += (action.payload * 50);
+                currentState.stats.trackVoid += (action.payload * 50);
                 currentState.stats.trackHint += (action.payload * 50);
+                currentState.stats.trackScore += (action.payload * 50);
             };
 
             if (multiplier > 0) {
                 currentState.stats.points += action.payload *= multiplier;
                 currentState.stats.score += action.payload *= multiplier;
-                currentState.stats.trackScore += action.payload *= multiplier;
+                currentState.stats.trackVoid += action.payload *= multiplier;
                 currentState.stats.trackHint += action.payload *= multiplier;
+                currentState.stats.trackScore += action.payload *= multiplier;
             };
 
-            if (currentState.stats.trackScore >= 60) currentState.statuses.earnedVoid = true;
+            if (currentState.stats.trackVoid >= 60) currentState.statuses.earnedVoid = true;
 
             return currentState;
         };
 
         case 'ADD_TO_SCORE': {
+            if (currentState.trackScore >= 1000) {
+                currentState.scoreSleuth += 1;
+                currentState.trackScore = 0;
+            };
+            
             currentState.stats.score += action.payload;
             currentState.stats.points += action.payload;
-            currentState.stats.trackScore += action.payload;
+            currentState.stats.trackVoid += action.payload;
             currentState.stats.trackHint += action.payload;
+            currentState.stats.trackScore += action.payload;
 
-            if (currentState.stats.trackScore >= 60) currentState.statuses.earnedVoid = true;
+            if (currentState.stats.trackVoid >= 60) currentState.statuses.earnedVoid = true;
 
             return currentState;
         };

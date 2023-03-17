@@ -198,8 +198,8 @@ const RewardChart = ({ orderedInputLen }) => {
                     width: '90%', 
                     height: '25%', 
                     boxShadow: 
-                    stats.trackScore < 60 ? '0px 0px 6px 2px rgb(200, 200, 200)' 
-                    : stats.trackScore >= 60 && '0px 0px 10px 4px rgb(255, 255, 255)', 
+                    stats.trackVoid < 60 ? '0px 0px 6px 2px rgb(200, 200, 200)' 
+                    : stats.trackVoid >= 60 && '0px 0px 10px 4px rgb(255, 255, 255)', 
                     borderRadius: '10px', 
                     marginTop: '4vh', 
                     contain: 'strict'
@@ -207,7 +207,7 @@ const RewardChart = ({ orderedInputLen }) => {
                     <div 
                     style={{
                         backgroundColor: 'white', 
-                        maxWidth: `${(stats.trackScore / 60) * 100}%`, 
+                        maxWidth: `${(stats.trackVoid / 60) * 100}%`, 
                         height: '100%', 
                         borderRadius: '10px'
                     }}>

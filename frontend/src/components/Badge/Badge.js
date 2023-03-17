@@ -12,7 +12,8 @@ const Badge = ({ badgeType, numBadges, type='' }) => {
         wordSmith: ['🛠️', 'Word Smith', 'Submit 8+ letter word'],
         voidMaster: ['🪄', 'Void Master', 'Use 3 void tiles'],
         fulminator: ['⚡', 'Fulminator', 'Use 2 lightning tiles'],
-        decimator: ['☢️', 'Decimator', 'Submit 12+ letter word']
+        decimator: ['☢️', 'Decimator', 'Submit 12+ letter word'],
+        scoreSleuth: ['🏅', 'Score Sleuth', 'Accrue 1,000 Points']
     };
 
     return (

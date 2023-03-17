@@ -11,7 +11,7 @@ import './styles.css';
 
 const RankedPlayer = ({ score, userName, index }) => {
     const ignore = ['league', 'user_name', 'trophies', 'points', 'player_id'];
-    const badges = ['bombardier', 'stone_crusher', 'gold_miner', 'word_smith', 'void_master', 'fulminator', 'decimator'];
+    const badges = ['bombardier', 'stone_crusher', 'gold_miner', 'word_smith', 'void_master', 'fulminator', 'decimator', 'score_sleuth'];
 
     const user = useSelector(state => state.user);
     const rankings = useSelector(state => state.league);
@@ -38,7 +38,8 @@ const RankedPlayer = ({ score, userName, index }) => {
         word_smith: 'wordSmith',
         void_master: 'voidMaster',
         fulminator: 'fulminator',
-        decimator: 'decimator'
+        decimator: 'decimator',
+        score_sleuth: 'scoreSleuth'
     };
 
     const mapStarColor = {

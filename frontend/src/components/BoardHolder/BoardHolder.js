@@ -43,7 +43,7 @@ import { resetStatuses } from '../../store/offerStatuses';
 import { resetChallengeState, updateChallenge } from '../../store/challenge';
 import { incurrLoss } from '../../store/user.js';
 
-const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmith, voidMaster, fulminator, decimator }) => {
+const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmith, voidMaster, fulminator, decimator, scoreSleuth }) => {
     const history = useHistory();
     const params = useParams();
     const dispatch = useDispatch();
@@ -167,6 +167,7 @@ const BoardHolder = ({ dictionary, bombardier, stoneCrusher, goldMiner, wordSmit
     useEffect(() => {dispatchBadgeActions(voidMaster, 'voidMaster')}, [voidMaster]);
     useEffect(() => {dispatchBadgeActions(fulminator, 'fulminator')}, [fulminator]);
     useEffect(() => {dispatchBadgeActions(decimator, 'decimator')}, [decimator]);
+    useEffect(() => {dispatchBadgeActions(scoreSleuth, 'scoreSleuth')}, [scoreSleuth]);
 
     useEffect(() => {
         if (usedLightning === true) {

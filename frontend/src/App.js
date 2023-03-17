@@ -47,6 +47,7 @@ const App = () => {
   const voidMaster = useSelector(state => state.game.stats.voidMaster);
   const fulminator = useSelector(state => state.game.stats.fulminator);
   const decimator = useSelector(state => state.game.stats.decimator);
+  const scoreSleuth = useSelector(state => state.game.stats.scoreSleuth);
 
   return (
     <div>
@@ -73,6 +74,7 @@ const App = () => {
           voidMaster={Math.trunc(voidMaster / 3)}
           fulminator={Math.trunc(fulminator / 2)}
           decimator={decimator}
+          scoreSleuth={scoreSleuth}
           />
         </Route>
 
@@ -86,6 +88,7 @@ const App = () => {
           voidMaster={Math.trunc(voidMaster / 3)}
           fulminator={Math.trunc(fulminator / 2)}
           decimator={decimator}
+          scoreSleuth={scoreSleuth}
           />
         </Route>
 

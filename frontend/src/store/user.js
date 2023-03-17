@@ -204,7 +204,7 @@ export const findPlayerByCredential = (credential) => async (dispatch) => {
 };
 
 
-export const updateUserData = (id, highScore, points, words, longestWord, tilesCleared, bombardier, stoneCrusher, goldMiner, wordSmith, voidMaster, fulminator, decimator) => async (dispatch) => {
+export const updateUserData = (id, highScore, points, words, longestWord, tilesCleared, bombardier, stoneCrusher, goldMiner, wordSmith, voidMaster, fulminator, decimator, scoreSleuth) => async (dispatch) => {
     const request = await fetch(`/api/users/${id}`, {
         method: 'PUT',
         headers: {'Content-Type': 'application/json'},
@@ -220,7 +220,8 @@ export const updateUserData = (id, highScore, points, words, longestWord, tilesC
             word_smith: wordSmith,
             void_master: voidMaster,
             fulminator: fulminator,
-            decimator: decimator
+            decimator: decimator,
+            score_sleuth: scoreSleuth
         })
     });
 

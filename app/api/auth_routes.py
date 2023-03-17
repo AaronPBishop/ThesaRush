@@ -84,6 +84,7 @@ def create_new_user():
         void_master = 0,
         fulminator = 0,
         decimator = 0,
+        score_sleuth = 0,
         league_name = 'Bronze',
         wins=0,
         losses=0
@@ -168,6 +169,7 @@ def create_random_user():
         void_master = 0,
         fulminator = 0,
         decimator = 0,
+        score_sleuth = 0,
         league_name = 'Bronze',
         wins=0,
         losses=0

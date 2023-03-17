@@ -17,7 +17,8 @@ const UserBadges = () => {
         wordSmith: user.word_smith,
         voidMaster: user.void_master,
         fulminator: user.fulminator,
-        decimator: user.decimator
+        decimator: user.decimator,
+        scoreSleuth: user.score_sleuth
     };
 
     useEffect(() => {

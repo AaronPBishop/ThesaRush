@@ -42,6 +42,7 @@ def update_user_data(id):
         'void_master': ['Antimatter Maestro', 4000],
         'fulminator': ['Skybolt Summoner', 10000],
         'decimator': ['Ruination Ruler', 15000],
+        'score_sleuth': ['Apex Achiever', 6000],
         'wins': ['Vengeant Vanquisher', 30000]
     }
 

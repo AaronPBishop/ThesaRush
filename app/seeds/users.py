@@ -90,7 +90,7 @@ def seed_users():
         {"user_name": "Verona", "user_email": "verona@gmail.com", "password": "password", "level": "50", "high_score": "1287", "points": "133678", "points_balance": "133678", "words": "30912", "longest_word": "FLEXIBILITY", "tiles_cleared": "88399", "lives": "1", "wins": "397", "losses": "231", "bombardier": "383", "stone_crusher": "402", "gold_miner": "376", "word_smith": "234", "void_master": "372", "league_name": "Cosmic"},
 
         #30
-        {"user_name": "Webula", "user_email": "webula@gmail.com", "password": "password", "level": "50", "high_score": "2487", "points": "159713", "points_balance": "159713", "words": "43219", "longest_word": "CRYPTOGRAPHICAL", "tiles_cleared": "138948", "lives": "1", "wins": "254", "losses": "88", "bombardier": "573", "stone_crusher": "689", "gold_miner": "538", "word_smith": "314", "void_master": "583", "fulminator": "144", "decimator": "78", "league_name": "Cosmic"},
+        {"user_name": "Webula", "user_email": "webula@gmail.com", "password": "password", "level": "50", "high_score": "2487", "points": "159713", "points_balance": "159713", "words": "43219", "longest_word": "CRYPTOGRAPHICAL", "tiles_cleared": "138948", "lives": "1", "wins": "254", "losses": "88", "bombardier": "573", "stone_crusher": "689", "gold_miner": "538", "word_smith": "314", "void_master": "583", "fulminator": "144", "decimator": "78", "score_sleuth": "182", "league_name": "Cosmic"},
 
         # New Trophy Testing Seeders
         # 31
