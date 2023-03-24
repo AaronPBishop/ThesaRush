@@ -622,11 +622,6 @@ const gameReducer = (state = initialState, action) => {
         };
 
         case 'DETERMINE_POINTS': {
-            if (currentState.trackScore >= 1000) {
-                currentState.scoreSleuth += 1;
-                currentState.trackScore = 0;
-            };
-
             const scoreMultipliers = ['X', 'Z', 'Q'];
             let multiplier = 0;
 
@@ -675,15 +670,15 @@ const gameReducer = (state = initialState, action) => {
 
             if (currentState.stats.trackVoid >= 60) currentState.statuses.earnedVoid = true;
 
+            if (currentState.stats.trackScore >= 1000) {
+                currentState.stats.scoreSleuth += 1;
+                currentState.stats.trackScore = 0;
+            };
+
             return currentState;
         };
 
         case 'ADD_TO_SCORE': {
-            if (currentState.trackScore >= 1000) {
-                currentState.scoreSleuth += 1;
-                currentState.trackScore = 0;
-            };
-            
             currentState.stats.score += action.payload;
             currentState.stats.points += action.payload;
             currentState.stats.trackVoid += action.payload;
@@ -691,6 +686,11 @@ const gameReducer = (state = initialState, action) => {
             currentState.stats.trackScore += action.payload;
 
             if (currentState.stats.trackVoid >= 60) currentState.statuses.earnedVoid = true;
+
+            if (currentState.stats.trackScore >= 1000) {
+                currentState.stats.scoreSleuth += 1;
+                currentState.stats.trackScore = 0;
+            };
 
             return currentState;
         };
